@@ -18,6 +18,8 @@
 		A764061F17B53B0700D45F51 /* BCKEANEndMarkerCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A764061E17B53B0700D45F51 /* BCKEANEndMarkerCodeCharacter.m */; };
 		A764062217B53B5200D45F51 /* BCKEANMiddleMarkerCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A764062117B53B5200D45F51 /* BCKEANMiddleMarkerCodeCharacter.m */; };
 		A764062517B53B7B00D45F51 /* BCKEANDigitCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A764062417B53B7B00D45F51 /* BCKEANDigitCodeCharacter.m */; };
+		A7781E1817B6B301005B9604 /* BCKUPCECode.m in Sources */ = {isa = PBXBuildFile; fileRef = A7781E1717B6B301005B9604 /* BCKUPCECode.m */; };
+		A7781E1B17B6BB8B005B9604 /* BCKUPCEEndMarkerCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A7781E1A17B6BB8B005B9604 /* BCKUPCEEndMarkerCodeCharacter.m */; };
 		A7A6B54617B62CA4007FF7DB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7A6B54117B62CA4007FF7DB /* ViewController.m */; };
 		A7A6B54717B62CA4007FF7DB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A7A6B54217B62CA4007FF7DB /* AppDelegate.m */; };
 		A7A6B54817B62CA4007FF7DB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A7A6B54517B62CA4007FF7DB /* main.m */; };
@@ -84,6 +86,10 @@
 		A764062117B53B5200D45F51 /* BCKEANMiddleMarkerCodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKEANMiddleMarkerCodeCharacter.m; sourceTree = "<group>"; };
 		A764062317B53B7B00D45F51 /* BCKEANDigitCodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKEANDigitCodeCharacter.h; sourceTree = "<group>"; };
 		A764062417B53B7B00D45F51 /* BCKEANDigitCodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKEANDigitCodeCharacter.m; sourceTree = "<group>"; };
+		A7781E1617B6B301005B9604 /* BCKUPCECode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKUPCECode.h; sourceTree = "<group>"; };
+		A7781E1717B6B301005B9604 /* BCKUPCECode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKUPCECode.m; sourceTree = "<group>"; };
+		A7781E1917B6BB8B005B9604 /* BCKUPCEEndMarkerCodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKUPCEEndMarkerCodeCharacter.h; sourceTree = "<group>"; };
+		A7781E1A17B6BB8B005B9604 /* BCKUPCEEndMarkerCodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKUPCEEndMarkerCodeCharacter.m; sourceTree = "<group>"; };
 		A7A6B54117B62CA4007FF7DB /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		A7A6B54217B62CA4007FF7DB /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		A7A6B54317B62CA4007FF7DB /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -201,6 +207,10 @@
 				A764062117B53B5200D45F51 /* BCKEANMiddleMarkerCodeCharacter.m */,
 				A764062317B53B7B00D45F51 /* BCKEANDigitCodeCharacter.h */,
 				A764062417B53B7B00D45F51 /* BCKEANDigitCodeCharacter.m */,
+				A7781E1617B6B301005B9604 /* BCKUPCECode.h */,
+				A7781E1717B6B301005B9604 /* BCKUPCECode.m */,
+				A7781E1917B6BB8B005B9604 /* BCKUPCEEndMarkerCodeCharacter.h */,
+				A7781E1A17B6BB8B005B9604 /* BCKUPCEEndMarkerCodeCharacter.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -388,7 +398,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7781E1817B6B301005B9604 /* BCKUPCECode.m in Sources */,
 				A764061F17B53B0700D45F51 /* BCKEANEndMarkerCodeCharacter.m in Sources */,
+				A7781E1B17B6BB8B005B9604 /* BCKUPCEEndMarkerCodeCharacter.m in Sources */,
 				A764061C17B53AE700D45F51 /* BCKEANCodeCharacter.m in Sources */,
 				A764060D17B52EC600D45F51 /* BCKCode.m in Sources */,
 				A764060E17B52EC600D45F51 /* BCKEAN13Code.m in Sources */,
@@ -669,6 +681,7 @@
 				A7A6B57F17B62D05007FF7DB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A7A6B58017B62D05007FF7DB /* Build configuration list for PBXNativeTarget "DemoAppTests" */ = {
 			isa = XCConfigurationList;
@@ -677,6 +690,7 @@
 				A7A6B58217B62D05007FF7DB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

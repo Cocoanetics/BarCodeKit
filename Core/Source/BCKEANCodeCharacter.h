@@ -23,6 +23,7 @@ typedef NS_ENUM(NSUInteger, BCKEANCodeCharacterEncoding)
 - (void)enumerateBitsUsingBlock:(void (^)(BOOL isBar, NSUInteger idx, BOOL *stop))block;
 
 + (BCKEANCodeCharacter *)endMarkerCodeCharacter;
++ (BCKEANCodeCharacter *)endMarkerCodeCharacterForUPCE;
 
 + (BCKEANCodeCharacter *)middleMarkerCodeCharacter;
 

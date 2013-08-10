@@ -7,10 +7,7 @@
 //
 
 #import "BCKEANCodeCharacter.h"
-
-#import "BCKEANMiddleMarkerCodeCharacter.h"
-#import "BCKEANEndMarkerCodeCharacter.h"
-#import "BCKEANDigitCodeCharacter.h"
+#import "BarCodeKit.h"
 
 @implementation BCKEANCodeCharacter
 
@@ -51,6 +48,11 @@
 + (BCKEANCodeCharacter *)endMarkerCodeCharacter
 {
 	return [[BCKEANEndMarkerCodeCharacter alloc] init];
+}
+
++ (BCKEANCodeCharacter *)endMarkerCodeCharacterForUPCE
+{
+	return [[BCKUPCEEndMarkerCodeCharacter alloc] init];
 }
 
 + (BCKEANCodeCharacter *)middleMarkerCodeCharacter

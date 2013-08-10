@@ -21,12 +21,14 @@
 	// Do any additional setup after loading the view, typically from a nib.
 	
 	
-		BCKEAN13Code *code = [[BCKEAN13Code alloc] initWithContent:@"9780596516178"];
-	//BCKEAN8Code *code = [[BCKEAN8Code alloc] initWithContent:@"24046985"];
+	BCKEAN13Code *code1 = [[BCKEAN13Code alloc] initWithContent:@"9780596516178"];
+	self.imageView.image = [code1 image];
 	
-	UIImage *image = [code image];
+	BCKEAN8Code *code2 = [[BCKEAN8Code alloc] initWithContent:@"24046985"];
+	self.imageView_EAN8.image = [code2 image];
 	
-	self.imageView.image =image;
+	BCKUPCECode *code3 = [[BCKUPCECode alloc] initWithContent:@"12345670"];
+	self.imageView_UPCE.image = [code3 image];
 }
 
 - (void)didReceiveMemoryWarning

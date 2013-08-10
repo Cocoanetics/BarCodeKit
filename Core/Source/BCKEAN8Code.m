@@ -71,5 +71,15 @@
 	return [tmpArray copy];
 }
 
+#pragma mark - Caption
+//- (NSString *)leftQuietZoneText
+//{
+//	return @"<";
+//}
+//
+//- (NSString *)rightQuietZoneText
+//{
+//	return @">";
+//}
 
 @end

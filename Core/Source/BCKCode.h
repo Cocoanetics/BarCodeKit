@@ -7,6 +7,9 @@
 //
 
 @interface BCKCode : NSObject
+{
+	NSString *_content;
+}
 
 - (instancetype)initWithContent:(NSString *)content;
 

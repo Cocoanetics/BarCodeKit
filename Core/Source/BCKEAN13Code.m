@@ -85,4 +85,15 @@ static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
 	return [tmpArray copy];
 }
 
+#pragma mark - Caption
+- (NSString *)leftQuietZoneText
+{
+	return [self.content substringToIndex:1];
+}
+
+//- (NSString *)rightQuietZoneText
+//{
+//	return @">";
+//}
+
 @end

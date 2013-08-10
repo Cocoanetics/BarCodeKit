@@ -10,9 +10,6 @@
 #import "BarCodeKit.h"
 
 @implementation BCKCode
-{
-	NSString *_content;
-}
 
 - (instancetype)initWithContent:(NSString *)content
 {
@@ -53,9 +50,22 @@
 	return nil;
 }
 
+#pragma mark - Caption
+- (NSString *)leftQuietZoneText
+{
+	return nil;
+}
+
+- (NSString *)rightQuietZoneText
+{
+	return nil;
+}
+
+#pragma mark - Drawing
+
 - (UIImage *)image
 {
-	CGFloat barScale = 2.5;
+	CGFloat barScale = 1.5;
 	CGFloat imageHeight = 120;
 	
 	NSUInteger horizontalQuietZoneWidth = [self horizontalQuietZoneWidth];
@@ -79,9 +89,12 @@
 	__block CGRect leftQuietZoneNumberRegion = CGRectZero;
 	__block CGRect leftNumberRegion = CGRectNull;
 	__block CGRect rightNumberRegion = CGRectNull;
-	NSString *leadingDigit = [self.content substringToIndex:1];
+	__block CGRect rightQuietZoneNumberRegion = CGRectZero;
+	
+	NSString *leftQuietZoneText = [self leftQuietZoneText];
 	NSMutableString *leftDigits = [NSMutableString string];
 	NSMutableString *rightDigits = [NSMutableString string];
+	NSString *rightQuietZoneText = [self rightQuietZoneText];
 	
 	__block BOOL metMiddleMarker = NO;
 	
@@ -117,12 +130,11 @@
 			index++;
 		}];
 		
-		if ( //[character isKindOfClass:[BCKEANEndMarkerCodeCharacter class]] ||
-			 [character isKindOfClass:[BCKEANMiddleMarkerCodeCharacter class]])
+		if ([character isKindOfClass:[BCKEANMiddleMarkerCodeCharacter class]])
 		{
-			//barPercent = 1.0f;
 			metMiddleMarker = YES;
-		} else if ([character isKindOfClass:[BCKEANEndMarkerCodeCharacter class]])
+		}
+		else if ([character isKindOfClass:[BCKEANEndMarkerCodeCharacter class]])
 		{
 			if (CGRectIsEmpty(leftQuietZoneNumberRegion))
 			{
@@ -164,53 +176,88 @@
 			}
 		}
 		
+		rightQuietZoneNumberRegion.origin.x = CGRectGetMaxX(characterRect);
+		rightQuietZoneNumberRegion.origin.y = characterRect.origin.y;
+		rightQuietZoneNumberRegion.size.width = size.width - rightQuietZoneNumberRegion.origin.x;
+		rightQuietZoneNumberRegion.size.height = size.height;
 	}];
 	
 	[[UIColor blackColor] setFill];
 	CGContextFillPath(context);
 
+	// insure at least 1 bar width space between bars and caption
+	leftNumberRegion.origin.x += barScale;
+	leftNumberRegion.size.width -= barScale;
 	
-	CGFloat optimalFontSizeForLeftDigits = [self _optimalFontSizeToFitText:leftDigits insideWidth:leftNumberRegion.size.width];
-	CGFloat optimalFontSizeForRightDigits = [self _optimalFontSizeToFitText:rightDigits insideWidth:rightNumberRegion.size.width];
+	rightNumberRegion.size.width -= barScale;
 	
-	CGFloat optimalCaptionFontSize = MIN(optimalFontSizeForLeftDigits, optimalFontSizeForRightDigits);
+	leftQuietZoneNumberRegion.size.width -= barScale;
 	
+	rightQuietZoneNumberRegion.origin.x += barScale;
+	rightQuietZoneNumberRegion.size.width -= barScale;
+	
+	
+	CGFloat optimalCaptionFontSize = size.height;
+	
+	if ([leftQuietZoneText length])
+	{
+		optimalCaptionFontSize = MIN(optimalCaptionFontSize, [self _optimalFontSizeToFitText:leftQuietZoneText insideWidth:leftQuietZoneNumberRegion.size.width]);
+	}
+
+	if ([leftDigits length])
+	{
+		optimalCaptionFontSize = MIN(optimalCaptionFontSize, [self _optimalFontSizeToFitText:leftDigits insideWidth:leftNumberRegion.size.width]);
+	}
+
+	if ([rightDigits length])
+	{
+		optimalCaptionFontSize = MIN(optimalCaptionFontSize, [self _optimalFontSizeToFitText:rightDigits insideWidth:rightNumberRegion.size.width]);
+	}
+
+	if ([rightQuietZoneText length])
+	{
+		optimalCaptionFontSize = MIN(optimalCaptionFontSize, [self _optimalFontSizeToFitText:rightQuietZoneText insideWidth:rightQuietZoneNumberRegion.size.width]);
+	}
+
 	UIFont *font = [self _captionFontWithSize:optimalCaptionFontSize];
-	
 	CGFloat captionHeight = ceilf(font.ascender);
-	
 	
 	CGRect bottomCaptionRegion = CGRectMake(0, size.height-captionHeight - barScale, size.width, captionHeight + barScale);
 	
 	leftNumberRegion = CGRectIntersection(bottomCaptionRegion, leftNumberRegion);
 	rightNumberRegion = CGRectIntersection(bottomCaptionRegion, rightNumberRegion);
 	leftQuietZoneNumberRegion = CGRectIntersection(bottomCaptionRegion, leftQuietZoneNumberRegion);
+	rightQuietZoneNumberRegion = CGRectIntersection(bottomCaptionRegion, rightQuietZoneNumberRegion);
 
 	[[UIColor whiteColor] setFill];
 	CGContextFillRect(context, leftNumberRegion);
 	CGContextFillRect(context, rightNumberRegion);
 
 	// insure at least 1 bar width space between bars and caption
-	leftNumberRegion.origin.x += barScale;
 	leftNumberRegion.origin.y += barScale;
-	leftNumberRegion.size.width -= barScale;
 	leftNumberRegion.size.height -= barScale;
 	
 	rightNumberRegion.origin.y += barScale;
-	rightNumberRegion.size.width -= barScale;
 	rightNumberRegion.size.height -= barScale;
 	
 	leftQuietZoneNumberRegion.origin.y += barScale;
-	leftQuietZoneNumberRegion.size.width -= barScale;
 	leftQuietZoneNumberRegion.size.height -= barScale;
-	
+
+	rightQuietZoneNumberRegion.origin.y += barScale;
+	rightQuietZoneNumberRegion.size.height -= barScale;
+
 
 	[self _drawCaptionText:leftDigits fontSize:optimalCaptionFontSize inRect:leftNumberRegion context:context];
 	[self _drawCaptionText:rightDigits fontSize:optimalCaptionFontSize inRect:rightNumberRegion context:context];
 	
-	if ([self.content length]>8)
+	if (leftQuietZoneText)
 	{
-		[self _drawCaptionText:leadingDigit fontSize:optimalCaptionFontSize inRect:leftQuietZoneNumberRegion context:context];
+		[self _drawCaptionText:leftQuietZoneText fontSize:optimalCaptionFontSize inRect:leftQuietZoneNumberRegion context:context];
+	}
+	
+	if (rightQuietZoneText)
+	{
+		[self _drawCaptionText:rightQuietZoneText fontSize:optimalCaptionFontSize inRect:rightQuietZoneNumberRegion context:context];
 	}
 	
 //	[[UIColor colorWithRed:1 green:0 blue:0 alpha:0.6] set];
@@ -219,6 +266,8 @@
 //	CGContextFillRect(context, rightNumberRegion);
 //	[[UIColor colorWithRed:0 green:0 blue:1 alpha:0.6] set];
 //	CGContextFillRect(context, leftQuietZoneNumberRegion);
+//	[[UIColor colorWithRed:0 green:0 blue:1 alpha:0.6] set];
+//	CGContextFillRect(context, rightQuietZoneNumberRegion);
 	
 	UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
 	UIGraphicsEndImageContext();
@@ -266,6 +315,11 @@
 
 - (void)_drawCaptionText:(NSString *)text fontSize:(CGFloat)fontSize inRect:(CGRect)rect context:(CGContextRef)context
 {
+	if (![text length])
+	{
+		return;
+	}
+	
 	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
 	paragraphStyle.alignment = NSTextAlignmentCenter;
 	
@@ -275,7 +329,7 @@
 	CGSize leftSize = [text sizeWithAttributes:attributes];
 	[[UIColor blackColor] setFill];
 	
-	[text drawAtPoint:CGPointMake(CGRectGetMidX(rect)-leftSize.width/2.0f, CGRectGetMaxY(rect)-font.ascender-1.0) withAttributes:attributes];
+	[text drawAtPoint:CGPointMake(CGRectGetMidX(rect)-leftSize.width/2.0f, CGRectGetMaxY(rect)-font.ascender-0.5) withAttributes:attributes];
 }
 
 @end
