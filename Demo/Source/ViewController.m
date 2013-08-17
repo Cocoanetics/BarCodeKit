@@ -30,6 +30,8 @@
 	
 	_barScale = 1.0;
 	_captionOverlap = 1.0;
+	_captionOption = YES;
+	
 	[self _updateWithOptions];
 }
 

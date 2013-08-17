@@ -49,96 +49,12 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	return [NSString stringWithFormat:@"<%@ content='%@'>", NSStringFromClass([self class]), [self bitString]];
 }
 
-#pragma mark - Subclassing Methods
+#pragma mark - Helper Methods
 
-- (NSUInteger)horizontalQuietZoneWidth
+// returns the actually displayed left quiet zone text based on the options
+- (NSString *)_leftQuietZoneDisplayTextWithOptions:(NSDictionary *)options
 {
-	return 0;
-}
-
-- (NSArray *)codeCharacters
-{
-	return nil;
-}
-
-- (NSString *)leftQuietZoneText
-{
-	return nil;
-}
-
-- (NSString *)rightQuietZoneText
-{
-	return nil;
-}
-
-#pragma mark - Drawing
-
-- (CGFloat)_barScaleFromOptions:(NSDictionary *)options
-{
-	NSNumber *barScaleNum = [options objectForKey:BCKCodeDrawingBarScaleOption];
-	
-	if (barScaleNum)
-	{
-		return [barScaleNum floatValue];
-	}
-	else
-	{
-		return 1;  // default
-	}
-}
-
-- (CGFloat)_markerBarCaptionOverlapFromOptions:(NSDictionary *)options
-{
-	NSNumber *num = [options objectForKey:BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption];
-	
-	if (num)
-	{
-		return [num floatValue];
-	}
-	
-	return 1; // default
-}
-
-
-- (CGSize)sizeWithRenderOptions:(NSDictionary *)options
-{
-	CGFloat barScale = [self _barScaleFromOptions:options];
-	
-	CGFloat imageHeight = 120;
-	
-	NSUInteger horizontalQuietZoneWidth = [self horizontalQuietZoneWidth];
-	
-	NSString *bitString = [self bitString];
-	NSUInteger length = [bitString length];
-	
-	return CGSizeMake((length + 2.0f * horizontalQuietZoneWidth) * barScale, imageHeight);
-}
-
-- (void)renderInContext:(CGContextRef)context options:(NSDictionary *)options
-{
-	CGFloat barScale = [self _barScaleFromOptions:options];
-	
-	CGFloat imageHeight = 120;
-	
-	NSUInteger horizontalQuietZoneWidth = [self horizontalQuietZoneWidth];
-	
-	CGSize size = [self sizeWithRenderOptions:options];
-	
-	[[UIColor whiteColor] setFill];
-	CGContextFillRect(context, CGRectMake(0, 0, size.width, size.height));
-	
-	__block NSUInteger index = 0;
-	
-	__block CGRect leftQuietZoneNumberRegion = CGRectZero;
-	__block CGRect leftNumberRegion = CGRectNull;
-	__block CGRect rightNumberRegion = CGRectNull;
-	__block CGRect rightQuietZoneNumberRegion = CGRectZero;
-	
 	NSString *leftQuietZoneText = [self leftQuietZoneText];
-	NSMutableString *leftDigits = [NSMutableString string];
-	NSMutableString *rightDigits = [NSMutableString string];
-	NSString *rightQuietZoneText = [self rightQuietZoneText];
-	
 	
 	if ([[options objectForKey:BCKCodeDrawingFillEmptyQuietZonesOption] boolValue])
 	{
@@ -146,207 +62,190 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 		{
 			leftQuietZoneText = @"<";
 		}
-		
+	}
+	
+	return leftQuietZoneText;
+}
+
+// returns the actually displayed right quiet zone text based on the options
+- (NSString *)_rightQuietZoneDisplayTextWithOptions:(NSDictionary *)options
+{
+	NSString *rightQuietZoneText = [self rightQuietZoneText];
+	
+	if ([[options objectForKey:BCKCodeDrawingFillEmptyQuietZonesOption] boolValue])
+	{
 		if (!rightQuietZoneText)
 		{
 			rightQuietZoneText = @">";
 		}
 	}
 	
-	__block BOOL metMiddleMarker = NO;
+	return rightQuietZoneText;
+}
+
+
+// returns the actually displayed left caption zone text based on the options
+- (NSString *)_leftCaptionZoneDisplayTextWithOptions:(NSDictionary *)options
+{
+	if (![self _shouldDrawCaptionFromOptions:options])
+	{
+		return nil;
+	}
 	
-	// enumerate the code characters
+	NSMutableString *tmpString = [NSMutableString string];
+	
+	// aggregate digits before marker
 	[[self codeCharacters] enumerateObjectsUsingBlock:^(BCKEANCodeCharacter *character, NSUInteger charIndex, BOOL *stop) {
 		
-		// walk through the bits of the character
-		
-		__block CGRect characterRect = CGRectNull;
-		
-		[character enumerateBitsUsingBlock:^(BOOL isBar, NSUInteger idx, BOOL *stop) {
-			
-			CGFloat x = (index + horizontalQuietZoneWidth) * barScale;
-			
-			CGFloat barPercent = 1.0f;
-			
-			CGRect barRect = CGRectMake(x, 0, barScale, imageHeight*barPercent);
-			
-			if (CGRectIsNull(characterRect))
-			{
-				characterRect = barRect;
-			}
-			else
-			{
-				characterRect = CGRectUnion(characterRect, barRect);
-			}
-			
-			if (isBar)
-			{
-				CGContextAddRect(context, barRect);
-			}
-			
-			index++;
-		}];
+		if ([character isKindOfClass:[BCKEANMiddleMarkerCodeCharacter class]])
+		{
+			*stop = YES;
+		}
+		else if ([character isKindOfClass:[BCKEANDigitCodeCharacter class]])
+		{
+			BCKEANDigitCodeCharacter *digitChar = (BCKEANDigitCodeCharacter *)character;
+			[tmpString appendFormat:@"%d", [digitChar digit]];
+		}
+	}];
+	
+	if ([tmpString length])
+	{
+		return [tmpString copy];
+	}
+	
+	return nil;
+}
+
+
+// returns the actually displayed left caption zone text based on the options
+- (NSString *)_rightCaptionZoneDisplayTextWithOptions:(NSDictionary *)options
+{
+	if (![self _shouldDrawCaptionFromOptions:options])
+	{
+		return nil;
+	}
+	
+	NSMutableString *tmpString = [NSMutableString string];
+	
+	__block BOOL metMiddleMarker = NO;
+	
+	// aggregate digits after marker
+	[[self codeCharacters] enumerateObjectsUsingBlock:^(BCKEANCodeCharacter *character, NSUInteger charIndex, BOOL *stop) {
 		
 		if ([character isKindOfClass:[BCKEANMiddleMarkerCodeCharacter class]])
 		{
 			metMiddleMarker = YES;
 		}
-		else if ([character isKindOfClass:[BCKEANEndMarkerCodeCharacter class]])
+		else if ([character isKindOfClass:[BCKEANDigitCodeCharacter class]])
 		{
-			if (CGRectIsEmpty(leftQuietZoneNumberRegion))
-			{
-				leftQuietZoneNumberRegion.origin.y = characterRect.origin.y;
-				leftQuietZoneNumberRegion.size.width = characterRect.origin.x;
-				leftQuietZoneNumberRegion.size.height = size.height;
-			}
-		}
-		
-		if ([character isKindOfClass:[BCKEANDigitCodeCharacter class]])
-		{
-			BCKEANDigitCodeCharacter *digitChar = (BCKEANDigitCodeCharacter *)character;
-			
 			if (metMiddleMarker)
 			{
-				if (CGRectIsNull(rightNumberRegion))
-				{
-					rightNumberRegion = characterRect;
-				}
-				else
-				{
-					rightNumberRegion = CGRectUnion(characterRect, rightNumberRegion);
-				}
-				
-				[rightDigits appendFormat:@"%d", [digitChar digit]];
-			}
-			else
-			{
-				if (CGRectIsNull(leftNumberRegion))
-				{
-					leftNumberRegion = characterRect;
-				}
-				else
-				{
-					leftNumberRegion = CGRectUnion(characterRect, leftNumberRegion);
-				}
-				
-				[leftDigits appendFormat:@"%d", [digitChar digit]];
+				BCKEANDigitCodeCharacter *digitChar = (BCKEANDigitCodeCharacter *)character;
+				[tmpString appendFormat:@"%d", [digitChar digit]];
 			}
 		}
-		
-		rightQuietZoneNumberRegion.origin.x = CGRectGetMaxX(characterRect);
-		rightQuietZoneNumberRegion.origin.y = characterRect.origin.y;
-		rightQuietZoneNumberRegion.size.width = size.width - rightQuietZoneNumberRegion.origin.x;
-		rightQuietZoneNumberRegion.size.height = size.height;
 	}];
 	
-	[[UIColor blackColor] setFill];
-	CGContextFillPath(context);
-	
-	if (![[options objectForKey:BCKCodeDrawingPrintCaptionOption] boolValue])
+	if ([tmpString length])
 	{
-		return;
+		return [tmpString copy];
 	}
 	
-	// insure at least 1 bar width space between bars and caption
-	leftNumberRegion.origin.x += barScale;
-	leftNumberRegion.size.width -= barScale;
+	return nil;
+}
+
+- (CGFloat)_horizontalQuietZoneWidthWithOptions:(NSDictionary *)options
+{
+	return ([self horizontalQuietZoneWidth]-1) * [self _barScaleFromOptions:options];
+}
+
+- (CGFloat)_leftCaptionZoneWidthWithOptions:(NSDictionary *)options
+{
+	__block NSUInteger bitsBeforeMiddle = 0;
 	
-	rightNumberRegion.size.width -= barScale;
+	// aggregate digits before marker
+	[[self codeCharacters] enumerateObjectsUsingBlock:^(BCKEANCodeCharacter *character, NSUInteger charIndex, BOOL *stop) {
+		
+		if ([character isKindOfClass:[BCKEANMiddleMarkerCodeCharacter class]])
+		{
+			*stop = YES;
+		}
+		else if ([character isKindOfClass:[BCKEANDigitCodeCharacter class]])
+		{
+			bitsBeforeMiddle += [[character bitString] length];
+		}
+	}];
 	
-	leftQuietZoneNumberRegion.size.width -= barScale;
+	if (bitsBeforeMiddle>0)
+	{
+		bitsBeforeMiddle -= 2; // to space text away from width
+	}
 	
-	rightQuietZoneNumberRegion.origin.x += barScale;
-	rightQuietZoneNumberRegion.size.width -= barScale;
+	return bitsBeforeMiddle * [self _barScaleFromOptions:options];
+}
+
+- (CGFloat)_rightCaptionZoneWidthWithOptions:(NSDictionary *)options
+{
+	__block NSUInteger bitsAfterMiddle = 0;
+	__block BOOL metMiddleMarker = NO;
 	
+	// aggregate digits before marker
+	[[self codeCharacters] enumerateObjectsUsingBlock:^(BCKEANCodeCharacter *character, NSUInteger charIndex, BOOL *stop) {
+		
+		if ([character isKindOfClass:[BCKEANMiddleMarkerCodeCharacter class]])
+		{
+			metMiddleMarker = YES;
+		}
+		else if ([character isKindOfClass:[BCKEANDigitCodeCharacter class]])
+		{
+			if (metMiddleMarker)
+			{
+				bitsAfterMiddle += [[character bitString] length];
+			}
+		}
+	}];
 	
-	CGFloat optimalCaptionFontSize = size.height;
+	if (bitsAfterMiddle>0)
+	{
+		bitsAfterMiddle -= 2; // to space text away from width
+	}
+	
+	return bitsAfterMiddle * [self _barScaleFromOptions:options];
+}
+
+
+
+- (CGFloat)_captionFontSizeWithOptions:(NSDictionary *)options
+{
+	NSString *leftQuietZoneText = [self _leftQuietZoneDisplayTextWithOptions:options];
+	NSString *rightQuietZoneText = [self _rightQuietZoneDisplayTextWithOptions:options];
+
+	NSString *leftDigits = [self _leftCaptionZoneDisplayTextWithOptions:options];
+	NSString *rightDigits = [self _rightCaptionZoneDisplayTextWithOptions:options];
+	
+	CGFloat optimalCaptionFontSize = CGFLOAT_MAX;
 	
 	if ([leftQuietZoneText length])
 	{
-		optimalCaptionFontSize = MIN(optimalCaptionFontSize, [self _optimalFontSizeToFitText:leftQuietZoneText insideWidth:leftQuietZoneNumberRegion.size.width]);
+		optimalCaptionFontSize = MIN(optimalCaptionFontSize, [self _optimalFontSizeToFitText:leftQuietZoneText insideWidth:[self _horizontalQuietZoneWidthWithOptions:options]]);
 	}
 	
 	if ([leftDigits length])
 	{
-		optimalCaptionFontSize = MIN(optimalCaptionFontSize, [self _optimalFontSizeToFitText:leftDigits insideWidth:leftNumberRegion.size.width]);
+		optimalCaptionFontSize = MIN(optimalCaptionFontSize, [self _optimalFontSizeToFitText:leftDigits insideWidth:[self _leftCaptionZoneWidthWithOptions:options]]);
 	}
 	
 	if ([rightDigits length])
 	{
-		optimalCaptionFontSize = MIN(optimalCaptionFontSize, [self _optimalFontSizeToFitText:rightDigits insideWidth:rightNumberRegion.size.width]);
+		optimalCaptionFontSize = MIN(optimalCaptionFontSize, [self _optimalFontSizeToFitText:rightDigits insideWidth:[self _rightCaptionZoneWidthWithOptions:options]]);
 	}
 	
 	if ([rightQuietZoneText length])
 	{
-		optimalCaptionFontSize = MIN(optimalCaptionFontSize, [self _optimalFontSizeToFitText:rightQuietZoneText insideWidth:rightQuietZoneNumberRegion.size.width]);
+		optimalCaptionFontSize = MIN(optimalCaptionFontSize, [self _optimalFontSizeToFitText:rightQuietZoneText insideWidth:[self _horizontalQuietZoneWidthWithOptions:options]]);
 	}
 	
-	UIFont *font = [self _captionFontWithSize:optimalCaptionFontSize];
-	CGFloat captionHeight = ceilf(font.ascender);
-	
-	CGRect bottomCaptionRegion = CGRectMake(0, size.height-captionHeight - barScale, size.width, captionHeight + barScale);
-	
-	CGFloat captionOverlap = [self _markerBarCaptionOverlapFromOptions:options];
-	
-	CGRect splitRect;
-	CGRect eraseRect;
-	CGRectDivide(bottomCaptionRegion, &splitRect, &eraseRect, captionOverlap * bottomCaptionRegion.size.height, CGRectMinYEdge);
-	
-	[[UIColor whiteColor] setFill];
-	CGContextFillRect(context, eraseRect);
-	NSLog(@"%@ %@", NSStringFromCGRect(bottomCaptionRegion), NSStringFromCGRect(eraseRect));
-	
-	
-	leftNumberRegion = CGRectIntersection(bottomCaptionRegion, leftNumberRegion);
-	rightNumberRegion = CGRectIntersection(bottomCaptionRegion, rightNumberRegion);
-	leftQuietZoneNumberRegion = CGRectIntersection(bottomCaptionRegion, leftQuietZoneNumberRegion);
-	rightQuietZoneNumberRegion = CGRectIntersection(bottomCaptionRegion, rightQuietZoneNumberRegion);
-	
-	[[UIColor whiteColor] setFill];
-	CGContextFillRect(context, leftNumberRegion);
-	CGContextFillRect(context, rightNumberRegion);
-	
-	// insure at least 1 bar width space between bars and caption
-	leftNumberRegion.origin.y += barScale;
-	leftNumberRegion.size.height -= barScale;
-	
-	rightNumberRegion.origin.y += barScale;
-	rightNumberRegion.size.height -= barScale;
-	
-	leftQuietZoneNumberRegion.origin.y += barScale;
-	leftQuietZoneNumberRegion.size.height -= barScale;
-	
-	rightQuietZoneNumberRegion.origin.y += barScale;
-	rightQuietZoneNumberRegion.size.height -= barScale;
-	
-	
-	// DEBUG Option
-	if ([[options objectForKey:BCKCodeDrawingDebugOption] boolValue])
-	{
-		[[UIColor colorWithRed:1 green:0 blue:0 alpha:0.6] set];
-		CGContextFillRect(context, leftNumberRegion);
-		[[UIColor colorWithRed:0 green:1 blue:0 alpha:0.6] set];
-		CGContextFillRect(context, rightNumberRegion);
-		[[UIColor colorWithRed:0 green:0 blue:1 alpha:0.6] set];
-		CGContextFillRect(context, leftQuietZoneNumberRegion);
-		[[UIColor colorWithRed:0 green:0 blue:1 alpha:0.6] set];
-		CGContextFillRect(context, rightQuietZoneNumberRegion);
-	}
-	
-	// Draw Captions
-	
-	[self _drawCaptionText:leftDigits fontSize:optimalCaptionFontSize inRect:leftNumberRegion context:context];
-	[self _drawCaptionText:rightDigits fontSize:optimalCaptionFontSize inRect:rightNumberRegion context:context];
-	
-	if (leftQuietZoneText)
-	{
-		[self _drawCaptionText:leftQuietZoneText fontSize:optimalCaptionFontSize inRect:leftQuietZoneNumberRegion context:context];
-	}
-	
-	if (rightQuietZoneText)
-	{
-		[self _drawCaptionText:rightQuietZoneText fontSize:optimalCaptionFontSize inRect:rightQuietZoneNumberRegion context:context];
-	}
+	return optimalCaptionFontSize;
 }
 
 - (UIFont *)_captionFontWithSize:(CGFloat)fontSize
@@ -382,10 +281,77 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 		}
 		
 		fontSize++;
-	} while (1);
+	}
+	while (1);
 	
 	return fontSize;
 }
+
+- (CGFloat)_barScaleFromOptions:(NSDictionary *)options
+{
+	NSNumber *barScaleNum = [options objectForKey:BCKCodeDrawingBarScaleOption];
+	
+	if (barScaleNum)
+	{
+		return [barScaleNum floatValue];
+	}
+	else
+	{
+		return 1;  // default
+	}
+}
+
+- (BOOL)_shouldDrawCaptionFromOptions:(NSDictionary *)options
+{
+	NSNumber *num = [options objectForKey:BCKCodeDrawingPrintCaptionOption];
+	
+	if (num)
+	{
+		return [num boolValue];
+	}
+	else
+	{
+		return 1;  // default
+	}
+}
+
+- (CGFloat)_markerBarCaptionOverlapFromOptions:(NSDictionary *)options
+{
+	NSNumber *num = [options objectForKey:BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption];
+	
+	if (num)
+	{
+		return [num floatValue];
+	}
+	
+	return 1; // default
+}
+
+
+
+#pragma mark - Subclassing Methods
+
+- (NSUInteger)horizontalQuietZoneWidth
+{
+	return 0;
+}
+
+- (NSArray *)codeCharacters
+{
+	return nil;
+}
+
+- (NSString *)leftQuietZoneText
+{
+	return nil;
+}
+
+- (NSString *)rightQuietZoneText
+{
+	return nil;
+}
+
+#pragma mark - Drawing
 
 - (void)_drawCaptionText:(NSString *)text fontSize:(CGFloat)fontSize inRect:(CGRect)rect context:(CGContextRef)context
 {
@@ -404,6 +370,217 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	[[UIColor blackColor] setFill];
 	
 	[text drawAtPoint:CGPointMake(CGRectGetMidX(rect)-leftSize.width/2.0f, CGRectGetMaxY(rect)-font.ascender-0.5) withAttributes:attributes];
+}
+
+- (CGSize)sizeWithRenderOptions:(NSDictionary *)options
+{
+	CGFloat barScale = [self _barScaleFromOptions:options];
+	
+	CGFloat imageHeight = 120;
+	
+	NSUInteger horizontalQuietZoneWidth = [self horizontalQuietZoneWidth];
+	
+	NSString *bitString = [self bitString];
+	NSUInteger length = [bitString length];
+	
+	return CGSizeMake((length + 2.0f * horizontalQuietZoneWidth) * barScale, imageHeight);
+}
+
+- (void)renderInContext:(CGContextRef)context options:(NSDictionary *)options
+{
+	CGFloat barScale = [self _barScaleFromOptions:options];
+	CGFloat imageHeight = 120;
+	CGSize size = [self sizeWithRenderOptions:options];
+	
+	NSString *leftQuietZoneText = [self _leftQuietZoneDisplayTextWithOptions:options];
+	NSString *leftDigits = [self _leftCaptionZoneDisplayTextWithOptions:options];
+	NSString *rightDigits = [self _rightCaptionZoneDisplayTextWithOptions:options];
+	NSString *rightQuietZoneText = [self _rightQuietZoneDisplayTextWithOptions:options];
+	
+	CGFloat captionHeight = 0;
+	CGFloat optimalCaptionFontSize = 0;
+	CGRect bottomCaptionRegion = CGRectMake(0, size.height, size.width, 0);
+	
+	// determine height of caption if needed
+	if ([self _shouldDrawCaptionFromOptions:options])
+	{
+		optimalCaptionFontSize = [self _captionFontSizeWithOptions:options];
+		UIFont *font = [self _captionFontWithSize:optimalCaptionFontSize];
+		captionHeight = ceilf(font.ascender);
+		
+		bottomCaptionRegion = CGRectMake(0, size.height-captionHeight - barScale, size.width, captionHeight + barScale);
+	}
+	
+	// determine bar lengths, bars for digits are usually shorter than bars for markers
+	CGFloat captionOverlap = [self _markerBarCaptionOverlapFromOptions:options];
+	CGFloat digitBarLength = CGRectGetMinY(bottomCaptionRegion);
+	CGFloat markerBarLength = CGRectGetMinY(bottomCaptionRegion) + captionOverlap * bottomCaptionRegion.size.height;
+	
+	__block NSUInteger drawnBitIndex = 0;
+	__block BOOL metMiddleMarker = NO;
+	__block CGRect leftQuietZoneNumberFrame = CGRectZero;
+	__block CGRect leftNumberFrame = CGRectNull;
+	__block CGRect rightNumberFrame = CGRectNull;
+	__block CGRect rightQuietZoneNumberFrame = CGRectZero;
+	NSUInteger horizontalQuietZoneWidth = [self horizontalQuietZoneWidth];
+	
+	// enumerate the code characters
+	[[self codeCharacters] enumerateObjectsUsingBlock:^(BCKEANCodeCharacter *character, NSUInteger charIndex, BOOL *stop) {
+		
+		// bar length is different for markers and digits
+		CGFloat barLength = 0;
+		
+		if ([character isKindOfClass:[BCKEANDigitCodeCharacter class]])
+		{
+			barLength = digitBarLength;
+		}
+		else
+		{
+			barLength = markerBarLength;
+		}
+		
+		__block CGRect characterRect = CGRectNull;
+		
+		// walk through the bits of the character
+		[character enumerateBitsUsingBlock:^(BOOL isBar, NSUInteger idx, BOOL *stop) {
+			
+			CGFloat x = (drawnBitIndex + horizontalQuietZoneWidth) * barScale;
+			
+			CGRect barRect = CGRectMake(x, 0, barScale, imageHeight);
+			
+			if (CGRectIsNull(characterRect))
+			{
+				characterRect = barRect;
+			}
+			else
+			{
+				characterRect = CGRectUnion(characterRect, barRect);
+			}
+			
+			if (isBar)
+			{
+				CGRect drawnRect = barRect;
+				drawnRect.size.height = barLength;
+				
+				CGContextAddRect(context, drawnRect);
+			}
+			
+			drawnBitIndex++;
+		}];
+		
+		if ([character isKindOfClass:[BCKEANMiddleMarkerCodeCharacter class]])
+		{
+			metMiddleMarker = YES;
+		}
+		else if ([character isKindOfClass:[BCKEANEndMarkerCodeCharacter class]])
+		{
+			if (CGRectIsEmpty(leftQuietZoneNumberFrame))
+			{
+				leftQuietZoneNumberFrame.origin.y = characterRect.origin.y;
+				leftQuietZoneNumberFrame.size.width = characterRect.origin.x;
+				leftQuietZoneNumberFrame.size.height = size.height;
+			}
+		}
+		
+		if ([character isKindOfClass:[BCKEANDigitCodeCharacter class]])
+		{
+			if (metMiddleMarker)
+			{
+				if (CGRectIsNull(rightNumberFrame))
+				{
+					rightNumberFrame = characterRect;
+				}
+				else
+				{
+					rightNumberFrame = CGRectUnion(characterRect, rightNumberFrame);
+				}
+			}
+			else
+			{
+				if (CGRectIsNull(leftNumberFrame))
+				{
+					leftNumberFrame = characterRect;
+				}
+				else
+				{
+					leftNumberFrame = CGRectUnion(characterRect, leftNumberFrame);
+				}
+			}
+		}
+		
+		rightQuietZoneNumberFrame.origin.x = CGRectGetMaxX(characterRect);
+		rightQuietZoneNumberFrame.origin.y = characterRect.origin.y;
+		rightQuietZoneNumberFrame.size.width = size.width - rightQuietZoneNumberFrame.origin.x;
+		rightQuietZoneNumberFrame.size.height = size.height;
+	}];
+	
+	// paint all bars
+	[[UIColor blackColor] setFill];
+	CGContextFillPath(context);
+	
+	if (![self _shouldDrawCaptionFromOptions:options])
+	{
+		return;
+	}
+	
+	// insure at least 1 bar width space between bars and caption
+	leftNumberFrame.origin.x += barScale;
+	leftNumberFrame.size.width -= barScale;
+	
+	rightNumberFrame.size.width -= barScale;
+	
+	leftQuietZoneNumberFrame.size.width -= barScale;
+	
+	rightQuietZoneNumberFrame.origin.x += barScale;
+	rightQuietZoneNumberFrame.size.width -= barScale;
+	
+	// reduce the bar regions to the caption region
+	leftNumberFrame = CGRectIntersection(bottomCaptionRegion, leftNumberFrame);
+	rightNumberFrame = CGRectIntersection(bottomCaptionRegion, rightNumberFrame);
+	leftQuietZoneNumberFrame = CGRectIntersection(bottomCaptionRegion, leftQuietZoneNumberFrame);
+	rightQuietZoneNumberFrame = CGRectIntersection(bottomCaptionRegion, rightQuietZoneNumberFrame);
+	
+	// insure at least 1 bar width space between bars and caption
+	leftNumberFrame.origin.y += barScale;
+	leftNumberFrame.size.height -= barScale;
+	
+	rightNumberFrame.origin.y += barScale;
+	rightNumberFrame.size.height -= barScale;
+	
+	leftQuietZoneNumberFrame.origin.y += barScale;
+	leftQuietZoneNumberFrame.size.height -= barScale;
+	
+	rightQuietZoneNumberFrame.origin.y += barScale;
+	rightQuietZoneNumberFrame.size.height -= barScale;
+	
+	
+	// DEBUG Option
+	if ([[options objectForKey:BCKCodeDrawingDebugOption] boolValue])
+	{
+		[[UIColor colorWithRed:1 green:0 blue:0 alpha:0.6] set];
+		CGContextFillRect(context, leftNumberFrame);
+		[[UIColor colorWithRed:0 green:1 blue:0 alpha:0.6] set];
+		CGContextFillRect(context, rightNumberFrame);
+		[[UIColor colorWithRed:0 green:0 blue:1 alpha:0.6] set];
+		CGContextFillRect(context, leftQuietZoneNumberFrame);
+		[[UIColor colorWithRed:0 green:0 blue:1 alpha:0.6] set];
+		CGContextFillRect(context, rightQuietZoneNumberFrame);
+	}
+	
+	// Draw Captions
+	
+	[self _drawCaptionText:leftDigits fontSize:optimalCaptionFontSize inRect:leftNumberFrame context:context];
+	[self _drawCaptionText:rightDigits fontSize:optimalCaptionFontSize inRect:rightNumberFrame context:context];
+	
+	if (leftQuietZoneText)
+	{
+		[self _drawCaptionText:leftQuietZoneText fontSize:optimalCaptionFontSize inRect:leftQuietZoneNumberFrame context:context];
+	}
+	
+	if (rightQuietZoneText)
+	{
+		[self _drawCaptionText:rightQuietZoneText fontSize:optimalCaptionFontSize inRect:rightQuietZoneNumberFrame context:context];
+	}
 }
 
 @end
