@@ -11,6 +11,8 @@
 
 @implementation BCKEAN8Code
 
+#pragma mark - Helper Methods
+
 - (NSUInteger)_digitAtIndex:(NSUInteger)index
 {
 	NSString *digitStr = [self.content substringWithRange:NSMakeRange(index, 1)];
@@ -36,11 +38,14 @@
 	return variantIndex;
 }
 
+#pragma mark - Subclassing Methods
+
 - (NSUInteger)horizontalQuietZoneWidth
 {
 	return 7;
 }
 
+// generate the code characters from the content
 - (NSArray *)codeCharacters
 {
 	NSMutableArray *tmpArray = [NSMutableArray array];
@@ -70,16 +75,5 @@
 	
 	return [tmpArray copy];
 }
-
-#pragma mark - Caption
-//- (NSString *)leftQuietZoneText
-//{
-//	return @"<";
-//}
-//
-//- (NSString *)rightQuietZoneText
-//{
-//	return @">";
-//}
 
 @end

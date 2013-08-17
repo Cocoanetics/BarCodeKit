@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A7343F4917BF599100EF9B83 /* UIImage+BarCodeKit.m in Sources */ = {isa = PBXBuildFile; fileRef = A7343F4817BF599100EF9B83 /* UIImage+BarCodeKit.m */; };
 		A764059B17B50F9100D45F51 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A764059A17B50F9100D45F51 /* Foundation.framework */; };
 		A764059D17B50F9100D45F51 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A764059C17B50F9100D45F51 /* CoreGraphics.framework */; };
 		A764059F17B50F9100D45F51 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A764059E17B50F9100D45F51 /* UIKit.framework */; };
@@ -65,6 +66,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A7343F4717BF599100EF9B83 /* UIImage+BarCodeKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BarCodeKit.h"; sourceTree = "<group>"; };
+		A7343F4817BF599100EF9B83 /* UIImage+BarCodeKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BarCodeKit.m"; sourceTree = "<group>"; };
 		A764059717B50F9100D45F51 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A764059A17B50F9100D45F51 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A764059C17B50F9100D45F51 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -148,6 +151,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A75BABD017BF7AB000A5A5A5 /* Codes */ = {
+			isa = PBXGroup;
+			children = (
+				A76405E117B52E7700D45F51 /* BCKCode.h */,
+				A76405E217B52E7700D45F51 /* BCKCode.m */,
+				A76405E317B52E7700D45F51 /* BCKEAN13Code.h */,
+				A76405E417B52E7700D45F51 /* BCKEAN13Code.m */,
+				A764061617B533CD00D45F51 /* BCKEAN8Code.h */,
+				A764061717B533CD00D45F51 /* BCKEAN8Code.m */,
+				A7781E1617B6B301005B9604 /* BCKUPCECode.h */,
+				A7781E1717B6B301005B9604 /* BCKUPCECode.m */,
+			);
+			name = Codes;
+			sourceTree = "<group>";
+		};
+		A75BABD117BF7AB900A5A5A5 /* Code Characters */ = {
+			isa = PBXGroup;
+			children = (
+				A764061A17B53AE700D45F51 /* BCKEANCodeCharacter.h */,
+				A764061B17B53AE700D45F51 /* BCKEANCodeCharacter.m */,
+				A764061D17B53B0700D45F51 /* BCKEANEndMarkerCodeCharacter.h */,
+				A764061E17B53B0700D45F51 /* BCKEANEndMarkerCodeCharacter.m */,
+				A764062017B53B5200D45F51 /* BCKEANMiddleMarkerCodeCharacter.h */,
+				A764062117B53B5200D45F51 /* BCKEANMiddleMarkerCodeCharacter.m */,
+				A764062317B53B7B00D45F51 /* BCKEANDigitCodeCharacter.h */,
+				A764062417B53B7B00D45F51 /* BCKEANDigitCodeCharacter.m */,
+				A7781E1917B6BB8B005B9604 /* BCKUPCEEndMarkerCodeCharacter.h */,
+				A7781E1A17B6BB8B005B9604 /* BCKUPCEEndMarkerCodeCharacter.m */,
+			);
+			name = "Code Characters";
+			sourceTree = "<group>";
+		};
 		A764058E17B50F9100D45F51 = {
 			isa = PBXGroup;
 			children = (
@@ -193,24 +228,10 @@
 			isa = PBXGroup;
 			children = (
 				A7E1C97417B606AA007DB13A /* BarCodeKit.h */,
-				A76405E117B52E7700D45F51 /* BCKCode.h */,
-				A76405E217B52E7700D45F51 /* BCKCode.m */,
-				A76405E317B52E7700D45F51 /* BCKEAN13Code.h */,
-				A76405E417B52E7700D45F51 /* BCKEAN13Code.m */,
-				A764061617B533CD00D45F51 /* BCKEAN8Code.h */,
-				A764061717B533CD00D45F51 /* BCKEAN8Code.m */,
-				A764061A17B53AE700D45F51 /* BCKEANCodeCharacter.h */,
-				A764061B17B53AE700D45F51 /* BCKEANCodeCharacter.m */,
-				A764061D17B53B0700D45F51 /* BCKEANEndMarkerCodeCharacter.h */,
-				A764061E17B53B0700D45F51 /* BCKEANEndMarkerCodeCharacter.m */,
-				A764062017B53B5200D45F51 /* BCKEANMiddleMarkerCodeCharacter.h */,
-				A764062117B53B5200D45F51 /* BCKEANMiddleMarkerCodeCharacter.m */,
-				A764062317B53B7B00D45F51 /* BCKEANDigitCodeCharacter.h */,
-				A764062417B53B7B00D45F51 /* BCKEANDigitCodeCharacter.m */,
-				A7781E1617B6B301005B9604 /* BCKUPCECode.h */,
-				A7781E1717B6B301005B9604 /* BCKUPCECode.m */,
-				A7781E1917B6BB8B005B9604 /* BCKUPCEEndMarkerCodeCharacter.h */,
-				A7781E1A17B6BB8B005B9604 /* BCKUPCEEndMarkerCodeCharacter.m */,
+				A75BABD117BF7AB900A5A5A5 /* Code Characters */,
+				A75BABD017BF7AB000A5A5A5 /* Codes */,
+				A7343F4717BF599100EF9B83 /* UIImage+BarCodeKit.h */,
+				A7343F4817BF599100EF9B83 /* UIImage+BarCodeKit.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -407,6 +428,7 @@
 				A764061917B5362D00D45F51 /* BCKEAN8Code.m in Sources */,
 				A764062517B53B7B00D45F51 /* BCKEANDigitCodeCharacter.m in Sources */,
 				A764062217B53B5200D45F51 /* BCKEANMiddleMarkerCodeCharacter.m in Sources */,
+				A7343F4917BF599100EF9B83 /* UIImage+BarCodeKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,6 +550,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Demo/DemoApp-Prefix.pch";
 				INFOPLIST_FILE = "Demo/DemoApp-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -541,6 +564,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Demo/DemoApp-Prefix.pch";
 				INFOPLIST_FILE = "Demo/DemoApp-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

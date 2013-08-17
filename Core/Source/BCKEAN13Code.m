@@ -24,6 +24,8 @@ static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
 
 @implementation BCKEAN13Code
 
+
+#pragma mark - Helper Methods
 - (NSUInteger)_digitAtIndex:(NSUInteger)index
 {
 	NSString *digitStr = [self.content substringWithRange:NSMakeRange(index, 1)];
@@ -48,6 +50,8 @@ static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
 	
 	return variantIndex;
 }
+
+#pragma mark - Subclassing Methods
 
 - (NSUInteger)horizontalQuietZoneWidth
 {
@@ -85,15 +89,9 @@ static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
 	return [tmpArray copy];
 }
 
-#pragma mark - Caption
 - (NSString *)leftQuietZoneText
 {
 	return [self.content substringToIndex:1];
 }
-
-//- (NSString *)rightQuietZoneText
-//{
-//	return @">";
-//}
 
 @end
