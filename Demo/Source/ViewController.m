@@ -84,9 +84,14 @@
 
 - (IBAction)barScaleChange:(UISlider *)sender
 {
-	_barScale = roundf(sender.value*2.0f) / 2.0f;
+	CGFloat previousScale = _barScale;
+	CGFloat newScale = roundf(sender.value*2.0f) / 2.0f;
 	
-	[self _updateWithOptions];
+	if (newScale != previousScale)
+	{
+		_barScale = newScale;
+		[self _updateWithOptions];
+	}
 }
 
 - (IBAction)overlapChange:(UISlider *)sender

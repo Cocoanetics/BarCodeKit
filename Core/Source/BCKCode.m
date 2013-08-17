@@ -398,8 +398,6 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 {
 	CGContextSaveGState(context);
 	
-	CGContextSetAllowsAntialiasing(context, NO);
-	
 	CGFloat barScale = [self _barScaleFromOptions:options];
 	CGSize size = [self sizeWithRenderOptions:options];
 	
@@ -488,12 +486,6 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 				// right marker
 				leftQuietZoneNumberFrame = CGRectMake(0, 0, characterRect.origin.x, size.height);
 			}
-			else
-			{
-				// right marker
-				CGFloat x = CGRectGetMaxX(characterRect);
-				rightQuietZoneNumberFrame = CGRectMake(x, 0, size.width - x, size.height);
-			}
 		}
 		else if ([character isKindOfClass:[BCKEANDigitCodeCharacter class]])
 		{
@@ -524,6 +516,10 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 				}
 			}
 		}
+		
+		// moving right marker 
+		CGFloat x = CGRectGetMaxX(characterRect);
+		rightQuietZoneNumberFrame = CGRectMake(x, 0, size.width - x, size.height);
 	}];
 	
 	// paint all bars
