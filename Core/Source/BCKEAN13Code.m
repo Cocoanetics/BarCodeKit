@@ -94,4 +94,9 @@ static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
 	return [self.content substringToIndex:1];
 }
 
+- (CGFloat)aspectRatio
+{
+	return 39.29 / 25.91;
+}
+
 @end

@@ -219,7 +219,7 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 {
 	NSString *leftQuietZoneText = [self _leftQuietZoneDisplayTextWithOptions:options];
 	NSString *rightQuietZoneText = [self _rightQuietZoneDisplayTextWithOptions:options];
-
+	
 	NSString *leftDigits = [self _leftCaptionZoneDisplayTextWithOptions:options];
 	NSString *rightDigits = [self _rightCaptionZoneDisplayTextWithOptions:options];
 	
@@ -351,6 +351,11 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	return nil;
 }
 
+- (CGFloat)aspectRatio
+{
+	return 1;
+}
+
 #pragma mark - Drawing
 
 - (void)_drawCaptionText:(NSString *)text fontSize:(CGFloat)fontSize inRect:(CGRect)rect context:(CGContextRef)context
@@ -376,20 +381,26 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 {
 	CGFloat barScale = [self _barScaleFromOptions:options];
 	
-	CGFloat imageHeight = 120;
-	
 	NSUInteger horizontalQuietZoneWidth = [self horizontalQuietZoneWidth];
 	
 	NSString *bitString = [self bitString];
 	NSUInteger length = [bitString length];
 	
-	return CGSizeMake((length + 2.0f * horizontalQuietZoneWidth) * barScale, imageHeight);
+	
+	CGSize size = CGSizeZero;
+	size.width = (length + 2.0f * horizontalQuietZoneWidth) * barScale;
+	size.height = size.width / [self aspectRatio];
+	
+	return size;
 }
 
 - (void)renderInContext:(CGContextRef)context options:(NSDictionary *)options
 {
+	CGContextSaveGState(context);
+	
+	CGContextSetAllowsAntialiasing(context, NO);
+	
 	CGFloat barScale = [self _barScaleFromOptions:options];
-	CGFloat imageHeight = 120;
 	CGSize size = [self sizeWithRenderOptions:options];
 	
 	NSString *leftQuietZoneText = [self _leftQuietZoneDisplayTextWithOptions:options];
@@ -445,8 +456,7 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 		[character enumerateBitsUsingBlock:^(BOOL isBar, NSUInteger idx, BOOL *stop) {
 			
 			CGFloat x = (drawnBitIndex + horizontalQuietZoneWidth) * barScale;
-			
-			CGRect barRect = CGRectMake(x, 0, barScale, imageHeight);
+			CGRect barRect = CGRectMake(x, 0, barScale, barLength);
 			
 			if (CGRectIsNull(characterRect))
 			{
@@ -459,14 +469,13 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 			
 			if (isBar)
 			{
-				CGRect drawnRect = barRect;
-				drawnRect.size.height = barLength;
-				
-				CGContextAddRect(context, drawnRect);
+				CGContextAddRect(context, barRect);
 			}
 			
 			drawnBitIndex++;
 		}];
+		
+		// add the character rect to the appropriate frame
 		
 		if ([character isKindOfClass:[BCKEANMiddleMarkerCodeCharacter class]])
 		{
@@ -476,22 +485,28 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 		{
 			if (CGRectIsEmpty(leftQuietZoneNumberFrame))
 			{
-				leftQuietZoneNumberFrame.origin.y = characterRect.origin.y;
-				leftQuietZoneNumberFrame.size.width = characterRect.origin.x;
-				leftQuietZoneNumberFrame.size.height = size.height;
+				// right marker
+				leftQuietZoneNumberFrame = CGRectMake(0, 0, characterRect.origin.x, size.height);
+			}
+			else
+			{
+				// right marker
+				CGFloat x = CGRectGetMaxX(characterRect);
+				rightQuietZoneNumberFrame = CGRectMake(x, 0, size.width - x, size.height);
 			}
 		}
-		
-		if ([character isKindOfClass:[BCKEANDigitCodeCharacter class]])
+		else if ([character isKindOfClass:[BCKEANDigitCodeCharacter class]])
 		{
 			if (metMiddleMarker)
 			{
 				if (CGRectIsNull(rightNumberFrame))
 				{
-					rightNumberFrame = characterRect;
+					// first digit in right number frame
+					rightNumberFrame = CGRectMake(characterRect.origin.x, characterRect.origin.y, characterRect.size.width, size.height);
 				}
 				else
 				{
+					// add it to existing right number frame
 					rightNumberFrame = CGRectUnion(characterRect, rightNumberFrame);
 				}
 			}
@@ -499,88 +514,85 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 			{
 				if (CGRectIsNull(leftNumberFrame))
 				{
-					leftNumberFrame = characterRect;
+					// first digit in left number frame
+					leftNumberFrame = CGRectMake(characterRect.origin.x, characterRect.origin.y, characterRect.size.width, size.height);
 				}
 				else
 				{
+					// add it to existing left number frame
 					leftNumberFrame = CGRectUnion(characterRect, leftNumberFrame);
 				}
 			}
 		}
-		
-		rightQuietZoneNumberFrame.origin.x = CGRectGetMaxX(characterRect);
-		rightQuietZoneNumberFrame.origin.y = characterRect.origin.y;
-		rightQuietZoneNumberFrame.size.width = size.width - rightQuietZoneNumberFrame.origin.x;
-		rightQuietZoneNumberFrame.size.height = size.height;
 	}];
 	
 	// paint all bars
 	[[UIColor blackColor] setFill];
 	CGContextFillPath(context);
 	
-	if (![self _shouldDrawCaptionFromOptions:options])
+	if ([self _shouldDrawCaptionFromOptions:options])
 	{
-		return;
+		// insure at least 1 bar width space between bars and caption
+		leftNumberFrame.origin.x += barScale;
+		leftNumberFrame.size.width -= barScale;
+		
+		rightNumberFrame.size.width -= barScale;
+		
+		leftQuietZoneNumberFrame.size.width -= barScale;
+		
+		rightQuietZoneNumberFrame.origin.x += barScale;
+		rightQuietZoneNumberFrame.size.width -= barScale;
+		
+		// reduce the bar regions to the caption region
+		leftNumberFrame = CGRectIntersection(bottomCaptionRegion, leftNumberFrame);
+		rightNumberFrame = CGRectIntersection(bottomCaptionRegion, rightNumberFrame);
+		leftQuietZoneNumberFrame = CGRectIntersection(bottomCaptionRegion, leftQuietZoneNumberFrame);
+		rightQuietZoneNumberFrame = CGRectIntersection(bottomCaptionRegion, rightQuietZoneNumberFrame);
+		
+		// insure at least 1 bar width space between bars and caption
+		leftNumberFrame.origin.y += barScale;
+		leftNumberFrame.size.height -= barScale;
+		
+		rightNumberFrame.origin.y += barScale;
+		rightNumberFrame.size.height -= barScale;
+		
+		leftQuietZoneNumberFrame.origin.y += barScale;
+		leftQuietZoneNumberFrame.size.height -= barScale;
+		
+		rightQuietZoneNumberFrame.origin.y += barScale;
+		rightQuietZoneNumberFrame.size.height -= barScale;
+		
+		
+		// DEBUG Option
+		if ([[options objectForKey:BCKCodeDrawingDebugOption] boolValue])
+		{
+			[[UIColor colorWithRed:1 green:0 blue:0 alpha:0.6] set];
+			CGContextFillRect(context, leftNumberFrame);
+			[[UIColor colorWithRed:0 green:1 blue:0 alpha:0.6] set];
+			CGContextFillRect(context, rightNumberFrame);
+			[[UIColor colorWithRed:0 green:0 blue:1 alpha:0.6] set];
+			CGContextFillRect(context, leftQuietZoneNumberFrame);
+			[[UIColor colorWithRed:0 green:0 blue:1 alpha:0.6] set];
+			CGContextFillRect(context, rightQuietZoneNumberFrame);
+		}
+		
+		// Draw Captions
+		
+		[self _drawCaptionText:leftDigits fontSize:optimalCaptionFontSize inRect:leftNumberFrame context:context];
+		[self _drawCaptionText:rightDigits fontSize:optimalCaptionFontSize inRect:rightNumberFrame context:context];
+		
+		if (leftQuietZoneText)
+		{
+			[self _drawCaptionText:leftQuietZoneText fontSize:optimalCaptionFontSize inRect:leftQuietZoneNumberFrame context:context];
+		}
+		
+		if (rightQuietZoneText)
+		{
+			[self _drawCaptionText:rightQuietZoneText fontSize:optimalCaptionFontSize inRect:rightQuietZoneNumberFrame context:context];
+		}
 	}
 	
-	// insure at least 1 bar width space between bars and caption
-	leftNumberFrame.origin.x += barScale;
-	leftNumberFrame.size.width -= barScale;
-	
-	rightNumberFrame.size.width -= barScale;
-	
-	leftQuietZoneNumberFrame.size.width -= barScale;
-	
-	rightQuietZoneNumberFrame.origin.x += barScale;
-	rightQuietZoneNumberFrame.size.width -= barScale;
-	
-	// reduce the bar regions to the caption region
-	leftNumberFrame = CGRectIntersection(bottomCaptionRegion, leftNumberFrame);
-	rightNumberFrame = CGRectIntersection(bottomCaptionRegion, rightNumberFrame);
-	leftQuietZoneNumberFrame = CGRectIntersection(bottomCaptionRegion, leftQuietZoneNumberFrame);
-	rightQuietZoneNumberFrame = CGRectIntersection(bottomCaptionRegion, rightQuietZoneNumberFrame);
-	
-	// insure at least 1 bar width space between bars and caption
-	leftNumberFrame.origin.y += barScale;
-	leftNumberFrame.size.height -= barScale;
-	
-	rightNumberFrame.origin.y += barScale;
-	rightNumberFrame.size.height -= barScale;
-	
-	leftQuietZoneNumberFrame.origin.y += barScale;
-	leftQuietZoneNumberFrame.size.height -= barScale;
-	
-	rightQuietZoneNumberFrame.origin.y += barScale;
-	rightQuietZoneNumberFrame.size.height -= barScale;
-	
-	
-	// DEBUG Option
-	if ([[options objectForKey:BCKCodeDrawingDebugOption] boolValue])
-	{
-		[[UIColor colorWithRed:1 green:0 blue:0 alpha:0.6] set];
-		CGContextFillRect(context, leftNumberFrame);
-		[[UIColor colorWithRed:0 green:1 blue:0 alpha:0.6] set];
-		CGContextFillRect(context, rightNumberFrame);
-		[[UIColor colorWithRed:0 green:0 blue:1 alpha:0.6] set];
-		CGContextFillRect(context, leftQuietZoneNumberFrame);
-		[[UIColor colorWithRed:0 green:0 blue:1 alpha:0.6] set];
-		CGContextFillRect(context, rightQuietZoneNumberFrame);
-	}
-	
-	// Draw Captions
-	
-	[self _drawCaptionText:leftDigits fontSize:optimalCaptionFontSize inRect:leftNumberFrame context:context];
-	[self _drawCaptionText:rightDigits fontSize:optimalCaptionFontSize inRect:rightNumberFrame context:context];
-	
-	if (leftQuietZoneText)
-	{
-		[self _drawCaptionText:leftQuietZoneText fontSize:optimalCaptionFontSize inRect:leftQuietZoneNumberFrame context:context];
-	}
-	
-	if (rightQuietZoneText)
-	{
-		[self _drawCaptionText:rightQuietZoneText fontSize:optimalCaptionFontSize inRect:rightQuietZoneNumberFrame context:context];
-	}
+	CGContextRestoreGState(context);
 }
 
 @end

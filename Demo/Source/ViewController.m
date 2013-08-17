@@ -84,7 +84,7 @@
 
 - (IBAction)barScaleChange:(UISlider *)sender
 {
-	_barScale = roundf(sender.value);
+	_barScale = roundf(sender.value*2.0f) / 2.0f;
 	
 	[self _updateWithOptions];
 }

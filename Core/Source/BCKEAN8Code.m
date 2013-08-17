@@ -76,4 +76,9 @@
 	return [tmpArray copy];
 }
 
+- (CGFloat)aspectRatio
+{
+	return 26.73 / 21.31;
+}
+
 @end

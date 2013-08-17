@@ -113,4 +113,9 @@ static char *variant_patterns[10][2] = {{"EEEOOO", "OOOEEE"},  // 0
 	return [self.content substringFromIndex:7];
 }
 
+- (CGFloat)aspectRatio
+{
+	return 26.73 / 21.31;
+}
+
 @end

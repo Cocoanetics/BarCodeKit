@@ -15,7 +15,7 @@
 {
 	CGSize neededSize = [barCode sizeWithRenderOptions:options];
 
-	UIGraphicsBeginImageContextWithOptions(neededSize, NO, 0);
+	UIGraphicsBeginImageContextWithOptions(neededSize, NO, 2);
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	
 //	CGContextRef ctx = UIGraphicsGetCurrentContext();
