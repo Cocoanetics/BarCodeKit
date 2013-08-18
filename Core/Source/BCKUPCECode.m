@@ -103,14 +103,18 @@ static char *variant_patterns[10][2] = {{"EEEOOO", "OOOEEE"},  // 0
 	return [tmpArray copy];
 }
 
-- (NSString *)leftQuietZoneText
+- (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone
 {
-	return [self.content substringToIndex:1];
-}
-
-- (NSString *)rightQuietZoneText
-{
-	return [self.content substringFromIndex:7];
+	if (captionZone == BCKCodeDrawingCaptionLeftQuietZone)
+	{
+		return [self.content substringToIndex:1];
+	}
+	else if (captionZone == BCKCodeDrawingCaptionRightQuietZone)
+	{
+		return [self.content substringFromIndex:7];
+	}
+	
+	return nil;
 }
 
 - (CGFloat)aspectRatio

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A7337C6617C1250F00BC2D2D /* BCKCode39Code.m in Sources */ = {isa = PBXBuildFile; fileRef = A7337C6517C1250F00BC2D2D /* BCKCode39Code.m */; };
+		A7337C6917C1276700BC2D2D /* BCKCode39CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A7337C6817C1276700BC2D2D /* BCKCode39CodeCharacter.m */; };
+		A7337C6C17C12C8800BC2D2D /* BCKCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A7337C6B17C12C8800BC2D2D /* BCKCodeCharacter.m */; };
+		A7337C6F17C12D8300BC2D2D /* BCKCode39EndMarkerCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A7337C6E17C12D8300BC2D2D /* BCKCode39EndMarkerCodeCharacter.m */; };
+		A7337C7217C12E4900BC2D2D /* BCKCode39SpacingCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A7337C7117C12E4900BC2D2D /* BCKCode39SpacingCodeCharacter.m */; };
 		A7343F4917BF599100EF9B83 /* UIImage+BarCodeKit.m in Sources */ = {isa = PBXBuildFile; fileRef = A7343F4817BF599100EF9B83 /* UIImage+BarCodeKit.m */; };
 		A764059B17B50F9100D45F51 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A764059A17B50F9100D45F51 /* Foundation.framework */; };
 		A764059D17B50F9100D45F51 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A764059C17B50F9100D45F51 /* CoreGraphics.framework */; };
@@ -66,6 +71,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A7337C6417C1250F00BC2D2D /* BCKCode39Code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode39Code.h; sourceTree = "<group>"; };
+		A7337C6517C1250F00BC2D2D /* BCKCode39Code.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode39Code.m; sourceTree = "<group>"; };
+		A7337C6717C1276700BC2D2D /* BCKCode39CodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode39CodeCharacter.h; sourceTree = "<group>"; };
+		A7337C6817C1276700BC2D2D /* BCKCode39CodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode39CodeCharacter.m; sourceTree = "<group>"; };
+		A7337C6A17C12C8800BC2D2D /* BCKCodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCodeCharacter.h; sourceTree = "<group>"; };
+		A7337C6B17C12C8800BC2D2D /* BCKCodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCodeCharacter.m; sourceTree = "<group>"; };
+		A7337C6D17C12D8300BC2D2D /* BCKCode39EndMarkerCodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode39EndMarkerCodeCharacter.h; sourceTree = "<group>"; };
+		A7337C6E17C12D8300BC2D2D /* BCKCode39EndMarkerCodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode39EndMarkerCodeCharacter.m; sourceTree = "<group>"; };
+		A7337C7017C12E4900BC2D2D /* BCKCode39SpacingCodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode39SpacingCodeCharacter.h; sourceTree = "<group>"; };
+		A7337C7117C12E4900BC2D2D /* BCKCode39SpacingCodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode39SpacingCodeCharacter.m; sourceTree = "<group>"; };
 		A7343F4717BF599100EF9B83 /* UIImage+BarCodeKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BarCodeKit.h"; sourceTree = "<group>"; };
 		A7343F4817BF599100EF9B83 /* UIImage+BarCodeKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BarCodeKit.m"; sourceTree = "<group>"; };
 		A764059717B50F9100D45F51 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -162,6 +177,8 @@
 				A764061717B533CD00D45F51 /* BCKEAN8Code.m */,
 				A7781E1617B6B301005B9604 /* BCKUPCECode.h */,
 				A7781E1717B6B301005B9604 /* BCKUPCECode.m */,
+				A7337C6417C1250F00BC2D2D /* BCKCode39Code.h */,
+				A7337C6517C1250F00BC2D2D /* BCKCode39Code.m */,
 			);
 			name = Codes;
 			sourceTree = "<group>";
@@ -169,6 +186,8 @@
 		A75BABD117BF7AB900A5A5A5 /* Code Characters */ = {
 			isa = PBXGroup;
 			children = (
+				A7337C6A17C12C8800BC2D2D /* BCKCodeCharacter.h */,
+				A7337C6B17C12C8800BC2D2D /* BCKCodeCharacter.m */,
 				A764061A17B53AE700D45F51 /* BCKEANCodeCharacter.h */,
 				A764061B17B53AE700D45F51 /* BCKEANCodeCharacter.m */,
 				A764061D17B53B0700D45F51 /* BCKEANEndMarkerCodeCharacter.h */,
@@ -179,6 +198,12 @@
 				A764062417B53B7B00D45F51 /* BCKEANDigitCodeCharacter.m */,
 				A7781E1917B6BB8B005B9604 /* BCKUPCEEndMarkerCodeCharacter.h */,
 				A7781E1A17B6BB8B005B9604 /* BCKUPCEEndMarkerCodeCharacter.m */,
+				A7337C6717C1276700BC2D2D /* BCKCode39CodeCharacter.h */,
+				A7337C6817C1276700BC2D2D /* BCKCode39CodeCharacter.m */,
+				A7337C6D17C12D8300BC2D2D /* BCKCode39EndMarkerCodeCharacter.h */,
+				A7337C6E17C12D8300BC2D2D /* BCKCode39EndMarkerCodeCharacter.m */,
+				A7337C7017C12E4900BC2D2D /* BCKCode39SpacingCodeCharacter.h */,
+				A7337C7117C12E4900BC2D2D /* BCKCode39SpacingCodeCharacter.m */,
 			);
 			name = "Code Characters";
 			sourceTree = "<group>";
@@ -422,13 +447,18 @@
 				A7781E1817B6B301005B9604 /* BCKUPCECode.m in Sources */,
 				A764061F17B53B0700D45F51 /* BCKEANEndMarkerCodeCharacter.m in Sources */,
 				A7781E1B17B6BB8B005B9604 /* BCKUPCEEndMarkerCodeCharacter.m in Sources */,
+				A7337C6C17C12C8800BC2D2D /* BCKCodeCharacter.m in Sources */,
 				A764061C17B53AE700D45F51 /* BCKEANCodeCharacter.m in Sources */,
+				A7337C7217C12E4900BC2D2D /* BCKCode39SpacingCodeCharacter.m in Sources */,
 				A764060D17B52EC600D45F51 /* BCKCode.m in Sources */,
 				A764060E17B52EC600D45F51 /* BCKEAN13Code.m in Sources */,
 				A764061917B5362D00D45F51 /* BCKEAN8Code.m in Sources */,
 				A764062517B53B7B00D45F51 /* BCKEANDigitCodeCharacter.m in Sources */,
 				A764062217B53B5200D45F51 /* BCKEANMiddleMarkerCodeCharacter.m in Sources */,
 				A7343F4917BF599100EF9B83 /* UIImage+BarCodeKit.m in Sources */,
+				A7337C6917C1276700BC2D2D /* BCKCode39CodeCharacter.m in Sources */,
+				A7337C6F17C12D8300BC2D2D /* BCKCode39EndMarkerCodeCharacter.m in Sources */,
+				A7337C6617C1250F00BC2D2D /* BCKCode39Code.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,6 +13,14 @@ extern NSString * const BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption;
 extern NSString * const BCKCodeDrawingFillEmptyQuietZonesOption;
 extern NSString * const BCKCodeDrawingDebugOption;
 
+typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
+{
+	BCKCodeDrawingCaptionLeftQuietZone,
+	BCKCodeDrawingCaptionLeftNumberZone,
+	BCKCodeDrawingCaptionRightNumberZone,
+	BCKCodeDrawingCaptionRightQuietZone,
+	BCKCodeDrawingCaptionTextZone
+};
 
 /**
  This is the base class for all variants of codes:
@@ -78,14 +86,16 @@ extern NSString * const BCKCodeDrawingDebugOption;
 - (NSUInteger)horizontalQuietZoneWidth;
 
 /**
- The text to display in the left quiet zone, or `nil`. Defaults to `nil`. Subclasses can return the check digit or other text.
+ The text to display in the given caption zone, or `nil`. Defaults to `nil`. Subclasses can return the check digit or other text. 
+ @param captionZone The BCKCodeDrawingCaption zone that specifies the text zone
+ @return The caption text to display in this zone, or `nil` for no text
  */
-@property (nonatomic, readonly) NSString *leftQuietZoneText;
+- (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone;
 
 /**
- The text to display in the right quiet zone, or `nil`. Defaults to `nil`. Subclasses can return the check digit or other text.
+ Whether the code allows for marker bars to reach into the bottom caption region. If yes, then the percentage of overlap can be specified with the BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption.
  */
-@property (nonatomic, readonly) NSString *rightQuietZoneText;
+@property (nonatomic, readonly) BOOL markerBarsCanOverlapBottomCaption;
 
 /**
  @name Getting Information about Bar Codes

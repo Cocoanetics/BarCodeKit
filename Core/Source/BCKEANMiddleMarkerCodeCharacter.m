@@ -15,4 +15,9 @@
 	return @"01010";
 }
 
+- (BOOL)isMarkerCharacter
+{
+	return YES;
+}
+
 @end

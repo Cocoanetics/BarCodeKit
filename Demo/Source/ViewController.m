@@ -50,6 +50,7 @@
 									  BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption: @(_captionOverlap)};
 	
 	BCKEAN13Code *code1 = [[BCKEAN13Code alloc] initWithContent:@"9780596516178"];
+//	BCKCode39Code *code1 = [[BCKCode39Code alloc] initWithContent:@"OLIVER"];
 	self.imageView.image = [UIImage imageWithBarCode:code1 options:options];
 	
 	BCKEAN8Code *code2 = [[BCKEAN8Code alloc] initWithContent:@"24046985"];

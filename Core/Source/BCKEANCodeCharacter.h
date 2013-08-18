@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
+#import "BCKCodeCharacter.h"
+
 typedef NS_ENUM(NSUInteger, BCKEANCodeCharacterEncoding)
 {
 	BCKEANCodeCharacterEncoding_L = 0,
@@ -13,14 +15,7 @@ typedef NS_ENUM(NSUInteger, BCKEANCodeCharacterEncoding)
 	BCKEANCodeCharacterEncoding_R = 2
 };
 
-@interface BCKEANCodeCharacter : NSObject
-
-- (NSString *)bitString;
-
-/**
- Enumerates the bits of the character from left to right
- */
-- (void)enumerateBitsUsingBlock:(void (^)(BOOL isBar, NSUInteger idx, BOOL *stop))block;
+@interface BCKEANCodeCharacter : BCKCodeCharacter
 
 + (BCKEANCodeCharacter *)endMarkerCodeCharacter;
 + (BCKEANCodeCharacter *)endMarkerCodeCharacterForUPCE;

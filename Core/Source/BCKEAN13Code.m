@@ -89,9 +89,14 @@ static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
 	return [tmpArray copy];
 }
 
-- (NSString *)leftQuietZoneText
+- (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone
 {
-	return [self.content substringToIndex:1];
+	if (captionZone == BCKCodeDrawingCaptionLeftQuietZone)
+	{
+		return [self.content substringToIndex:1];
+	}
+	
+	return nil;
 }
 
 - (CGFloat)aspectRatio
