@@ -8,6 +8,9 @@
 
 #import "BCKCode.h"
 
+/**
+ Specialized subclass of BCKCode to represent an EAN-8 code
+ */
 @interface BCKEAN8Code : BCKCode
 
 @end

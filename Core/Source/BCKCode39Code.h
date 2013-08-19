@@ -8,6 +8,9 @@
 
 #import "BCKCode.h"
 
+/**
+ Specialized subclass of BCKCode to represent a Code39 code
+ */
 @interface BCKCode39Code : BCKCode
 
 @end
