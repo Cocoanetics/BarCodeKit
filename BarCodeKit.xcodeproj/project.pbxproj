@@ -176,19 +176,35 @@
 			name = Code39;
 			sourceTree = "<group>";
 		};
-		A75BABD017BF7AB000A5A5A5 /* Codes */ = {
+		A7378D8517C23AC3008921C4 /* Code39 */ = {
 			isa = PBXGroup;
 			children = (
-				A76405E117B52E7700D45F51 /* BCKCode.h */,
-				A76405E217B52E7700D45F51 /* BCKCode.m */,
+				A7337C6417C1250F00BC2D2D /* BCKCode39Code.h */,
+				A7337C6517C1250F00BC2D2D /* BCKCode39Code.m */,
+			);
+			name = Code39;
+			sourceTree = "<group>";
+		};
+		A7378D8617C23ACE008921C4 /* EAN/UPC */ = {
+			isa = PBXGroup;
+			children = (
 				A76405E317B52E7700D45F51 /* BCKEAN13Code.h */,
 				A76405E417B52E7700D45F51 /* BCKEAN13Code.m */,
 				A764061617B533CD00D45F51 /* BCKEAN8Code.h */,
 				A764061717B533CD00D45F51 /* BCKEAN8Code.m */,
 				A7781E1617B6B301005B9604 /* BCKUPCECode.h */,
 				A7781E1717B6B301005B9604 /* BCKUPCECode.m */,
-				A7337C6417C1250F00BC2D2D /* BCKCode39Code.h */,
-				A7337C6517C1250F00BC2D2D /* BCKCode39Code.m */,
+			);
+			name = EAN/UPC;
+			sourceTree = "<group>";
+		};
+		A75BABD017BF7AB000A5A5A5 /* Codes */ = {
+			isa = PBXGroup;
+			children = (
+				A76405E117B52E7700D45F51 /* BCKCode.h */,
+				A76405E217B52E7700D45F51 /* BCKCode.m */,
+				A7378D8517C23AC3008921C4 /* Code39 */,
+				A7378D8617C23ACE008921C4 /* EAN/UPC */,
 			);
 			name = Codes;
 			sourceTree = "<group>";

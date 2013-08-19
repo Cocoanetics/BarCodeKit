@@ -108,8 +108,11 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 		}
 		else
 		{
-			BCKEANDigitCodeCharacter *digitChar = (BCKEANDigitCodeCharacter *)character;
-			[tmpString appendFormat:@"%d", [digitChar digit]];
+			if ([character isKindOfClass:[BCKEANDigitCodeCharacter class]])
+			{
+				BCKEANDigitCodeCharacter *digitChar = (BCKEANDigitCodeCharacter *)character;
+				[tmpString appendFormat:@"%d", [digitChar digit]];
+			}
 			
 			metContent = YES;
 		}
