@@ -47,10 +47,10 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
 /**
  This is the base class for all variants of codes:
  
- - BCKEAN8Code: EAN-8
- - BCKEAN13Code: EAN-13 (13-digit EAN or 12-digit UPC-A)
- - BCKUPCECode: UPC-E (shortened UPC)
- - BCKCode39Code: Code 39
+ - BCKEAN8Code - EAN-8
+ - BCKEAN13Code - EAN-13 (13-digit EAN or 12-digit UPC-A)
+ - BCKUPCECode - UPC-E (shortened UPC)
+ - BCKCode39Code - Code 39
 
  For rendering codes several options can be combined in an options dictionary:
  
