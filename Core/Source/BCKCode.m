@@ -93,18 +93,25 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	}
 	
 	NSMutableString *tmpString = [NSMutableString string];
+	__block BOOL metContent = NO;
 	
 	// aggregate digits before marker
 	[[self codeCharacters] enumerateObjectsUsingBlock:^(BCKEANCodeCharacter *character, NSUInteger charIndex, BOOL *stop) {
 		
-		if ([character isKindOfClass:[BCKEANMiddleMarkerCodeCharacter class]])
+		if ([character isMarker])
 		{
-			*stop = YES;
+			if (metContent)
+			{
+				*stop = YES;
+				return;
+			}
 		}
-		else if ([character isKindOfClass:[BCKEANDigitCodeCharacter class]])
+		else
 		{
 			BCKEANDigitCodeCharacter *digitChar = (BCKEANDigitCodeCharacter *)character;
 			[tmpString appendFormat:@"%d", [digitChar digit]];
+			
+			metContent = YES;
 		}
 	}];
 	
@@ -128,22 +135,30 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	NSMutableString *tmpString = [NSMutableString string];
 	
 	__block BOOL metMiddleMarker = NO;
+	__block BOOL metContent = NO;
 	
 	// aggregate digits after marker
 	[[self codeCharacters] enumerateObjectsUsingBlock:^(BCKEANCodeCharacter *character, NSUInteger charIndex, BOOL *stop) {
 		
-		if ([character isKindOfClass:[BCKEANMiddleMarkerCodeCharacter class]])
+		if ([character isMarker])
 		{
-			metMiddleMarker = YES;
+			if (metContent && !metMiddleMarker)
+			{
+				metMiddleMarker = YES;
+			}
+			
 		}
-		else if ([character isKindOfClass:[BCKEANDigitCodeCharacter class]])
+		else
 		{
 			if (metMiddleMarker)
 			{
 				BCKEANDigitCodeCharacter *digitChar = (BCKEANDigitCodeCharacter *)character;
 				[tmpString appendFormat:@"%d", [digitChar digit]];
 			}
+			
+			metContent = YES;
 		}
+		
 	}];
 	
 	if ([tmpString length])
@@ -162,17 +177,23 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 - (CGFloat)_leftCaptionZoneWidthWithOptions:(NSDictionary *)options
 {
 	__block NSUInteger bitsBeforeMiddle = 0;
+	__block BOOL metContent = NO;
 	
 	// aggregate digits before marker
 	[[self codeCharacters] enumerateObjectsUsingBlock:^(BCKEANCodeCharacter *character, NSUInteger charIndex, BOOL *stop) {
 		
-		if ([character isKindOfClass:[BCKEANMiddleMarkerCodeCharacter class]])
+		if ([character isMarker])
 		{
-			*stop = YES;
+			if (metContent)
+			{
+				*stop = YES;
+				return;
+			}
 		}
-		else if ([character isKindOfClass:[BCKEANDigitCodeCharacter class]])
+		else
 		{
 			bitsBeforeMiddle += [[character bitString] length];
+			metContent = YES;
 		}
 	}];
 	
@@ -188,20 +209,26 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 {
 	__block NSUInteger bitsAfterMiddle = 0;
 	__block BOOL metMiddleMarker = NO;
+	__block BOOL metContent = NO;
 	
 	// aggregate digits before marker
 	[[self codeCharacters] enumerateObjectsUsingBlock:^(BCKEANCodeCharacter *character, NSUInteger charIndex, BOOL *stop) {
 		
-		if ([character isKindOfClass:[BCKEANMiddleMarkerCodeCharacter class]])
+		if ([character isMarker])
 		{
-			metMiddleMarker = YES;
+			if (metContent && !metMiddleMarker)
+			{
+				metMiddleMarker = YES;
+			}
 		}
-		else if ([character isKindOfClass:[BCKEANDigitCodeCharacter class]])
+		else
 		{
 			if (metMiddleMarker)
 			{
 				bitsAfterMiddle += [[character bitString] length];
 			}
+			
+			metContent = YES;
 		}
 	}];
 	
@@ -448,13 +475,16 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	NSUInteger horizontalQuietZoneWidth = [self horizontalQuietZoneWidth];
 	BOOL useOverlap = [self markerBarsCanOverlapBottomCaption];
 	
+	__block BOOL metContent = NO;
+	__block CGRect middleMarkerFrame = CGRectNull;
+	
 	// enumerate the code characters
 	[[self codeCharacters] enumerateObjectsUsingBlock:^(BCKEANCodeCharacter *character, NSUInteger charIndex, BOOL *stop) {
 		
 		// bar length is different for markers and digits
 		CGFloat barLength = digitBarLength;
 		
-		if (useOverlap && [character isMarkerCharacter])
+		if (useOverlap && [character isMarker])
 		{
 			barLength = markerBarLength;
 		}
@@ -484,52 +514,31 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 			drawnBitIndex++;
 		}];
 		
-		// add the character rect to the appropriate frame
-		
-		if ([character isKindOfClass:[BCKEANMiddleMarkerCodeCharacter class]])
+		if ([character isMarker])
 		{
-			metMiddleMarker = YES;
-		}
-		else if ([character isKindOfClass:[BCKEANEndMarkerCodeCharacter class]] || [character isKindOfClass:[BCKCode39EndMarkerCodeCharacter class]])
-		{
-			if (CGRectIsEmpty(leftQuietZoneNumberFrame))
+			if (metContent)
 			{
-				// right marker
-				leftQuietZoneNumberFrame = CGRectMake(0, 0, characterRect.origin.x, size.height);
-			}
-		}
-		else if ([character isKindOfClass:[BCKEANDigitCodeCharacter class]])
-		{
-			if (metMiddleMarker)
-			{
-				if (CGRectIsNull(rightNumberFrame))
+				if (!metMiddleMarker)
 				{
-					// first digit in right number frame
-					rightNumberFrame = CGRectMake(characterRect.origin.x, characterRect.origin.y, characterRect.size.width, size.height);
-				}
-				else
-				{
-					// add it to existing right number frame
-					rightNumberFrame = CGRectUnion(characterRect, rightNumberFrame);
+					// middle marker
+					metMiddleMarker = YES;
+					middleMarkerFrame = characterRect;
 				}
 			}
 			else
 			{
-				if (CGRectIsNull(leftNumberFrame))
-				{
-					// first digit in left number frame
-					leftNumberFrame = CGRectMake(characterRect.origin.x, characterRect.origin.y, characterRect.size.width, size.height);
-				}
-				else
-				{
-					// add it to existing left number frame
-					leftNumberFrame = CGRectUnion(characterRect, leftNumberFrame);
-				}
+				// left outer marker
+				leftQuietZoneNumberFrame = CGRectMake(0, 0, characterRect.origin.x, size.height);
 			}
+			
+			// right outer marker
+			CGFloat x = CGRectGetMaxX(characterRect);
+			rightQuietZoneNumberFrame = CGRectMake(x, 0, size.width - x, size.height);
 		}
-		
-		if (![character isMarkerCharacter])
+		else
 		{
+			metContent = YES;
+			
 			if (CGRectIsNull(frameBetweenEndMarkers))
 			{
 				frameBetweenEndMarkers = CGRectMake(characterRect.origin.x, characterRect.origin.y, characterRect.size.width, size.height);
@@ -539,11 +548,6 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 				frameBetweenEndMarkers = CGRectUnion(frameBetweenEndMarkers, characterRect);
 			}
 		}
-			
-		
-		// moving right marker 
-		CGFloat x = CGRectGetMaxX(characterRect);
-		rightQuietZoneNumberFrame = CGRectMake(x, 0, size.width - x, size.height);
 	}];
 	
 	// paint all bars
@@ -552,6 +556,21 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	
 	if ([self _shouldDrawCaptionFromOptions:options])
 	{
+		if (!CGRectIsNull(middleMarkerFrame))
+		{
+			leftNumberFrame = frameBetweenEndMarkers;
+			leftNumberFrame.size.width = middleMarkerFrame.origin.x - leftNumberFrame.origin.x;
+			
+			if (middleMarkerFrame.origin.x < CGRectGetMaxX(frameBetweenEndMarkers))
+			{
+				rightNumberFrame = frameBetweenEndMarkers;
+				rightNumberFrame.origin.x = CGRectGetMaxX(middleMarkerFrame);
+				rightNumberFrame.size.width = CGRectGetMaxX(frameBetweenEndMarkers) - rightNumberFrame.origin.x;
+			}
+		}
+		
+		
+		
 		leftQuietZoneNumberFrame.size.width -= barScale;
 		
 		rightQuietZoneNumberFrame.origin.x += barScale;

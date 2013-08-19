@@ -9,15 +9,27 @@
 #import "BCKCodeCharacter.h"
 
 @implementation BCKCodeCharacter
+{
+	NSString *_bitString;
+	BOOL _marker;
+}
+
+- (instancetype)initWithBitString:(NSString *)bitString isMarker:(BOOL)isMarker
+{
+	self = [super init];
+	
+	if (self)
+	{
+		_bitString = [bitString copy];
+		_marker = isMarker;
+	}
+	
+	return self;
+}
 
 - (NSString *)description
 {
 	return [NSString stringWithFormat:@"<%@ bits='%@'", NSStringFromClass([self class]), [self bitString]];
-}
-
-- (NSString *)bitString
-{
-	return nil;
 }
 
 - (void)enumerateBitsUsingBlock:(void (^)(BOOL isBar, NSUInteger idx, BOOL *stop))block
@@ -44,9 +56,7 @@
 	}
 }
 
-- (BOOL)isMarkerCharacter
-{
-	return NO;
-}
+@synthesize bitString = _bitString;
+@synthesize marker = _marker;
 
 @end

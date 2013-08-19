@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "BCKCode.h"
 
 @interface BCKEAN13Code : BCKCode

@@ -9,8 +9,7 @@
 #import "BCKCode39Code.h"
 
 #import "BCKCode39CodeCharacter.h"
-#import "BCKCode39SpacingCodeCharacter.h"
-#import "BCKCode39EndMarkerCodeCharacter.h"
+#import "BCKCode39ContentCodeCharacter.h"
 
 @implementation BCKCode39Code
 
@@ -36,7 +35,7 @@
 	for (NSUInteger index=0; index<[content length]; index++)
 	{
 		NSString *character = [content substringWithRange:NSMakeRange(index, 1)];
-		BCKCode39CodeCharacter *codeCharacter = [[BCKCode39CodeCharacter alloc] initWithCharacter:character];
+		BCKCode39CodeCharacter *codeCharacter = [[BCKCode39ContentCodeCharacter alloc] initWithCharacter:character];
 		if (!codeCharacter)
 		{
 			NSLog(@"Character '%@' cannot be encoded in Code39", character);
@@ -52,23 +51,23 @@
 	NSMutableArray *tmpArray = [NSMutableArray array];
 
 	// end marker
-	[tmpArray addObject:[[BCKCode39EndMarkerCodeCharacter alloc] init]];
+	[tmpArray addObject:[BCKCode39CodeCharacter endMarkerCodeCharacter]];
 	
 	for (NSUInteger index=0; index<[_content length]; index++)
 	{
 		// space
-		[tmpArray addObject:[[BCKCode39SpacingCodeCharacter alloc] init]];
+		[tmpArray addObject:[BCKCode39CodeCharacter spacingCodeCharacter]];
 		
 		NSString *character = [_content substringWithRange:NSMakeRange(index, 1)];
-		BCKCode39CodeCharacter *codeCharacter = [[BCKCode39CodeCharacter alloc] initWithCharacter:character];
+		BCKCode39CodeCharacter *codeCharacter = [BCKCode39CodeCharacter codeCharacterForCharacter:character];
 		[tmpArray addObject:codeCharacter];
 	}
 
 	// space
-	[tmpArray addObject:[[BCKCode39SpacingCodeCharacter alloc] init]];
+	[tmpArray addObject:[BCKCode39CodeCharacter spacingCodeCharacter]];
 
 	// end marker
-	[tmpArray addObject:[[BCKCode39EndMarkerCodeCharacter alloc] init]];
+	[tmpArray addObject:[BCKCode39CodeCharacter endMarkerCodeCharacter]];
 	
 	return [tmpArray copy];
 }
