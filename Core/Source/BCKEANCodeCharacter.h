@@ -22,7 +22,7 @@ typedef NS_ENUM(NSUInteger, BCKEANCodeCharacterEncoding)
 @interface BCKEANCodeCharacter : BCKCodeCharacter
 
 /**
- @name Creating Special Characters
+ @name Creating Characters
  */
 
 /**

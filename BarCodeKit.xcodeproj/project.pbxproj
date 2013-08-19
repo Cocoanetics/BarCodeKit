@@ -196,10 +196,10 @@
 		A75BABD117BF7AB900A5A5A5 /* Code Characters */ = {
 			isa = PBXGroup;
 			children = (
-				A7378D8417C222F1008921C4 /* Code39 */,
-				A7378D8317C222E6008921C4 /* EAN/UPC */,
 				A7337C6A17C12C8800BC2D2D /* BCKCodeCharacter.h */,
 				A7337C6B17C12C8800BC2D2D /* BCKCodeCharacter.m */,
+				A7378D8417C222F1008921C4 /* Code39 */,
+				A7378D8317C222E6008921C4 /* EAN/UPC */,
 			);
 			name = "Code Characters";
 			sourceTree = "<group>";

@@ -14,6 +14,10 @@
 @interface BCKCode39CodeCharacter : BCKCodeCharacter
 
 /**
+ @name Creating Characters
+ */
+
+/**
  Generates an end marker code character, used for Code 39
  @returns the end marker code character
  */

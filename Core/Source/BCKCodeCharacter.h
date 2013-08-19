@@ -6,13 +6,19 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+/**
+ Root class representing a code character, that is either a marker or content (character/digit) character
+ */
 
 @interface BCKCodeCharacter : NSObject
 
 /**
  @name Creating Characters
  */
+
+/**
+Creates a new character with a given bit string and wheter it is a marker character
+*/
 - (instancetype)initWithBitString:(NSString *)bitString isMarker:(BOOL)isMarker;
 
 /**
