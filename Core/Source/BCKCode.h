@@ -54,11 +54,11 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
 
  For rendering codes several options can be combined in an options dictionary:
  
- - BCKCodeDrawingBarScaleOption: Multiplier for the bar width (default 1)
- - BCKCodeDrawingPrintCaptionOption: Whether the code caption should be printed (default NO)
- - BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption: How many percent of the caption height are covered by elongated marker bars (default 1.0)
- - BCKCodeDrawingFillEmptyQuietZonesOption: Whether quiet zones should be filled with angle brackes (default NO)
- - BCKCodeDrawingDebugOption: Whether the caption areas should be tinted for debugging (default NO)
+ - **BCKCodeDrawingBarScaleOption** - Multiplier for the bar width (default 1)
+ - **BCKCodeDrawingPrintCaptionOption** - Whether the code caption should be printed (default NO)
+ - **BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption** - How many percent of the caption height are covered by elongated marker bars (default 1.0)
+ - **BCKCodeDrawingFillEmptyQuietZonesOption** - Whether quiet zones should be filled with angle brackes (default NO)
+ - **BCKCodeDrawingDebugOption** - Whether the caption areas should be tinted for debugging (default NO)
 */
 @interface BCKCode : NSObject
 {
