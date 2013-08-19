@@ -30,6 +30,8 @@
 	return self;
 }
 
+#pragma mark - Helper Methods
+
 - (BOOL)_isValidContent:(NSString *)content
 {
 	for (NSUInteger index=0; index<[content length]; index++)
@@ -45,6 +47,8 @@
 	
 	return YES;
 }
+
+#pragma mark - Subclass Methods
 
 - (NSArray *)codeCharacters
 {

@@ -24,8 +24,46 @@ static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
 
 @implementation BCKEAN13Code
 
+- (instancetype)initWithContent:(NSString *)content
+{
+	self = [super initWithContent:content];
+	
+	if (self)
+	{
+		if (![self _isValidContent:_content])
+		{
+			return nil;
+		}
+	}
+	
+	return self;
+}
 
 #pragma mark - Helper Methods
+
+- (BOOL)_isValidContent:(NSString *)content
+{
+	NSUInteger length = [content length];
+	
+	if (length != 13)
+	{
+		return NO;
+	}
+	
+	for (NSUInteger index=0; index<[content length]; index++)
+	{
+		NSString *character = [content substringWithRange:NSMakeRange(index, 1)];
+		char c = [character UTF8String][0];
+		
+		if (!(c>='0' && c<='9'))
+		{
+			return NO;
+		}
+	}
+	
+	return YES;
+}
+
 - (NSUInteger)_digitAtIndex:(NSUInteger)index
 {
 	NSString *digitStr = [self.content substringWithRange:NSMakeRange(index, 1)];

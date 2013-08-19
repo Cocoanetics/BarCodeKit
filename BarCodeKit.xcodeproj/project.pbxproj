@@ -26,6 +26,14 @@
 		A7337C6C17C12C8800BC2D2D /* BCKCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A7337C6B17C12C8800BC2D2D /* BCKCodeCharacter.m */; };
 		A7343F4917BF599100EF9B83 /* UIImage+BarCodeKit.m in Sources */ = {isa = PBXBuildFile; fileRef = A7343F4817BF599100EF9B83 /* UIImage+BarCodeKit.m */; };
 		A7378D8217C222AD008921C4 /* BCKCode39ContentCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A7378D8117C222AD008921C4 /* BCKCode39ContentCodeCharacter.m */; };
+		A7378D9517C2584E008921C4 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7378D9417C2584E008921C4 /* SenTestingKit.framework */; };
+		A7378D9617C2584E008921C4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A764059A17B50F9100D45F51 /* Foundation.framework */; };
+		A7378D9717C2584E008921C4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A764059E17B50F9100D45F51 /* UIKit.framework */; };
+		A7378E0517C25A2D008921C4 /* BCKCode39CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A7378E0417C25A2D008921C4 /* BCKCode39CodeTest.m */; };
+		A7378E0617C25C3F008921C4 /* libBarCodeKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A76405EB17B52E9700D45F51 /* libBarCodeKit.a */; };
+		A7378E0A17C25DF3008921C4 /* BCKEAN13CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A7378E0917C25DF3008921C4 /* BCKEAN13CodeTest.m */; };
+		A7378E0C17C261D8008921C4 /* BCKEAN8CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A7378E0B17C261D8008921C4 /* BCKEAN8CodeTest.m */; };
+		A7378E0E17C263C7008921C4 /* BCKUPCECodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A7378E0D17C263C7008921C4 /* BCKUPCECodeTest.m */; };
 		A764059B17B50F9100D45F51 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A764059A17B50F9100D45F51 /* Foundation.framework */; };
 		A764059D17B50F9100D45F51 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A764059C17B50F9100D45F51 /* CoreGraphics.framework */; };
 		A764059F17B50F9100D45F51 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A764059E17B50F9100D45F51 /* UIKit.framework */; };
@@ -49,6 +57,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		A7378E0717C25C43008921C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A764058F17B50F9100D45F51 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A76405EA17B52E9700D45F51;
+			remoteInfo = "BarCodeKit (iOS)";
+		};
 		A7E1C97117B60676007DB13A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A764058F17B50F9100D45F51 /* Project object */;
@@ -82,6 +97,14 @@
 		A7378D8017C222AD008921C4 /* BCKCode39ContentCodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode39ContentCodeCharacter.h; sourceTree = "<group>"; };
 		A7378D8117C222AD008921C4 /* BCKCode39ContentCodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode39ContentCodeCharacter.m; sourceTree = "<group>"; };
 		A7378D8E17C253FE008921C4 /* Setup Guide-template.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Setup Guide-template.markdown"; sourceTree = "<group>"; };
+		A7378D9317C2584E008921C4 /* Unit Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7378D9417C2584E008921C4 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		A7378DFD17C258B1008921C4 /* UnitTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UnitTests-Prefix.pch"; sourceTree = "<group>"; };
+		A7378DFE17C258C5008921C4 /* UnitTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
+		A7378E0417C25A2D008921C4 /* BCKCode39CodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode39CodeTest.m; sourceTree = "<group>"; };
+		A7378E0917C25DF3008921C4 /* BCKEAN13CodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKEAN13CodeTest.m; sourceTree = "<group>"; };
+		A7378E0B17C261D8008921C4 /* BCKEAN8CodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKEAN8CodeTest.m; sourceTree = "<group>"; };
+		A7378E0D17C263C7008921C4 /* BCKUPCECodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKUPCECodeTest.m; sourceTree = "<group>"; };
 		A764059717B50F9100D45F51 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A764059A17B50F9100D45F51 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A764059C17B50F9100D45F51 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -116,6 +139,17 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A7378D9017C2584E008921C4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7378E0617C25C3F008921C4 /* libBarCodeKit.a in Frameworks */,
+				A7378D9517C2584E008921C4 /* SenTestingKit.framework in Frameworks */,
+				A7378D9717C2584E008921C4 /* UIKit.framework in Frameworks */,
+				A7378D9617C2584E008921C4 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A764059417B50F9100D45F51 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -200,6 +234,27 @@
 			path = Documentation;
 			sourceTree = "<group>";
 		};
+		A7378DFB17C25892008921C4 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				A7378DFE17C258C5008921C4 /* UnitTests-Info.plist */,
+				A7378DFD17C258B1008921C4 /* UnitTests-Prefix.pch */,
+				A7378DFC17C25892008921C4 /* Source */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
+		A7378DFC17C25892008921C4 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				A7378E0417C25A2D008921C4 /* BCKCode39CodeTest.m */,
+				A7378E0917C25DF3008921C4 /* BCKEAN13CodeTest.m */,
+				A7378E0B17C261D8008921C4 /* BCKEAN8CodeTest.m */,
+				A7378E0D17C263C7008921C4 /* BCKUPCECodeTest.m */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		A75BABD017BF7AB000A5A5A5 /* Codes */ = {
 			isa = PBXGroup;
 			children = (
@@ -228,6 +283,7 @@
 				A7378D8D17C253FE008921C4 /* Documentation */,
 				A7FB2BB217B6206300712C1C /* Demo */,
 				A76405DF17B52E5200D45F51 /* Core */,
+				A7378DFB17C25892008921C4 /* Test */,
 				A764059917B50F9100D45F51 /* Frameworks */,
 				A764059817B50F9100D45F51 /* Products */,
 			);
@@ -239,6 +295,7 @@
 				A764059717B50F9100D45F51 /* Demo.app */,
 				A76405EB17B52E9700D45F51 /* libBarCodeKit.a */,
 				A7A6B55317B62D04007FF7DB /* DemoApp.app */,
+				A7378D9317C2584E008921C4 /* Unit Tests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -250,6 +307,7 @@
 				A764059C17B50F9100D45F51 /* CoreGraphics.framework */,
 				A764059E17B50F9100D45F51 /* UIKit.framework */,
 				A76405B917B50F9100D45F51 /* XCTest.framework */,
+				A7378D9417C2584E008921C4 /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -311,6 +369,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		A7378D9217C2584E008921C4 /* Unit Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A7378DA117C2584E008921C4 /* Build configuration list for PBXNativeTarget "Unit Tests" */;
+			buildPhases = (
+				A7378D8F17C2584E008921C4 /* Sources */,
+				A7378D9017C2584E008921C4 /* Frameworks */,
+				A7378D9117C2584E008921C4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A7378E0817C25C43008921C4 /* PBXTargetDependency */,
+			);
+			name = "Unit Tests";
+			productName = "BarCodeKit Tests";
+			productReference = A7378D9317C2584E008921C4 /* Unit Tests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		A764059617B50F9100D45F51 /* Demo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A76405C917B50F9100D45F51 /* Build configuration list for PBXNativeTarget "Demo" */;
@@ -389,11 +465,19 @@
 				A76405EA17B52E9700D45F51 /* BarCodeKit (iOS) */,
 				A7A6B55217B62D04007FF7DB /* DemoApp */,
 				A7378D8817C2519C008921C4 /* Documentation */,
+				A7378D9217C2584E008921C4 /* Unit Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		A7378D9117C2584E008921C4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A764059517B50F9100D45F51 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -431,6 +515,17 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A7378D8F17C2584E008921C4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7378E0E17C263C7008921C4 /* BCKUPCECodeTest.m in Sources */,
+				A7378E0A17C25DF3008921C4 /* BCKEAN13CodeTest.m in Sources */,
+				A7378E0C17C261D8008921C4 /* BCKEAN8CodeTest.m in Sources */,
+				A7378E0517C25A2D008921C4 /* BCKCode39CodeTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A764059317B50F9100D45F51 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -469,6 +564,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		A7378E0817C25C43008921C4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A76405EA17B52E9700D45F51 /* BarCodeKit (iOS) */;
+			targetProxy = A7378E0717C25C43008921C4 /* PBXContainerItemProxy */;
+		};
 		A7E1C97217B60676007DB13A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A76405EA17B52E9700D45F51 /* BarCodeKit (iOS) */;
@@ -500,6 +600,44 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		A7378DA217C2584E008921C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Test/UnitTests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Test/UnitTests-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		A7378DA317C2584E008921C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Test/UnitTests-Prefix.pch";
+				INFOPLIST_FILE = "Test/UnitTests-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -668,6 +806,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		A7378DA117C2584E008921C4 /* Build configuration list for PBXNativeTarget "Unit Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A7378DA217C2584E008921C4 /* Debug */,
+				A7378DA317C2584E008921C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		A764059217B50F9100D45F51 /* Build configuration list for PBXProject "BarCodeKit" */ = {
 			isa = XCConfigurationList;

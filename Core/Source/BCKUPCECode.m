@@ -30,15 +30,8 @@ static char *variant_patterns[10][2] = {{"EEEOOO", "OOOEEE"},  // 0
 	
 	if (self)
 	{
-		if ([self _digitAtIndex:0]>1)
+		if (![self _isValidContent:_content])
 		{
-			NSLog(@"Invalid content for UPC-E, should start with 0 or 1");
-			return nil;
-		}
-		
-		if ([[self content] length] != 8)
-		{
-			NSLog(@"Invalid content for UPC-E, length should be 8 digits");
 			return nil;
 		}
 	}
@@ -47,6 +40,37 @@ static char *variant_patterns[10][2] = {{"EEEOOO", "OOOEEE"},  // 0
 }
 
 #pragma mark - Helper Methods
+
+- (BOOL)_isValidContent:(NSString *)content
+{
+	NSUInteger length = [content length];
+	
+	if (length != 8)
+	{
+		return NO;
+	}
+	
+	for (NSUInteger index=0; index<[content length]; index++)
+	{
+		NSString *character = [content substringWithRange:NSMakeRange(index, 1)];
+		char c = [character UTF8String][0];
+		
+		if (index==0)
+		{
+			if (c!='0' && c!='1')
+			{
+				return NO;
+			}
+		}
+		
+		if (!(c>='0' && c<='9'))
+		{
+			return NO;
+		}
+	}
+	
+	return YES;
+}
 
 - (NSUInteger)_digitAtIndex:(NSUInteger)index
 {
