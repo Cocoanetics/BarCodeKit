@@ -8,10 +8,24 @@
 
 #import "BCKCodeCharacter.h"
 
+/**
+ EAN Character Encoding Types
+ */
 typedef NS_ENUM(NSUInteger, BCKEANCodeCharacterEncoding)
 {
+	/**
+	 The 'L' character encoding type
+	 */
 	BCKEANCodeCharacterEncoding_L = 0,
+
+	/**
+	 The 'G' character encoding type
+	 */
 	BCKEANCodeCharacterEncoding_G = 1,
+	
+	/**
+	 The 'R' character encoding type
+	 */
 	BCKEANCodeCharacterEncoding_R = 2
 };
 

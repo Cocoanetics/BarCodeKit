@@ -13,12 +13,34 @@ extern NSString * const BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption;
 extern NSString * const BCKCodeDrawingFillEmptyQuietZonesOption;
 extern NSString * const BCKCodeDrawingDebugOption;
 
+/**
+ Caption Zones
+ */
 typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
 {
+	/**
+	 The quiet zone left of the left start marker
+	 */
 	BCKCodeDrawingCaptionLeftQuietZone,
+	
+	/**
+	 The digit zone between left start marker and middle marker
+	 */
 	BCKCodeDrawingCaptionLeftNumberZone,
+	
+	/**
+	 The digit zone between middle marker and right end marker
+	 */
 	BCKCodeDrawingCaptionRightNumberZone,
+	
+	/**
+	 The quiet zone right of the right end marker
+	 */
 	BCKCodeDrawingCaptionRightQuietZone,
+	
+	/**
+	 The text zone between left and right outer markers
+	 */
 	BCKCodeDrawingCaptionTextZone
 };
 
