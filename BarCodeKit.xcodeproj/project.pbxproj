@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		A7378D8817C2519C008921C4 /* Documentation */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = A7378D8917C2519C008921C4 /* Build configuration list for PBXAggregateTarget "Documentation" */;
+			buildPhases = (
+				A7BD219317C2524600784903 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Documentation;
+			productName = Documentation;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		A7337C6617C1250F00BC2D2D /* BCKCode39Code.m in Sources */ = {isa = PBXBuildFile; fileRef = A7337C6517C1250F00BC2D2D /* BCKCode39Code.m */; };
 		A7337C6917C1276700BC2D2D /* BCKCode39CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A7337C6817C1276700BC2D2D /* BCKCode39CodeCharacter.m */; };
@@ -30,21 +44,11 @@
 		A7A6B55417B62D04007FF7DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A764059A17B50F9100D45F51 /* Foundation.framework */; };
 		A7A6B55517B62D05007FF7DB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A764059C17B50F9100D45F51 /* CoreGraphics.framework */; };
 		A7A6B55617B62D05007FF7DB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A764059E17B50F9100D45F51 /* UIKit.framework */; };
-		A7A6B57017B62D05007FF7DB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76405B917B50F9100D45F51 /* XCTest.framework */; };
-		A7A6B57117B62D05007FF7DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A764059A17B50F9100D45F51 /* Foundation.framework */; };
-		A7A6B57217B62D05007FF7DB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A764059E17B50F9100D45F51 /* UIKit.framework */; };
 		A7E1C97317B6067B007DB13A /* libBarCodeKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A76405EB17B52E9700D45F51 /* libBarCodeKit.a */; };
 		A7FB2BB617B6206300712C1C /* OCRB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7FB2BB417B6206300712C1C /* OCRB.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		A7A6B57317B62D05007FF7DB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A764058F17B50F9100D45F51 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A7A6B55217B62D04007FF7DB;
-			remoteInfo = DemoApp;
-		};
 		A7E1C97117B60676007DB13A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A764058F17B50F9100D45F51 /* Project object */;
@@ -77,6 +81,7 @@
 		A7343F4817BF599100EF9B83 /* UIImage+BarCodeKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BarCodeKit.m"; sourceTree = "<group>"; };
 		A7378D8017C222AD008921C4 /* BCKCode39ContentCodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode39ContentCodeCharacter.h; sourceTree = "<group>"; };
 		A7378D8117C222AD008921C4 /* BCKCode39ContentCodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode39ContentCodeCharacter.m; sourceTree = "<group>"; };
+		A7378D8E17C253FE008921C4 /* Setup Guide-template.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Setup Guide-template.markdown"; sourceTree = "<group>"; };
 		A764059717B50F9100D45F51 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A764059A17B50F9100D45F51 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A764059C17B50F9100D45F51 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -104,7 +109,6 @@
 		A7A6B54B17B62CB2007FF7DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
 		A7A6B54C17B62CB2007FF7DB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A7A6B55317B62D04007FF7DB /* DemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A7A6B56F17B62D05007FF7DB /* DemoAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DemoAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7A6B58317B62D27007FF7DB /* DemoApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DemoApp-Info.plist"; sourceTree = "<group>"; };
 		A7A6B58417B62D28007FF7DB /* DemoApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DemoApp-Prefix.pch"; sourceTree = "<group>"; };
 		A7E1C97417B606AA007DB13A /* BarCodeKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BarCodeKit.h; sourceTree = "<group>"; };
@@ -138,16 +142,6 @@
 				A7A6B55517B62D05007FF7DB /* CoreGraphics.framework in Frameworks */,
 				A7A6B55617B62D05007FF7DB /* UIKit.framework in Frameworks */,
 				A7A6B55417B62D04007FF7DB /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A7A6B56C17B62D05007FF7DB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A7A6B57017B62D05007FF7DB /* XCTest.framework in Frameworks */,
-				A7A6B57217B62D05007FF7DB /* UIKit.framework in Frameworks */,
-				A7A6B57117B62D05007FF7DB /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +192,14 @@
 			name = EAN/UPC;
 			sourceTree = "<group>";
 		};
+		A7378D8D17C253FE008921C4 /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				A7378D8E17C253FE008921C4 /* Setup Guide-template.markdown */,
+			);
+			path = Documentation;
+			sourceTree = "<group>";
+		};
 		A75BABD017BF7AB000A5A5A5 /* Codes */ = {
 			isa = PBXGroup;
 			children = (
@@ -223,6 +225,7 @@
 		A764058E17B50F9100D45F51 = {
 			isa = PBXGroup;
 			children = (
+				A7378D8D17C253FE008921C4 /* Documentation */,
 				A7FB2BB217B6206300712C1C /* Demo */,
 				A76405DF17B52E5200D45F51 /* Core */,
 				A764059917B50F9100D45F51 /* Frameworks */,
@@ -236,7 +239,6 @@
 				A764059717B50F9100D45F51 /* Demo.app */,
 				A76405EB17B52E9700D45F51 /* libBarCodeKit.a */,
 				A7A6B55317B62D04007FF7DB /* DemoApp.app */,
-				A7A6B56F17B62D05007FF7DB /* DemoAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -361,24 +363,6 @@
 			productReference = A7A6B55317B62D04007FF7DB /* DemoApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A7A6B56E17B62D05007FF7DB /* DemoAppTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A7A6B58017B62D05007FF7DB /* Build configuration list for PBXNativeTarget "DemoAppTests" */;
-			buildPhases = (
-				A7A6B56B17B62D05007FF7DB /* Sources */,
-				A7A6B56C17B62D05007FF7DB /* Frameworks */,
-				A7A6B56D17B62D05007FF7DB /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A7A6B57417B62D05007FF7DB /* PBXTargetDependency */,
-			);
-			name = DemoAppTests;
-			productName = DemoAppTests;
-			productReference = A7A6B56F17B62D05007FF7DB /* DemoAppTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -387,11 +371,6 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Oliver Drobnik";
-				TargetAttributes = {
-					A7A6B56E17B62D05007FF7DB = {
-						TestTargetID = A764059617B50F9100D45F51;
-					};
-				};
 			};
 			buildConfigurationList = A764059217B50F9100D45F51 /* Build configuration list for PBXProject "BarCodeKit" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -409,7 +388,7 @@
 				A764059617B50F9100D45F51 /* Demo */,
 				A76405EA17B52E9700D45F51 /* BarCodeKit (iOS) */,
 				A7A6B55217B62D04007FF7DB /* DemoApp */,
-				A7A6B56E17B62D05007FF7DB /* DemoAppTests */,
+				A7378D8817C2519C008921C4 /* Documentation */,
 			);
 		};
 /* End PBXProject section */
@@ -432,14 +411,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A7A6B56D17B62D05007FF7DB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A7BD219317C2524600784903 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
 			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/appledoc --print-settings --output \"${BUILD_DIR}/Documentation/\" \"${PROJECT_DIR}\"\necho \"Documentation Output directory: ${BUILD_DIR}/Documentation/\"";
+			showEnvVarsInLog = 0;
 		};
-/* End PBXResourcesBuildPhase section */
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A764059317B50F9100D45F51 /* Sources */ = {
@@ -477,21 +466,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A7A6B56B17B62D05007FF7DB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		A7A6B57417B62D05007FF7DB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A7A6B55217B62D04007FF7DB /* DemoApp */;
-			targetProxy = A7A6B57317B62D05007FF7DB /* PBXContainerItemProxy */;
-		};
 		A7E1C97217B60676007DB13A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A76405EA17B52E9700D45F51 /* BarCodeKit (iOS) */;
@@ -512,6 +489,20 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		A7378D8A17C2519C008921C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A7378D8B17C2519C008921C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		A76405C717B50F9100D45F51 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -666,49 +657,18 @@
 			};
 			name = Release;
 		};
-		A7A6B58117B62D05007FF7DB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Demo.app/Demo";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "DemoApp/DemoApp-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "DemoAppTests/DemoAppTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		A7A6B58217B62D05007FF7DB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Demo.app/Demo";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "DemoApp/DemoApp-Prefix.pch";
-				INFOPLIST_FILE = "DemoAppTests/DemoAppTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A7378D8917C2519C008921C4 /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A7378D8A17C2519C008921C4 /* Debug */,
+				A7378D8B17C2519C008921C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		A764059217B50F9100D45F51 /* Build configuration list for PBXProject "BarCodeKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -741,15 +701,6 @@
 			buildConfigurations = (
 				A7A6B57E17B62D05007FF7DB /* Debug */,
 				A7A6B57F17B62D05007FF7DB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A7A6B58017B62D05007FF7DB /* Build configuration list for PBXNativeTarget "DemoAppTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A7A6B58117B62D05007FF7DB /* Debug */,
-				A7A6B58217B62D05007FF7DB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

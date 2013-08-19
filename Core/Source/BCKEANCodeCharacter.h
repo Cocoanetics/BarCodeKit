@@ -46,7 +46,7 @@ typedef NS_ENUM(NSUInteger, BCKEANCodeCharacterEncoding)
 /**
  Generates a code character to represent a digit with a specific BCKEANCodeCharacterEncoding
  @param digit The digit to encode
- @param The BCKEANCodeCharacterEncoding to use
+ @param encoding The BCKEANCodeCharacterEncoding to use
  @returns The digit code character
  */
 + (BCKEANCodeCharacter *)codeCharacterForDigit:(NSUInteger)digit encoding:(BCKEANCodeCharacterEncoding)encoding;

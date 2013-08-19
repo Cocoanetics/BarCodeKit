@@ -17,7 +17,9 @@
  */
 
 /**
-Creates a new character with a given bit string and wheter it is a marker character
+ Creates a new character with a given bit string and wheter it is a marker character
+ @param bitString The bit string as `NSString` to make up the character
+ @param isMarker Whether the character acts as a marker or content
 */
 - (instancetype)initWithBitString:(NSString *)bitString isMarker:(BOOL)isMarker;
 
@@ -27,6 +29,7 @@ Creates a new character with a given bit string and wheter it is a marker charac
 
 /**
  Enumerates the bits of the character from left to right
+ @param block The enumeration block that gets executed for each bit
  */
 - (void)enumerateBitsUsingBlock:(void (^)(BOOL isBar, NSUInteger idx, BOOL *stop))block;
 

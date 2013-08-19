@@ -10,7 +10,14 @@
 
 @class BCKCode;
 
+/**
+ Helper methods for `UIImage` to generate bitmap images from BCKCode instances.
+ */
 @interface UIImage (BarCodeKit)
+
+/**
+ @name Rendering Bitmaps
+ */
 
 /**
  Creates a bitmap rendering of a BCKCode with rendering options
