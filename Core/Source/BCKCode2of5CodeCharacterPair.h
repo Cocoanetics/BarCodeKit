@@ -19,10 +19,15 @@
  */
 
 /**
- Generates an start marker code character, used for Interleaved 2 of 5 codes
- @returns the end marker code character
+ Generates the start marker code character, used for Interleaved 2 of 5 codes
+ @returns the start marker code character
  */
 + (BCKCode2of5CodeCharacterPair *)startMarkerCodeCharacter;
+
+/**
+ Generates the end marker code character, used for Interleaved 2 of 5 codes
+ @returns the end marker code character
+ */
 + (BCKCode2of5CodeCharacterPair *)endMarkerCodeCharacter;
 
 /**

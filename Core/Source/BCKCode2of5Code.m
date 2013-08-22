@@ -19,13 +19,22 @@
 	
 	if (self)
 	{
-		if (![self _isValidContent:content])
+        // If the content length is even, all is good
+        // otherwise 0 prefix it to make it even
+        NSString *dataString;
+        if ( content.length % 2 == 0 )
+            dataString = content;
+        else
+            dataString = [@"0" stringByAppendingString:content];
+
+		if (![self _isValidContent:dataString])
 		{
 			return nil;
 		}
-		
-		_content = [content copy];
-	}
+        
+        _content = [dataString copy];
+
+    }
 	
 	return self;
 }
@@ -34,6 +43,7 @@
 
 - (BOOL)_isValidContent:(NSString *)content
 {
+    // Must be of even length - this should always be the (as we 0 prefix this) but just in case...
     if ( content.length % 2 != 0 )
     {
         NSLog(@"Code2of5 codes must have even length " );
@@ -42,8 +52,10 @@
     
 	for (NSUInteger index=0; index<[content length]; index+= 2)
 	{
+        // Interleave each pair of digits together
 		NSString *digit1 = [content substringWithRange:NSMakeRange(index, 1)];
 		NSString *digit2 = [content substringWithRange:NSMakeRange(index+1, 1)];
+        
 		BCKCode2of5CodeCharacterPair *codeCharacter = [[BCKCode2of5DigitCodeCharacterPair alloc] initWithDigitCharacter1:digit1 andDigitCharacter2:digit2];
 		if (!codeCharacter)
 		{
@@ -61,11 +73,12 @@
 {
 	NSMutableArray *tmpArray = [NSMutableArray array];
     
-	// end marker
+	// start marker
 	[tmpArray addObject:[BCKCode2of5CodeCharacterPair startMarkerCodeCharacter]];
 	
 	for (NSUInteger index=0; index<[_content length]; index+=2)
 	{
+        // Interleave each pair of digits together
         NSString *digit1 = [_content substringWithRange:NSMakeRange(index, 1)];
 		NSString *digit2 = [_content substringWithRange:NSMakeRange(index+1, 1)];
 		BCKCode2of5CodeCharacterPair *codeCharacter = [[BCKCode2of5DigitCodeCharacterPair alloc] initWithDigitCharacter1:digit1 andDigitCharacter2:digit2];
@@ -73,6 +86,7 @@
 	}
     
     
+	// end marker
     [tmpArray addObject:[BCKCode2of5CodeCharacterPair endMarkerCodeCharacter]];
 
 	return [tmpArray copy];

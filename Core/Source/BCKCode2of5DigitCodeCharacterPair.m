@@ -8,17 +8,18 @@
 
 #import "BCKCode2of5DigitCodeCharacterPair.h"
 
-int BARS [10][5] = { {
-    0, 0, 1, 1, 0 }, {
-    1, 0, 0, 0, 1 }, {
-    0, 1, 0, 0, 1 }, {
-    1, 1, 0, 0, 0 }, {
-    0, 0, 1, 0, 1 }, {
-    1, 0, 1, 0, 0 }, {
-    0, 1, 1, 0, 0 }, {
-    0, 0, 0, 1, 1 }, {
-    1, 0, 0, 1, 0 }, {
-    0, 1, 0, 1, 0 }
+// Taked from Wikipedia article - http://en.wikipedia.org/wiki/Interleaved_2_of_5
+int BARS [10][5] = {
+    { 0, 0, 1, 1, 0 },      // 0
+    { 1, 0, 0, 0, 1 },      // 1
+    { 0, 1, 0, 0, 1 },      // 2
+    { 1, 1, 0, 0, 0 },      // 3
+    { 0, 0, 1, 0, 1 },      // 4
+    { 1, 0, 1, 0, 0 },      // 5
+    { 0, 1, 1, 0, 0 },      // 6
+    { 0, 0, 0, 1, 1 },      // 7
+    { 1, 0, 0, 1, 0 },      // 8
+    { 0, 1, 0, 1, 0 }       // 9
 };
 
 
@@ -49,9 +50,11 @@ int BARS [10][5] = { {
 
 - (NSString *)_encodingForDigit1:(NSString *)digit1 andDigit2:(NSString *)digit2
 {
+    // Grab each character and turn into int
 	int searchChar1 = [digit1 UTF8String][0] - '0';
 	int searchChar2 = [digit2 UTF8String][0] - '0';
     
+    // If not numeric characters  - invalid
     if ( searchChar1 < 0 || searchChar1 > 9 || searchChar2 < 0 || searchChar2 > 9 )
         return nil;
 
@@ -81,32 +84,24 @@ int BARS [10][5] = { {
 		{
 			case 'b':
 			{
-//				[tmpString appendString:@"111"];
-//				[tmpString appendString:@"11"];
 				[tmpString appendString:@"1"];
 				break;
 			}
 				
 			case 'B':
 			{
-//				[tmpString appendString:@"111111"];
-//				[tmpString appendString:@"1111"];
 				[tmpString appendString:@"11"];
 				break;
 			}
 				
 			case 'w':
 			{
-//				[tmpString appendString:@"000"];
-//				[tmpString appendString:@"00"];
 				[tmpString appendString:@"0"];
 				break;
 			}
 				
 			case 'W':
 			{
-//				[tmpString appendString:@"000000"];
-//				[tmpString appendString:@"0000"];
 				[tmpString appendString:@"00"];
 				break;
 			}

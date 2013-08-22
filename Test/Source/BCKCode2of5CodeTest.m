@@ -33,14 +33,15 @@
 	STAssertTrue(isEqual, @"Result from encoding incorrect");
 }
 
-// Odd length should not be possible initially
-- (void)testEncodeInvalidLength
+// Odd length should not be possible initially (in theory we could 0 prefix to make even length
+// but not implemented yet)
+- (void)testEncodeOddLength
 {
 	BCKCode2of5Code *code = [[BCKCode2of5Code alloc] initWithContent:@"123456789"];
-	STAssertNil(code, @"2 Of 5 Codes must have even size (divisible by 2)");
+	STAssertNotNil(code, @"2 Of 5 Codes must have even size (divisible by 2)");
 }
 
-// Odd length should not be possible initially
+// Alpha characters are not supported in this format
 - (void)testEncodeInvalidCharacters
 {
 	BCKCode2of5Code *code = [[BCKCode2of5Code alloc] initWithContent:@"123abc"];
