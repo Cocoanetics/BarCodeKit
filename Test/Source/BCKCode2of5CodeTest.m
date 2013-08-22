@@ -22,7 +22,7 @@
 
 @implementation BCKCode2of5CodeTest
 
-// tests encoding a basic word
+// tests encoding a basic barcode
 - (void)testEncode
 {
 	BCKCode2of5Code *code = [[BCKCode2of5Code alloc] initWithContent:@"1234567890"];
