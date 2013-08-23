@@ -16,7 +16,7 @@
 + (BCKCode39CodeCharacter *)endMarkerCodeCharacter
 {
 	// bWbwBwBwb
-	return [[BCKCode39CodeCharacter alloc] initWithBitString:@"100101101101" isMarker:NO];
+	return [[BCKCode39CodeCharacter alloc] initWithBitString:@"100101101101" isMarker:YES];
 }
 
 + (BCKCode39CodeCharacter *)spacingCodeCharacter
