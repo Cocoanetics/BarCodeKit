@@ -56,7 +56,7 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 {
 	NSString *leftQuietZoneText = [self captionTextForZone:BCKCodeDrawingCaptionLeftQuietZone];
 	
-	if ([[options objectForKey:BCKCodeDrawingFillEmptyQuietZonesOption] boolValue])
+	if (self.allowsFillingOfEmptyQuietZones && [[options objectForKey:BCKCodeDrawingFillEmptyQuietZonesOption] boolValue])
 	{
 		if (!leftQuietZoneText)
 		{
@@ -72,7 +72,7 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 {
 	NSString *rightQuietZoneText = [self captionTextForZone:BCKCodeDrawingCaptionRightQuietZone];
 	
-	if ([[options objectForKey:BCKCodeDrawingFillEmptyQuietZonesOption] boolValue])
+	if (self.allowsFillingOfEmptyQuietZones && [[options objectForKey:BCKCodeDrawingFillEmptyQuietZonesOption] boolValue])
 	{
 		if (!rightQuietZoneText)
 		{
@@ -357,11 +357,6 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	return 1; // default
 }
 
-- (BOOL)markerBarsCanOverlapBottomCaption
-{
-	return YES;
-}
-
 #pragma mark - Subclassing Methods
 
 - (NSUInteger)horizontalQuietZoneWidth
@@ -387,6 +382,16 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 - (CGFloat)fixedHeight
 {
 	return 0;
+}
+
+- (BOOL)markerBarsCanOverlapBottomCaption
+{
+	return YES;
+}
+
+- (BOOL)allowsFillingOfEmptyQuietZones
+{
+	return YES;
 }
 
 #pragma mark - Drawing
@@ -427,7 +432,7 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	
 	if (aspectRatio)
 	{
-		size.height = size.width / [self aspectRatio];
+		size.height = ceilf(size.width / [self aspectRatio]);
 	}
 	else
 	{
@@ -481,8 +486,10 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	__block BOOL metContent = NO;
 	__block CGRect middleMarkerFrame = CGRectNull;
 	
+	NSArray *codeCharacters = [self codeCharacters];
+	
 	// enumerate the code characters
-	[[self codeCharacters] enumerateObjectsUsingBlock:^(BCKEANCodeCharacter *character, NSUInteger charIndex, BOOL *stop) {
+	[codeCharacters enumerateObjectsUsingBlock:^(BCKEANCodeCharacter *character, NSUInteger charIndex, BOOL *stop) {
 		
 		// bar length is different for markers and digits
 		CGFloat barLength = digitBarLength;
@@ -559,8 +566,18 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	
 	if ([self _shouldDrawCaptionFromOptions:options])
 	{
-		if (!CGRectIsNull(middleMarkerFrame))
+		// indent quiet zones to have 1 px distance
+		leftQuietZoneNumberFrame.size.width -= barScale;
+		
+		rightQuietZoneNumberFrame.origin.x += barScale;
+		rightQuietZoneNumberFrame.size.width -= barScale;
+
+		// determine if there is a middle marker
+		BOOL hasMiddleMarker = (middleMarkerFrame.origin.x < CGRectGetMaxX(frameBetweenEndMarkers));
+		
+		if (hasMiddleMarker)
 		{
+			// split left and right number areas at the middle marker
 			leftNumberFrame = frameBetweenEndMarkers;
 			leftNumberFrame.size.width = middleMarkerFrame.origin.x - leftNumberFrame.origin.x;
 			
@@ -570,44 +587,8 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 				rightNumberFrame.origin.x = CGRectGetMaxX(middleMarkerFrame);
 				rightNumberFrame.size.width = CGRectGetMaxX(frameBetweenEndMarkers) - rightNumberFrame.origin.x;
 			}
-		}
-		
-		
-		
-		leftQuietZoneNumberFrame.size.width -= barScale;
-		
-		rightQuietZoneNumberFrame.origin.x += barScale;
-		rightQuietZoneNumberFrame.size.width -= barScale;
-		
-		if (CGRectIsEmpty(leftNumberFrame))
-		{
-			// reduce the bar regions to the caption region
-			leftQuietZoneNumberFrame = CGRectIntersection(bottomCaptionRegion, leftQuietZoneNumberFrame);
-			rightQuietZoneNumberFrame = CGRectIntersection(bottomCaptionRegion, rightQuietZoneNumberFrame);
-			frameBetweenEndMarkers = CGRectIntersection(bottomCaptionRegion, frameBetweenEndMarkers);
-
-			// indent by 1 bar width
-			frameBetweenEndMarkers.origin.x += barScale;
-			frameBetweenEndMarkers.origin.y += barScale;
-			frameBetweenEndMarkers.size.width -= 2.0*barScale;
-			frameBetweenEndMarkers.size.height -= barScale;
 			
-			// DEBUG Option
-			if ([[options objectForKey:BCKCodeDrawingDebugOption] boolValue])
-			{
-				[[UIColor colorWithRed:1 green:0 blue:0 alpha:0.6] set];
-				CGContextFillRect(context, frameBetweenEndMarkers);
-				[[UIColor colorWithRed:0 green:0 blue:1 alpha:0.6] set];
-				CGContextFillRect(context, leftQuietZoneNumberFrame);
-				[[UIColor colorWithRed:0 green:0 blue:1 alpha:0.6] set];
-				CGContextFillRect(context, rightQuietZoneNumberFrame);
-			}
 			
-			NSString *text = [self captionTextForZone:BCKCodeDrawingCaptionTextZone];
-			[self _drawCaptionText:text fontSize:[self _captionFontSizeWithOptions:options] inRect:frameBetweenEndMarkers context:context];
-		}
-		else
-		{
 			// we have number zones
 			
 			// insure at least 1 bar width space between bars and caption
@@ -653,6 +634,66 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 			
 			[self _drawCaptionText:leftDigits fontSize:optimalCaptionFontSize inRect:leftNumberFrame context:context];
 			[self _drawCaptionText:rightDigits fontSize:optimalCaptionFontSize inRect:rightNumberFrame context:context];
+			
+			if (leftQuietZoneText)
+			{
+				[self _drawCaptionText:leftQuietZoneText fontSize:optimalCaptionFontSize inRect:leftQuietZoneNumberFrame context:context];
+			}
+			
+			if (rightQuietZoneText)
+			{
+				[self _drawCaptionText:rightQuietZoneText fontSize:optimalCaptionFontSize inRect:rightQuietZoneNumberFrame context:context];
+			}
+		}
+		else
+		{
+			// one big caption area
+			
+			// reduce the bar regions to the caption region
+			leftQuietZoneNumberFrame = CGRectIntersection(bottomCaptionRegion, leftQuietZoneNumberFrame);
+			rightQuietZoneNumberFrame = CGRectIntersection(bottomCaptionRegion, rightQuietZoneNumberFrame);
+			frameBetweenEndMarkers = CGRectIntersection(bottomCaptionRegion, frameBetweenEndMarkers);
+
+			// indent by 1 bar width if left marker ends with a bar
+			BCKCodeCharacter *leftOuterMarker = codeCharacters[0];
+			
+			if ([[leftOuterMarker bitString] hasSuffix:@"1"])
+			{
+				frameBetweenEndMarkers.origin.x += barScale;
+				frameBetweenEndMarkers.size.width -= barScale;
+			}
+			
+			// indent by 1 bar width if right marker begins with a bar
+			BCKCodeCharacter *rightOuterMarker = [codeCharacters lastObject];
+			
+			if ([[rightOuterMarker bitString] hasPrefix:@"1"])
+			{
+				frameBetweenEndMarkers.size.width -= barScale;
+			}
+			
+			// space 1px from bars
+			frameBetweenEndMarkers.origin.y += barScale;
+			frameBetweenEndMarkers.size.height -= barScale;
+			
+			leftQuietZoneNumberFrame.origin.y += barScale;
+			leftQuietZoneNumberFrame.size.height -= barScale;
+			
+			rightQuietZoneNumberFrame.origin.y += barScale;
+			rightQuietZoneNumberFrame.size.height -= barScale;
+			
+			// DEBUG Option
+			if ([[options objectForKey:BCKCodeDrawingDebugOption] boolValue])
+			{
+				[[UIColor colorWithRed:1 green:0 blue:0 alpha:0.6] set];
+				CGContextFillRect(context, frameBetweenEndMarkers);
+				[[UIColor colorWithRed:0 green:0 blue:1 alpha:0.6] set];
+				CGContextFillRect(context, leftQuietZoneNumberFrame);
+				[[UIColor colorWithRed:0 green:0 blue:1 alpha:0.6] set];
+				CGContextFillRect(context, rightQuietZoneNumberFrame);
+			}
+			
+			NSString *text = [self captionTextForZone:BCKCodeDrawingCaptionTextZone];
+			[self _drawCaptionText:text fontSize:[self _captionFontSizeWithOptions:options] inRect:frameBetweenEndMarkers context:context];
 			
 			if (leftQuietZoneText)
 			{

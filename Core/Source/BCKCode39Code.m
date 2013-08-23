@@ -118,4 +118,9 @@
 	return font;
 }
 
+- (BOOL)allowsFillingOfEmptyQuietZones
+{
+	return NO;
+}
+
 @end
