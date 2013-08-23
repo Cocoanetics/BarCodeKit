@@ -117,6 +117,7 @@
 		A7378E0B17C261D8008921C4 /* BCKEAN8CodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKEAN8CodeTest.m; sourceTree = "<group>"; };
 		A7378E0D17C263C7008921C4 /* BCKUPCECodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKUPCECodeTest.m; sourceTree = "<group>"; };
 		A73B88CD17C77DE300A75680 /* Readme.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme.markdown; sourceTree = SOURCE_ROOT; };
+		A73B88CE17C77F4B00A75680 /* Change Log-template.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Change Log-template.markdown"; sourceTree = "<group>"; };
 		A764059717B50F9100D45F51 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A764059A17B50F9100D45F51 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A764059C17B50F9100D45F51 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -261,6 +262,7 @@
 		A7378D8D17C253FE008921C4 /* Documentation */ = {
 			isa = PBXGroup;
 			children = (
+				A73B88CE17C77F4B00A75680 /* Change Log-template.markdown */,
 				A73B88CD17C77DE300A75680 /* Readme.markdown */,
 				A7378D8E17C253FE008921C4 /* Setup Guide-template.markdown */,
 			);
