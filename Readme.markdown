@@ -7,6 +7,7 @@ This project lets you generate bar codes for a variety of code standards.
 - EAN-8
 - UPC-E
 - Code39
+- Interleaved 2 of 5
 
 Documentation
 -------------
