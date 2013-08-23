@@ -127,11 +127,4 @@
 	return nil;
 }
 
-- (UIFont *)_captionFontWithSize:(CGFloat)fontSize
-{
-	UIFont *font = [UIFont boldSystemFontOfSize:fontSize];
-	
-	return font;
-}
-
 @end
