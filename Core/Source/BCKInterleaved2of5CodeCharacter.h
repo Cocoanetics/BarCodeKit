@@ -32,7 +32,8 @@
 
 /**
  Generates a code character to represent a digit character
- @param digit The character to encode
+ @param digit1 The first digit to encode
+ @param digit2 The second digit to encode
  @returns The digit code character
  */
 + (BCKInterleaved2of5CodeCharacter *)codeCharacterForDigitCharacter1:(NSString *)digit1 andDigitCharacter2:(NSString *)digit2;

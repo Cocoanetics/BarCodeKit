@@ -8,6 +8,9 @@
 
 #import "BCKInterleaved2of5CodeCharacter.h"
 
+/**
+ Specialized subclass of BCKInterleaved2of5CodeCharacter which represents two digits
+ */
 @interface BCKInterleaved2of5DigitPairCodeCharacter : BCKInterleaved2of5CodeCharacter
 
 /**
@@ -15,7 +18,6 @@
  @param digit1 The first digit
  @param digit2 The second digit
  */
-
 - (instancetype)initWithDigitCharacter1:(NSString *)digit1 andDigitCharacter2:(NSString *)digit2;
 
 @end

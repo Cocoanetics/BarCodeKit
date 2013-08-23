@@ -283,8 +283,8 @@
 				A7378E0417C25A2D008921C4 /* BCKCode39CodeTest.m */,
 				A7378E0917C25DF3008921C4 /* BCKEAN13CodeTest.m */,
 				A7378E0B17C261D8008921C4 /* BCKEAN8CodeTest.m */,
-				A7378E0D17C263C7008921C4 /* BCKUPCECodeTest.m */,
 				A13B58E117C6A03A00454150 /* BCKInterleaved2of5CodeTest.m */,
+				A7378E0D17C263C7008921C4 /* BCKUPCECodeTest.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -292,11 +292,11 @@
 		A75BABD017BF7AB000A5A5A5 /* Codes */ = {
 			isa = PBXGroup;
 			children = (
-				A13B58DF17C6961600454150 /* Interleaved 2 of 5 */,
 				A76405E117B52E7700D45F51 /* BCKCode.h */,
 				A76405E217B52E7700D45F51 /* BCKCode.m */,
-				A7378D8517C23AC3008921C4 /* Code39 */,
 				A7378D8617C23ACE008921C4 /* EAN/UPC */,
+				A7378D8517C23AC3008921C4 /* Code39 */,
+				A13B58DF17C6961600454150 /* Interleaved 2 of 5 */,
 			);
 			name = Codes;
 			sourceTree = "<group>";
@@ -304,11 +304,11 @@
 		A75BABD117BF7AB900A5A5A5 /* Code Characters */ = {
 			isa = PBXGroup;
 			children = (
-				A13B58E017C6963B00454150 /* Interleaved 2 of 5 */,
 				A7337C6A17C12C8800BC2D2D /* BCKCodeCharacter.h */,
 				A7337C6B17C12C8800BC2D2D /* BCKCodeCharacter.m */,
-				A7378D8417C222F1008921C4 /* Code39 */,
 				A7378D8317C222E6008921C4 /* EAN/UPC */,
+				A7378D8417C222F1008921C4 /* Code39 */,
+				A13B58E017C6963B00454150 /* Interleaved 2 of 5 */,
 			);
 			name = "Code Characters";
 			sourceTree = "<group>";
