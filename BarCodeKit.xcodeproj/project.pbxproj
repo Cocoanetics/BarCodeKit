@@ -21,7 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		A13B58E217C6A03A00454150 /* BCKCode2of5CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B58E117C6A03A00454150 /* BCKCode2of5CodeTest.m */; };
+		A13B58E217C6A03A00454150 /* BCKInterleaved2of5CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B58E117C6A03A00454150 /* BCKInterleaved2of5CodeTest.m */; };
 		A13B58E517C6A10200454150 /* BCKInterleaved2of5Code.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B58E417C6A10200454150 /* BCKInterleaved2of5Code.m */; };
 		A13B58E817C6A1C700454150 /* BCKInterleaved2of5CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B58E717C6A1C700454150 /* BCKInterleaved2of5CodeCharacter.m */; };
 		A13B58EB17C6A1E500454150 /* BCKInterleaved2of5DigitPairCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B58EA17C6A1E500454150 /* BCKInterleaved2of5DigitPairCodeCharacter.m */; };
@@ -90,7 +90,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A13B58E117C6A03A00454150 /* BCKCode2of5CodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode2of5CodeTest.m; sourceTree = "<group>"; };
+		A13B58E117C6A03A00454150 /* BCKInterleaved2of5CodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKInterleaved2of5CodeTest.m; sourceTree = "<group>"; };
 		A13B58E317C6A10200454150 /* BCKInterleaved2of5Code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKInterleaved2of5Code.h; sourceTree = "<group>"; };
 		A13B58E417C6A10200454150 /* BCKInterleaved2of5Code.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKInterleaved2of5Code.m; sourceTree = "<group>"; };
 		A13B58E617C6A1C700454150 /* BCKInterleaved2of5CodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKInterleaved2of5CodeCharacter.h; sourceTree = "<group>"; };
@@ -282,7 +282,7 @@
 				A7378E0917C25DF3008921C4 /* BCKEAN13CodeTest.m */,
 				A7378E0B17C261D8008921C4 /* BCKEAN8CodeTest.m */,
 				A7378E0D17C263C7008921C4 /* BCKUPCECodeTest.m */,
-				A13B58E117C6A03A00454150 /* BCKCode2of5CodeTest.m */,
+				A13B58E117C6A03A00454150 /* BCKInterleaved2of5CodeTest.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -556,7 +556,7 @@
 				A7378E0E17C263C7008921C4 /* BCKUPCECodeTest.m in Sources */,
 				A7378E0A17C25DF3008921C4 /* BCKEAN13CodeTest.m in Sources */,
 				A7378E0C17C261D8008921C4 /* BCKEAN8CodeTest.m in Sources */,
-				A13B58E217C6A03A00454150 /* BCKCode2of5CodeTest.m in Sources */,
+				A13B58E217C6A03A00454150 /* BCKInterleaved2of5CodeTest.m in Sources */,
 				A7378E0517C25A2D008921C4 /* BCKCode39CodeTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
