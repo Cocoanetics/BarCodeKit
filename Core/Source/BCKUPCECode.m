@@ -137,6 +137,10 @@ static char *variant_patterns[10][2] = {{"EEEOOO", "OOOEEE"},  // 0
 	{
 		return [self.content substringFromIndex:7];
 	}
+	else if (captionZone == BCKCodeDrawingCaptionTextZone)
+	{
+		return [self.content substringWithRange:NSMakeRange(1, 6)];
+	}
 	
 	return nil;
 }

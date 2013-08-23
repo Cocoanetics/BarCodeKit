@@ -559,8 +559,18 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	
 	if ([self _shouldDrawCaptionFromOptions:options])
 	{
-		if (!CGRectIsNull(middleMarkerFrame))
+		// indent quiet zones to have 1 px distance
+		leftQuietZoneNumberFrame.size.width -= barScale;
+		
+		rightQuietZoneNumberFrame.origin.x += barScale;
+		rightQuietZoneNumberFrame.size.width -= barScale;
+
+		// determine if there is a middle marker
+		BOOL hasMiddleMarker = (middleMarkerFrame.origin.x < CGRectGetMaxX(frameBetweenEndMarkers));
+		
+		if (hasMiddleMarker)
 		{
+			// split left and right number areas at the middle marker
 			leftNumberFrame = frameBetweenEndMarkers;
 			leftNumberFrame.size.width = middleMarkerFrame.origin.x - leftNumberFrame.origin.x;
 			
@@ -570,44 +580,8 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 				rightNumberFrame.origin.x = CGRectGetMaxX(middleMarkerFrame);
 				rightNumberFrame.size.width = CGRectGetMaxX(frameBetweenEndMarkers) - rightNumberFrame.origin.x;
 			}
-		}
-		
-		
-		
-		leftQuietZoneNumberFrame.size.width -= barScale;
-		
-		rightQuietZoneNumberFrame.origin.x += barScale;
-		rightQuietZoneNumberFrame.size.width -= barScale;
-		
-		if (CGRectIsEmpty(leftNumberFrame))
-		{
-			// reduce the bar regions to the caption region
-			leftQuietZoneNumberFrame = CGRectIntersection(bottomCaptionRegion, leftQuietZoneNumberFrame);
-			rightQuietZoneNumberFrame = CGRectIntersection(bottomCaptionRegion, rightQuietZoneNumberFrame);
-			frameBetweenEndMarkers = CGRectIntersection(bottomCaptionRegion, frameBetweenEndMarkers);
-
-			// indent by 1 bar width
-			frameBetweenEndMarkers.origin.x += barScale;
-			frameBetweenEndMarkers.origin.y += barScale;
-			frameBetweenEndMarkers.size.width -= 2.0*barScale;
-			frameBetweenEndMarkers.size.height -= barScale;
 			
-			// DEBUG Option
-			if ([[options objectForKey:BCKCodeDrawingDebugOption] boolValue])
-			{
-				[[UIColor colorWithRed:1 green:0 blue:0 alpha:0.6] set];
-				CGContextFillRect(context, frameBetweenEndMarkers);
-				[[UIColor colorWithRed:0 green:0 blue:1 alpha:0.6] set];
-				CGContextFillRect(context, leftQuietZoneNumberFrame);
-				[[UIColor colorWithRed:0 green:0 blue:1 alpha:0.6] set];
-				CGContextFillRect(context, rightQuietZoneNumberFrame);
-			}
 			
-			NSString *text = [self captionTextForZone:BCKCodeDrawingCaptionTextZone];
-			[self _drawCaptionText:text fontSize:[self _captionFontSizeWithOptions:options] inRect:frameBetweenEndMarkers context:context];
-		}
-		else
-		{
 			// we have number zones
 			
 			// insure at least 1 bar width space between bars and caption
@@ -653,6 +627,45 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 			
 			[self _drawCaptionText:leftDigits fontSize:optimalCaptionFontSize inRect:leftNumberFrame context:context];
 			[self _drawCaptionText:rightDigits fontSize:optimalCaptionFontSize inRect:rightNumberFrame context:context];
+			
+			if (leftQuietZoneText)
+			{
+				[self _drawCaptionText:leftQuietZoneText fontSize:optimalCaptionFontSize inRect:leftQuietZoneNumberFrame context:context];
+			}
+			
+			if (rightQuietZoneText)
+			{
+				[self _drawCaptionText:rightQuietZoneText fontSize:optimalCaptionFontSize inRect:rightQuietZoneNumberFrame context:context];
+			}
+		}
+		else
+		{
+			// one big caption area
+			
+			// reduce the bar regions to the caption region
+			leftQuietZoneNumberFrame = CGRectIntersection(bottomCaptionRegion, leftQuietZoneNumberFrame);
+			rightQuietZoneNumberFrame = CGRectIntersection(bottomCaptionRegion, rightQuietZoneNumberFrame);
+			frameBetweenEndMarkers = CGRectIntersection(bottomCaptionRegion, frameBetweenEndMarkers);
+
+			// indent by 1 bar width
+			frameBetweenEndMarkers.origin.x += barScale;
+			frameBetweenEndMarkers.origin.y += barScale;
+			frameBetweenEndMarkers.size.width -= 2.0*barScale;
+			frameBetweenEndMarkers.size.height -= barScale;
+			
+			// DEBUG Option
+			if ([[options objectForKey:BCKCodeDrawingDebugOption] boolValue])
+			{
+				[[UIColor colorWithRed:1 green:0 blue:0 alpha:0.6] set];
+				CGContextFillRect(context, frameBetweenEndMarkers);
+				[[UIColor colorWithRed:0 green:0 blue:1 alpha:0.6] set];
+				CGContextFillRect(context, leftQuietZoneNumberFrame);
+				[[UIColor colorWithRed:0 green:0 blue:1 alpha:0.6] set];
+				CGContextFillRect(context, rightQuietZoneNumberFrame);
+			}
+			
+			NSString *text = [self captionTextForZone:BCKCodeDrawingCaptionTextZone];
+			[self _drawCaptionText:text fontSize:[self _captionFontSizeWithOptions:options] inRect:frameBetweenEndMarkers context:context];
 			
 			if (leftQuietZoneText)
 			{
