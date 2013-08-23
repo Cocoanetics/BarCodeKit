@@ -22,9 +22,9 @@
 
 /* Begin PBXBuildFile section */
 		A13B58E217C6A03A00454150 /* BCKCode2of5CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B58E117C6A03A00454150 /* BCKCode2of5CodeTest.m */; };
-		A13B58E517C6A10200454150 /* BCKCode2of5Code.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B58E417C6A10200454150 /* BCKCode2of5Code.m */; };
-		A13B58E817C6A1C700454150 /* BCKCode2of5CodeCharacterPair.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B58E717C6A1C700454150 /* BCKCode2of5CodeCharacterPair.m */; };
-		A13B58EB17C6A1E500454150 /* BCKCode2of5DigitCodeCharacterPair.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B58EA17C6A1E500454150 /* BCKCode2of5DigitCodeCharacterPair.m */; };
+		A13B58E517C6A10200454150 /* BCKInterleaved2of5Code.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B58E417C6A10200454150 /* BCKInterleaved2of5Code.m */; };
+		A13B58E817C6A1C700454150 /* BCKInterleaved2of5CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B58E717C6A1C700454150 /* BCKInterleaved2of5CodeCharacter.m */; };
+		A13B58EB17C6A1E500454150 /* BCKInterleaved2of5DigitPairCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B58EA17C6A1E500454150 /* BCKInterleaved2of5DigitPairCodeCharacter.m */; };
 		A7337C6617C1250F00BC2D2D /* BCKCode39Code.m in Sources */ = {isa = PBXBuildFile; fileRef = A7337C6517C1250F00BC2D2D /* BCKCode39Code.m */; };
 		A7337C6917C1276700BC2D2D /* BCKCode39CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A7337C6817C1276700BC2D2D /* BCKCode39CodeCharacter.m */; };
 		A7337C6C17C12C8800BC2D2D /* BCKCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A7337C6B17C12C8800BC2D2D /* BCKCodeCharacter.m */; };
@@ -91,12 +91,12 @@
 
 /* Begin PBXFileReference section */
 		A13B58E117C6A03A00454150 /* BCKCode2of5CodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode2of5CodeTest.m; sourceTree = "<group>"; };
-		A13B58E317C6A10200454150 /* BCKCode2of5Code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode2of5Code.h; sourceTree = "<group>"; };
-		A13B58E417C6A10200454150 /* BCKCode2of5Code.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode2of5Code.m; sourceTree = "<group>"; };
-		A13B58E617C6A1C700454150 /* BCKCode2of5CodeCharacterPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode2of5CodeCharacterPair.h; sourceTree = "<group>"; };
-		A13B58E717C6A1C700454150 /* BCKCode2of5CodeCharacterPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode2of5CodeCharacterPair.m; sourceTree = "<group>"; };
-		A13B58E917C6A1E500454150 /* BCKCode2of5DigitCodeCharacterPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode2of5DigitCodeCharacterPair.h; sourceTree = "<group>"; };
-		A13B58EA17C6A1E500454150 /* BCKCode2of5DigitCodeCharacterPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode2of5DigitCodeCharacterPair.m; sourceTree = "<group>"; };
+		A13B58E317C6A10200454150 /* BCKInterleaved2of5Code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKInterleaved2of5Code.h; sourceTree = "<group>"; };
+		A13B58E417C6A10200454150 /* BCKInterleaved2of5Code.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKInterleaved2of5Code.m; sourceTree = "<group>"; };
+		A13B58E617C6A1C700454150 /* BCKInterleaved2of5CodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKInterleaved2of5CodeCharacter.h; sourceTree = "<group>"; };
+		A13B58E717C6A1C700454150 /* BCKInterleaved2of5CodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKInterleaved2of5CodeCharacter.m; sourceTree = "<group>"; };
+		A13B58E917C6A1E500454150 /* BCKInterleaved2of5DigitPairCodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKInterleaved2of5DigitPairCodeCharacter.h; sourceTree = "<group>"; };
+		A13B58EA17C6A1E500454150 /* BCKInterleaved2of5DigitPairCodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKInterleaved2of5DigitPairCodeCharacter.m; sourceTree = "<group>"; };
 		A7337C6417C1250F00BC2D2D /* BCKCode39Code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode39Code.h; sourceTree = "<group>"; };
 		A7337C6517C1250F00BC2D2D /* BCKCode39Code.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode39Code.m; sourceTree = "<group>"; };
 		A7337C6717C1276700BC2D2D /* BCKCode39CodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode39CodeCharacter.h; sourceTree = "<group>"; };
@@ -193,24 +193,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A13B58DF17C6961600454150 /* Code2of5 */ = {
+		A13B58DF17C6961600454150 /* Interleaved 2 of 5 */ = {
 			isa = PBXGroup;
 			children = (
-				A13B58E317C6A10200454150 /* BCKCode2of5Code.h */,
-				A13B58E417C6A10200454150 /* BCKCode2of5Code.m */,
+				A13B58E317C6A10200454150 /* BCKInterleaved2of5Code.h */,
+				A13B58E417C6A10200454150 /* BCKInterleaved2of5Code.m */,
 			);
-			name = Code2of5;
+			name = "Interleaved 2 of 5";
 			sourceTree = "<group>";
 		};
-		A13B58E017C6963B00454150 /* Code2of5 */ = {
+		A13B58E017C6963B00454150 /* Interleaved 2 of 5 */ = {
 			isa = PBXGroup;
 			children = (
-				A13B58E617C6A1C700454150 /* BCKCode2of5CodeCharacterPair.h */,
-				A13B58E717C6A1C700454150 /* BCKCode2of5CodeCharacterPair.m */,
-				A13B58E917C6A1E500454150 /* BCKCode2of5DigitCodeCharacterPair.h */,
-				A13B58EA17C6A1E500454150 /* BCKCode2of5DigitCodeCharacterPair.m */,
+				A13B58E617C6A1C700454150 /* BCKInterleaved2of5CodeCharacter.h */,
+				A13B58E717C6A1C700454150 /* BCKInterleaved2of5CodeCharacter.m */,
+				A13B58E917C6A1E500454150 /* BCKInterleaved2of5DigitPairCodeCharacter.h */,
+				A13B58EA17C6A1E500454150 /* BCKInterleaved2of5DigitPairCodeCharacter.m */,
 			);
-			name = Code2of5;
+			name = "Interleaved 2 of 5";
 			sourceTree = "<group>";
 		};
 		A7378D8317C222E6008921C4 /* EAN/UPC */ = {
@@ -290,7 +290,7 @@
 		A75BABD017BF7AB000A5A5A5 /* Codes */ = {
 			isa = PBXGroup;
 			children = (
-				A13B58DF17C6961600454150 /* Code2of5 */,
+				A13B58DF17C6961600454150 /* Interleaved 2 of 5 */,
 				A76405E117B52E7700D45F51 /* BCKCode.h */,
 				A76405E217B52E7700D45F51 /* BCKCode.m */,
 				A7378D8517C23AC3008921C4 /* Code39 */,
@@ -302,7 +302,7 @@
 		A75BABD117BF7AB900A5A5A5 /* Code Characters */ = {
 			isa = PBXGroup;
 			children = (
-				A13B58E017C6963B00454150 /* Code2of5 */,
+				A13B58E017C6963B00454150 /* Interleaved 2 of 5 */,
 				A7337C6A17C12C8800BC2D2D /* BCKCodeCharacter.h */,
 				A7337C6B17C12C8800BC2D2D /* BCKCodeCharacter.m */,
 				A7378D8417C222F1008921C4 /* Code39 */,
@@ -575,10 +575,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A13B58EB17C6A1E500454150 /* BCKCode2of5DigitCodeCharacterPair.m in Sources */,
+				A13B58EB17C6A1E500454150 /* BCKInterleaved2of5DigitPairCodeCharacter.m in Sources */,
 				A7781E1817B6B301005B9604 /* BCKUPCECode.m in Sources */,
 				A7337C6C17C12C8800BC2D2D /* BCKCodeCharacter.m in Sources */,
-				A13B58E517C6A10200454150 /* BCKCode2of5Code.m in Sources */,
+				A13B58E517C6A10200454150 /* BCKInterleaved2of5Code.m in Sources */,
 				A764061C17B53AE700D45F51 /* BCKEANCodeCharacter.m in Sources */,
 				A764060D17B52EC600D45F51 /* BCKCode.m in Sources */,
 				A764060E17B52EC600D45F51 /* BCKEAN13Code.m in Sources */,
@@ -586,7 +586,7 @@
 				A764062517B53B7B00D45F51 /* BCKEANDigitCodeCharacter.m in Sources */,
 				A7343F4917BF599100EF9B83 /* UIImage+BarCodeKit.m in Sources */,
 				A7337C6917C1276700BC2D2D /* BCKCode39CodeCharacter.m in Sources */,
-				A13B58E817C6A1C700454150 /* BCKCode2of5CodeCharacterPair.m in Sources */,
+				A13B58E817C6A1C700454150 /* BCKInterleaved2of5CodeCharacter.m in Sources */,
 				A7378D8217C222AD008921C4 /* BCKCode39ContentCodeCharacter.m in Sources */,
 				A7337C6617C1250F00BC2D2D /* BCKCode39Code.m in Sources */,
 			);
