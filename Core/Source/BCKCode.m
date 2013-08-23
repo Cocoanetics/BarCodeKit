@@ -56,7 +56,7 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 {
 	NSString *leftQuietZoneText = [self captionTextForZone:BCKCodeDrawingCaptionLeftQuietZone];
 	
-	if ([[options objectForKey:BCKCodeDrawingFillEmptyQuietZonesOption] boolValue])
+	if (self.allowsFillingOfEmptyQuietZones && [[options objectForKey:BCKCodeDrawingFillEmptyQuietZonesOption] boolValue])
 	{
 		if (!leftQuietZoneText)
 		{
@@ -72,7 +72,7 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 {
 	NSString *rightQuietZoneText = [self captionTextForZone:BCKCodeDrawingCaptionRightQuietZone];
 	
-	if ([[options objectForKey:BCKCodeDrawingFillEmptyQuietZonesOption] boolValue])
+	if (self.allowsFillingOfEmptyQuietZones && [[options objectForKey:BCKCodeDrawingFillEmptyQuietZonesOption] boolValue])
 	{
 		if (!rightQuietZoneText)
 		{
@@ -357,11 +357,6 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	return 1; // default
 }
 
-- (BOOL)markerBarsCanOverlapBottomCaption
-{
-	return YES;
-}
-
 #pragma mark - Subclassing Methods
 
 - (NSUInteger)horizontalQuietZoneWidth
@@ -387,6 +382,16 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 - (CGFloat)fixedHeight
 {
 	return 0;
+}
+
+- (BOOL)markerBarsCanOverlapBottomCaption
+{
+	return YES;
+}
+
+- (BOOL)allowsFillingOfEmptyQuietZones
+{
+	return YES;
 }
 
 #pragma mark - Drawing
@@ -427,7 +432,7 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	
 	if (aspectRatio)
 	{
-		size.height = size.width / [self aspectRatio];
+		size.height = ceilf(size.width / [self aspectRatio]);
 	}
 	else
 	{
@@ -481,8 +486,10 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	__block BOOL metContent = NO;
 	__block CGRect middleMarkerFrame = CGRectNull;
 	
+	NSArray *codeCharacters = [self codeCharacters];
+	
 	// enumerate the code characters
-	[[self codeCharacters] enumerateObjectsUsingBlock:^(BCKEANCodeCharacter *character, NSUInteger charIndex, BOOL *stop) {
+	[codeCharacters enumerateObjectsUsingBlock:^(BCKEANCodeCharacter *character, NSUInteger charIndex, BOOL *stop) {
 		
 		// bar length is different for markers and digits
 		CGFloat barLength = digitBarLength;
@@ -647,11 +654,32 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 			rightQuietZoneNumberFrame = CGRectIntersection(bottomCaptionRegion, rightQuietZoneNumberFrame);
 			frameBetweenEndMarkers = CGRectIntersection(bottomCaptionRegion, frameBetweenEndMarkers);
 
-			// indent by 1 bar width
-			frameBetweenEndMarkers.origin.x += barScale;
+			// indent by 1 bar width if left marker ends with a bar
+			BCKCodeCharacter *leftOuterMarker = codeCharacters[0];
+			
+			if ([[leftOuterMarker bitString] hasSuffix:@"1"])
+			{
+				frameBetweenEndMarkers.origin.x += barScale;
+				frameBetweenEndMarkers.size.width -= barScale;
+			}
+			
+			// indent by 1 bar width if right marker begins with a bar
+			BCKCodeCharacter *rightOuterMarker = [codeCharacters lastObject];
+			
+			if ([[rightOuterMarker bitString] hasPrefix:@"1"])
+			{
+				frameBetweenEndMarkers.size.width -= barScale;
+			}
+			
+			// space 1px from bars
 			frameBetweenEndMarkers.origin.y += barScale;
-			frameBetweenEndMarkers.size.width -= 2.0*barScale;
 			frameBetweenEndMarkers.size.height -= barScale;
+			
+			leftQuietZoneNumberFrame.origin.y += barScale;
+			leftQuietZoneNumberFrame.size.height -= barScale;
+			
+			rightQuietZoneNumberFrame.origin.y += barScale;
+			rightQuietZoneNumberFrame.size.height -= barScale;
 			
 			// DEBUG Option
 			if ([[options objectForKey:BCKCodeDrawingDebugOption] boolValue])

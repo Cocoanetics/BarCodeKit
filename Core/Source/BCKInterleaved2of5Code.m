@@ -117,6 +117,11 @@
 	return NO;
 }
 
+- (BOOL)allowsFillingOfEmptyQuietZones
+{
+	return NO;
+}
+
 - (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone
 {
 	if (captionZone == BCKCodeDrawingCaptionTextZone)

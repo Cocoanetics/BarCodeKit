@@ -121,6 +121,11 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
 @property (nonatomic, readonly) BOOL markerBarsCanOverlapBottomCaption;
 
 /**
+ Whether the code allows for quite zones to be filled with angle brackets. If yes, then quite zones are filled if the BCKCodeDrawingFillEmptyQuietZonesOption is specified
+ */
+@property (nonatomic, readonly) BOOL allowsFillingOfEmptyQuietZones;
+
+/**
  @name Getting Information about Bar Codes
  */
 
