@@ -16,13 +16,13 @@
 + (BCKInterleaved2of5CodeCharacter *)startMarkerCodeCharacter
 {
 	// bwbw
-	return [[BCKInterleaved2of5CodeCharacter alloc] initWithBitString:@"1010" isMarker:NO];
+	return [[BCKInterleaved2of5CodeCharacter alloc] initWithBitString:@"1010" isMarker:YES];
 }
 
 + (BCKInterleaved2of5CodeCharacter *)endMarkerCodeCharacter
 {
 	// Bwb
-    return [[BCKInterleaved2of5CodeCharacter alloc] initWithBitString:@"1101" isMarker:NO];
+    return [[BCKInterleaved2of5CodeCharacter alloc] initWithBitString:@"1101" isMarker:YES];
 }
 
 
