@@ -195,6 +195,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6C818CA917CB64A300AEE26F /* Code93 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Code93;
+			sourceTree = "<group>";
+		};
+		6C818CAA17CB64B100AEE26F /* Code93 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Code93;
+			sourceTree = "<group>";
+		};
 		A13B58DF17C6961600454150 /* Interleaved 2 of 5 */ = {
 			isa = PBXGroup;
 			children = (
@@ -298,6 +312,7 @@
 				A76405E217B52E7700D45F51 /* BCKCode.m */,
 				A7378D8617C23ACE008921C4 /* EAN/UPC */,
 				A7378D8517C23AC3008921C4 /* Code39 */,
+				6C818CA917CB64A300AEE26F /* Code93 */,
 				A13B58DF17C6961600454150 /* Interleaved 2 of 5 */,
 			);
 			name = Codes;
@@ -310,6 +325,7 @@
 				A7337C6B17C12C8800BC2D2D /* BCKCodeCharacter.m */,
 				A7378D8317C222E6008921C4 /* EAN/UPC */,
 				A7378D8417C222F1008921C4 /* Code39 */,
+				6C818CAA17CB64B100AEE26F /* Code93 */,
 				A13B58E017C6963B00454150 /* Interleaved 2 of 5 */,
 			);
 			name = "Code Characters";
