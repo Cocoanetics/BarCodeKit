@@ -7,10 +7,11 @@
 //
 
 #import "BCKCode128Code.h"
-#import "BCKCode128CodeCharacter.h"
 #import "BCKCode128ContentCodeCharacter.h"
 
-@implementation BCKCode128Code
+@implementation BCKCode128Code {
+    Code128Version _barcodeVersion;
+}
 
 - (BCKCode *)initWithContent:(NSString *)content
 {
@@ -18,6 +19,14 @@
 
     if (self)
     {
+        Code128Version versionUsed = [BCKCode128ContentCodeCharacter code128VersionNeeded:content];
+        if (versionUsed == Code128Unsupported)
+        {
+            NSLog(@"String '%@' cannot be encoded in Code128", content);
+            return nil;
+        }
+
+        _barcodeVersion = versionUsed;
         _content = [content copy];
     }
 
@@ -31,15 +40,15 @@
     NSMutableArray *tmpArray = [NSMutableArray array];
 
     // start marker
-    [tmpArray addObject:[BCKCode128CodeCharacter startCodeA]];
+    [tmpArray addObject:[BCKCode128CodeCharacter startCodeForVersion:_barcodeVersion]];
 
     // check counter
-    NSUInteger check = 0;
+    NSUInteger check = (_barcodeVersion == Code128A ? 103 : 104);
 
     for (NSUInteger index=0; index<[_content length]; index++)
     {
         NSString *character = [_content substringWithRange:NSMakeRange(index, 1)];
-        BCKCode128ContentCodeCharacter *codeCharacter = [BCKCode128ContentCodeCharacter codeCharacterForCharacter:character];
+        BCKCode128ContentCodeCharacter *codeCharacter = [BCKCode128ContentCodeCharacter codeCharacterForCharacter:character codeVersion:_barcodeVersion];
 
         // (character position in Code 128 table) x (character position in string 'starting from 1')
         check += ([codeCharacter position] * (index + 1));

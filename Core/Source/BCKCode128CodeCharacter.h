@@ -7,6 +7,14 @@
 //
 
 #import "BCKCodeCharacter.h"
+#import "BCKCode128ContentCodeCharacter.h"
+
+typedef NS_ENUM(char, Code128Version) {
+    Code128A = 0,
+    Code128B,
+    Code128C,
+    Code128Unsupported
+};
 
 /**
  Specialized class of BCKCodeCharacter used for generating Code128 codes
@@ -18,22 +26,11 @@
  */
 
 /**
- Generates an start code A character, used for Code 128
+ Generates an start code for given Code 128 version.
+ @param the Code 128 version used
  @returns the start code character
  */
-+ (BCKCode128CodeCharacter *)startCodeA;
-
-/**
- Generates an start code B character, used for Code 128
- @returns the start code character
- */
-+ (BCKCode128CodeCharacter *)startCodeB;
-
-/**
- Generates an start code C character, used for Code 128
- @returns the start code character
- */
-+ (BCKCode128CodeCharacter *)startCodeC;
++ (BCKCode128CodeCharacter *)startCodeForVersion:(Code128Version)codeVersion;
 
 /**
  Generates an stop character, used for Code 128.
@@ -44,12 +41,14 @@
 /**
  Generates a code character to represent a content character
  @param character The character to encode
+ @param codeVersion The version of Code128 used
  @returns The content code character
  */
-+ (instancetype)codeCharacterForCharacter:(NSString *)character;
++ (instancetype)codeCharacterForCharacter:(NSString *)character codeVersion:(Code128Version)codeVersion;
 
 /**
- Return character representation on given index in code table
+ Return character representation on given index in code table.
+ Note - Code 128 version does not matter here because we are interested in binary string at given position.
  @param position of character to return
  @returns The content code character
  */
