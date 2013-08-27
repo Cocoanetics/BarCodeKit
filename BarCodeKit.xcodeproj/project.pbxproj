@@ -22,6 +22,9 @@
 
 /* Begin PBXBuildFile section */
 		6C818CAC17CB6BF300AEE26F /* BCKCode93CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C818CAB17CB6BF300AEE26F /* BCKCode93CodeTest.m */; };
+		6C818CAF17CB703300AEE26F /* BCKCode93Code.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C818CAE17CB703300AEE26F /* BCKCode93Code.m */; };
+		6C818CB217CCAA6300AEE26F /* BCKCode93CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C818CB117CCAA6300AEE26F /* BCKCode93CodeCharacter.m */; };
+		6C818CB517CCAC0400AEE26F /* BCKCode93ContentCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C818CB417CCAC0400AEE26F /* BCKCode93ContentCodeCharacter.m */; };
 		A13B58E217C6A03A00454150 /* BCKInterleaved2of5CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B58E117C6A03A00454150 /* BCKInterleaved2of5CodeTest.m */; };
 		A13B58E517C6A10200454150 /* BCKInterleaved2of5Code.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B58E417C6A10200454150 /* BCKInterleaved2of5Code.m */; };
 		A13B58E817C6A1C700454150 /* BCKInterleaved2of5CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B58E717C6A1C700454150 /* BCKInterleaved2of5CodeCharacter.m */; };
@@ -92,6 +95,12 @@
 
 /* Begin PBXFileReference section */
 		6C818CAB17CB6BF300AEE26F /* BCKCode93CodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode93CodeTest.m; sourceTree = "<group>"; };
+		6C818CAD17CB703300AEE26F /* BCKCode93Code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode93Code.h; sourceTree = "<group>"; };
+		6C818CAE17CB703300AEE26F /* BCKCode93Code.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode93Code.m; sourceTree = "<group>"; };
+		6C818CB017CCAA6300AEE26F /* BCKCode93CodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode93CodeCharacter.h; sourceTree = "<group>"; };
+		6C818CB117CCAA6300AEE26F /* BCKCode93CodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode93CodeCharacter.m; sourceTree = "<group>"; };
+		6C818CB317CCAC0400AEE26F /* BCKCode93ContentCodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode93ContentCodeCharacter.h; sourceTree = "<group>"; };
+		6C818CB417CCAC0400AEE26F /* BCKCode93ContentCodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode93ContentCodeCharacter.m; sourceTree = "<group>"; };
 		A13B58E117C6A03A00454150 /* BCKInterleaved2of5CodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKInterleaved2of5CodeTest.m; sourceTree = "<group>"; };
 		A13B58E317C6A10200454150 /* BCKInterleaved2of5Code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKInterleaved2of5Code.h; sourceTree = "<group>"; };
 		A13B58E417C6A10200454150 /* BCKInterleaved2of5Code.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKInterleaved2of5Code.m; sourceTree = "<group>"; };
@@ -200,6 +209,8 @@
 		6C818CA917CB64A300AEE26F /* Code93 */ = {
 			isa = PBXGroup;
 			children = (
+				6C818CAD17CB703300AEE26F /* BCKCode93Code.h */,
+				6C818CAE17CB703300AEE26F /* BCKCode93Code.m */,
 			);
 			name = Code93;
 			sourceTree = "<group>";
@@ -207,6 +218,10 @@
 		6C818CAA17CB64B100AEE26F /* Code93 */ = {
 			isa = PBXGroup;
 			children = (
+				6C818CB017CCAA6300AEE26F /* BCKCode93CodeCharacter.h */,
+				6C818CB117CCAA6300AEE26F /* BCKCode93CodeCharacter.m */,
+				6C818CB317CCAC0400AEE26F /* BCKCode93ContentCodeCharacter.h */,
+				6C818CB417CCAC0400AEE26F /* BCKCode93ContentCodeCharacter.m */,
 			);
 			name = Code93;
 			sourceTree = "<group>";
@@ -601,9 +616,11 @@
 			files = (
 				A13B58EB17C6A1E500454150 /* BCKInterleaved2of5DigitPairCodeCharacter.m in Sources */,
 				A7781E1817B6B301005B9604 /* BCKUPCECode.m in Sources */,
+				6C818CB217CCAA6300AEE26F /* BCKCode93CodeCharacter.m in Sources */,
 				A7337C6C17C12C8800BC2D2D /* BCKCodeCharacter.m in Sources */,
 				A13B58E517C6A10200454150 /* BCKInterleaved2of5Code.m in Sources */,
 				A764061C17B53AE700D45F51 /* BCKEANCodeCharacter.m in Sources */,
+				6C818CB517CCAC0400AEE26F /* BCKCode93ContentCodeCharacter.m in Sources */,
 				A764060D17B52EC600D45F51 /* BCKCode.m in Sources */,
 				A764060E17B52EC600D45F51 /* BCKEAN13Code.m in Sources */,
 				A764061917B5362D00D45F51 /* BCKEAN8Code.m in Sources */,
@@ -613,6 +630,7 @@
 				A13B58E817C6A1C700454150 /* BCKInterleaved2of5CodeCharacter.m in Sources */,
 				A7378D8217C222AD008921C4 /* BCKCode39ContentCodeCharacter.m in Sources */,
 				A7337C6617C1250F00BC2D2D /* BCKCode39Code.m in Sources */,
+				6C818CAF17CB703300AEE26F /* BCKCode93Code.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
