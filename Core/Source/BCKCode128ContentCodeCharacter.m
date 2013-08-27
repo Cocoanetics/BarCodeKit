@@ -9,6 +9,7 @@
 #import "BCKCode128ContentCodeCharacter.h"
 
 NSUInteger const CODE_128_BINARY_INDEX = 3;
+NSUInteger const CODE_128_CHARACTERS_TABLE_SIZE = 103;
 
 static NSArray *__charactersMap;
 
@@ -150,7 +151,7 @@ static NSArray *__charactersMap;
 
 - (NSString *)bitString
 {
-    for (NSUInteger i=0; i<103; i++)
+    for (NSUInteger i=0; i< CODE_128_CHARACTERS_TABLE_SIZE; i++)
     {
         NSString *testChar = __charactersMap[i][_codeVersion];
 
@@ -165,7 +166,7 @@ static NSArray *__charactersMap;
 
 + (NSString *)binaryStringAtPosition:(NSUInteger)position
 {
-    if (position >= 103)
+    if (position >= CODE_128_CHARACTERS_TABLE_SIZE)
     {
         return NULL;
     }
@@ -195,7 +196,7 @@ static NSArray *__charactersMap;
 
 - (NSUInteger)position
 {
-    for (NSUInteger i=0; i<103; i++)
+    for (NSUInteger i=0; i< CODE_128_CHARACTERS_TABLE_SIZE; i++)
     {
         NSString *testChar = __charactersMap[i][_codeVersion];
 
@@ -247,7 +248,7 @@ static NSArray *__charactersMap;
 
 + (BOOL)_character:(NSString *)character existsForVersion:(BCKCode128Version)codeVersion
 {
-    for (NSUInteger i=0; i<103; i++)
+    for (NSUInteger i=0; i<CODE_128_CHARACTERS_TABLE_SIZE; i++)
     {
         NSString * testChar = __charactersMap[i][codeVersion];
 
