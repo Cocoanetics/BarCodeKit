@@ -60,4 +60,14 @@
     STAssertTrue(isEqual, @"Result from encoding incorrect");
 }
 
+- (void)testOnlyNumberPairsCodeWillBeEncodedUsing128C
+{
+    BCKCode128Code *code = [[BCKCode128Code alloc] initWithContent:@"12345678"];
+    NSString *expected = @"11010010000100110001001001100100010001001100100100011001001001100011001100110110011011001101100110010001011110101001100001010111100010100011110100111101001100011101011";
+    NSString *actual = [code bitString];
+    BOOL isEqual = [expected isEqualToString:actual];
+
+    STAssertTrue(isEqual, @"Result from encoding incorrect");
+}
+
 @end

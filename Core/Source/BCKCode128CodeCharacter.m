@@ -12,7 +12,7 @@
 
 #pragma mark - Generating Special Characters
 
-+ (BCKCode128CodeCharacter *)startCodeForVersion:(Code128Version)codeVersion {
++ (BCKCode128CodeCharacter *)startCodeForVersion:(BCKCode128Version)codeVersion {
     switch (codeVersion)
     {
         case Code128A:
@@ -31,7 +31,7 @@
     return [[BCKCode128CodeCharacter alloc] initWithBitString:@"1100011101011" isMarker:YES];
 }
 
-+ (instancetype)codeCharacterForCharacter:(NSString *)character codeVersion:(Code128Version)codeVersion
++ (instancetype)codeCharacterForCharacter:(NSString *)character codeVersion:(BCKCode128Version)codeVersion
 {
     return [[BCKCode128ContentCodeCharacter alloc] initWithCharacter:character codeVersion:codeVersion];
 }

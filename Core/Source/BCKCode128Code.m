@@ -10,7 +10,7 @@
 #import "BCKCode128ContentCodeCharacter.h"
 
 @implementation BCKCode128Code {
-    Code128Version _barcodeVersion;
+    BCKCode128Version _barcodeVersion;
 }
 
 - (BCKCode *)initWithContent:(NSString *)content
@@ -19,7 +19,7 @@
 
     if (self)
     {
-        Code128Version versionUsed = [BCKCode128ContentCodeCharacter code128VersionNeeded:content];
+        BCKCode128Version versionUsed = [BCKCode128ContentCodeCharacter code128VersionNeeded:content];
         if (versionUsed == Code128Unsupported)
         {
             NSLog(@"String '%@' cannot be encoded in Code128", content);
@@ -43,16 +43,22 @@
     [tmpArray addObject:[BCKCode128CodeCharacter startCodeForVersion:_barcodeVersion]];
 
     // check counter
-    NSUInteger check = (_barcodeVersion == Code128A ? 103 : 104);
+    NSUInteger check = (_barcodeVersion == Code128A ? 103 : (_barcodeVersion == Code128B ? 104 : 105));
 
-    for (NSUInteger index=0; index<[_content length]; index++)
+    NSMutableString *content = [_content mutableCopy];
+
+    NSUInteger index = 0;
+    while ([content length] > 0)
     {
-        NSString *character = [_content substringWithRange:NSMakeRange(index, 1)];
-        BCKCode128ContentCodeCharacter *codeCharacter = [BCKCode128ContentCodeCharacter codeCharacterForCharacter:character codeVersion:_barcodeVersion];
+        NSString *toEncode = [self _nextCharacterToEncode:content];
+        BCKCode128ContentCodeCharacter *codeCharacter = [BCKCode128ContentCodeCharacter codeCharacterForCharacter:toEncode codeVersion:_barcodeVersion];
 
         // (character position in Code 128 table) x (character position in string 'starting from 1')
         check += ([codeCharacter position] * (index + 1));
         [tmpArray addObject:codeCharacter];
+
+        index++;
+        [content deleteCharactersInRange:NSMakeRange(0, [toEncode length])];
     }
 
     // find remainder with magic number 103
@@ -113,6 +119,15 @@
 - (BOOL)allowsFillingOfEmptyQuietZones
 {
     return NO;
+}
+
+- (NSString *)_nextCharacterToEncode:(NSString *)content
+{
+    if (_barcodeVersion == Code128C) {
+        return [content substringWithRange:NSMakeRange(0, 2)];
+    }
+
+    return [content substringWithRange:NSMakeRange(0, 1)];
 }
 
 @end

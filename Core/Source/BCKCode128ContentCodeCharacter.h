@@ -10,7 +10,7 @@
 
 @interface BCKCode128ContentCodeCharacter : BCKCode128CodeCharacter
 
-- (instancetype)initWithCharacter:(NSString *)character codeVersion:(Code128Version)codeVersion;
+- (instancetype)initWithCharacter:(NSString *)character codeVersion:(BCKCode128Version)codeVersion;
 
 /**
  Returns given characters position in Code 128 table
@@ -30,6 +30,6 @@
  @param content The string that should be encoded using Code128
  @returns the version needed to encode content string
  */
-+ (Code128Version)code128VersionNeeded:(NSString *)content;
++ (BCKCode128Version)code128VersionNeeded:(NSString *)content;
 
 @end

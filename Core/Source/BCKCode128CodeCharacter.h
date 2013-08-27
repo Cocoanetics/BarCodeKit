@@ -9,7 +9,7 @@
 #import "BCKCodeCharacter.h"
 #import "BCKCode128ContentCodeCharacter.h"
 
-typedef NS_ENUM(char, Code128Version) {
+typedef NS_ENUM(char, BCKCode128Version) {
     Code128A = 0,
     Code128B,
     Code128C,
@@ -30,7 +30,7 @@ typedef NS_ENUM(char, Code128Version) {
  @param the Code 128 version used
  @returns the start code character
  */
-+ (BCKCode128CodeCharacter *)startCodeForVersion:(Code128Version)codeVersion;
++ (BCKCode128CodeCharacter *)startCodeForVersion:(BCKCode128Version)codeVersion;
 
 /**
  Generates an stop character, used for Code 128.
@@ -44,7 +44,7 @@ typedef NS_ENUM(char, Code128Version) {
  @param codeVersion The version of Code128 used
  @returns The content code character
  */
-+ (instancetype)codeCharacterForCharacter:(NSString *)character codeVersion:(Code128Version)codeVersion;
++ (instancetype)codeCharacterForCharacter:(NSString *)character codeVersion:(BCKCode128Version)codeVersion;
 
 /**
  Return character representation on given index in code table.
