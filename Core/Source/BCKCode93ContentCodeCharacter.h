@@ -11,5 +11,7 @@
 @interface BCKCode93ContentCodeCharacter : BCKCode93CodeCharacter
 
 - (instancetype)initWithCharacter:(NSString *)character;
+- (instancetype)initWithValue:(NSUInteger)characterValue;
+- (NSUInteger)characterValue;
 
 @end

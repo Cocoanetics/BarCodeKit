@@ -11,14 +11,24 @@
 
 @implementation BCKCode93Code
 
--(BCKCode93ContentCodeCharacter*)firstModulo47CheckCharacter
+-(BCKCode93ContentCodeCharacter *)firstModulo47CheckCodeCharacter:(NSArray *)contentCodeCharacters
 {
-    return nil;
-}
-
--(BCKCode93ContentCodeCharacter*)secondModulo47CheckCharacter
-{
-    return nil;
+    __block NSUInteger weightedSum = 0;
+    __block NSUInteger weight = 1;
+    
+    // Add the product of each content code character's value and their weights to the weighted sum. Weights start at 1 from the rightmost
+    // content code character. The weight increases until 20 then starts from 1 again
+    [contentCodeCharacters enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(BCKCode93ContentCodeCharacter *obj, NSUInteger idx, BOOL *stop) {
+        
+        weightedSum+=weight * [obj characterValue];
+        
+        weight++;
+        if(weight==21)
+            weight = 1;
+    }];
+    
+    // Return the check character by taking the weightedsum modulo 47
+    return [[BCKCode93ContentCodeCharacter alloc] initWithValue:(weightedSum % 47)];
 }
 
 #pragma mark - Subclass Methods
@@ -26,9 +36,10 @@
 - (NSArray *)codeCharacters
 {
 	NSMutableArray *tmpArray = [NSMutableArray array];
+    NSMutableArray *finalArray = [NSMutableArray array];
     
 	// Add the start code character *
-	[tmpArray addObject:[BCKCode93CodeCharacter startCodeCharacter]];
+	[finalArray addObject:[BCKCode93CodeCharacter startCodeCharacter]];
 	
 	for (NSUInteger index=0; index<[_content length]; index++)
 	{
@@ -37,19 +48,18 @@
 		[tmpArray addObject:codeCharacter];
 	}
     
-    // Add the first modulo-47 check character "C"
-    // to-do
+    [finalArray addObjectsFromArray:tmpArray];
     
-    // Add the second modulo-47 check character "K"
-    // to-do
-
+    // Add the first modulo-47 check character "C"
+    [finalArray addObject:[self firstModulo47CheckCodeCharacter:tmpArray]];
+    
 	// Add the stop code character *
-	[tmpArray addObject:[BCKCode93CodeCharacter stopCodeCharacter]];
+	[finalArray addObject:[BCKCode93CodeCharacter stopCodeCharacter]];
 
     // Add the termination bar
-	[tmpArray addObject:[BCKCode93CodeCharacter terminationBarCodeCharacter]];
+	[finalArray addObject:[BCKCode93CodeCharacter terminationBarCodeCharacter]];
     
-	return [tmpArray copy];
+	return [finalArray copy];
 }
 
 @end

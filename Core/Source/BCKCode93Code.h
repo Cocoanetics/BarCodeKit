@@ -11,7 +11,10 @@
 
 @interface BCKCode93Code : BCKCode
 
--(BCKCode93ContentCodeCharacter*)firstModulo47CheckCharacter;
--(BCKCode93ContentCodeCharacter*)secondModulo47CheckCharacter;
+/**
+ Calculates the first modulo 47 check code character "C"
+ @returns the first module 47 check code character "C"
+ */
+-(BCKCode93ContentCodeCharacter *)firstModulo47CheckCodeCharacter:(NSArray *)contentCodeCharacters;
 
 @end

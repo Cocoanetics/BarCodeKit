@@ -70,24 +70,24 @@
 	STAssertTrue(isEqual, @"Last character is not a termination bar code character");
 }
 
-//- (void)testFirstModulo47CheckCharacter
-//{
-//    BCKCode93CodeCharacter *expected = [[BCKCode93ContentCodeCharacter alloc] initWithCharacter:@"+"];
-//    BCKCode93CodeCharacter *actual = [self.code firstModulo47CheckCharacter];
-//    
-//    BOOL isEqual = [expected.bitString isEqualToString:actual.bitString];
-//    
-//    STAssertTrue(isEqual, @"First modulo 47 check character is incorrect");
-//}
-//
-//- (void)testSecondModulo47CheckCharacter
-//{
-//    BCKCode93CodeCharacter *expected = [[BCKCode93ContentCodeCharacter alloc] initWithCharacter:@"6"];
-//    BCKCode93CodeCharacter *actual = [self.code secondModulo47CheckCharacter];
-//
-//    BOOL isEqual = [expected.bitString isEqualToString:actual.bitString];
-//
-//    STAssertTrue(isEqual, @"Second modulo 47 check character is incorrect");
-//}
+-(void)testCharacterByValue
+{
+    BCKCode93ContentCodeCharacter *expected = [[BCKCode93ContentCodeCharacter alloc] initWithCharacter:@"+"];
+    BCKCode93ContentCodeCharacter *actual = [[BCKCode93ContentCodeCharacter alloc] initWithValue:41];
+    
+    BOOL isEqual = [expected.bitString isEqualToString:actual.bitString];
+    
+    STAssertTrue(isEqual, @"Initialising a content code generator by value is incorrect");
+}
+
+- (void)testFirstModulo47CheckCodeCharacter
+{
+    BCKCode93CodeCharacter *expected = [[BCKCode93ContentCodeCharacter alloc] initWithCharacter:@"+"];
+    BCKCode93CodeCharacter *actual = [[self.code codeCharacters] objectAtIndex:([[self.code codeCharacters] count]-3)];
+    
+    BOOL isEqual = [expected.bitString isEqualToString:actual.bitString];
+    
+    STAssertTrue(isEqual, @"First modulo 47 check code character is incorrect");
+}
 
 @end

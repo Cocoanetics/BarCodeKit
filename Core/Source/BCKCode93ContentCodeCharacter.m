@@ -64,6 +64,40 @@ static char *char_encodings[NUMBER_OF_CODE93_CHARACTERS][2] = {
 	NSString *_character;
 }
 
+- (NSUInteger)characterValue
+{
+    char searchChar = [_character UTF8String][0];
+    
+    for (NSUInteger i=0; i<NUMBER_OF_CODE93_CHARACTERS; i++)
+    {
+        char testChar = char_encodings[i][0][0];
+        
+        if (testChar == searchChar)
+        {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+- (instancetype)initWithValue:(NSUInteger)characterValue
+{
+	self = [super init];
+	
+	if (self)
+	{
+        if(characterValue >= NUMBER_OF_CODE93_CHARACTERS)
+            return nil;
+        else
+        {
+            _character = [NSString stringWithUTF8String:char_encodings[characterValue][0]];
+        }
+    }
+
+	return self;
+}
+
 - (instancetype)initWithCharacter:(NSString *)character
 {
 	self = [super init];
