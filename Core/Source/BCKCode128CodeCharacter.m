@@ -8,7 +8,22 @@
 
 #import "BCKCode128ContentCodeCharacter.h"
 
-@implementation BCKCode128CodeCharacter
+@implementation BCKCode128CodeCharacter {
+    NSUInteger _position;
+}
+
+- (instancetype)initWithBitString:(NSString *)bitString position:(NSUInteger)position isMarker:(BOOL)isMarker
+{
+    self = [super initWithBitString:bitString isMarker:isMarker];
+
+    if (self)
+    {
+        _position = position;
+    }
+
+    return self;
+}
+
 
 #pragma mark - Generating Special Characters
 
@@ -16,11 +31,11 @@
     switch (codeVersion)
     {
         case Code128A:
-            return [[BCKCode128CodeCharacter alloc] initWithBitString:@"11010000100" isMarker:YES];
+            return [[BCKCode128CodeCharacter alloc] initWithBitString:@"11010000100" position:103 isMarker:YES];
         case Code128B:
-            return [[BCKCode128CodeCharacter alloc] initWithBitString:@"11010010000" isMarker:YES];
+            return [[BCKCode128CodeCharacter alloc] initWithBitString:@"11010010000" position:104 isMarker:YES];
         case Code128C:
-            return [[BCKCode128CodeCharacter alloc] initWithBitString:@"11010011100" isMarker:YES];
+            return [[BCKCode128CodeCharacter alloc] initWithBitString:@"11010011100" position:105 isMarker:YES];
         default:
             return nil;
     }
@@ -39,7 +54,27 @@
 + (BCKCode128CodeCharacter *)characterAtPosition:(NSUInteger)position
 {
     NSString *positionCharacter = [BCKCode128ContentCodeCharacter binaryStringAtPosition:position];
-    return [[BCKCode128CodeCharacter alloc] initWithBitString:positionCharacter isMarker:NO];
+    return [[BCKCode128CodeCharacter alloc] initWithBitString:positionCharacter position:position isMarker:NO];
+}
+
++ (BCKCode128CodeCharacter *)switchCodeToVersion:(BCKCode128Version)targetVersion
+{
+    switch (targetVersion)
+    {
+        case Code128A:
+            return [BCKCode128CodeCharacter characterAtPosition:101];
+        case Code128B:
+            return [BCKCode128CodeCharacter characterAtPosition:100];
+        case Code128C:
+            return [BCKCode128CodeCharacter characterAtPosition:99];
+        default:
+            return nil;
+    }
+}
+
+- (NSUInteger)position
+{
+    return _position;
 }
 
 @end

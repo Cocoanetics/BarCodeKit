@@ -13,12 +13,6 @@
 - (instancetype)initWithCharacter:(NSString *)character codeVersion:(BCKCode128Version)codeVersion;
 
 /**
- Returns given characters position in Code 128 table
- @returns the position of character
- */
-- (NSUInteger)position;
-
-/**
  Returns binary string for character at given position in Code 128 table
  @param position The position in Code 128 table to return
  @returns the binary string of character at given position

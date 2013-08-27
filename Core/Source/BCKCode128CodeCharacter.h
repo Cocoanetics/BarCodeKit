@@ -54,4 +54,17 @@ typedef NS_ENUM(char, BCKCode128Version) {
  */
 + (BCKCode128CodeCharacter *)characterAtPosition:(NSUInteger)position;
 
+/**
+ Returns given characters position in Code 128 table
+ @returns the position of character
+ */
+- (NSUInteger)position;
+
+/**
+ Returns control character for switching barcode write to given Code128 version
+ @param the Code128 needed next
+ @returns the character to alter next characters type
+ */
++ (BCKCode128CodeCharacter *)switchCodeToVersion:(BCKCode128Version)targetVersion;
+
 @end

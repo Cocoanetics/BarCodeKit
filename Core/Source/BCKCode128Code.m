@@ -11,6 +11,7 @@
 
 @implementation BCKCode128Code {
     BCKCode128Version _barcodeVersion;
+    BCKCode128Version _switchToVersion;
 }
 
 - (BCKCode *)initWithContent:(NSString *)content
@@ -39,11 +40,15 @@
 {
     NSMutableArray *tmpArray = [NSMutableArray array];
 
+    BCKCode128Version writeVersion = _barcodeVersion;
+    _switchToVersion = writeVersion;
+
     // start marker
-    [tmpArray addObject:[BCKCode128CodeCharacter startCodeForVersion:_barcodeVersion]];
+    BCKCode128CodeCharacter *startCode = [BCKCode128CodeCharacter startCodeForVersion:writeVersion];
+    [tmpArray addObject:startCode];
 
     // check counter
-    NSUInteger check = (_barcodeVersion == Code128A ? 103 : (_barcodeVersion == Code128B ? 104 : 105));
+    NSUInteger check = [startCode position];
 
     NSMutableString *content = [_content mutableCopy];
 
@@ -51,7 +56,19 @@
     while ([content length] > 0)
     {
         NSString *toEncode = [self _nextCharacterToEncode:content];
-        BCKCode128ContentCodeCharacter *codeCharacter = [BCKCode128ContentCodeCharacter codeCharacterForCharacter:toEncode codeVersion:_barcodeVersion];
+
+        if (_switchToVersion != writeVersion)
+        {
+            BCKCode128CodeCharacter *switchCode = [BCKCode128CodeCharacter switchCodeToVersion:_switchToVersion];
+
+            check += ([switchCode position] * (index + 1));
+            [tmpArray addObject:switchCode];
+            index++;
+
+            writeVersion = _switchToVersion;
+        }
+
+        BCKCode128ContentCodeCharacter *codeCharacter = [BCKCode128ContentCodeCharacter codeCharacterForCharacter:toEncode codeVersion:writeVersion];
 
         // (character position in Code 128 table) x (character position in string 'starting from 1')
         check += ([codeCharacter position] * (index + 1));
@@ -123,10 +140,17 @@
 
 - (NSString *)_nextCharacterToEncode:(NSString *)content
 {
-    if (_barcodeVersion == Code128C) {
+    if (_barcodeVersion != Code128C)
+    {
+        return [content substringWithRange:NSMakeRange(0, 1)];
+    }
+
+    if ([content length] >= 2)
+    {
         return [content substringWithRange:NSMakeRange(0, 2)];
     }
 
+    _switchToVersion = Code128A;
     return [content substringWithRange:NSMakeRange(0, 1)];
 }
 

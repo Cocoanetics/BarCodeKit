@@ -70,4 +70,14 @@
     STAssertTrue(isEqual, @"Result from encoding incorrect");
 }
 
+- (void)testEncodingUnevenCountOfNumbersUsing128C
+{
+    BCKCode128Code *code = [[BCKCode128Code alloc] initWithContent:@"123456789"];
+    NSString *expected = @"11010011100101100111001000101100011100010110110000101001110101111011100101100100111101001100011101011";
+    NSString *actual = [code bitString];
+    BOOL isEqual = [expected isEqualToString:actual];
+
+    STAssertTrue(isEqual, @"Result from encoding incorrect");
+}
+
 @end

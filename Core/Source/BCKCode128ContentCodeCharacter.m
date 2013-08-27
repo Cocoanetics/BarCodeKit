@@ -176,7 +176,7 @@ static NSArray *__charactersMap;
 
 + (BCKCode128Version)code128VersionNeeded:(NSString *)content
 {
-    if ([content length] % 2 == 0 && [BCKCode128ContentCodeCharacter _containsOnlyNumbers:content])
+    if ([BCKCode128ContentCodeCharacter _containsOnlyNumbers:content])
     {
         return Code128C;
     }
