@@ -111,7 +111,7 @@
 	NSString *expected = @"1010111101101001101101001101011011101010111101";
 	NSString *actual = [self.codeSimple bitString];
 	BOOL isEqual = [expected isEqualToString:actual];
-	
+    
 	STAssertTrue(isEqual, @"Result from encoding simple barcode is incorrect");
 }
 
@@ -125,14 +125,12 @@
 	STAssertTrue(isEqual, @"Result from encoding a barcode incorrect");
 }
 
-// tests encoding a barcode containing full ASCII characters
-- (void)testEncodingFullASCII
+
+-(void)testEncodeMultiCharacterCode
 {
-	NSString *expected = @"1101010001101001101001100101100100101001100101101011001001100101101001101000010101010000101110101101101010001000101001001010001101010001";
-	NSString *actual = [self.codeFullASCII bitString];
-	BOOL isEqual = [expected isEqualToString:actual];
-	
-	STAssertTrue(isEqual, @"Result from encoding a full ASCII incorrect");
+    BCKCode93ContentCodeCharacter *invalidCode = [[BCKCode93ContentCodeCharacter alloc] initWithCharacter:@"AA"];
+    
+    STAssertNil(invalidCode, @"Code character initialisation with a multi character string should not be possible");
 }
 
 @end

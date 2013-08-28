@@ -14,42 +14,35 @@
 #define FIRSTMODULO47MAXWEIGHT 20
 #define SECONDMODULO47MAXWEIGHT 15
 
-// Generate the first modulo-47 check character "C"
--(BCKCode93ContentCodeCharacter *)_firstModulo47CheckCodeCharacter:(NSArray *)contentCodeCharacters
+NSString * const BCKCode93Modulo47CheckCharacterFirstOption = @"BCKCode93Modulo47CheckCharacterFirst";
+NSString * const BCKCode93Modulo47CheckCharacterSecondOption = @"BCKCode93Modulo47CheckCharacterSecond";
+
+// Generate the modulo-47 check character "C" or "K"
+-(BCKCode93ContentCodeCharacter *)_generateModulo47:(NSString*)checkCharacterOption forContentCodeCharacters:(NSArray*)contentCodeCharacters
 {
     __block NSUInteger weightedSum = 0;
     __block NSUInteger weight = 1;
+    
+    if(![checkCharacterOption isEqualToString:BCKCode93Modulo47CheckCharacterFirstOption] && ![checkCharacterOption isEqualToString:BCKCode93Modulo47CheckCharacterSecondOption] )
+        return nil;
     
     // Add the product of each content code character's value and their weights to the weighted sum.
     // Weights start at 1 from the rightmost content code character, increasing to 20 then starting from 1 again
     [contentCodeCharacters enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(BCKCode93ContentCodeCharacter *obj, NSUInteger idx, BOOL *stop) {
         
         weightedSum+=weight * [obj characterValue];
-        
         weight++;
-        if(weight>FIRSTMODULO47MAXWEIGHT)
-            weight = 1;
-    }];
-    
-    // Return the check character by taking the weightedsum modulo 47
-    return [[BCKCode93ContentCodeCharacter alloc] initWithValue:(weightedSum % 47)];
-}
-
-// Generate the second modulo-47 check character "K"
--(BCKCode93ContentCodeCharacter *)_secondModulo47CheckCodeCharacter:(NSArray *)contentCodeCharacters
-{
-    __block NSUInteger weightedSum = 0;
-    __block NSUInteger weight = 1;
-    
-    // Add the product of each content code character's value and their weights to the weighted sum.
-    // Weights start at 1 from the rightmost content code character, increasing to 15 then starting from 1 again
-    [contentCodeCharacters enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(BCKCode93ContentCodeCharacter *obj, NSUInteger idx, BOOL *stop) {
         
-        weightedSum+=weight * [obj characterValue];
-        
-        weight++;
-        if(weight>SECONDMODULO47MAXWEIGHT)
-            weight = 1;
+        if([checkCharacterOption isEqualToString:BCKCode93Modulo47CheckCharacterFirstOption])
+        {
+            if(weight>FIRSTMODULO47MAXWEIGHT)
+                weight = 1;
+        }
+        else
+        {
+            if(weight>SECONDMODULO47MAXWEIGHT)
+                weight = 1;
+        }
     }];
     
     // Return the check character by taking the weightedsum modulo 47
@@ -77,13 +70,14 @@
     [finalArray addObjectsFromArray:characterArray];
 
     // Add the first modulo-47 check character "C"
-    tmpCharacter = [self _firstModulo47CheckCodeCharacter:characterArray];
+    tmpCharacter = [self _generateModulo47:BCKCode93Modulo47CheckCharacterFirstOption forContentCodeCharacters:characterArray];
     [finalArray addObject:tmpCharacter];
     [characterArray addObject:tmpCharacter];
 
     // Add the second modulo-47 check character "K" (ensure to also provide the first mdulo-47 check character code "C")
-    [finalArray addObject:[self _firstModulo47CheckCodeCharacter:characterArray]];
-
+    tmpCharacter = [self _generateModulo47:BCKCode93Modulo47CheckCharacterSecondOption forContentCodeCharacters:characterArray];
+    [finalArray addObject:tmpCharacter];
+    
 	// Add the stop code character *
 	[finalArray addObject:[BCKCode93CodeCharacter stopCodeCharacter]];
 

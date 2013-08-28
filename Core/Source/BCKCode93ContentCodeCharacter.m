@@ -8,12 +8,14 @@
 
 #import "BCKCode93ContentCodeCharacter.h"
 
-#define NUMBER_OF_CODE93_CHARACTERS 43
+#define NUMBER_OF_CODE93_CHARACTERS 47
+#define CHARACTER_DIMENSION 0
+#define ENCODING_DIMENSION 1
 
-// This array defines the widths of bars and spaces. All content code characters contain 9 modules, with alternating bars
+// This array defines the widths of bars and spaces for each content code character. All characters contain 9 modules, with alternating bars
 // and spaces of 1, 2, 3 or 4 modules wide, always 3 bars and 3 spaces, and always start with a bar (and thus always end
-// with a space).
-// For example, a "0" is encoded as "131112" and becomes "100010100"
+// with a space). The first dimension contains the character, the second dimension the encoding
+// For example: a "0" is encoded as "131112" and results in a bit string of "100010100"
 static char *char_encodings[NUMBER_OF_CODE93_CHARACTERS][2] = {
     {"0", "131112"},
     {"1", "111213"},
@@ -57,22 +59,29 @@ static char *char_encodings[NUMBER_OF_CODE93_CHARACTERS][2] = {
     {"$", "321111"},
     {"/", "112131"},
     {"+", "113121"},
-    {"%", "211131"}};
+    {"%", "211131"},
+    {"($)", "121221"},
+    {"(%)", "312111"},
+    {"(/)", "311121"},
+    {"(+)", "122211"},
+};
 
 @implementation BCKCode93ContentCodeCharacter
 {
 	NSString *_character;
 }
 
+// Returns the value of the character by returning the index of the character in the char_encodings array.
+// For example: the A is the tenth character in the array, thus its value is 10
 - (NSUInteger)characterValue
 {
-    char searchChar = [_character UTF8String][0];
+    const char *searchChar = [_character UTF8String];
     
     for (NSUInteger i=0; i<NUMBER_OF_CODE93_CHARACTERS; i++)
     {
-        char testChar = char_encodings[i][0][0];
+        char *testChar = char_encodings[i][CHARACTER_DIMENSION];
         
-        if (testChar == searchChar)
+        if(!strcmp(testChar, searchChar))
         {
             return i;
         }
@@ -81,30 +90,42 @@ static char *char_encodings[NUMBER_OF_CODE93_CHARACTERS][2] = {
     return -1;
 }
 
+// Initialise the code character with its value.
+// For example: to initialise the code character with an A initialise it by passing its value: 10
 - (instancetype)initWithValue:(NSUInteger)characterValue
 {
 	self = [super init];
 	
 	if (self)
 	{
+        // If the value is higher than the array length it is an invalid value
         if(characterValue >= NUMBER_OF_CODE93_CHARACTERS)
+        {
             return nil;
+        }
         else
         {
-            _character = [NSString stringWithUTF8String:char_encodings[characterValue][0]];
+            _character = [NSString stringWithUTF8String:char_encodings[characterValue][CHARACTER_DIMENSION]];
         }
     }
 
 	return self;
 }
 
+// Initialise the code character with its character
+// For example: to initialise the code character with an A initialise it by passing an @"A"
 - (instancetype)initWithCharacter:(NSString *)character
 {
 	self = [super init];
 	
 	if (self)
 	{
-		if (![self _encodingForCharacter:character])
+        // Codes can only be initialised using a single character
+        if([character length]>1)
+        {
+            return nil;
+        }
+		else if (![self _encodingForCharacter:character])
 		{
 			return nil;
 		}
@@ -115,17 +136,19 @@ static char *char_encodings[NUMBER_OF_CODE93_CHARACTERS][2] = {
 	return self;
 }
 
+// Returns the encoding for a character
+// For example: for the character A the encoding 211113 is returned
 - (char *)_encodingForCharacter:(NSString *)character
 {
 	char searchChar = [character UTF8String][0];
 	
 	for (NSUInteger i=0; i<NUMBER_OF_CODE93_CHARACTERS; i++)
 	{
-		char testChar = char_encodings[i][0][0];
+		char testChar = char_encodings[i][CHARACTER_DIMENSION][0];
 		
 		if (testChar == searchChar)
 		{
-			return char_encodings[i][1];
+			return char_encodings[i][ENCODING_DIMENSION];
 		}
 	}
 	
