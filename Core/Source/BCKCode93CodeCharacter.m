@@ -15,19 +15,19 @@
 
 + (BCKCode93CodeCharacter *)startCodeCharacter;
 {
-	// an asterisk
+	// An asterisk
 	return [[BCKCode93CodeCharacter alloc] initWithBitString:@"101011110" isMarker:YES];
 }
 
 + (BCKCode93CodeCharacter *)stopCodeCharacter;
 {
-	// an asterisk, for now this is identical as the start code character until I confirm the reverse stop code character is not used
+	// An asterisk, for now it is identical to the start code character until it is confirmed they are indeed always the same
 	return [[BCKCode93CodeCharacter alloc] initWithBitString:@"101011110" isMarker:YES];
 }
 
 + (BCKCode93CodeCharacter *)terminationBarCodeCharacter;
 {
-	// this is always a single bar, all content code characters always end with a space
+	// This is always a single bar, all other (content) code characters always end with a space
 	return [[BCKCode93CodeCharacter alloc] initWithBitString:@"1" isMarker:YES];
 }
 

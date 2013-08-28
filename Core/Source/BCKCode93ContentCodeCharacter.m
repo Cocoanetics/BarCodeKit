@@ -139,7 +139,7 @@ static char *char_encodings[NUMBER_OF_CODE93_CHARACTERS][2] = {
 	for (NSUInteger index=0; index<strlen(encoding); index++)
 	{
 		char c = encoding[index];
-		bool isOddBit = (index%2 != 0);
+		bool isOddBit = (index%2 == 0);
         
 		switch (c)
 		{
