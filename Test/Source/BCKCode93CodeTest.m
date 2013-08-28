@@ -32,7 +32,7 @@
     // Put setup code here; it will be run once, before the first test case.
     
     self.code = [[BCKCode93Code alloc] initWithContent:@"TEST93"];
-    self.codeFullASCII = [[BCKCode93Code alloc] initWithContent:@"Test93!"];
+    //self.codeFullASCII = [[BCKCode93Code alloc] initWithContent:@"Test93!"];
     self.codeSimple = [[BCKCode93Code alloc] initWithContent:@"T"];
 }
 
@@ -105,7 +105,7 @@
     STAssertTrue(isEqual, @"Second modulo 47 check code character is incorrect");
 }
 
-// tests encoding a basic word
+// tests encoding a simple word
 - (void)testEncodingSimple
 {
 	NSString *expected = @"1010111101101001101101001101011011101010111101";
@@ -115,7 +115,7 @@
 	STAssertTrue(isEqual, @"Result from encoding simple barcode is incorrect");
 }
 
-// tests encoding a basic word
+// tests encoding a regular non-full ASCII barcode
 - (void)testEncoding
 {
 	NSString *expected = @"1010111101101001101100100101101011001101001101000010101010000101011101101001000101010111101";
@@ -123,6 +123,16 @@
 	BOOL isEqual = [expected isEqualToString:actual];
 	
 	STAssertTrue(isEqual, @"Result from encoding a barcode incorrect");
+}
+
+// tests encoding a barcode containing full ASCII characters
+- (void)testEncodingFullASCII
+{
+	NSString *expected = @"1101010001101001101001100101100100101001100101101011001001100101101001101000010101010000101110101101101010001000101001001010001101010001";
+	NSString *actual = [self.codeFullASCII bitString];
+	BOOL isEqual = [expected isEqualToString:actual];
+	
+	STAssertTrue(isEqual, @"Result from encoding a full ASCII incorrect");
 }
 
 @end
