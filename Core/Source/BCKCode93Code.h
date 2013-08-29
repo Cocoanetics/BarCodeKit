@@ -7,8 +7,10 @@
 //
 
 #import "BCKCode.h"
-#import "BCKCode93ContentCodeCharacter.h"
 
+/**
+ Specialized subclass of BCKCode to represent Code93 code
+ */
 @interface BCKCode93Code : BCKCode
 
 @end

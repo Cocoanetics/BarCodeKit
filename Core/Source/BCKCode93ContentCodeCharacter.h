@@ -15,19 +15,19 @@
  */
 
 /**
- Initialise a content code character using its character
+ Initialise a content code character using one of the 43 regular characters or four special characters
  @returns the content code character
  */
 - (instancetype)initWithCharacter:(NSString *)character;
 
 /**
- Initialise a content code character using its character value
+ Initialise a content code character using its character value for the 43 regular characters or four special characters
  @returns the content code character
  */
 - (instancetype)initWithValue:(NSUInteger)characterValue;
 
 /**
- Return a content code character's value
+ Return a content code character's value for the 43 regular characters or four special characters
  @returns the content code character's value
  */
 - (NSUInteger)characterValue;

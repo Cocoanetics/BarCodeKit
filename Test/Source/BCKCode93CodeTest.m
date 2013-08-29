@@ -16,6 +16,7 @@
 
 @end
 
+
 @interface BCKCode93CodeTest : SenTestCase
 
 @property BCKCode93Code *code;
@@ -32,7 +33,7 @@
     // Put setup code here; it will be run once, before the first test case.
     
     self.code = [[BCKCode93Code alloc] initWithContent:@"TEST93"];
-    //self.codeFullASCII = [[BCKCode93Code alloc] initWithContent:@"Test93!"];
+    self.codeFullASCII = [[BCKCode93Code alloc] initWithContent:@"Test93!"];
     self.codeSimple = [[BCKCode93Code alloc] initWithContent:@"T"];
 }
 
@@ -47,22 +48,22 @@
 
 - (void)testStartCodeCharacter
 {
-	BCKCode93CodeCharacter *expected = [BCKCode93CodeCharacter startCodeCharacter];
+	BCKCode93CodeCharacter *expected = [BCKCode93CodeCharacter startStopCodeCharacter];
 	BCKCode93CodeCharacter *actual = [[self.code codeCharacters] objectAtIndex:0];
 
     BOOL isEqual = [expected.bitString isEqualToString:actual.bitString];
 	
-	STAssertTrue(isEqual, @"First character is not a start code character");
+	STAssertTrue(isEqual, @"First character is not a start/stop code character");
 }
 
 - (void)testStopCodeCharacter
 {
-	BCKCode93CodeCharacter *expected = [BCKCode93CodeCharacter stopCodeCharacter];
+	BCKCode93CodeCharacter *expected = [BCKCode93CodeCharacter startStopCodeCharacter];
 	BCKCode93CodeCharacter *actual = [[self.code codeCharacters] objectAtIndex:([[self.code codeCharacters] count]-2)];
     
     BOOL isEqual = [expected.bitString isEqualToString:actual.bitString];
 	
-	STAssertTrue(isEqual, @"Second to last character is not a stop code character");
+	STAssertTrue(isEqual, @"Second to last character is not a start/stop code character");
 }
 
 - (void)testTerminationBarCodeCharacter
@@ -115,7 +116,7 @@
 	STAssertTrue(isEqual, @"Result from encoding simple barcode is incorrect");
 }
 
-// tests encoding a regular non-full ASCII barcode
+// tests encoding a regular (without full ASCII characters) barcode
 - (void)testEncoding
 {
 	NSString *expected = @"1010111101101001101100100101101011001101001101000010101010000101011101101001000101010111101";
@@ -125,12 +126,35 @@
 	STAssertTrue(isEqual, @"Result from encoding a barcode incorrect");
 }
 
-
 -(void)testEncodeMultiCharacterCode
 {
     BCKCode93ContentCodeCharacter *invalidCode = [[BCKCode93ContentCodeCharacter alloc] initWithCharacter:@"AA"];
     
     STAssertNil(invalidCode, @"Code character initialisation with a multi character string should not be possible");
+}
+
+// tests encoding a barcode containing full ASCII characters
+- (void)testEncodingFullASCII
+{
+	NSString *expected = @"1010111101101001101001100101100100101001100101101011001001100101101001101000010101010000101110101101101010001100100101001010001010111101";
+	NSString *actual = [self.codeFullASCII bitString];
+	BOOL isEqual = [expected isEqualToString:actual];
+	
+	STAssertTrue(isEqual, @"Result from encoding a full ASCII incorrect");
+}
+
+// tests encoding a barcode containing full ASCII characters \ and "
+- (void)testEncodingFullASCIIWithSlashesAndQuotes
+{
+    BCKCode93Code *fullASCIICode = [[BCKCode93Code alloc] initWithContent:@":\";<\\>"];     // content=:";<\>
+	NSString *expected = @"1010111101110101101001110101110101101101001001110110101100010101110110101011010001110110101010110001110110101011000101001110101101001101010111101";
+	NSString *actual = [fullASCIICode bitString];
+	BOOL isEqual = [expected isEqualToString:actual];
+	
+    NSLog(@"expected:%@", expected);
+    NSLog(@"  actual:%@", actual);
+    
+	STAssertTrue(isEqual, @"Result from encoding a full ASCII with slashes and quotes is incorrect");
 }
 
 @end

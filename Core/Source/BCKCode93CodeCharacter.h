@@ -18,19 +18,13 @@
  */
 
 /**
- Generates a start code character, used for Code 93
- @returns the start code character
+ Generates a Code93 start/stop code character
+ @returns the start/stop code character
  */
-+ (BCKCode93CodeCharacter *)startCodeCharacter;
++ (BCKCode93CodeCharacter *)startStopCodeCharacter;
 
 /**
- Generates a stop code character, used for Code 93
- @returns the stop code character
- */
-+ (BCKCode93CodeCharacter *)stopCodeCharacter;
-
-/**
- Generates a termination bar code character, used for Code 93
+ Generates a Code93 termination bar code character
  @returns the termination bar code character
  */
 + (BCKCode93CodeCharacter *)terminationBarCodeCharacter;
