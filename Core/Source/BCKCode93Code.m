@@ -251,7 +251,49 @@ NSString * const BCKCode93Modulo47CheckCharacterSecondOption = @"BCKCode93Modulo
 
 - (NSUInteger)horizontalQuietZoneWidth
 {
-	return 7;       // 0.25inches or 6.35mm
+	return 10;
+}
+
+- (CGFloat)aspectRatio
+{
+	return 0;  // do not use aspect
+}
+
+- (CGFloat)fixedHeight
+{
+	return 87;
+}
+
+- (CGFloat)_captionFontSizeWithOptions:(NSDictionary *)options
+{
+	return 10;
+}
+
+- (BOOL)markerBarsCanOverlapBottomCaption
+{
+	return NO;
+}
+
+- (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone
+{
+	if (captionZone == BCKCodeDrawingCaptionTextZone)
+	{
+		return _content;
+	}
+	
+	return nil;
+}
+
+- (UIFont *)_captionFontWithSize:(CGFloat)fontSize
+{
+	UIFont *font = [UIFont boldSystemFontOfSize:fontSize];
+	
+	return font;
+}
+
+- (BOOL)allowsFillingOfEmptyQuietZones
+{
+	return NO;
 }
 
 @end
