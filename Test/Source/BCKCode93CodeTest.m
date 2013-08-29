@@ -150,6 +150,17 @@
 	NSString *expected = @"1010111101110101101001110101110101101101001001110110101100010101110110101011010001110110101010110001110110101011000101001110101101001101010111101";
 	NSString *actual = [fullASCIICode bitString];
 	BOOL isEqual = [expected isEqualToString:actual];
+    
+	STAssertTrue(isEqual, @"Result from encoding a full ASCII with slashes and quotes is incorrect");
+}
+
+// tests encoding a barcode containing control characters STX and ENQ
+- (void)testEncodingControlCharacters
+{
+    BCKCode93Code *fullASCIICode = [[BCKCode93Code alloc] initWithContent:@"␂␅"];     // content=␂␅
+	NSString *expected = @"1010111101001001101101001001001001101100100101010001101011010001010111101";
+	NSString *actual = [fullASCIICode bitString];
+	BOOL isEqual = [expected isEqualToString:actual];
 	
     NSLog(@"expected:%@", expected);
     NSLog(@"  actual:%@", actual);

@@ -19,6 +19,8 @@
 NSString * const BCKCode93Modulo47CheckCharacterFirstOption = @"BCKCode93Modulo47CheckCharacterFirst";
 NSString * const BCKCode93Modulo47CheckCharacterSecondOption = @"BCKCode93Modulo47CheckCharacterSecond";
 
+#pragma mark Helper Methods
+
 // source: http://en.wikipedia.org/wiki/Code_93#Full_ASCII_Code_93
 
 // Returns the Code93 representation of all supported ASCII characters, including Full ASCII
@@ -245,6 +247,11 @@ NSString * const BCKCode93Modulo47CheckCharacterSecondOption = @"BCKCode93Modulo
 	[finalArray addObject:[BCKCode93CodeCharacter terminationBarCodeCharacter]];
     
 	return [finalArray copy];
+}
+
+- (NSUInteger)horizontalQuietZoneWidth
+{
+	return 7;       // 0.25inches or 6.35mm
 }
 
 @end
