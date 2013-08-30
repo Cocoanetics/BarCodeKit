@@ -107,7 +107,7 @@
 }
 
 // tests encoding a simple word
-- (void)testEncodingSimple
+- (void)testEncodeSimple
 {
 	NSString *expected = @"1010111101101001101101001101011011101010111101";
 	NSString *actual = [self.codeSimple bitString];
@@ -117,7 +117,7 @@
 }
 
 // tests encoding a regular (without full ASCII characters) barcode
-- (void)testEncoding
+- (void)testEncodeRegular
 {
 	NSString *expected = @"1010111101101001101100100101101011001101001101000010101010000101011101101001000101010111101";
 	NSString *actual = [self.code bitString];
@@ -134,7 +134,7 @@
 }
 
 // tests encoding a barcode containing full ASCII characters
-- (void)testEncodingFullASCII
+- (void)testEncodeFullASCII
 {
 	NSString *expected = @"1010111101101001101001100101100100101001100101101011001001100101101001101000010101010000101110101101101010001100100101001010001010111101";
 	NSString *actual = [self.codeFullASCII bitString];
@@ -144,7 +144,7 @@
 }
 
 // tests encoding a barcode containing full ASCII characters \ and "
-- (void)testEncodingFullASCIIWithSlashesAndQuotes
+- (void)testEncodeFullASCIIWithSlashesAndQuotes
 {
     BCKCode93Code *fullASCIICode = [[BCKCode93Code alloc] initWithContent:@":\";<\\>"];     // content=:";<\>
 	NSString *expected = @"1010111101110101101001110101110101101101001001110110101100010101110110101011010001110110101010110001110110101011000101001110101101001101010111101";
@@ -155,17 +155,33 @@
 }
 
 // tests encoding a barcode containing control characters STX and ENQ
-- (void)testEncodingControlCharacters
+- (void)testEncodeControlCharacters
 {
     BCKCode93Code *fullASCIICode = [[BCKCode93Code alloc] initWithContent:@"␂␅"];     // content=␂␅
 	NSString *expected = @"1010111101001001101101001001001001101100100101010001101011010001010111101";
 	NSString *actual = [fullASCIICode bitString];
 	BOOL isEqual = [expected isEqualToString:actual];
 	
-    NSLog(@"expected:%@", expected);
-    NSLog(@"  actual:%@", actual);
-    
 	STAssertTrue(isEqual, @"Result from encoding a full ASCII with slashes and quotes is incorrect");
+}
+
+// tests encoding of long barcodes, particularly the modulo-47 checks
+- (void)testEncodeLongBarcodes
+{
+    __block BCKCode93Code *longBarcode;
+    __block BOOL isEqual;
+    
+    NSDictionary *testBarcodes = @{@"ABCDEFGHIJKLMNO": @"1010111101101010001101001001101000101100101001100100101100010101011010001011001001011000101001101001000110101010110001010011001010001101001011001010110001001000101010111101",
+    @"ABCDEFGHIJKLMNOPQRSTU" : @"1010111101101010001101001001101000101100101001100100101100010101011010001011001001011000101001101001000110101010110001010011001010001101001011001000101101101101001101100101101011001101001101100101101100110101010011001010111101"};
+    
+    [testBarcodes enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *obj, BOOL *stop) {
+        NSString *expected = obj;
+        longBarcode = [[BCKCode93Code alloc] initWithContent:key];
+        NSString *actual = [longBarcode bitString];
+        isEqual = [expected isEqualToString:actual];
+        
+        STAssertTrue(isEqual, @"Result from encoding a long barcode is incorrect");
+    }];
 }
 
 @end
