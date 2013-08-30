@@ -249,9 +249,10 @@ NSString * const BCKCode93Modulo47CheckCharacterSecondOption = @"BCKCode93Modulo
 	return [finalArray copy];
 }
 
+// The horizontal quiet zone width (starting and trailing) should be at least 6.35mm. With an X-dimension of 0.19mm this equals 34 bars (rounded up)
 - (NSUInteger)horizontalQuietZoneWidth
 {
-	return 10;
+	return 34;
 }
 
 - (CGFloat)aspectRatio
@@ -259,9 +260,10 @@ NSString * const BCKCode93Modulo47CheckCharacterSecondOption = @"BCKCode93Modulo
 	return 0;  // do not use aspect
 }
 
+// The bar height should be at least 15% of the symbol (barcode) lenght, or 6.35mm (34 bars), whichever is greater. Returning a fixed height of 34 for now.
 - (CGFloat)fixedHeight
 {
-	return 87;
+    return 34;
 }
 
 - (CGFloat)_captionFontSizeWithOptions:(NSDictionary *)options

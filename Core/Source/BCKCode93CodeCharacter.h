@@ -9,7 +9,7 @@
 #import "BCKCodeCharacter.h"
 
 /**
- Specialized class of BCKCodeCharacter used for generating Code93 codes
+ Specialized class of BCKCodeCharacter used for generating Code93 barcodes
  */
 @interface BCKCode93CodeCharacter : BCKCodeCharacter
 
