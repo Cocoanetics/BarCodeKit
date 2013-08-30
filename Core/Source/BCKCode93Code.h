@@ -9,7 +9,7 @@
 #import "BCKCode.h"
 
 /**
- Specialized subclass of BCKCode to represent Code93 code
+ Specialized subclass of BCKCode to represent Full ASCII Code93 barcodes. All 128 ASCII characters are supported, including the less useful control characters.
  */
 @interface BCKCode93Code : BCKCode
 
