@@ -51,7 +51,8 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
  - BCKEAN13Code - EAN-13 (13-digit EAN or 12-digit UPC-A)
  - BCKUPCECode - UPC-E (shortened UPC)
  - BCKCode39Code - Code 39
-
+ - BCKCode93Code - Code 93
+ 
  For rendering codes several options can be combined in an options dictionary:
  
  - **BCKCodeDrawingBarScaleOption** - Multiplier for the bar width (default 1)

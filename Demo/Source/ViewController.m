@@ -51,7 +51,8 @@
 	
 //	BCKEAN13Code *code1 = [[BCKEAN13Code alloc] initWithContent:@"9780596516178"];
 //	BCKCode39Code *code1 = [[BCKCode39Code alloc] initWithContent:@"OLIVER"];
-	BCKInterleaved2of5Code *code1 = [[BCKInterleaved2of5Code alloc] initWithContent:@"1234567890111112312"];
+//	BCKInterleaved2of5Code *code1 = [[BCKInterleaved2of5Code alloc] initWithContent:@"1234567890111112312"];
+    BCKCode93Code *code1 = [[BCKCode93Code alloc] initWithContent:@"Cocoanetics!"];
 	self.imageView.image = [UIImage imageWithBarCode:code1 options:options];
 	
 	BCKEAN8Code *code2 = [[BCKEAN8Code alloc] initWithContent:@"24046985"];
