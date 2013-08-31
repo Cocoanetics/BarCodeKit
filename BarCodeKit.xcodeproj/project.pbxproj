@@ -21,6 +21,9 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		6C20911917D20DD000869F6E /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C20911817D20DD000869F6E /* Main_iPhone.storyboard */; };
+		6C20911E17D20DDF00869F6E /* BCKBarcodeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20911B17D20DDF00869F6E /* BCKBarcodeListViewController.m */; };
+		6C20911F17D20DDF00869F6E /* BCKBarcodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20911D17D20DDF00869F6E /* BCKBarcodeViewController.m */; };
 		6C818CAC17CB6BF300AEE26F /* BCKCode93CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C818CAB17CB6BF300AEE26F /* BCKCode93CodeTest.m */; };
 		6C818CAF17CB703300AEE26F /* BCKCode93Code.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C818CAE17CB703300AEE26F /* BCKCode93Code.m */; };
 		6C818CB217CCAA6300AEE26F /* BCKCode93CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C818CB117CCAA6300AEE26F /* BCKCode93CodeCharacter.m */; };
@@ -52,7 +55,6 @@
 		A764061C17B53AE700D45F51 /* BCKEANCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A764061B17B53AE700D45F51 /* BCKEANCodeCharacter.m */; };
 		A764062517B53B7B00D45F51 /* BCKEANDigitCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A764062417B53B7B00D45F51 /* BCKEANDigitCodeCharacter.m */; };
 		A7781E1817B6B301005B9604 /* BCKUPCECode.m in Sources */ = {isa = PBXBuildFile; fileRef = A7781E1717B6B301005B9604 /* BCKUPCECode.m */; };
-		A7A6B54617B62CA4007FF7DB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7A6B54117B62CA4007FF7DB /* ViewController.m */; };
 		A7A6B54717B62CA4007FF7DB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A7A6B54217B62CA4007FF7DB /* AppDelegate.m */; };
 		A7A6B54817B62CA4007FF7DB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A7A6B54517B62CA4007FF7DB /* main.m */; };
 		A7A6B54D17B62CB2007FF7DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7A6B54A17B62CB2007FF7DB /* Main.storyboard */; };
@@ -94,6 +96,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6C20911817D20DD000869F6E /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
+		6C20911A17D20DDF00869F6E /* BCKBarcodeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKBarcodeListViewController.h; sourceTree = "<group>"; };
+		6C20911B17D20DDF00869F6E /* BCKBarcodeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKBarcodeListViewController.m; sourceTree = "<group>"; };
+		6C20911C17D20DDF00869F6E /* BCKBarcodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKBarcodeViewController.h; sourceTree = "<group>"; };
+		6C20911D17D20DDF00869F6E /* BCKBarcodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKBarcodeViewController.m; sourceTree = "<group>"; };
 		6C818CAB17CB6BF300AEE26F /* BCKCode93CodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode93CodeTest.m; sourceTree = "<group>"; };
 		6C818CAD17CB703300AEE26F /* BCKCode93Code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode93Code.h; sourceTree = "<group>"; };
 		6C818CAE17CB703300AEE26F /* BCKCode93Code.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode93Code.m; sourceTree = "<group>"; };
@@ -148,9 +155,7 @@
 		A764062417B53B7B00D45F51 /* BCKEANDigitCodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKEANDigitCodeCharacter.m; sourceTree = "<group>"; };
 		A7781E1617B6B301005B9604 /* BCKUPCECode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKUPCECode.h; sourceTree = "<group>"; };
 		A7781E1717B6B301005B9604 /* BCKUPCECode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKUPCECode.m; sourceTree = "<group>"; };
-		A7A6B54117B62CA4007FF7DB /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		A7A6B54217B62CA4007FF7DB /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		A7A6B54317B62CA4007FF7DB /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		A7A6B54417B62CA4007FF7DB /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A7A6B54517B62CA4007FF7DB /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A7A6B54B17B62CB2007FF7DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
@@ -419,6 +424,7 @@
 		A7FB2BB317B6206300712C1C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6C20911817D20DD000869F6E /* Main_iPhone.storyboard */,
 				A7A6B54A17B62CB2007FF7DB /* Main.storyboard */,
 				A7A6B54C17B62CB2007FF7DB /* Images.xcassets */,
 				A7FB2BB417B6206300712C1C /* OCRB.ttf */,
@@ -429,10 +435,12 @@
 		A7FB2BB517B6206300712C1C /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				6C20911A17D20DDF00869F6E /* BCKBarcodeListViewController.h */,
+				6C20911B17D20DDF00869F6E /* BCKBarcodeListViewController.m */,
+				6C20911C17D20DDF00869F6E /* BCKBarcodeViewController.h */,
+				6C20911D17D20DDF00869F6E /* BCKBarcodeViewController.m */,
 				A7A6B54417B62CA4007FF7DB /* AppDelegate.h */,
 				A7A6B54217B62CA4007FF7DB /* AppDelegate.m */,
-				A7A6B54317B62CA4007FF7DB /* ViewController.h */,
-				A7A6B54117B62CA4007FF7DB /* ViewController.m */,
 				A7A6B54517B62CA4007FF7DB /* main.m */,
 			);
 			path = Source;
@@ -554,6 +562,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C20911917D20DD000869F6E /* Main_iPhone.storyboard in Resources */,
 				A7A6B54D17B62CB2007FF7DB /* Main.storyboard in Resources */,
 				A7A6B54E17B62CB2007FF7DB /* Images.xcassets in Resources */,
 				A7FB2BB617B6206300712C1C /* OCRB.ttf in Resources */,
@@ -604,7 +613,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7A6B54617B62CA4007FF7DB /* ViewController.m in Sources */,
+				6C20911E17D20DDF00869F6E /* BCKBarcodeListViewController.m in Sources */,
+				6C20911F17D20DDF00869F6E /* BCKBarcodeViewController.m in Sources */,
 				A7A6B54817B62CA4007FF7DB /* main.m in Sources */,
 				A7A6B54717B62CA4007FF7DB /* AppDelegate.m in Sources */,
 			);
