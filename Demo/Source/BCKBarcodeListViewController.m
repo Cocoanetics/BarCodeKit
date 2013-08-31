@@ -12,11 +12,13 @@
 
 @interface BCKBarcodeListViewController ()
 
-@property (nonatomic) NSArray *barcodeTypes;
+@property (nonatomic) NSArray *barcodeTypes;            // Holds an array of Class structs for all BCKCode subclasses
 
 @end
 
 @implementation BCKBarcodeListViewController
+
+#pragma mark - Other
 
 // Returns an array of Class structs of theClass' subclasses (direct subclasses only)
 - (NSArray *) allSubclassesForClass:(Class)theClass
@@ -32,7 +34,7 @@
             superClass = class_getSuperclass(superClass);
         } while (superClass && superClass != theClass);
         
-        if (superClass == theClass) {       // change to (superClass) to find all descendants
+        if (superClass == theClass) {                   // change to (superClass) to find all descendants, not just the direct ones
             [mySubclasses addObject: classes[ci]];
         }
     }

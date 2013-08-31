@@ -9,12 +9,11 @@
 #import "BCKBarcodeViewController.h"
 #import "UIImage+BarCodeKit.h"
 
-#define DEFAULT_CONTENTS @"12345670"                // Sample barcode that works for most, but not all barcode types
-#define DEFAULT_CONTENTS_ALT @"9780596516178"       // Alternative sample barcode
+#define SAMPLE_CONTENTS @"12345670"                // Sample barcode that works for most, but not all barcode types
+#define SAMPLE_CONTENTS_ALT @"9780596516178"       // Alternative sample barcode
 
 @interface BCKBarcodeViewController ()
 
-@property (strong, nonatomic) UIPopoverController *masterPopoverController;
 @property (weak, nonatomic) IBOutlet UIImageView *barcodeImage;
 @property (nonatomic, strong) BCKCode *barcodeObject;
 
@@ -40,7 +39,7 @@
 	CGFloat _captionOverlap;
 }
 
-#pragma mark - Managing the detail item
+#pragma mark - Other
 
 - (void)setBarcodeClass:(Class)newBarcodeClass
 {
@@ -50,13 +49,9 @@
         // Update the view.
         [self configureView];
     }
-    
-    if (self.masterPopoverController != nil) {
-        [self.masterPopoverController dismissPopoverAnimated:YES];
-    }
 }
 
-#pragma mark - UITextField
+#pragma mark - Text Field
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -85,11 +80,11 @@
         self.barcodeImage.image = [UIImage imageWithBarCode:self.barcodeObject options:options];
     else {
         // Try the alternative sample first
-        self.barcodeObject = [[self.barcodeClass alloc] initWithContent:DEFAULT_CONTENTS_ALT];
+        self.barcodeObject = [[self.barcodeClass alloc] initWithContent:SAMPLE_CONTENTS_ALT];
 
         if(self.barcodeObject)
         {
-            _contentTextField.text = DEFAULT_CONTENTS_ALT;
+            _contentTextField.text = SAMPLE_CONTENTS_ALT;
             self.barcodeImage.image = [UIImage imageWithBarCode:self.barcodeObject options:options];
         }
         else{
@@ -182,7 +177,7 @@
     _contentTextField.returnKeyType = UIReturnKeyDone;
     _contentTextField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     _contentTextField.delegate = self;
-    _contentTextField.text = DEFAULT_CONTENTS;
+    _contentTextField.text = SAMPLE_CONTENTS;
     
     // Draw the barcode using the current options
     [self _updateWithOptions];
