@@ -103,4 +103,28 @@
     STAssertTrue(isEqual, @"Result from encoding incorrect");
 }
 
+- (void)testSwitchToCode128DoneWith6NumbersInMiddle
+{
+    BCKCode128Code *code = [[BCKCode128Code alloc] initWithContent:@"TE123456ST"];
+    NSString *expected = @"11010000100 11011100010 10001101000 10111011110 10110011100 10001011000 11100010110 11101011110 11011101000 11011100010 11110010010 1100011101011";
+    expected = [expected stringByReplacingOccurrencesOfString:@" " withString:@""];
+
+    NSString *actual = [code bitString];
+    BOOL isEqual = [expected isEqualToString:actual];
+
+    STAssertTrue(isEqual, @"Result from encoding incorrect");
+}
+
+- (void)testSwitchToCode128NotDoneWith4NumbersInMiddle
+{
+    BCKCode128Code *code = [[BCKCode128Code alloc] initWithContent:@"TE1234ST"];
+    NSString *expected = @"11010000100 11011100010 10001101000 10011100110 11001110010 11001011100 11001001110 11011101000 11011100010 11001101100 1100011101011";
+    expected = [expected stringByReplacingOccurrencesOfString:@" " withString:@""];
+
+    NSString *actual = [code bitString];
+    BOOL isEqual = [expected isEqualToString:actual];
+
+    STAssertTrue(isEqual, @"Result from encoding incorrect");
+}
+
 @end

@@ -15,25 +15,29 @@
     return [[self stringByTrimmingCharactersInSet:[NSString _numbersSet]] length] == 0;
 }
 
-- (BOOL)firstFourCharactersAreNumbers
-{
-    if ([self length] < 4)
-    {
-        return NO;
-    }
-
-    NSString *nextCharacters = [self substringToIndex:4];
-    return [nextCharacters containsOnlyNumbers];
-}
-
 - (BOOL)firstTwoCharactersAreNumbers
 {
-    if ([self length] < 2)
+    return [self _charactersAtBeginningAreNumbers:2];
+}
+
+- (BOOL)firstFourCharactersAreNumbers
+{
+    return [self _charactersAtBeginningAreNumbers:4];
+}
+
+- (BOOL)firstSixCharactersAreNumbers
+{
+    return [self _charactersAtBeginningAreNumbers:6];
+}
+
+- (BOOL)_charactersAtBeginningAreNumbers:(NSUInteger)numberOfCharactersToCheck
+{
+    if ([self length] < numberOfCharactersToCheck)
     {
         return NO;
     }
 
-    NSString *nextCharacters = [self substringToIndex:2];
+    NSString *nextCharacters = [self substringToIndex:numberOfCharactersToCheck];
     return [nextCharacters containsOnlyNumbers];
 }
 

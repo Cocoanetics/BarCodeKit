@@ -11,7 +11,8 @@
 @interface NSString (BCKCode128Helpers)
 
 - (BOOL)containsOnlyNumbers;
-- (BOOL)firstFourCharactersAreNumbers;
 - (BOOL)firstTwoCharactersAreNumbers;
+- (BOOL)firstFourCharactersAreNumbers;
+- (BOOL)firstSixCharactersAreNumbers;
 
 @end

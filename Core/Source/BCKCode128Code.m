@@ -162,6 +162,11 @@
             return Code128C;
         }
 
+        if (index != 0 && [remainingContent firstSixCharactersAreNumbers])
+        {
+            return Code128C;
+        }
+
         if ([remainingContent length] > 4 && [remainingContent containsOnlyNumbers])
         {
             return Code128C;
