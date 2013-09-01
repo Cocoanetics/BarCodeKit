@@ -55,18 +55,20 @@
     NSUInteger index = 0;
     while ([content length] > 0)
     {
-        NSString *toEncode = [self _nextCharacterToEncode:content];
+        BCKCode128Version continueWithVersion = [self _versionToContinue:writeVersion remainingContent:content];
 
-        if (_switchToVersion != writeVersion)
+        if (continueWithVersion != writeVersion)
         {
-            BCKCode128CodeCharacter *switchCode = [BCKCode128CodeCharacter switchCodeToVersion:_switchToVersion];
+            BCKCode128CodeCharacter *switchCode = [BCKCode128CodeCharacter switchCodeToVersion:continueWithVersion];
 
             check += ([switchCode position] * (index + 1));
             [tmpArray addObject:switchCode];
             index++;
 
-            writeVersion = _switchToVersion;
+            writeVersion = continueWithVersion;
         }
+
+        NSString *toEncode = [self _nextCharacterToEncode:content writeVersion:writeVersion];
 
         BCKCode128ContentCodeCharacter *codeCharacter = [BCKCode128ContentCodeCharacter codeCharacterForCharacter:toEncode codeVersion:writeVersion];
 
@@ -138,20 +140,29 @@
     return NO;
 }
 
-- (NSString *)_nextCharacterToEncode:(NSString *)content
+- (NSString *)_nextCharacterToEncode:(NSString *)content writeVersion:(BCKCode128Version)writeVersion
 {
-    if (_barcodeVersion != Code128C)
-    {
-        return [content substringWithRange:NSMakeRange(0, 1)];
-    }
-
-    if ([content length] >= 2)
+    if (writeVersion == Code128C)
     {
         return [content substringWithRange:NSMakeRange(0, 2)];
     }
 
-    _switchToVersion = Code128A;
     return [content substringWithRange:NSMakeRange(0, 1)];
+}
+
+- (BCKCode128Version)_versionToContinue:(BCKCode128Version)currentWriteVersion remainingContent:(NSMutableString *)remainingContent
+{
+    if (currentWriteVersion != Code128C)
+    {
+        return currentWriteVersion;
+    }
+
+    if ([remainingContent length] < 2)
+    {
+        return Code128A;
+    }
+
+    return currentWriteVersion;
 }
 
 @end

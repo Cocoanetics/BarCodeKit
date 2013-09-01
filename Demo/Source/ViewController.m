@@ -54,7 +54,7 @@
 //	BCKCode39Code *code1 = [[BCKCode39Code alloc] initWithContent:@"OLIVER"];
 //	BCKInterleaved2of5Code *code1 = [[BCKInterleaved2of5Code alloc] initWithContent:@"1234567890111112312"];
 //	BCKCode128Code *code1 = [[BCKCode128Code alloc] initWithContent:@"Wikipedia"];
-	BCKCode128Code *code1 = [[BCKCode128Code alloc] initWithContent:@"123456789"];
+	BCKCode128Code *code1 = [[BCKCode128Code alloc] initWithContent:@"HI345678"];
 	self.imageView.image = [UIImage imageWithBarCode:code1 options:options];
 	
 	BCKEAN8Code *code2 = [[BCKEAN8Code alloc] initWithContent:@"24046985"];
