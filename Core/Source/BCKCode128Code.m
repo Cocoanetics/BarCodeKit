@@ -157,6 +157,11 @@
 {
     if (currentWriteVersion != Code128C)
     {
+        if (index == 0 && [remainingContent firstFourCharactersAreNumbers])
+        {
+            return Code128C;
+        }
+
         if ([remainingContent length] > 4 && [remainingContent containsOnlyNumbers])
         {
             return Code128C;
@@ -168,9 +173,9 @@
         return currentWriteVersion;
     }
 
-    if ([remainingContent length] < 2)
+    if (currentWriteVersion == Code128C && ![remainingContent firstTwoCharactersAreNumbers])
     {
-        return Code128A;
+        return [BCKCode128ContentCodeCharacter code128VersionNeeded:remainingContent];
     }
 
     return currentWriteVersion;

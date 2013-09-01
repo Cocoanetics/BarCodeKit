@@ -92,4 +92,15 @@
     STAssertTrue(isEqual, @"Result from encoding incorrect");
 }
 
+- (void)testLengthOptimizationNumbersAtBeginning
+{
+    BCKCode128Code *code = [[BCKCode128Code alloc] initWithContent:@"345678HI"];
+    NSString *expected = @"1101000010010111011110100010110001110001011011000010100111010111101100010100011000100010110110001101100011101011";
+
+    NSString *actual = [code bitString];
+    BOOL isEqual = [expected isEqualToString:actual];
+
+    STAssertTrue(isEqual, @"Result from encoding incorrect");
+}
+
 @end
