@@ -7,6 +7,7 @@
 //
 
 #import "BCKCode128ContentCodeCharacter.h"
+#import "NSString+BCKCode128Helpers.h"
 
 NSUInteger const CODE_128_BINARY_INDEX = 3;
 NSUInteger const CODE_128_CHARACTERS_TABLE_SIZE = 103;
@@ -176,7 +177,7 @@ static NSArray *__charactersMap;
 
 + (BCKCode128Version)code128VersionNeeded:(NSString *)content
 {
-    if ([BCKCode128ContentCodeCharacter _containsOnlyNumbers:content])
+    if ([content containsOnlyNumbers])
     {
         return Code128C;
     }
@@ -210,12 +211,6 @@ static NSArray *__charactersMap;
 }
 
 #pragma mark - Helper Methods
-
-+ (BOOL)_containsOnlyNumbers:(NSString *)content
-{
-    return [[content stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"0123456789"]] length] == 0;
-}
-
 
 - (NSString *)_codeMarkerForVersion:(BCKCode128Version)version
 {

@@ -80,7 +80,7 @@
     STAssertTrue(isEqual, @"Result from encoding incorrect");
 }
 
-- (void)testEncodeWithSwitchFromCode128AToCode128C
+- (void)testLengthOptimizationNumbersAtEnd
 {
     BCKCode128Code *code = [[BCKCode128Code alloc] initWithContent:@"HI345678"];
     NSString *expected = @"11010000100 11000101000 11000100010 10111011110 10001011000 11100010110 11000010100 10000101100 1100011101011";

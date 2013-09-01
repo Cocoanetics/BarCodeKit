@@ -58,6 +58,7 @@
 		A7A6B55617B62D05007FF7DB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A764059E17B50F9100D45F51 /* UIKit.framework */; };
 		A7E1C97317B6067B007DB13A /* libBarCodeKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A76405EB17B52E9700D45F51 /* libBarCodeKit.a */; };
 		A7FB2BB617B6206300712C1C /* OCRB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7FB2BB417B6206300712C1C /* OCRB.ttf */; };
+		EA0EF7DF17D3ACB500015F7B /* NSString+BCKCode128Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0EF7DE17D3ACB500015F7B /* NSString+BCKCode128Helpers.m */; };
 		EA6CF87917CA4FAE009C8994 /* BCKCode128Code.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6CF87817CA4FAE009C8994 /* BCKCode128Code.m */; };
 		EA6CF87C17CA500A009C8994 /* BCKCode128CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6CF87B17CA500A009C8994 /* BCKCode128CodeCharacter.m */; };
 		EA6CF87E17CA513E009C8994 /* BCKCode128CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6CF87D17CA513E009C8994 /* BCKCode128CodeTest.m */; };
@@ -153,6 +154,8 @@
 		A7A6B58417B62D28007FF7DB /* DemoApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DemoApp-Prefix.pch"; sourceTree = "<group>"; };
 		A7E1C97417B606AA007DB13A /* BarCodeKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BarCodeKit.h; sourceTree = "<group>"; };
 		A7FB2BB417B6206300712C1C /* OCRB.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OCRB.ttf; sourceTree = "<group>"; };
+		EA0EF7DD17D3ACB500015F7B /* NSString+BCKCode128Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+BCKCode128Helpers.h"; sourceTree = "<group>"; };
+		EA0EF7DE17D3ACB500015F7B /* NSString+BCKCode128Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+BCKCode128Helpers.m"; sourceTree = "<group>"; };
 		EA6CF87717CA4FAE009C8994 /* BCKCode128Code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode128Code.h; sourceTree = "<group>"; };
 		EA6CF87817CA4FAE009C8994 /* BCKCode128Code.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode128Code.m; sourceTree = "<group>"; };
 		EA6CF87A17CA500A009C8994 /* BCKCode128CodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode128CodeCharacter.h; sourceTree = "<group>"; };
@@ -425,6 +428,8 @@
 				EA6CF87B17CA500A009C8994 /* BCKCode128CodeCharacter.m */,
 				EA6CF87F17CA563F009C8994 /* BCKCode128ContentCodeCharacter.h */,
 				EA6CF88017CA563F009C8994 /* BCKCode128ContentCodeCharacter.m */,
+				EA0EF7DD17D3ACB500015F7B /* NSString+BCKCode128Helpers.h */,
+				EA0EF7DE17D3ACB500015F7B /* NSString+BCKCode128Helpers.m */,
 			);
 			name = Code128;
 			sourceTree = "<group>";
@@ -629,6 +634,7 @@
 				A7343F4917BF599100EF9B83 /* UIImage+BarCodeKit.m in Sources */,
 				A7337C6917C1276700BC2D2D /* BCKCode39CodeCharacter.m in Sources */,
 				A13B58E817C6A1C700454150 /* BCKInterleaved2of5CodeCharacter.m in Sources */,
+				EA0EF7DF17D3ACB500015F7B /* NSString+BCKCode128Helpers.m in Sources */,
 				A7378D8217C222AD008921C4 /* BCKCode39ContentCodeCharacter.m in Sources */,
 				A7337C6617C1250F00BC2D2D /* BCKCode39Code.m in Sources */,
 			);

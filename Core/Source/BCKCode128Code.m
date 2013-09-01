@@ -8,10 +8,10 @@
 
 #import "BCKCode128Code.h"
 #import "BCKCode128ContentCodeCharacter.h"
+#import "NSString+BCKCode128Helpers.h"
 
 @implementation BCKCode128Code {
     BCKCode128Version _barcodeVersion;
-    BCKCode128Version _switchToVersion;
 }
 
 - (BCKCode *)initWithContent:(NSString *)content
@@ -41,7 +41,6 @@
     NSMutableArray *tmpArray = [NSMutableArray array];
 
     BCKCode128Version writeVersion = _barcodeVersion;
-    _switchToVersion = writeVersion;
 
     // start marker
     BCKCode128CodeCharacter *startCode = [BCKCode128CodeCharacter startCodeForVersion:writeVersion];
@@ -52,31 +51,34 @@
 
     NSMutableString *content = [_content mutableCopy];
 
-    NSUInteger index = 0;
+    NSUInteger barcodeIndex = 0;
+    NSUInteger contentIndex = 0;
+
     while ([content length] > 0)
     {
-        BCKCode128Version continueWithVersion = [self _versionToContinue:writeVersion remainingContent:content];
+        BCKCode128Version continueWithVersion = [self _versionToContinue:writeVersion contentIndex:contentIndex remainingContent:content];
 
         if (continueWithVersion != writeVersion)
         {
             BCKCode128CodeCharacter *switchCode = [BCKCode128CodeCharacter switchCodeToVersion:continueWithVersion];
 
-            check += ([switchCode position] * (index + 1));
+            check += ([switchCode position] * (barcodeIndex + 1));
             [tmpArray addObject:switchCode];
-            index++;
+            barcodeIndex++;
 
             writeVersion = continueWithVersion;
         }
 
         NSString *toEncode = [self _nextCharacterToEncode:content writeVersion:writeVersion];
+        contentIndex += [toEncode length];
 
         BCKCode128ContentCodeCharacter *codeCharacter = [BCKCode128ContentCodeCharacter codeCharacterForCharacter:toEncode codeVersion:writeVersion];
 
         // (character position in Code 128 table) x (character position in string 'starting from 1')
-        check += ([codeCharacter position] * (index + 1));
+        check += ([codeCharacter position] * (barcodeIndex + 1));
         [tmpArray addObject:codeCharacter];
 
-        index++;
+        barcodeIndex++;
         [content deleteCharactersInRange:NSMakeRange(0, [toEncode length])];
     }
 
@@ -150,8 +152,17 @@
     return [content substringWithRange:NSMakeRange(0, 1)];
 }
 
-- (BCKCode128Version)_versionToContinue:(BCKCode128Version)currentWriteVersion remainingContent:(NSMutableString *)remainingContent
+// Try to perform barcode length optimizations described at http://en.wikipedia.org/wiki/Code_128#Barcode_Length_Optimization_Using_Code_Set_C
+- (BCKCode128Version)_versionToContinue:(BCKCode128Version)currentWriteVersion contentIndex:(NSUInteger)index remainingContent:(NSMutableString *)remainingContent
 {
+    if (currentWriteVersion != Code128C)
+    {
+        if ([remainingContent length] > 4 && [remainingContent containsOnlyNumbers])
+        {
+            return Code128C;
+        }
+    }
+
     if (currentWriteVersion != Code128C)
     {
         return currentWriteVersion;
