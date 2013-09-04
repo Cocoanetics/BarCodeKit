@@ -8,7 +8,11 @@
 
 #import "BCKCode39ContentCodeCharacter.h"
 
-static char *char_encodings[43][2] = {
+#define NUMBER_OF_CODE39_CHARACTERS 43
+#define CHARACTER_DIMENSION 0
+#define ENCODING_DIMENSION 1
+
+static char *char_encodings[NUMBER_OF_CODE39_CHARACTERS][2] = {
 	{"0", "bwbWBwBwb"},
 	{"1", "BwbWbwbwB"},
 	{"2", "bwBWbwbwB"},
@@ -58,6 +62,22 @@ static char *char_encodings[43][2] = {
 	NSString *_character;
 }
 
+// Initialise the code character using its value. Only values for the 43 regular and seven special characters are valid.
+// For example: to initialise the code character with an A initialise it by passing the value 10
+- (instancetype)initWithValue:(NSUInteger)characterValue
+{
+	self = [super init];
+	
+	if (self)
+	{
+        if(characterValue >= NUMBER_OF_CODE39_CHARACTERS)
+            return nil;
+        else
+            _character = [NSString stringWithUTF8String:char_encodings[characterValue][CHARACTER_DIMENSION]];
+    }
+    
+	return self;
+}
 
 - (instancetype)initWithCharacter:(NSString *)character
 {
@@ -74,6 +94,25 @@ static char *char_encodings[43][2] = {
 	}
 	
 	return self;
+}
+
+// Returns the character's value by returning its index in the char_encodings array. This value is used by BCKCode39Code to calculate the
+// modulo-43 check characters. For example: the A is the tenth character in the array so this method returns the value 10
+- (NSUInteger)characterValue
+{
+    const char *searchChar = [_character UTF8String];
+    
+    for (NSUInteger i=0; i<NUMBER_OF_CODE39_CHARACTERS; i++)
+    {
+        char *testChar = char_encodings[i][CHARACTER_DIMENSION];
+        
+        if(!strcmp(testChar, searchChar))
+        {
+            return i;
+        }
+    }
+    
+    return -1;
 }
 
 - (char *)_encodingForCharacter:(NSString *)character

@@ -7,6 +7,7 @@
 //
 
 #import "BCKCode39Code.h"
+#import "BCKCode39CodeModulo43.h"
 
 @interface BCKCode39Code () // private
 
@@ -17,10 +18,27 @@
 
 @interface BCKCode39CodeTest : SenTestCase
 
+@property BCKCode39CodeModulo43 *codeWithModulo43CheckDigit;
+
 @end
 
-
 @implementation BCKCode39CodeTest
+
+- (void)setUp
+{
+    [super setUp];
+    // Put setup code here; it will be run once, before the first test case.
+    
+    self.codeWithModulo43CheckDigit = [[BCKCode39CodeModulo43 alloc] initWithContent:@"OLIVER"];
+}
+
+- (void)tearDown
+{
+    self.codeWithModulo43CheckDigit = nil;
+    
+    // Put teardown code here; it will be run once, after the last test case.
+    [super tearDown];
+}
 
 // tests encoding a basic word
 - (void)testEncode
@@ -38,6 +56,16 @@
 {
 	BCKCode39Code *code = [[BCKCode39Code alloc] initWithContent:@"oliver"];
 	STAssertNil(code, @"Should not be able to encode lower case text in Code39");
+}
+
+// tests encoding a barcode with the Modulo 43 check digit
+- (void)testEncodeWithModulo43CheckDigit
+{
+	NSString *expected = @"10010110110101101011010010101101010011010110100110101001101010110110101100101011010101100101011001101010100101101101";
+	NSString *actual = [self.codeWithModulo43CheckDigit bitString];
+	BOOL isEqual = [expected isEqualToString:actual];
+	
+	STAssertTrue(isEqual, @"Mod 43 check digit incorrect");
 }
 
 @end
