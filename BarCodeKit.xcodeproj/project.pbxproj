@@ -30,6 +30,7 @@
 		6C818CAF17CB703300AEE26F /* BCKCode93Code.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C818CAE17CB703300AEE26F /* BCKCode93Code.m */; };
 		6C818CB217CCAA6300AEE26F /* BCKCode93CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C818CB117CCAA6300AEE26F /* BCKCode93CodeCharacter.m */; };
 		6C818CB517CCAC0400AEE26F /* BCKCode93ContentCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C818CB417CCAC0400AEE26F /* BCKCode93ContentCodeCharacter.m */; };
+		6C9302C317D733C400867E2E /* BCKCode39CodeModulo43.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9302C217D733C400867E2E /* BCKCode39CodeModulo43.m */; };
 		A13B58E217C6A03A00454150 /* BCKInterleaved2of5CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B58E117C6A03A00454150 /* BCKInterleaved2of5CodeTest.m */; };
 		A13B58E517C6A10200454150 /* BCKInterleaved2of5Code.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B58E417C6A10200454150 /* BCKInterleaved2of5Code.m */; };
 		A13B58E817C6A1C700454150 /* BCKInterleaved2of5CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B58E717C6A1C700454150 /* BCKInterleaved2of5CodeCharacter.m */; };
@@ -113,6 +114,8 @@
 		6C818CB117CCAA6300AEE26F /* BCKCode93CodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode93CodeCharacter.m; sourceTree = "<group>"; };
 		6C818CB317CCAC0400AEE26F /* BCKCode93ContentCodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode93ContentCodeCharacter.h; sourceTree = "<group>"; };
 		6C818CB417CCAC0400AEE26F /* BCKCode93ContentCodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode93ContentCodeCharacter.m; sourceTree = "<group>"; };
+		6C9302C117D733C400867E2E /* BCKCode39CodeModulo43.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode39CodeModulo43.h; sourceTree = "<group>"; };
+		6C9302C217D733C400867E2E /* BCKCode39CodeModulo43.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode39CodeModulo43.m; sourceTree = "<group>"; };
 		A13B58E117C6A03A00454150 /* BCKInterleaved2of5CodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKInterleaved2of5CodeTest.m; sourceTree = "<group>"; };
 		A13B58E317C6A10200454150 /* BCKInterleaved2of5Code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKInterleaved2of5Code.h; sourceTree = "<group>"; };
 		A13B58E417C6A10200454150 /* BCKInterleaved2of5Code.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKInterleaved2of5Code.m; sourceTree = "<group>"; };
@@ -281,6 +284,8 @@
 		A7378D8517C23AC3008921C4 /* Code39 */ = {
 			isa = PBXGroup;
 			children = (
+				6C9302C117D733C400867E2E /* BCKCode39CodeModulo43.h */,
+				6C9302C217D733C400867E2E /* BCKCode39CodeModulo43.m */,
 				A7337C6417C1250F00BC2D2D /* BCKCode39Code.h */,
 				A7337C6517C1250F00BC2D2D /* BCKCode39Code.m */,
 				6C2AF50E17D5EE3F00175AE0 /* BCKCode39FullASCII.h */,
@@ -635,6 +640,7 @@
 			files = (
 				A13B58EB17C6A1E500454150 /* BCKInterleaved2of5DigitPairCodeCharacter.m in Sources */,
 				A7781E1817B6B301005B9604 /* BCKUPCECode.m in Sources */,
+				6C9302C317D733C400867E2E /* BCKCode39CodeModulo43.m in Sources */,
 				6C818CB217CCAA6300AEE26F /* BCKCode93CodeCharacter.m in Sources */,
 				A7337C6C17C12C8800BC2D2D /* BCKCodeCharacter.m in Sources */,
 				A13B58E517C6A10200454150 /* BCKInterleaved2of5Code.m in Sources */,
@@ -646,7 +652,6 @@
 				A764062517B53B7B00D45F51 /* BCKEANDigitCodeCharacter.m in Sources */,
 				A7343F4917BF599100EF9B83 /* UIImage+BarCodeKit.m in Sources */,
 				A7337C6917C1276700BC2D2D /* BCKCode39CodeCharacter.m in Sources */,
-				6C50DCD817D4B9B30019C753 /* BCKCode39CodeModulo43.m in Sources */,
 				A13B58E817C6A1C700454150 /* BCKInterleaved2of5CodeCharacter.m in Sources */,
 				6C2AF51017D5EE3F00175AE0 /* BCKCode39FullASCII.m in Sources */,
 				A7378D8217C222AD008921C4 /* BCKCode39ContentCodeCharacter.m in Sources */,
