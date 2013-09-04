@@ -11,27 +11,11 @@
 
 @implementation BCKCode39CodeModulo43
 
-#pragma mark - Helper methods
-
--(BCKCode39ContentCodeCharacter *)_generateModulo43ForContentCodeCharacters:(NSArray*)contentCodeCharacters
-{
-    __block NSUInteger weightedSum = 0;
-
-    // Add the value of each content code character to the weighted sum.
-    [contentCodeCharacters enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(BCKCode39ContentCodeCharacter *obj, NSUInteger idx, BOOL *stop) {
-        
-        weightedSum+=[obj characterValue];
-    }];
-    
-    // Return the check character by taking the weighted sum modulo 43
-    return [[BCKCode39ContentCodeCharacter alloc] initWithValue:(weightedSum % 43)];
-}
-
 #pragma mark - Subclass Methods
 
 - (NSArray *)codeCharacters
 {
-    // Array that holds all code characters, including start/stop, spaces, and modulo-43 check character (if required)
+    // Array that holds all code characters, including start/stop, spaces, and modulo-43 check character
     NSMutableArray *finalArray = [NSMutableArray array];
 	NSMutableArray *contentCharacterArray = [NSMutableArray array]; // Holds just the code characters, without spaces and start/stop characters, required to calculate the modulo 43 check digit
     
@@ -54,7 +38,7 @@
 	[finalArray addObject:[BCKCode39CodeCharacter spacingCodeCharacter]];
     
     // Calculate and add the Module 43 check digit character
-    BCKCode39CodeCharacter *tmpCharacter = [self _generateModulo43ForContentCodeCharacters:contentCharacterArray];
+    BCKCode39CodeCharacter *tmpCharacter = [self generateModulo43ForContentCodeCharacter:contentCharacterArray];
     [finalArray addObject:tmpCharacter];
     
     // space

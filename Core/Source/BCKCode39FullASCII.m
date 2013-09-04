@@ -27,8 +27,7 @@
 
 // source: http://en.wikipedia.org/wiki/Code_39
 
-// Returns the Code39 representation of all supported ASCII characters, including Full ASCII
-+(NSString*)_fullASCIIEncoding:(NSString*)character
++(NSString*)fullASCIIEncoding:(NSString*)character
 {
     NSDictionary *encodingDictionary = @{
                                          @"␀": @"%U",
@@ -171,8 +170,7 @@
 
 - (NSArray *)codeCharacters
 {
-    // Array that holds all code characters, including start/stop, termination bar, modulo-7 check characters and any
-    // special characters required to represent any full ASCII characters included in the content
+    // Array that holds all code characters, including start/stop and any special characters required to represent any full ASCII characters included in the content
     NSMutableArray *finalArray = [NSMutableArray array];
     BCKCode39CodeCharacter *tmpCharacter = nil;
     
@@ -185,7 +183,7 @@
         [finalArray addObject:[BCKCode39CodeCharacter spacingCodeCharacter]];
         
 		NSString *character = [_content substringWithRange:NSMakeRange(index, 1)];
-        NSString *characterEncoding = [BCKCode39FullASCII _fullASCIIEncoding:character];
+        NSString *characterEncoding = [BCKCode39FullASCII fullASCIIEncoding:character];
         
         if([characterEncoding length]==1)
         {
