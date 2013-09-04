@@ -31,6 +31,7 @@
 		6C818CB217CCAA6300AEE26F /* BCKCode93CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C818CB117CCAA6300AEE26F /* BCKCode93CodeCharacter.m */; };
 		6C818CB517CCAC0400AEE26F /* BCKCode93ContentCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C818CB417CCAC0400AEE26F /* BCKCode93ContentCodeCharacter.m */; };
 		6C9302C317D733C400867E2E /* BCKCode39CodeModulo43.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9302C217D733C400867E2E /* BCKCode39CodeModulo43.m */; };
+		6C9302C617D7376400867E2E /* BCKCode39FullASCIIModulo43.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9302C517D7376400867E2E /* BCKCode39FullASCIIModulo43.m */; };
 		A13B58E217C6A03A00454150 /* BCKInterleaved2of5CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B58E117C6A03A00454150 /* BCKInterleaved2of5CodeTest.m */; };
 		A13B58E517C6A10200454150 /* BCKInterleaved2of5Code.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B58E417C6A10200454150 /* BCKInterleaved2of5Code.m */; };
 		A13B58E817C6A1C700454150 /* BCKInterleaved2of5CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B58E717C6A1C700454150 /* BCKInterleaved2of5CodeCharacter.m */; };
@@ -116,6 +117,8 @@
 		6C818CB417CCAC0400AEE26F /* BCKCode93ContentCodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode93ContentCodeCharacter.m; sourceTree = "<group>"; };
 		6C9302C117D733C400867E2E /* BCKCode39CodeModulo43.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode39CodeModulo43.h; sourceTree = "<group>"; };
 		6C9302C217D733C400867E2E /* BCKCode39CodeModulo43.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode39CodeModulo43.m; sourceTree = "<group>"; };
+		6C9302C417D7376400867E2E /* BCKCode39FullASCIIModulo43.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode39FullASCIIModulo43.h; sourceTree = "<group>"; };
+		6C9302C517D7376400867E2E /* BCKCode39FullASCIIModulo43.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode39FullASCIIModulo43.m; sourceTree = "<group>"; };
 		A13B58E117C6A03A00454150 /* BCKInterleaved2of5CodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKInterleaved2of5CodeTest.m; sourceTree = "<group>"; };
 		A13B58E317C6A10200454150 /* BCKInterleaved2of5Code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKInterleaved2of5Code.h; sourceTree = "<group>"; };
 		A13B58E417C6A10200454150 /* BCKInterleaved2of5Code.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKInterleaved2of5Code.m; sourceTree = "<group>"; };
@@ -284,12 +287,14 @@
 		A7378D8517C23AC3008921C4 /* Code39 */ = {
 			isa = PBXGroup;
 			children = (
-				6C9302C117D733C400867E2E /* BCKCode39CodeModulo43.h */,
-				6C9302C217D733C400867E2E /* BCKCode39CodeModulo43.m */,
 				A7337C6417C1250F00BC2D2D /* BCKCode39Code.h */,
 				A7337C6517C1250F00BC2D2D /* BCKCode39Code.m */,
+				6C9302C117D733C400867E2E /* BCKCode39CodeModulo43.h */,
+				6C9302C217D733C400867E2E /* BCKCode39CodeModulo43.m */,
 				6C2AF50E17D5EE3F00175AE0 /* BCKCode39FullASCII.h */,
 				6C2AF50F17D5EE3F00175AE0 /* BCKCode39FullASCII.m */,
+				6C9302C417D7376400867E2E /* BCKCode39FullASCIIModulo43.h */,
+				6C9302C517D7376400867E2E /* BCKCode39FullASCIIModulo43.m */,
 			);
 			name = Code39;
 			sourceTree = "<group>";
@@ -655,6 +660,7 @@
 				A13B58E817C6A1C700454150 /* BCKInterleaved2of5CodeCharacter.m in Sources */,
 				6C2AF51017D5EE3F00175AE0 /* BCKCode39FullASCII.m in Sources */,
 				A7378D8217C222AD008921C4 /* BCKCode39ContentCodeCharacter.m in Sources */,
+				6C9302C617D7376400867E2E /* BCKCode39FullASCIIModulo43.m in Sources */,
 				A7337C6617C1250F00BC2D2D /* BCKCode39Code.m in Sources */,
 				6C818CAF17CB703300AEE26F /* BCKCode93Code.m in Sources */,
 			);

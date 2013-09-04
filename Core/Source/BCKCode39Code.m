@@ -30,6 +30,20 @@
 	return self;
 }
 
+-(BCKCode39ContentCodeCharacter *)generateModulo43ForContentCodeCharacter:(NSArray*)contentCodeCharacters
+{
+    __block NSUInteger weightedSum = 0;
+    
+    // Add the value of each content code character to the weighted sum.
+    [contentCodeCharacters enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(BCKCode39ContentCodeCharacter *obj, NSUInteger idx, BOOL *stop) {
+        
+        weightedSum+=[obj characterValue];
+    }];
+    
+    // Return the check character by taking the weighted sum modulo 43
+    return [[BCKCode39ContentCodeCharacter alloc] initWithValue:(weightedSum % 43)];
+}
+
 #pragma mark - Helper Methods
 
 - (BOOL)_isValidContent:(NSString *)content

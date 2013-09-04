@@ -9,7 +9,7 @@
 #import "BCKCode39Code.h"
 
 /**
- Specialized subclass of BCKCode39Code to represent a Code39 code with a modulo 43 check digit. Using it requires this feature to be enabled in the barcode reader. If it is not enabled the check digit will be calculated and added to the barcode but read by the barcode reader as a regular barcode character.
+ Specialized subclass of BCKCode39Code to represent a Code39 code with a Modulo 43 check digit. Using it requires this feature to be enabled in the barcode reader. If it is not enabled the check digit will be calculated and added to the barcode but read by the barcode reader as a regular barcode character.
  */
 @interface BCKCode39CodeModulo43 : BCKCode39Code
 

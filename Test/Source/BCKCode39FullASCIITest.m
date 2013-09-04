@@ -8,6 +8,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 #import "BCKCode39FullASCII.h"
+#import "BCKCode39FullASCIIModulo43.h"
 
 @interface BCKCode39FullASCII () // private
 
@@ -53,6 +54,17 @@
 	BOOL isEqual = [expected isEqualToString:actual];
    
 	STAssertTrue(isEqual, @"Result from encoding a full ASCII incorrect");
+}
+
+// tests encoding a barcode containing full ASCII characters with the Modulo-43 check character
+- (void)testEncodeFullASCIIWithModulo43
+{
+    BCKCode39FullASCIIModulo43 *codeFullASCIIModulo43 = [[BCKCode39FullASCIIModulo43 alloc] initWithContent:@"a"];
+	NSString *expected = @"1001011011010100101001001011010100101101101001011010100101101101";
+	NSString *actual = [codeFullASCIIModulo43 bitString];
+	BOOL isEqual = [expected isEqualToString:actual];
+
+	STAssertTrue(isEqual, @"Result from encoding a full ASCII with Module-43 check character incorrect");
 }
 
 @end

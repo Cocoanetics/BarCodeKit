@@ -257,13 +257,13 @@ NSString * const BCKCode93Modulo47CheckCharacterSecondOption = @"BCKCode93Modulo
 
 - (CGFloat)aspectRatio
 {
-	return 0;  // do not use aspect
+    return 1.95;
 }
 
 // The bar height should be at least 15% of the symbol (barcode) lenght, or 6.35mm (34 bars), whichever is greater. Returning a fixed height of 34 for now.
 - (CGFloat)fixedHeight
 {
-    return 34;
+    return 0;
 }
 
 - (CGFloat)_captionFontSizeWithOptions:(NSDictionary *)options
