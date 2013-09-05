@@ -10,11 +10,10 @@
 #import "UIImage+BarCodeKit.h"
 
 #define SAMPLE_CONTENTS @"12345670"                // Sample barcode that works for most, but not all barcode types
-#define SAMPLE_CONTENTS_ALT @"9780596516178"       // Alternative sample barcode
 
 @interface BCKBarcodeViewController ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *barcodeImage;
+@property (weak, nonatomic) IBOutlet UIImageView *barcodeImageView;
 @property (nonatomic, strong) BCKCode *barcodeObject;
 
 - (void)configureView;
@@ -41,10 +40,10 @@
 
 #pragma mark - Other
 
-- (void)setBarcodeClass:(Class)newBarcodeClass
+- (void)setbarcodeClassString:(NSString *)newBarcodeClassString
 {
-    if (_barcodeClass != newBarcodeClass) {
-        _barcodeClass = newBarcodeClass;
+    if (_barcodeClassString != newBarcodeClassString) {
+        _barcodeClassString = newBarcodeClassString;
         
         // Update the view.
         [self configureView];
@@ -72,25 +71,15 @@
                               BCKCodeDrawingPrintCaptionOption: @(_captionOption),
                               BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption: @(_captionOverlap)};
 
-    // Initialise barcode contents using the sample barcode
-    self.barcodeObject = [[self.barcodeClass alloc] initWithContent:_contentTextField.text];
+    // Initialise barcode contents using the text in the textfield
+    self.barcodeObject = [[NSClassFromString(self.barcodeClassString) alloc] initWithContent:_contentTextField.text];
 
-    // Draw the barcode. If the sample didn't work, try the alternative one. If that doesn't work show a placeholder image.
-    if(self.barcodeObject)
-        self.barcodeImage.image = [UIImage imageWithBarCode:self.barcodeObject options:options];
+    // Draw the barcode. If the barcode doesn't support the content...
+    if(self.barcodeObject) {
+        self.barcodeImageView.image = [UIImage imageWithBarCode:self.barcodeObject options:options];
+    }
     else {
-        // Try the alternative sample first
-        self.barcodeObject = [[self.barcodeClass alloc] initWithContent:SAMPLE_CONTENTS_ALT];
-
-        if(self.barcodeObject)
-        {
-            _contentTextField.text = SAMPLE_CONTENTS_ALT;
-            self.barcodeImage.image = [UIImage imageWithBarCode:self.barcodeObject options:options];
-        }
-        else{
-            _contentTextField.text = @"";
-            self.barcodeImage.image = [UIImage imageNamed:@"enter_barcode"];
-        }
+        self.barcodeImageView.image = nil;
     }
 }
 
@@ -134,7 +123,7 @@
 
 - (void)configureView
 {
-    self.title = NSStringFromClass([self.barcodeClass class]);
+    self.title = self.barcodeClassString;
     
     // Set default options
     _captionOption = YES;
@@ -225,7 +214,7 @@
         case 0:
         {
             cell.textLabel.text = @"Content";
-            [cell.contentView addSubview:_contentTextField];
+            cell.accessoryView = _contentTextField;
             break;
         }
         case 1:

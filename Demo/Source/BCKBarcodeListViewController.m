@@ -8,11 +8,11 @@
 
 #import "BCKBarcodeListViewController.h"
 #import "BCKBarcodeViewController.h"
-#import <objc/objc-runtime.h>
+#import <objc/runtime.h>
 
 @interface BCKBarcodeListViewController ()
 
-@property (nonatomic) NSArray *barcodeTypes;            // Holds an array of Class structs for all BCKCode subclasses
+@property (nonatomic) NSArray *barcodeTypes;            // Holds an array of NSStrings with the name of all BCKCode subclasses
 
 @end
 
@@ -20,7 +20,7 @@
 
 #pragma mark - Other
 
-// Returns an array of Class structs of theClass' subclasses (direct subclasses only)
+// Returns an array of NSString objects of theClass' subclasses (direct subclasses only)
 - (NSArray *) allSubclassesForClass:(Class)theClass
 {
     NSMutableArray *mySubclasses = [NSMutableArray array];
@@ -35,12 +35,13 @@
         } while (superClass && superClass != theClass);
         
         if (superClass == theClass) {                   // change to (superClass) to find all descendants, not just the direct ones
-            [mySubclasses addObject: classes[ci]];
+            [mySubclasses addObject: NSStringFromClass(classes[ci])];
         }
     }
     free(classes);
     
-    return mySubclasses;
+    // Sort alphabetically and return the array
+    return [mySubclasses sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
 }
 
 - (void)viewDidLoad
@@ -74,7 +75,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
     // Just display the Class name
-    cell.textLabel.text = NSStringFromClass(self.barcodeTypes[indexPath.row]);
+    cell.textLabel.text = self.barcodeTypes[indexPath.row];
     
     return cell;
 }
@@ -84,7 +85,7 @@
     // Pass the Class struct of the selected barcode type
     if ([[segue identifier] isEqualToString:@"showBarcode"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        [[segue destinationViewController] setBarcodeClass:self.barcodeTypes[indexPath.row]];
+        [[segue destinationViewController] setBarcodeClassString:self.barcodeTypes[indexPath.row]];
     }
 }
 
