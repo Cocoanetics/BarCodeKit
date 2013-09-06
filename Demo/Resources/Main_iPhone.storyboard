@@ -76,14 +76,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0cu-br-9Fn">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0cu-br-9Fn">
                                 <rect key="frame" x="0.0" y="72" width="320" height="92"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="92" id="gNS-ep-RRl"/>
                                 </constraints>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="396" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8lv-be-T1u">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8lv-be-T1u">
                                 <rect key="frame" x="0.0" y="172" width="320" height="396"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -102,13 +103,11 @@
                             <constraint firstItem="0cu-br-9Fn" firstAttribute="top" secondItem="vX1-Fn-Yyb" secondAttribute="bottom" constant="20" symbolic="YES" id="ZLp-lh-mMY"/>
                             <constraint firstItem="DdC-Rc-PdS" firstAttribute="top" secondItem="8lv-be-T1u" secondAttribute="bottom" id="bE8-HZ-rNK"/>
                             <constraint firstItem="8lv-be-T1u" firstAttribute="leading" secondItem="Pwr-4e-DH4" secondAttribute="leading" id="qhr-36-Y8h"/>
-                            <constraint firstAttribute="centerX" secondItem="8lv-be-T1u" secondAttribute="centerX" id="xfR-R8-89Z"/>
-                            <constraint firstItem="8lv-be-T1u" firstAttribute="width" secondItem="0cu-br-9Fn" secondAttribute="width" id="zM2-WL-oW8"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Detail" id="cra-N8-TIN"/>
                     <connections>
-                        <outlet property="barcodeImage" destination="0cu-br-9Fn" id="2fX-0O-WO7"/>
+                        <outlet property="barcodeImageView" destination="0cu-br-9Fn" id="ect-0v-uNM"/>
                         <outlet property="view" destination="Pwr-4e-DH4" id="A5M-Td-utz"/>
                     </connections>
                 </viewController>

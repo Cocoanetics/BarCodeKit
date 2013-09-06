@@ -11,6 +11,6 @@
 
 @interface BCKBarcodeViewController : UIViewController <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
 
-@property (strong, nonatomic) Class barcodeClass;
+@property (strong, nonatomic) NSString *barcodeClassString;
 
 @end
