@@ -167,6 +167,7 @@
     _contentTextField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     _contentTextField.delegate = self;
     _contentTextField.text = SAMPLE_CONTENTS;
+    _contentTextField.placeholder = @"Enter barcode";
     
     // Draw the barcode using the current options
     [self _updateWithOptions];
@@ -177,6 +178,11 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 
+    // Create the height constraint for the tableview. In XCode5-DP6 I (Geoff Breemer) can no longer edit constraints, so this is the only way to create an less than or equal to constraint rather than the default equality
+    NSLayoutConstraint *tableHeight = [NSLayoutConstraint constraintWithItem:self.barcodeImageView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationLessThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:396];
+    [self.barcodeImageView addConstraint:tableHeight];
+
+    // Configure all other controls
     [self configureView];
 }
 
