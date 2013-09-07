@@ -74,8 +74,11 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
+    Class barcodeClass = NSClassFromString(self.barcodeTypes[indexPath.row]);
+    
     // Just display the Class name
-    cell.textLabel.text = self.barcodeTypes[indexPath.row];
+    cell.textLabel.text = [barcodeClass barcodeDescription];
+    cell.detailTextLabel.text = [barcodeClass barcodeStandard];
     
     return cell;
 }
