@@ -24,6 +24,8 @@ static char *variant_patterns[10][2] = {{"EEEOOO", "OOOEEE"},  // 0
 
 @implementation BCKUPCECode
 
+@synthesize codeCharacters = _codeCharacters;
+
 - (instancetype)initWithContent:(NSString *)content
 {
 	self = [super initWithContent:content];
@@ -102,6 +104,10 @@ static char *variant_patterns[10][2] = {{"EEEOOO", "OOOEEE"},  // 0
 
 - (NSArray *)codeCharacters
 {
+    // If the array was created earlier just return it
+    if(_codeCharacters)
+        return _codeCharacters;
+    
 	NSMutableArray *tmpArray = [NSMutableArray array];
 	
 	// variant pattern derives from first and last digits
@@ -124,7 +130,8 @@ static char *variant_patterns[10][2] = {{"EEEOOO", "OOOEEE"},  // 0
 	// end marker
 	[tmpArray addObject:[BCKEANCodeCharacter endMarkerCodeCharacterForUPCE]];
 	
-	return [tmpArray copy];
+    _codeCharacters = [tmpArray copy];
+	return _codeCharacters;
 }
 
 - (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone

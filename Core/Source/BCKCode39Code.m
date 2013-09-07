@@ -13,6 +13,8 @@
 
 @implementation BCKCode39Code
 
+@synthesize codeCharacters = _codeCharacters;
+
 - (instancetype)initWithContent:(NSString *)content
 {
 	self = [super init];
@@ -54,7 +56,7 @@
 		BCKCode39CodeCharacter *codeCharacter = [[BCKCode39ContentCodeCharacter alloc] initWithCharacter:character];
 		if (!codeCharacter)
 		{
-			NSLog(@"Character '%@' cannot be encoded in Code39", character);
+			//NSLog(@"Character '%@' cannot be encoded in Code39", character);
 			return NO;
 		}
 	}
@@ -66,7 +68,11 @@
 
 - (NSArray *)codeCharacters
 {
-	NSMutableArray *tmpArray = [NSMutableArray array];
+    // If the array was created earlier just return it
+    if(_codeCharacters)
+        return _codeCharacters;
+	
+    NSMutableArray *tmpArray = [NSMutableArray array];
 
 	// end marker
 	[tmpArray addObject:[BCKCode39CodeCharacter endMarkerCodeCharacter]];
@@ -87,7 +93,8 @@
 	// end marker
 	[tmpArray addObject:[BCKCode39CodeCharacter endMarkerCodeCharacter]];
 	
-	return [tmpArray copy];
+    _codeCharacters = [tmpArray copy];
+	return _codeCharacters;
 }
 
 - (NSUInteger)horizontalQuietZoneWidth

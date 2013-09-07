@@ -11,6 +11,8 @@
 
 @implementation BCKCode39FullASCII
 
+@synthesize codeCharacters = _codeCharacters;
+
 - (instancetype)initWithContent:(NSString *)content
 {
 	self = [super init];
@@ -170,6 +172,10 @@
 
 - (NSArray *)codeCharacters
 {
+    // If the array was created earlier just return it
+    if(_codeCharacters)
+        return _codeCharacters;
+    
     // Array that holds all code characters, including start/stop and any special characters required to represent any full ASCII characters included in the content
     NSMutableArray *finalArray = [NSMutableArray array];
     BCKCode39CodeCharacter *tmpCharacter = nil;
@@ -209,7 +215,8 @@
     // end marker
     [finalArray addObject:[BCKCode39CodeCharacter endMarkerCodeCharacter]];
     
-	return [finalArray copy];
+    _codeCharacters = [finalArray copy];
+	return _codeCharacters;
 }
 
 @end

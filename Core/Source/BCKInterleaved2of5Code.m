@@ -11,6 +11,8 @@
 
 @implementation BCKInterleaved2of5Code
 
+@synthesize codeCharacters = _codeCharacters;
+
 - (instancetype)initWithContent:(NSString *)content
 {
 	self = [super init];
@@ -44,7 +46,7 @@
 	// Must be of even length - this should always be the (as we 0 prefix this) but just in case...
 	if ( content.length % 2 != 0 )
 	{
-		NSLog(@"Code2of5 codes must have even length " );
+		//NSLog(@"Code2of5 codes must have even length " );
 		return NO;
 	}
 	
@@ -58,7 +60,7 @@
 		
 		if (!codeCharacter)
 		{
-			NSLog(@"Characters '%@' and '%@' cannot be encoded in Code2of5", digit1, digit2);
+			//NSLog(@"Characters '%@' and '%@' cannot be encoded in Code2of5", digit1, digit2);
 			return NO;
 		}
 	}
@@ -70,6 +72,10 @@
 
 - (NSArray *)codeCharacters
 {
+    // If the array was created earlier just return it
+    if(_codeCharacters)
+        return _codeCharacters;
+    
 	NSMutableArray *tmpArray = [NSMutableArray array];
 	
 	// start marker
@@ -89,7 +95,8 @@
 	// end marker
 	[tmpArray addObject:[BCKInterleaved2of5CodeCharacter endMarkerCodeCharacter]];
 	
-	return [tmpArray copy];
+    _codeCharacters = [tmpArray copy];
+	return _codeCharacters;
 }
 
 - (NSUInteger)horizontalQuietZoneWidth

@@ -9,7 +9,10 @@
 #import "BCKEAN8Code.h"
 #import "BCKEANCodeCharacter.h"
 
+
 @implementation BCKEAN8Code
+
+@synthesize codeCharacters = _codeCharacters;
 
 - (instancetype)initWithContent:(NSString *)content
 {
@@ -86,6 +89,10 @@
 // generate the code characters from the content
 - (NSArray *)codeCharacters
 {
+    // If the array was created earlier just return it
+    if(_codeCharacters)
+        return _codeCharacters;
+    
 	NSMutableArray *tmpArray = [NSMutableArray array];
 
 	// variant pattern is fixed
@@ -111,7 +118,8 @@
 	// end marker
 	[tmpArray addObject:[BCKEANCodeCharacter endMarkerCodeCharacter]];
 	
-	return [tmpArray copy];
+    _codeCharacters = [tmpArray copy];
+	return _codeCharacters;
 }
 
 - (CGFloat)aspectRatio

@@ -24,6 +24,8 @@ static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
 
 @implementation BCKEAN13Code
 
+@synthesize codeCharacters = _codeCharacters;
+
 - (instancetype)initWithContent:(NSString *)content
 {
 	self = [super initWithContent:content];
@@ -98,7 +100,11 @@ static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
 
 - (NSArray *)codeCharacters
 {
-	NSMutableArray *tmpArray = [NSMutableArray array];
+    // If the array was created earlier just return it
+    if(_codeCharacters)
+        return _codeCharacters;
+    
+    NSMutableArray *tmpArray = [NSMutableArray array];
 	
 	// variant pattern derives from first digit
 	NSUInteger firstDigit = [self _digitAtIndex:0];
@@ -124,7 +130,8 @@ static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
 	// end marker
 	[tmpArray addObject:[BCKEANCodeCharacter endMarkerCodeCharacter]];
 	
-	return [tmpArray copy];
+    _codeCharacters = [tmpArray copy];
+	return _codeCharacters;
 }
 
 - (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone

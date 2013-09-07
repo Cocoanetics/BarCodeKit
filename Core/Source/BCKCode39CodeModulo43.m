@@ -11,10 +11,16 @@
 
 @implementation BCKCode39CodeModulo43
 
+@synthesize codeCharacters = _codeCharacters;
+
 #pragma mark - Subclass Methods
 
 - (NSArray *)codeCharacters
 {
+    // If the array was created earlier just return it
+    if(_codeCharacters)
+        return _codeCharacters;
+    
     // Array that holds all code characters, including start/stop, spaces, and modulo-43 check character
     NSMutableArray *finalArray = [NSMutableArray array];
 	NSMutableArray *contentCharacterArray = [NSMutableArray array]; // Holds just the code characters, without spaces and start/stop characters, required to calculate the modulo 43 check digit
@@ -47,7 +53,8 @@
 	// end marker
 	[finalArray addObject:[BCKCode39CodeCharacter endMarkerCodeCharacter]];
 	
-	return [finalArray copy];
+    _codeCharacters = [finalArray copy];
+	return _codeCharacters;
 }
 
 @end

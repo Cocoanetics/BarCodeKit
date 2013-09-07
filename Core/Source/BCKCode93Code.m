@@ -12,6 +12,8 @@
 
 @implementation BCKCode93Code
 
+@synthesize codeCharacters = _codeCharacters;
+
 #define FIRSTMODULO47MAXWEIGHT 20       // the weight ranges from 1 to 20 for the first modulo-47 check
 #define SECONDMODULO47MAXWEIGHT 15      // the weight ranges from 1 to 15 for the second modulo-47 check
 
@@ -199,6 +201,10 @@ NSString * const BCKCode93Modulo47CheckCharacterSecondOption = @"BCKCode93Modulo
 
 - (NSArray *)codeCharacters
 {
+    // If the array was created earlier just return it
+    if(_codeCharacters)
+        return _codeCharacters;
+    
     // Array that holds all code characters, including start/stop, termination bar, modulo-7 check characters and any
     // special characters required to represent any full ASCII characters included in the content
     NSMutableArray *finalArray = [NSMutableArray array];
@@ -246,24 +252,25 @@ NSString * const BCKCode93Modulo47CheckCharacterSecondOption = @"BCKCode93Modulo
     // Add the termination bar
 	[finalArray addObject:[BCKCode93CodeCharacter terminationBarCodeCharacter]];
     
-	return [finalArray copy];
+    _codeCharacters = [finalArray copy];
+	return _codeCharacters;
 }
 
 // The horizontal quiet zone width (starting and trailing) should be at least 6.35mm. With an X-dimension of 0.19mm this equals 34 bars (rounded up)
 - (NSUInteger)horizontalQuietZoneWidth
 {
-	return 34;
+	return 17;
 }
 
 - (CGFloat)aspectRatio
 {
-    return 1.95;
+    return 2.1;
 }
 
 // The bar height should be at least 15% of the symbol (barcode) lenght, or 6.35mm (34 bars), whichever is greater. Returning a fixed height of 34 for now.
 - (CGFloat)fixedHeight
 {
-    return 0;
+    return 34;
 }
 
 - (CGFloat)_captionFontSizeWithOptions:(NSDictionary *)options
