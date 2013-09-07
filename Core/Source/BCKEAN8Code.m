@@ -130,6 +130,11 @@
 	return _codeCharacters;
 }
 
+- (NSString *)defaultCaptionFontName
+{
+	return @"OCRB";
+}
+
 - (CGFloat)aspectRatio
 {
 	return 26.73 / 21.31;

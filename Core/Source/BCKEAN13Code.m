@@ -152,6 +152,11 @@ static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
 	return nil;
 }
 
+- (NSString *)defaultCaptionFontName
+{
+	return @"OCRB";
+}
+
 - (CGFloat)aspectRatio
 {
 	return 39.29 / 25.91;

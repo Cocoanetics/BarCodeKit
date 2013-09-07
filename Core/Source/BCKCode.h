@@ -9,6 +9,7 @@
 // string constants
 extern NSString * const BCKCodeDrawingBarScaleOption;
 extern NSString * const BCKCodeDrawingPrintCaptionOption;
+extern NSString * const BCKCodeDrawingCaptionFontNameOption;
 extern NSString * const BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption;
 extern NSString * const BCKCodeDrawingFillEmptyQuietZonesOption;
 extern NSString * const BCKCodeDrawingDebugOption;
@@ -131,6 +132,12 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
 @property (nonatomic, readonly) BOOL allowsFillingOfEmptyQuietZones;
 
 /**
+ The font name to use for captions if no other is specified via BCKCodeDrawingCaptionFontNameOption
+ */
+@property (nonatomic, readonly) NSString *defaultCaptionFontName;
+
+
+/**
  @name Getting Information about Bar Codes
  */
 
@@ -142,11 +149,11 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
 /**
  The barcode class' international standard
  */
-+(NSString *)barcodeStandard;
++ (NSString *)barcodeStandard;
 
 /**
  Human readable description of the barcode class (e.g. EAN-8)
  */
-+(NSString *)barcodeDescription;
++ (NSString *)barcodeDescription;
 
 @end
