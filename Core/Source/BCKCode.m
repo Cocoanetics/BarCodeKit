@@ -14,6 +14,7 @@
 // options
 NSString * const BCKCodeDrawingBarScaleOption = @"BCKCodeDrawingBarScale";
 NSString * const BCKCodeDrawingPrintCaptionOption = @"BCKCodeDrawingPrintCaption";
+NSString * const BCKCodeDrawingCaptionFontNameOption = @"BCKCodeDrawingCaptionFontName";
 NSString * const BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption = @"BCKCodeDrawingMarkerBarsOverlapCaptionPercent";
 NSString * const BCKCodeDrawingFillEmptyQuietZonesOption = @"BCKCodeDrawingFillEmptyQuietZones";
 NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
@@ -263,26 +264,28 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	NSString *leftDigits = [self _leftCaptionZoneDisplayTextWithOptions:options];
 	NSString *rightDigits = [self _rightCaptionZoneDisplayTextWithOptions:options];
 	
+	NSString *fontName = [self _captionFontNameFromOptions:options];
+	
 	CGFloat optimalCaptionFontSize = CGFLOAT_MAX;
 	
 	if ([leftQuietZoneText length])
 	{
-		optimalCaptionFontSize = MIN(optimalCaptionFontSize, [self _optimalFontSizeToFitText:leftQuietZoneText insideWidth:[self _horizontalQuietZoneWidthWithOptions:options]]);
+		optimalCaptionFontSize = MIN(optimalCaptionFontSize, [self _optimalFontSizeToFitText:leftQuietZoneText fontName:fontName insideWidth:[self _horizontalQuietZoneWidthWithOptions:options]]);
 	}
 	
 	if ([leftDigits length])
 	{
-		optimalCaptionFontSize = MIN(optimalCaptionFontSize, [self _optimalFontSizeToFitText:leftDigits insideWidth:[self _leftCaptionZoneWidthWithOptions:options]]);
+		optimalCaptionFontSize = MIN(optimalCaptionFontSize, [self _optimalFontSizeToFitText:leftDigits fontName:fontName insideWidth:[self _leftCaptionZoneWidthWithOptions:options]]);
 	}
 	
 	if ([rightDigits length])
 	{
-		optimalCaptionFontSize = MIN(optimalCaptionFontSize, [self _optimalFontSizeToFitText:rightDigits insideWidth:[self _rightCaptionZoneWidthWithOptions:options]]);
+		optimalCaptionFontSize = MIN(optimalCaptionFontSize, [self _optimalFontSizeToFitText:rightDigits fontName:fontName insideWidth:[self _rightCaptionZoneWidthWithOptions:options]]);
 	}
 	
 	if ([rightQuietZoneText length])
 	{
-		optimalCaptionFontSize = MIN(optimalCaptionFontSize, [self _optimalFontSizeToFitText:rightQuietZoneText insideWidth:[self _horizontalQuietZoneWidthWithOptions:options]]);
+		optimalCaptionFontSize = MIN(optimalCaptionFontSize, [self _optimalFontSizeToFitText:rightQuietZoneText fontName:fontName insideWidth:[self _horizontalQuietZoneWidthWithOptions:options]]);
 	}
 	
 	return optimalCaptionFontSize;
@@ -314,17 +317,30 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	return 1; // default
 }
 
+- (NSString *)_captionFontNameFromOptions:(NSDictionary *)options
+{
+	NSString *fontName = [options objectForKey:BCKCodeDrawingCaptionFontNameOption];
+	
+	if (fontName)
+	{
+		return fontName;
+	}
+	
+	return [self defaultCaptionFontName];
+}
+
 #pragma mark - Caption Text
 
-- (NSAttributedString *)_attributedStringForCaptionText:(NSString *)text fontSize:(CGFloat)fontSize
+- (NSAttributedString *)_attributedStringForCaptionText:(NSString *)text fontName:(NSString *)fontName fontSize:(CGFloat)fontSize
 {
 	// create a centered paragraph style
 	CTTextAlignment alignment = kCTCenterTextAlignment;
 	CTParagraphStyleSetting settings[] = {{kCTParagraphStyleSpecifierAlignment, sizeof(alignment), &alignment}};
 	CTParagraphStyleRef paragraphStyle = CTParagraphStyleCreate(settings, 1);
 	
-	CTFontRef font = CTFontCreateWithName(CFSTR("OCRB"), fontSize, NULL);
+	CTFontRef font = CTFontCreateWithName((__bridge CFStringRef)(fontName), fontSize, NULL);
 	
+	// fall back
 	if (!font)
 	{
 		font = CTFontCreateWithName(CFSTR("Helvetica"), fontSize, NULL);
@@ -340,14 +356,14 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 }
 
 
-- (CTFrameRef)_frameWithCaptionText:(NSString *)text fontSize:(CGFloat)fontSize constraintedToWidth:(CGFloat)constraintWidth
+- (CTFrameRef)_frameWithCaptionText:(NSString *)text fontName:(NSString *)fontName fontSize:(CGFloat)fontSize constraintedToWidth:(CGFloat)constraintWidth
 {
 	if (!constraintWidth)
 	{
 		constraintWidth = CGFLOAT_MAX;
 	}
 	
-	NSAttributedString *attributedString = [self _attributedStringForCaptionText:text fontSize:fontSize];
+	NSAttributedString *attributedString = [self _attributedStringForCaptionText:text fontName:fontName fontSize:fontSize];
 	
 	CTFramesetterRef framesetter =  CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)(attributedString));
 	CTTypesetterRef typesetter = CTFramesetterGetTypesetter(framesetter);
@@ -387,7 +403,7 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	return neededSize;
 }
 
-- (CGFloat)_optimalFontSizeToFitText:(NSString *)text insideWidth:(CGFloat)width
+- (CGFloat)_optimalFontSizeToFitText:(NSString *)text fontName:(NSString *)fontName insideWidth:(CGFloat)width
 {
 	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
 	paragraphStyle.alignment = NSTextAlignmentCenter;
@@ -396,7 +412,7 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	
 	do
 	{
-		CTFrameRef frame = [self _frameWithCaptionText:text fontSize:fontSize constraintedToWidth:width];
+		CTFrameRef frame = [self _frameWithCaptionText:text fontName:fontName fontSize:fontSize constraintedToWidth:width];
 		
 		if (!frame)
 		{
@@ -470,9 +486,14 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	return YES;
 }
 
+- (NSString *)defaultCaptionFontName
+{
+	return @"Helvetica";
+}
+
 #pragma mark - Drawing
 
-- (void)_drawCaptionText:(NSString *)text fontSize:(CGFloat)fontSize inRect:(CGRect)rect context:(CGContextRef)context
+- (void)_drawCaptionText:(NSString *)text fontName:fontName fontSize:(CGFloat)fontSize inRect:(CGRect)rect context:(CGContextRef)context
 {
 	if (![text length])
 	{
@@ -482,7 +503,7 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	CGRect bounds = CGContextGetClipBoundingBox(context);
 	NSAssert(CGPointEqualToPoint(bounds.origin, CGPointZero), @"%s requires {0,0} clip origin", __PRETTY_FUNCTION__);
 	
-	CTFrameRef frame = [self _frameWithCaptionText:text fontSize:fontSize constraintedToWidth:rect.size.width];
+	CTFrameRef frame = [self _frameWithCaptionText:text fontName:fontName fontSize:fontSize constraintedToWidth:rect.size.width];
 	
 	if (!frame)
 	{
@@ -569,10 +590,11 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	if ([self _shouldDrawCaptionFromOptions:options])
 	{
 		optimalCaptionFontSize = [self _captionFontSizeWithOptions:options];
+		NSString *fontName = [self _captionFontNameFromOptions:options];
 		
 		NSString *entireCaption = [NSString stringWithFormat:@"%@%@%@%@", leftQuietZoneText, leftDigits, rightDigits, rightQuietZoneText];
 		
-		CTFrameRef frame = [self _frameWithCaptionText:entireCaption fontSize:optimalCaptionFontSize constraintedToWidth:0];
+		CTFrameRef frame = [self _frameWithCaptionText:entireCaption fontName:fontName fontSize:optimalCaptionFontSize constraintedToWidth:0];
 		CGSize neededSize = [self _sizeNeededByFirstLineInFrame:frame];
 		CFRelease(frame);
 		
@@ -679,6 +701,8 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	
 	if ([self _shouldDrawCaptionFromOptions:options])
 	{
+		NSString *fontName = [self _captionFontNameFromOptions:options];
+
 		// indent quiet zones to have 1 px distance
 		leftQuietZoneNumberFrame.size.width -= barScale;
 		
@@ -744,18 +768,17 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 			}
 			
 			// Draw Captions
-			
-			[self _drawCaptionText:leftDigits fontSize:optimalCaptionFontSize inRect:leftNumberFrame context:context];
-			[self _drawCaptionText:rightDigits fontSize:optimalCaptionFontSize inRect:rightNumberFrame context:context];
+			[self _drawCaptionText:leftDigits fontName:fontName fontSize:optimalCaptionFontSize inRect:leftNumberFrame context:context];
+			[self _drawCaptionText:rightDigits fontName:fontName fontSize:optimalCaptionFontSize inRect:rightNumberFrame context:context];
 			
 			if (leftQuietZoneText)
 			{
-				[self _drawCaptionText:leftQuietZoneText fontSize:optimalCaptionFontSize inRect:leftQuietZoneNumberFrame context:context];
+				[self _drawCaptionText:leftQuietZoneText fontName:fontName fontSize:optimalCaptionFontSize inRect:leftQuietZoneNumberFrame context:context];
 			}
 			
 			if (rightQuietZoneText)
 			{
-				[self _drawCaptionText:rightQuietZoneText fontSize:optimalCaptionFontSize inRect:rightQuietZoneNumberFrame context:context];
+				[self _drawCaptionText:rightQuietZoneText fontName:fontName fontSize:optimalCaptionFontSize inRect:rightQuietZoneNumberFrame context:context];
 			}
 		}
 		else
@@ -806,16 +829,16 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 			}
 			
 			NSString *text = [self captionTextForZone:BCKCodeDrawingCaptionTextZone];
-			[self _drawCaptionText:text fontSize:[self _captionFontSizeWithOptions:options] inRect:frameBetweenEndMarkers context:context];
+			[self _drawCaptionText:text fontName:fontName fontSize:[self _captionFontSizeWithOptions:options] inRect:frameBetweenEndMarkers context:context];
 			
 			if (leftQuietZoneText)
 			{
-				[self _drawCaptionText:leftQuietZoneText fontSize:optimalCaptionFontSize inRect:leftQuietZoneNumberFrame context:context];
+				[self _drawCaptionText:leftQuietZoneText fontName:fontName fontSize:optimalCaptionFontSize inRect:leftQuietZoneNumberFrame context:context];
 			}
 			
 			if (rightQuietZoneText)
 			{
-				[self _drawCaptionText:rightQuietZoneText fontSize:optimalCaptionFontSize inRect:rightQuietZoneNumberFrame context:context];
+				[self _drawCaptionText:rightQuietZoneText fontName:fontName fontSize:optimalCaptionFontSize inRect:rightQuietZoneNumberFrame context:context];
 			}
 		}
 	}
