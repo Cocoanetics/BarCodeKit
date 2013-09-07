@@ -24,8 +24,6 @@ static char *variant_patterns[10][2] = {{"EEEOOO", "OOOEEE"},  // 0
 
 @implementation BCKUPCECode
 
-@synthesize codeCharacters = _codeCharacters;
-
 - (instancetype)initWithContent:(NSString *)content
 {
 	self = [super initWithContent:content];
@@ -96,6 +94,16 @@ static char *variant_patterns[10][2] = {{"EEEOOO", "OOOEEE"},  // 0
 }
 
 #pragma mark - Subclassing Methods
+
++(NSString *)barcodeStandard
+{
+    return @"International standard ISO/IEC 15420";
+}
+
++(NSString *)barcodeDescription
+{
+    return @"UPC-E";
+}
 
 - (NSUInteger)horizontalQuietZoneWidth
 {

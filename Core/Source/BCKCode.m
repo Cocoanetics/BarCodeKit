@@ -16,8 +16,6 @@ NSString * const BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption = @"BCKCode
 NSString * const BCKCodeDrawingFillEmptyQuietZonesOption = @"BCKCodeDrawingFillEmptyQuietZones";
 NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 
-
-
 @implementation BCKCode
 
 - (instancetype)initWithContent:(NSString *)content
@@ -47,6 +45,16 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 - (NSString *)description
 {
 	return [NSString stringWithFormat:@"<%@ content='%@'>", NSStringFromClass([self class]), [self bitString]];
+}
+
++(NSString *)barcodeStandard
+{
+    return nil;
+}
+
++(NSString *)barcodeDescription
+{
+    return nil;
 }
 
 #pragma mark - Helper Methods

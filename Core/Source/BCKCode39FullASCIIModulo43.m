@@ -11,8 +11,6 @@
 
 @implementation BCKCode39FullASCIIModulo43
 
-@synthesize codeCharacters = _codeCharacters;
-
 - (instancetype)initWithContent:(NSString *)content
 {
 	self = [super init];
@@ -26,6 +24,11 @@
 }
 
 #pragma mark - Subclass Methods
+
++(NSString *)barcodeDescription
+{
+    return @"Code 39 Full ASCII mod 43";
+}
 
 - (NSArray *)codeCharacters
 {

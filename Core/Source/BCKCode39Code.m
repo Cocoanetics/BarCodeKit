@@ -13,7 +13,15 @@
 
 @implementation BCKCode39Code
 
-@synthesize codeCharacters = _codeCharacters;
++(NSString *)barcodeStandard
+{
+    return @"International standard ISO/IEC 16388";
+}
+
++(NSString *)barcodeDescription
+{
+    return @"Code 39";
+}
 
 - (instancetype)initWithContent:(NSString *)content
 {

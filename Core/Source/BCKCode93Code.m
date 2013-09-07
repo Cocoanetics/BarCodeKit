@@ -12,8 +12,6 @@
 
 @implementation BCKCode93Code
 
-@synthesize codeCharacters = _codeCharacters;
-
 #define FIRSTMODULO47MAXWEIGHT 20       // the weight ranges from 1 to 20 for the first modulo-47 check
 #define SECONDMODULO47MAXWEIGHT 15      // the weight ranges from 1 to 15 for the second modulo-47 check
 
@@ -198,6 +196,16 @@ NSString * const BCKCode93Modulo47CheckCharacterSecondOption = @"BCKCode93Modulo
 }
 
 #pragma mark - Subclass Methods
+
++(NSString *)barcodeStandard
+{
+    return @"Not an international standard";
+}
+
++(NSString *)barcodeDescription
+{
+    return @"Code 93 Full ASCII";
+}
 
 - (NSArray *)codeCharacters
 {

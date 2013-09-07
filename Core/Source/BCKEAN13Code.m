@@ -24,8 +24,6 @@ static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
 
 @implementation BCKEAN13Code
 
-@synthesize codeCharacters = _codeCharacters;
-
 - (instancetype)initWithContent:(NSString *)content
 {
 	self = [super initWithContent:content];
@@ -92,6 +90,16 @@ static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
 }
 
 #pragma mark - Subclassing Methods
+
++(NSString *)barcodeStandard
+{
+    return @"International standard ISO/IEC 15420";
+}
+
++(NSString *)barcodeDescription
+{
+    return @"EAN-13 and UPC-A";
+}
 
 - (NSUInteger)horizontalQuietZoneWidth
 {

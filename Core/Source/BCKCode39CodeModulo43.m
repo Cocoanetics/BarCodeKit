@@ -11,9 +11,12 @@
 
 @implementation BCKCode39CodeModulo43
 
-@synthesize codeCharacters = _codeCharacters;
-
 #pragma mark - Subclass Methods
+
++(NSString *)barcodeDescription
+{
+    return @"Code 39 mod 43";
+}
 
 - (NSArray *)codeCharacters
 {

@@ -12,8 +12,6 @@
 
 @implementation BCKEAN8Code
 
-@synthesize codeCharacters = _codeCharacters;
-
 - (instancetype)initWithContent:(NSString *)content
 {
 	self = [super initWithContent:content];
@@ -80,6 +78,16 @@
 }
 
 #pragma mark - Subclassing Methods
+
++(NSString *)barcodeStandard
+{
+    return @"International standard ISO/IEC 15420";
+}
+
++(NSString *)barcodeDescription
+{
+    return @"EAN-8";
+}
 
 - (NSUInteger)horizontalQuietZoneWidth
 {

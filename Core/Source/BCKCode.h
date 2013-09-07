@@ -19,39 +19,41 @@ extern NSString * const BCKCodeDrawingDebugOption;
 typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
 {
 	/**
-	 The quiet zone left of the left start marker
+	 The quiet zone to the left of the left start marker
 	 */
 	BCKCodeDrawingCaptionLeftQuietZone,
 	
 	/**
-	 The digit zone between left start marker and middle marker
+	 The digit zone between the left start marker and the middle marker
 	 */
 	BCKCodeDrawingCaptionLeftNumberZone,
 	
 	/**
-	 The digit zone between middle marker and right end marker
+	 The digit zone between the middle marker and the right end marker
 	 */
 	BCKCodeDrawingCaptionRightNumberZone,
 	
 	/**
-	 The quiet zone right of the right end marker
+	 The quiet zone to the right of the right end marker
 	 */
 	BCKCodeDrawingCaptionRightQuietZone,
 	
 	/**
-	 The text zone between left and right outer markers
+	 The text zone between the left and right start and end markers
 	 */
 	BCKCodeDrawingCaptionTextZone
 };
 
 /**
- This is the base class for all variants of codes:
+ This is the base class for all barcode variants:
  
- - BCKEAN8Code - EAN-8
- - BCKEAN13Code - EAN-13 (13-digit EAN or 12-digit UPC-A)
- - BCKUPCECode - UPC-E (shortened UPC)
- - BCKCode39Code - Code 39
- - BCKCode93Code - Code 93
+ - BCKEAN8Code - EAN-8 - International Standard ISO/IEC 15420
+ - BCKEAN13Code - EAN-13 (13-digit EAN or 12-digit UPC-A) - International Standard ISO/IEC 15420
+ - BCKUPCECode - UPC-E (shortened UPC) - International Standard ISO/IEC 15420
+ - BCKCode39Code - Code 39 - international standard ISO/IEC 16388
+ - BCKCode93Code - Code 93 - no international standard
+ - BCKInterleaved2of5Code - Interleaved 2 of 5 - International standard ISO/IEC 16390
+ - BCKCode128Code - Code 128 - International Standard ISO/IEC 15417
  
  For rendering codes several options can be combined in an options dictionary:
  
@@ -64,6 +66,7 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
 @interface BCKCode : NSObject
 {
 	NSString *_content;
+    NSArray *_codeCharacters;       // This ivar is declared as a public ivar to enable subclass access
 }
 
 /**
@@ -71,8 +74,9 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
  */
 
 /**
- Root initializer for sub-classes of the BCKCode class cluster. You should not call this on BCKCode directly, but always on concrete subclasses based on which kind of code you want to generate.
+ Root initializer for sub-classes of the BCKCode class cluster. You should not call this on BCKCode directly, but always on concrete subclasses based on the kind of code you want to generate.
  @param content The number string for the code
+ @return The requested BCKCode subclass. Returns nil if the content provided cannot be encoded using the requested BCKCode subclass
  */
 - (instancetype)initWithContent:(NSString *)content;
 
@@ -90,7 +94,7 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
 
 /**
  Calculates the graphics context size for the passed render options.
- @param options The rendering options
+ @param options An NSDictionary containig the requested rendering options
  @returns The size required to fit the receiver's rendered representation
  */
 - (CGSize)sizeWithRenderOptions:(NSDictionary *)options;
@@ -100,19 +104,19 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
  */
 
 /**
- The individual code characters that the bar code is consisting of. When subclassing BCKCode this generates an array of BCKCodeCharacter instances which make up the bit string representation of the bar code
+ The individual code characters the bar code comprises. When subclassing BCKCode this generates an array of BCKCodeCharacter instances which make up the bit string representation of the bar code
  */
 @property (nonatomic, readonly) NSArray *codeCharacters;
 
 /**
- The width of the horizontal quiet zone (in bar units) on left and right sides of the bar code.
+ The width of the horizontal quiet zone (in bar units) on the left and right sides of the bar code.
  */
 - (NSUInteger)horizontalQuietZoneWidth;
 
 /**
- The text to display in the given caption zone, or `nil`. Defaults to `nil`. Subclasses can return the check digit or other text. 
+ The text to display in the given caption zone, or `nil` for no caption text. Defaults to `nil`. Subclasses can return the check digit or other text.
  @param captionZone The BCKCodeDrawingCaption zone that specifies the text zone
- @return The caption text to display in this zone, or `nil` for no text
+ @return The caption text to display in this zone, or `nil` for no caption text
  */
 - (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone;
 
@@ -131,8 +135,18 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
  */
 
 /**
- The number string for the receiver
+ The string for the receiver that will be converted into the barcode
  */
 @property (nonatomic, readonly) NSString *content;
+
+/**
+ The barcode class' international standard
+ */
++(NSString *)barcodeStandard;
+
+/**
+ Human readable description of the barcode class (e.g. EAN-8)
+ */
++(NSString *)barcodeDescription;
 
 @end

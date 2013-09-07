@@ -11,8 +11,6 @@
 
 @implementation BCKInterleaved2of5Code
 
-@synthesize codeCharacters = _codeCharacters;
-
 - (instancetype)initWithContent:(NSString *)content
 {
 	self = [super init];
@@ -69,6 +67,16 @@
 }
 
 #pragma mark - Subclass Methods
+
++(NSString *)barcodeStandard
+{
+    return @"International standard ISO/IEC 16390";
+}
+
++(NSString *)barcodeDescription
+{
+    return @"Interleaved 2 of 5 (Code 25)";
+}
 
 - (NSArray *)codeCharacters
 {
