@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4504" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rS3-R9-Ivy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4504" systemVersion="13A569" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rS3-R9-Ivy">
     <dependencies>
+        <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3734.1"/>
     </dependencies>
     <scenes>
@@ -83,15 +84,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0cu-br-9Fn">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0cu-br-9Fn">
                                 <rect key="frame" x="0.0" y="72" width="320" height="92"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="92" id="gNS-ep-RRl"/>
+                                    <constraint firstAttribute="height" constant="92" id="4KF-t0-UW3"/>
                                 </constraints>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8lv-be-T1u">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8lv-be-T1u">
                                 <rect key="frame" x="0.0" y="172" width="320" height="396"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -103,11 +104,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="0cu-br-9Fn" secondAttribute="trailing" id="00V-IY-p2o"/>
                             <constraint firstAttribute="trailing" secondItem="8lv-be-T1u" secondAttribute="trailing" id="0px-vq-X88"/>
-                            <constraint firstItem="8lv-be-T1u" firstAttribute="top" secondItem="0cu-br-9Fn" secondAttribute="bottom" constant="8" symbolic="YES" id="H8h-dv-QtQ"/>
-                            <constraint firstItem="0cu-br-9Fn" firstAttribute="leading" secondItem="Pwr-4e-DH4" secondAttribute="leading" id="W2f-70-9aZ"/>
-                            <constraint firstItem="0cu-br-9Fn" firstAttribute="top" secondItem="vX1-Fn-Yyb" secondAttribute="bottom" constant="20" symbolic="YES" id="ZLp-lh-mMY"/>
+                            <constraint firstItem="0cu-br-9Fn" firstAttribute="leading" secondItem="8lv-be-T1u" secondAttribute="leading" id="7RB-nl-dgs"/>
+                            <constraint firstItem="8lv-be-T1u" firstAttribute="top" secondItem="0cu-br-9Fn" secondAttribute="bottom" constant="8" symbolic="YES" id="KrX-AE-Qdw"/>
+                            <constraint firstItem="0cu-br-9Fn" firstAttribute="trailing" secondItem="8lv-be-T1u" secondAttribute="trailing" id="Xhd-yJ-5Tt"/>
+                            <constraint firstItem="0cu-br-9Fn" firstAttribute="top" secondItem="vX1-Fn-Yyb" secondAttribute="bottom" constant="8" id="YVN-Mj-WTg"/>
                             <constraint firstItem="DdC-Rc-PdS" firstAttribute="top" secondItem="8lv-be-T1u" secondAttribute="bottom" id="bE8-HZ-rNK"/>
                             <constraint firstItem="8lv-be-T1u" firstAttribute="leading" secondItem="Pwr-4e-DH4" secondAttribute="leading" id="qhr-36-Y8h"/>
                         </constraints>
