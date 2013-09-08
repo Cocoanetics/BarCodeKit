@@ -101,9 +101,13 @@ static char *char_encodings[NUMBER_OF_CODE93_CHARACTERS][2] = {
 	if (self)
 	{
 		if (characterValue >= NUMBER_OF_CODE93_CHARACTERS)
+		{
 			return nil;
+		}
 		else
+		{
 			_character = [NSString stringWithUTF8String:char_encodings[characterValue][CHARACTER_DIMENSION]];
+		}
 	}
 	
 	return self;
@@ -118,7 +122,9 @@ static char *char_encodings[NUMBER_OF_CODE93_CHARACTERS][2] = {
 	if (self)
 	{
 		if (([character length]!=1 && [character length]!=3) || ![self _encodingForCharacter:character])
+		{
 			return nil;
+		}
 		
 		_character = [character copy];
 	}
@@ -158,9 +164,13 @@ static char *char_encodings[NUMBER_OF_CODE93_CHARACTERS][2] = {
 		for(int i=0;i<numberOfModules;i++)
 		{
 			if (isOddBit)
+			{
 				[tmpString appendString:@"1"];
+			}
 			else
+			{
 				[tmpString appendString:@"0"];
+			}
 		}
 	}
 	
