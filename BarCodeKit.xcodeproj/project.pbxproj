@@ -68,6 +68,11 @@
 		A7A6B55617B62D05007FF7DB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A764059E17B50F9100D45F51 /* UIKit.framework */; };
 		A7E1C97317B6067B007DB13A /* libBarCodeKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A76405EB17B52E9700D45F51 /* libBarCodeKit.a */; };
 		A7FB2BB617B6206300712C1C /* OCRB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7FB2BB417B6206300712C1C /* OCRB.ttf */; };
+		EA0EF7DF17D3ACB500015F7B /* NSString+BCKCode128Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0EF7DE17D3ACB500015F7B /* NSString+BCKCode128Helpers.m */; };
+		EA6CF87917CA4FAE009C8994 /* BCKCode128Code.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6CF87817CA4FAE009C8994 /* BCKCode128Code.m */; };
+		EA6CF87C17CA500A009C8994 /* BCKCode128CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6CF87B17CA500A009C8994 /* BCKCode128CodeCharacter.m */; };
+		EA6CF87E17CA513E009C8994 /* BCKCode128CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6CF87D17CA513E009C8994 /* BCKCode128CodeTest.m */; };
+		EA6CF88117CA563F009C8994 /* BCKCode128ContentCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6CF88017CA563F009C8994 /* BCKCode128ContentCodeCharacter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -176,6 +181,15 @@
 		A7A6B58417B62D28007FF7DB /* DemoApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DemoApp-Prefix.pch"; sourceTree = "<group>"; };
 		A7E1C97417B606AA007DB13A /* BarCodeKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BarCodeKit.h; sourceTree = "<group>"; };
 		A7FB2BB417B6206300712C1C /* OCRB.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OCRB.ttf; sourceTree = "<group>"; };
+		EA0EF7DD17D3ACB500015F7B /* NSString+BCKCode128Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+BCKCode128Helpers.h"; sourceTree = "<group>"; };
+		EA0EF7DE17D3ACB500015F7B /* NSString+BCKCode128Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+BCKCode128Helpers.m"; sourceTree = "<group>"; };
+		EA6CF87717CA4FAE009C8994 /* BCKCode128Code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode128Code.h; sourceTree = "<group>"; };
+		EA6CF87817CA4FAE009C8994 /* BCKCode128Code.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode128Code.m; sourceTree = "<group>"; };
+		EA6CF87A17CA500A009C8994 /* BCKCode128CodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode128CodeCharacter.h; sourceTree = "<group>"; };
+		EA6CF87B17CA500A009C8994 /* BCKCode128CodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode128CodeCharacter.m; sourceTree = "<group>"; };
+		EA6CF87D17CA513E009C8994 /* BCKCode128CodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode128CodeTest.m; sourceTree = "<group>"; };
+		EA6CF87F17CA563F009C8994 /* BCKCode128ContentCodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode128ContentCodeCharacter.h; sourceTree = "<group>"; };
+		EA6CF88017CA563F009C8994 /* BCKCode128ContentCodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode128ContentCodeCharacter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -342,6 +356,7 @@
 				A7378E0B17C261D8008921C4 /* BCKEAN8CodeTest.m */,
 				A13B58E117C6A03A00454150 /* BCKInterleaved2of5CodeTest.m */,
 				A7378E0D17C263C7008921C4 /* BCKUPCECodeTest.m */,
+				EA6CF87D17CA513E009C8994 /* BCKCode128CodeTest.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -355,6 +370,7 @@
 				A7378D8517C23AC3008921C4 /* Code39 */,
 				6C818CA917CB64A300AEE26F /* Code93 */,
 				A13B58DF17C6961600454150 /* Interleaved 2 of 5 */,
+				EA6CF87617CA4ED7009C8994 /* Code128 */,
 			);
 			name = Codes;
 			sourceTree = "<group>";
@@ -368,6 +384,7 @@
 				A7378D8417C222F1008921C4 /* Code39 */,
 				6C818CAA17CB64B100AEE26F /* Code93 */,
 				A13B58E017C6963B00454150 /* Interleaved 2 of 5 */,
+				EA6CF87517CA4EBE009C8994 /* Code128 */,
 			);
 			name = "Code Characters";
 			sourceTree = "<group>";
@@ -462,6 +479,28 @@
 				A7A6B54517B62CA4007FF7DB /* main.m */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		EA6CF87517CA4EBE009C8994 /* Code128 */ = {
+			isa = PBXGroup;
+			children = (
+				EA6CF87A17CA500A009C8994 /* BCKCode128CodeCharacter.h */,
+				EA6CF87B17CA500A009C8994 /* BCKCode128CodeCharacter.m */,
+				EA6CF87F17CA563F009C8994 /* BCKCode128ContentCodeCharacter.h */,
+				EA6CF88017CA563F009C8994 /* BCKCode128ContentCodeCharacter.m */,
+				EA0EF7DD17D3ACB500015F7B /* NSString+BCKCode128Helpers.h */,
+				EA0EF7DE17D3ACB500015F7B /* NSString+BCKCode128Helpers.m */,
+			);
+			name = Code128;
+			sourceTree = "<group>";
+		};
+		EA6CF87617CA4ED7009C8994 /* Code128 */ = {
+			isa = PBXGroup;
+			children = (
+				EA6CF87717CA4FAE009C8994 /* BCKCode128Code.h */,
+				EA6CF87817CA4FAE009C8994 /* BCKCode128Code.m */,
+			);
+			name = Code128;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -624,6 +663,7 @@
 				6C818CAC17CB6BF300AEE26F /* BCKCode93CodeTest.m in Sources */,
 				A7378E0C17C261D8008921C4 /* BCKEAN8CodeTest.m in Sources */,
 				A13B58E217C6A03A00454150 /* BCKInterleaved2of5CodeTest.m in Sources */,
+				EA6CF87E17CA513E009C8994 /* BCKCode128CodeTest.m in Sources */,
 				A7378E0517C25A2D008921C4 /* BCKCode39CodeTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -647,18 +687,22 @@
 				A7781E1817B6B301005B9604 /* BCKUPCECode.m in Sources */,
 				6C9302C317D733C400867E2E /* BCKCode39CodeModulo43.m in Sources */,
 				6C818CB217CCAA6300AEE26F /* BCKCode93CodeCharacter.m in Sources */,
+				EA6CF87C17CA500A009C8994 /* BCKCode128CodeCharacter.m in Sources */,
 				A7337C6C17C12C8800BC2D2D /* BCKCodeCharacter.m in Sources */,
 				A13B58E517C6A10200454150 /* BCKInterleaved2of5Code.m in Sources */,
 				A764061C17B53AE700D45F51 /* BCKEANCodeCharacter.m in Sources */,
 				6C818CB517CCAC0400AEE26F /* BCKCode93ContentCodeCharacter.m in Sources */,
 				A764060D17B52EC600D45F51 /* BCKCode.m in Sources */,
+				EA6CF87917CA4FAE009C8994 /* BCKCode128Code.m in Sources */,
 				A764060E17B52EC600D45F51 /* BCKEAN13Code.m in Sources */,
+				EA6CF88117CA563F009C8994 /* BCKCode128ContentCodeCharacter.m in Sources */,
 				A764061917B5362D00D45F51 /* BCKEAN8Code.m in Sources */,
 				A764062517B53B7B00D45F51 /* BCKEANDigitCodeCharacter.m in Sources */,
 				A7343F4917BF599100EF9B83 /* UIImage+BarCodeKit.m in Sources */,
 				A7337C6917C1276700BC2D2D /* BCKCode39CodeCharacter.m in Sources */,
 				A13B58E817C6A1C700454150 /* BCKInterleaved2of5CodeCharacter.m in Sources */,
 				6C2AF51017D5EE3F00175AE0 /* BCKCode39FullASCII.m in Sources */,
+				EA0EF7DF17D3ACB500015F7B /* NSString+BCKCode128Helpers.m in Sources */,
 				A7378D8217C222AD008921C4 /* BCKCode39ContentCodeCharacter.m in Sources */,
 				6C9302C617D7376400867E2E /* BCKCode39FullASCIIModulo43.m in Sources */,
 				A7337C6617C1250F00BC2D2D /* BCKCode39Code.m in Sources */,
