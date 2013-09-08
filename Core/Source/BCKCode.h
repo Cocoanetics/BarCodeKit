@@ -64,11 +64,11 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
  - **BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption** - How many percent of the caption height are covered by elongated marker bars (default 1.0)
  - **BCKCodeDrawingFillEmptyQuietZonesOption** - Whether quiet zones should be filled with angle brackes (default NO)
  - **BCKCodeDrawingDebugOption** - Whether the caption areas should be tinted for debugging (default NO)
-*/
+ */
 @interface BCKCode : NSObject
 {
 	NSString *_content;
-    NSArray *_codeCharacters;       // This ivar is declared as a public ivar to enable subclass access
+	NSArray *_codeCharacters;       // This ivar is declared as a public ivar to enable subclass access
 }
 
 /**
