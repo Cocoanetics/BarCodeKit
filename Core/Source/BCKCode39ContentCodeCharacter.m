@@ -71,9 +71,13 @@ static char *char_encodings[NUMBER_OF_CODE39_CHARACTERS][2] = {
 	if (self)
 	{
 		if (characterValue >= NUMBER_OF_CODE39_CHARACTERS)
+		{
 			return nil;
+		}
 		else
+		{
 			_character = [NSString stringWithUTF8String:char_encodings[characterValue][CHARACTER_DIMENSION]];
+		}
 	}
 	
 	return self;
