@@ -14,6 +14,16 @@
     BCKCode128Version _barcodeVersion;
 }
 
++ (NSString *)barcodeStandard
+{
+	return @"International standard ISO/IEC 15417";
+}
+
++ (NSString *)barcodeDescription
+{
+	return @"Code 128";
+}
+
 - (BCKCode *)initWithContent:(NSString *)content
 {
     self = [super initWithContent:content];
@@ -115,11 +125,6 @@
     return 10;
 }
 
-- (BOOL)markerBarsCanOverlapBottomCaption
-{
-    return NO;
-}
-
 - (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone
 {
     if (captionZone == BCKCodeDrawingCaptionTextZone)
@@ -135,11 +140,6 @@
     UIFont *font = [UIFont boldSystemFontOfSize:fontSize];
 
     return font;
-}
-
-- (BOOL)allowsFillingOfEmptyQuietZones
-{
-    return NO;
 }
 
 - (NSString *)_nextCharacterToEncode:(NSString *)content writeVersion:(BCKCode128Version)writeVersion
