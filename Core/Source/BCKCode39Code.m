@@ -125,11 +125,6 @@
 	return 10;
 }
 
-- (BOOL)markerBarsCanOverlapBottomCaption
-{
-	return NO;
-}
-
 - (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone
 {
 	if (captionZone == BCKCodeDrawingCaptionTextZone)
@@ -145,11 +140,6 @@
 	UIFont *font = [UIFont boldSystemFontOfSize:fontSize];
 	
 	return font;
-}
-
-- (BOOL)allowsFillingOfEmptyQuietZones
-{
-	return NO;
 }
 
 @end

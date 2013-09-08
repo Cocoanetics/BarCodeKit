@@ -286,11 +286,6 @@ NSString * const BCKCode93Modulo47CheckCharacterSecondOption = @"BCKCode93Modulo
 	return 10;
 }
 
-- (BOOL)markerBarsCanOverlapBottomCaption
-{
-	return NO;
-}
-
 - (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone
 {
 	if (captionZone == BCKCodeDrawingCaptionTextZone)
@@ -306,11 +301,6 @@ NSString * const BCKCode93Modulo47CheckCharacterSecondOption = @"BCKCode93Modulo
 	UIFont *font = [UIFont boldSystemFontOfSize:fontSize];
 	
 	return font;
-}
-
-- (BOOL)allowsFillingOfEmptyQuietZones
-{
-	return NO;
 }
 
 @end

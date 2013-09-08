@@ -127,16 +127,6 @@
 	return 10;
 }
 
-- (BOOL)markerBarsCanOverlapBottomCaption
-{
-	return NO;
-}
-
-- (BOOL)allowsFillingOfEmptyQuietZones
-{
-	return NO;
-}
-
 - (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone
 {
 	if (captionZone == BCKCodeDrawingCaptionTextZone)

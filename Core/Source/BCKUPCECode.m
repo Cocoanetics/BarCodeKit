@@ -170,4 +170,14 @@ static char *variant_patterns[10][2] = {{"EEEOOO", "OOOEEE"},  // 0
 	return 26.73 / 21.31;
 }
 
+- (BOOL)markerBarsCanOverlapBottomCaption
+{
+	return YES;
+}
+
+- (BOOL)allowsFillingOfEmptyQuietZones
+{
+	return YES;
+}
+
 @end
