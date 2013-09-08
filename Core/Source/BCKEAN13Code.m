@@ -162,4 +162,14 @@ static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
 	return 39.29 / 25.91;
 }
 
+- (BOOL)markerBarsCanOverlapBottomCaption
+{
+	return YES;
+}
+
+- (BOOL)allowsFillingOfEmptyQuietZones
+{
+	return YES;
+}
+
 @end

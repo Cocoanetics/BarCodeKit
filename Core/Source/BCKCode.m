@@ -478,12 +478,12 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 
 - (BOOL)markerBarsCanOverlapBottomCaption
 {
-	return YES;
+	return NO;
 }
 
 - (BOOL)allowsFillingOfEmptyQuietZones
 {
-	return YES;
+	return NO;
 }
 
 - (NSString *)defaultCaptionFontName

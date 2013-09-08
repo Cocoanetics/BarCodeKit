@@ -140,4 +140,14 @@
 	return 26.73 / 21.31;
 }
 
+- (BOOL)markerBarsCanOverlapBottomCaption
+{
+	return YES;
+}
+
+- (BOOL)allowsFillingOfEmptyQuietZones
+{
+	return YES;
+}
+
 @end

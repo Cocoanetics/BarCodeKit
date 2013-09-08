@@ -8,15 +8,15 @@
 
 #import "BCKBarcodeViewController.h"
 #import "UIImage+BarCodeKit.h"
-
-#define SAMPLE_CONTENTS @"12345670"                // Sample barcode that works for most, but not all barcode types
+#import <objc/runtime.h>
 
 @interface BCKBarcodeViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *barcodeImageView;
 @property (nonatomic, strong) BCKCode *barcodeObject;
-
-- (void)configureView;
+@property (nonatomic, strong) NSString *barcodeSample;
+@property (nonatomic, strong) NSString *barcodeClassString;
+@property (nonatomic, strong) NSArray *barcodeOptions;
 
 @end
 
@@ -38,16 +38,40 @@
 	CGFloat _captionOverlap;
 }
 
-#pragma mark - Other
+#define CONTENT_TEXTFIELD           0
+#define DEBUG_SWITCH                1
+#define BAR_SCALE_SLIDER            2
+#define CAPTION_SWITCH              3
+#define FILL_QUIET_ZONES_SWITCH     4
+#define CAPTION_OVERLAP_SLIDER      5
 
-- (void)setbarcodeClassString:(NSString *)newBarcodeClassString
+#pragma mark - Initialisation
+
+// Use this method to pass all model information (the name of the BCKCode subclass and the sample barcode) to the viewcontroller
+-(void)initWithBarcodeClassString:(NSString *)barcodeClassString andBarcodeSample:(NSString *)barcodeSample
 {
-    if (_barcodeClassString != newBarcodeClassString) {
-        _barcodeClassString = newBarcodeClassString;
+    if (_barcodeClassString != barcodeClassString) {
+        _barcodeClassString = barcodeClassString;
+        
+        _barcodeSample = barcodeSample;
         
         // Update the view.
-        [self configureView];
+        [self _configureView];
     }
+}
+
+// Returns YES if className implements methodName, this is used to check whether one of BCKCode's subclasses implements property getters 
+-(BOOL)_implementsMethod:(NSString *)className forMethod:(SEL)methodName
+{
+    int unsigned numMethods;
+    Method *methods = class_copyMethodList(NSClassFromString(className), &numMethods);
+
+    for (int i = 0; i < numMethods; i++) {
+        if (methodName == method_getName(methods[i]))
+            return YES;
+    }
+    
+    return NO;
 }
 
 #pragma mark - Text Field
@@ -74,7 +98,7 @@
     // Initialise barcode contents using the text in the textfield
     self.barcodeObject = [[NSClassFromString(self.barcodeClassString) alloc] initWithContent:_contentTextField.text];
 
-    // Draw the barcode. If the barcode doesn't support the content...
+    // Draw the barcode. If the barcode doesn't support the content show nothing
     if(self.barcodeObject) {
         self.barcodeImageView.image = [UIImage imageWithBarCode:self.barcodeObject options:options];
     }
@@ -83,25 +107,25 @@
     }
 }
 
-- (void)debugOptionChange:(UISwitch *)sender
+- (void)_debugOptionChange:(UISwitch *)sender
 {
 	_debugOption = sender.isOn;
 	[self _updateWithOptions];
 }
 
-- (void)fillOptionChange:(UISwitch *)sender
+- (void)_fillOptionChange:(UISwitch *)sender
 {
 	_fillOption = sender.isOn;
 	[self _updateWithOptions];
 }
 
-- (void)captionOptionChange:(UISwitch *)sender
+- (void)_captionOptionChange:(UISwitch *)sender
 {
 	_captionOption = sender.isOn;
 	[self _updateWithOptions];
 }
 
-- (void)barScaleChange:(UISlider *)sender
+- (void)_barScaleChange:(UISlider *)sender
 {
 	CGFloat previousScale = _barScale;
 	CGFloat newScale = roundf(sender.value*2.0f) / 2.0f;
@@ -113,7 +137,7 @@
 	}
 }
 
-- (void)overlapChange:(UISlider *)sender
+- (void)_overlapChange:(UISlider *)sender
 {
 	_captionOverlap = sender.value;
     [self _updateWithOptions];
@@ -121,7 +145,7 @@
 
 #pragma mark - UI methods
 
-- (void)configureView
+- (void)_configureView
 {
     self.title = self.barcodeClassString;
     
@@ -134,29 +158,29 @@
     
     // Setup the various controls
     _captionSwitch = [[UISwitch alloc] init];
-    [_captionSwitch addTarget:self action:@selector(captionOptionChange:) forControlEvents:UIControlEventValueChanged];
+    [_captionSwitch addTarget:self action:@selector(_captionOptionChange:) forControlEvents:UIControlEventValueChanged];
     _captionSwitch.on = _captionOption;
     
     _debugSwitch = [[UISwitch alloc] init];
-    [_debugSwitch addTarget:self action:@selector(debugOptionChange:) forControlEvents:UIControlEventValueChanged];
+    [_debugSwitch addTarget:self action:@selector(_debugOptionChange:) forControlEvents:UIControlEventValueChanged];
     _debugSwitch.on = _debugOption;
     
     _fillQuietZonesSwitch = [[UISwitch alloc] init];
-    [_fillQuietZonesSwitch addTarget:self action:@selector(fillOptionChange:) forControlEvents:UIControlEventValueChanged];
+    [_fillQuietZonesSwitch addTarget:self action:@selector(_fillOptionChange:) forControlEvents:UIControlEventValueChanged];
     _fillQuietZonesSwitch.on = _fillOption;
     
     _barScaleSlider = [[UISlider alloc] init];
     _barScaleSlider.minimumValue = 1;
     _barScaleSlider.maximumValue = 2;
     _barScaleSlider.continuous = YES;
-    [_barScaleSlider addTarget:self action:@selector(barScaleChange:) forControlEvents:UIControlEventValueChanged];
+    [_barScaleSlider addTarget:self action:@selector(_barScaleChange:) forControlEvents:UIControlEventValueChanged];
     _barScaleSlider.value = _barScale;
     
     _captionOverlapSlider = [[UISlider alloc] init];
     _captionOverlapSlider.minimumValue = 0.0;
     _captionOverlapSlider.maximumValue = 1.0;
     _captionOverlapSlider.continuous = YES;
-    [_captionOverlapSlider addTarget:self action:@selector(overlapChange:) forControlEvents:UIControlEventValueChanged];
+    [_captionOverlapSlider addTarget:self action:@selector(_overlapChange:) forControlEvents:UIControlEventValueChanged];
     _captionOverlapSlider.value = _captionOverlap;
     
     _contentTextField = [[UITextField alloc] initWithFrame:CGRectMake(110.0f, 10.0f, 205.0f, 30.0f)];
@@ -166,8 +190,10 @@
     _contentTextField.returnKeyType = UIReturnKeyDone;
     _contentTextField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     _contentTextField.delegate = self;
-    _contentTextField.text = SAMPLE_CONTENTS;
     _contentTextField.placeholder = @"Enter barcode";
+
+    // Initialise the barcode contents with the sample barcode content
+    _contentTextField.text = self.barcodeSample;
     
     // Draw the barcode using the current options
     [self _updateWithOptions];
@@ -178,12 +204,20 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 
-    // Create the height constraint for the tableview. In XCode5-DP6 I (Geoff Breemer) can no longer edit constraints, so this is the only way to create an less than or equal to constraint rather than the default equality
-    NSLayoutConstraint *tableHeight = [NSLayoutConstraint constraintWithItem:self.barcodeImageView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationLessThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:396];
-    [self.barcodeImageView addConstraint:tableHeight];
+    // Determine which options to show by adding options to the array used as the tableview model
+    NSMutableArray *tmpBarcodeOptions = [NSMutableArray arrayWithObjects:@"Content", @"Debug", @"Bar scale", @"Caption", nil];
 
-    // Configure all other controls
-    [self configureView];
+    if ([self _implementsMethod:self.barcodeClassString forMethod:@selector(allowsFillingOfEmptyQuietZones)])
+        [tmpBarcodeOptions addObject:@"Fill Quiet Zones"];
+
+    if ([self _implementsMethod:self.barcodeClassString forMethod:@selector(markerBarsCanOverlapBottomCaption)]) {
+        [tmpBarcodeOptions addObject:@"Caption overlap"];
+    }
+
+    self.barcodeOptions = [NSArray arrayWithArray:tmpBarcodeOptions];
+    
+    // Configure all controls
+    [self _configureView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -201,7 +235,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 6;
+    return [self.barcodeOptions count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -214,47 +248,40 @@
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryType = UITableViewCellAccessoryNone;
 	}
+
+    // Set the cell text and add the correct control (switch, slider etc.)
+    cell.textLabel.text = [self.barcodeOptions objectAtIndex:indexPath.row];
     
     switch(indexPath.row)
     {
-        case 0:
+        case CONTENT_TEXTFIELD:
         {
-            cell.textLabel.text = @"Content";
             cell.accessoryView = _contentTextField;
             break;
         }
-        case 1:
+        case DEBUG_SWITCH:
         {
-            cell.textLabel.text = @"Caption";
-            cell.accessoryView = _captionSwitch;
-            break;
-        }
-        case 2:
-        {
-            cell.textLabel.text = @"Debug";
             cell.accessoryView = _debugSwitch;
             break;
         }
-        case 3:
+        case BAR_SCALE_SLIDER:
         {
-            cell.textLabel.text = @"Fill Quiet Zones";
-            cell.accessoryView = _fillQuietZonesSwitch;
-            break;
-        }
-        case 4:
-        {
-            cell.textLabel.text = @"Bar scale";
             cell.accessoryView = _barScaleSlider;
             break;
         }
-        case 5:
+        case FILL_QUIET_ZONES_SWITCH:
         {
-            cell.textLabel.text = @"Caption overlap";
-            cell.accessoryView = _captionOverlapSlider;
+            cell.accessoryView = _fillQuietZonesSwitch;
             break;
         }
-        default:
+        case CAPTION_SWITCH:
         {
+            cell.accessoryView = _captionSwitch;
+            break;
+        }
+        case CAPTION_OVERLAP_SLIDER:
+        {
+            cell.accessoryView = _captionOverlapSlider;
             break;
         }
     }

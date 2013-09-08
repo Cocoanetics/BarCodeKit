@@ -13,10 +13,12 @@
 @interface BCKBarcodeListViewController ()
 
 @property (nonatomic) NSArray *barcodeTypes;            // Holds an array of NSStrings with the name of all BCKCode subclasses
-
+@property (nonatomic) NSDictionary *barcodeSamples;     // Holds sample barcodes (the value) for each barcode subclass (the key) and a default one if a sample barcode is unavailable for a subclass
 @end
 
 @implementation BCKBarcodeListViewController
+
+#define DEFAULT_BARCODE_KEY @"default"
 
 #pragma mark - Other
 
@@ -48,8 +50,12 @@
 {
     [super viewDidLoad];
 
-    // Do any additional setup after loading the view, typically from a nib.
+    // Load the array of available BCKCode subclasses
     self.barcodeTypes = [self allSubclassesForClass:[BCKCode class]];
+    
+    // Load the sample barcodes from the property list
+    NSString * plistPath = [[NSBundle mainBundle] pathForResource:@"SampleBarcodes" ofType:@"plist"];
+    self.barcodeSamples = [NSDictionary dictionaryWithContentsOfFile:plistPath];
 }
 
 - (void)didReceiveMemoryWarning
@@ -88,7 +94,15 @@
     // Pass the Class struct of the selected barcode type
     if ([[segue identifier] isEqualToString:@"showBarcode"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        [[segue destinationViewController] setBarcodeClassString:self.barcodeTypes[indexPath.row]];
+//        [[segue destinationViewController] setBarcodeClassString:self.barcodeTypes[indexPath.row]];
+        
+        NSString *barcodeClass = self.barcodeTypes[indexPath.row];
+        NSString *barcodeSample = [self.barcodeSamples valueForKey:barcodeClass];
+
+        if(!barcodeSample)
+            barcodeSample = [self.barcodeSamples valueForKey:DEFAULT_BARCODE_KEY];
+        
+        [[segue destinationViewController] initWithBarcodeClassString:barcodeClass andBarcodeSample:barcodeSample];
     }
 }
 
