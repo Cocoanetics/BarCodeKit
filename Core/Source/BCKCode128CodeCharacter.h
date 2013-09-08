@@ -9,10 +9,28 @@
 #import "BCKCodeCharacter.h"
 #import "BCKCode128ContentCodeCharacter.h"
 
+/**
+ Types of Code128
+ */
 typedef NS_ENUM(char, BCKCode128Version) {
+	/**
+	 Code128 Type A
+	 */
     Code128A = 0,
+	
+	/**
+	 Code128 Type B
+	 */
     Code128B,
+	
+	/**
+	 Code128 Type C
+	 */
     Code128C,
+	
+	/**
+	 Code128 Unsupported
+	 */
     Code128Unsupported
 };
 
@@ -27,7 +45,7 @@ typedef NS_ENUM(char, BCKCode128Version) {
 
 /**
  Generates an start code for given Code 128 version.
- @param the Code 128 version used
+ @param codeVersion the Code 128 version used
  @returns the start code character
  */
 + (BCKCode128CodeCharacter *)startCodeForVersion:(BCKCode128Version)codeVersion;
@@ -62,7 +80,7 @@ typedef NS_ENUM(char, BCKCode128Version) {
 
 /**
  Returns control character for switching barcode write to given Code128 version
- @param the Code128 needed next
+ @param targetVersion the Code128 needed next
  @returns the character to alter next characters type
  */
 + (BCKCode128CodeCharacter *)switchCodeToVersion:(BCKCode128Version)targetVersion;

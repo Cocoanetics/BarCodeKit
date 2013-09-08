@@ -8,6 +8,9 @@
 
 #import "BCKCode128CodeCharacter.h"
 
+/**
+ Specialized subclass of BCKCode128CodeCharacter used to represent content code characters in Code128
+ */
 @interface BCKCode128ContentCodeCharacter : BCKCode128CodeCharacter
 
 - (instancetype)initWithCharacter:(NSString *)character codeVersion:(BCKCode128Version)codeVersion;

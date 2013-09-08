@@ -15,7 +15,7 @@
 
 /**
  Returns the encoding of an ASCII character, including Full ASCII characters. For example, the encoding for "A" is an "A". The encoding for "a" is "+A".
- @param characer The character to return the encoding for.
+ @param character The character to return the encoding for.
  @return The Code39 representation of all supported ASCII characters, including Full ASCII.
  */
 + (NSString *)fullASCIIEncoding:(NSString *)character;
