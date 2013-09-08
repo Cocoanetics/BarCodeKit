@@ -60,6 +60,7 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
  
  - **BCKCodeDrawingBarScaleOption** - Multiplier for the bar width (default 1)
  - **BCKCodeDrawingPrintCaptionOption** - Whether the code caption should be printed (default NO)
+ - **BCKCodeDrawingCaptionFontNameOption** - Which font face name to use for the caption (default is 'OCRB' for EAN/UPC and 'Helvetica' otherwise)
  - **BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption** - How many percent of the caption height are covered by elongated marker bars (default 1.0)
  - **BCKCodeDrawingFillEmptyQuietZonesOption** - Whether quiet zones should be filled with angle brackes (default NO)
  - **BCKCodeDrawingDebugOption** - Whether the caption areas should be tinted for debugging (default NO)
