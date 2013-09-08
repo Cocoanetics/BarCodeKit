@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>default</key>
+	<string>12345670</string>
+	<key>BCKCode93Code</key>
+	<string>BaRcOdEkIt!</string>
+	<key>BCKCode39Code</key>
+	<string>BARCODEKIT</string>
+	<key>BCKCode39CodeModulo43</key>
+	<string>BARCODEKIT</string>
+	<key>BCKCode39FullASCII</key>
+	<string>BaRcOdEkIt!</string>
+	<key>BCKCode39FullASCIIModulo43</key>
+	<string>BaRcOdEkIt!</string>
+	<key>BCKInterleaved2of5Code</key>
+	<string>12344321</string>
+	<key>BCKEAN13Code</key>
+	<string>9123456789122</string>
+	<key>BCKEAN8Code</key>
+	<string>43235837</string>
+</dict>
+</plist>

@@ -9,12 +9,12 @@
 #import "BCKBarcodeViewController.h"
 #import "UIImage+BarCodeKit.h"
 
-#define SAMPLE_CONTENTS @"12345670"                // Sample barcode that works for most, but not all barcode types
-
 @interface BCKBarcodeViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *barcodeImageView;
 @property (nonatomic, strong) BCKCode *barcodeObject;
+@property (nonatomic, strong) NSString *barcodeSample;
+@property (nonatomic, strong) NSString *barcodeClassString;
 
 - (void)configureView;
 
@@ -38,16 +38,19 @@
 	CGFloat _captionOverlap;
 }
 
-#pragma mark - Other
+#pragma mark - Initialisation
 
-- (void)setbarcodeClassString:(NSString *)newBarcodeClassString
+-(void)initWithBarcodeClassString:(NSString *)barcodeClassString andBarcodeSample:(NSString *)barcodeSample
 {
-    if (_barcodeClassString != newBarcodeClassString) {
-        _barcodeClassString = newBarcodeClassString;
+    if (_barcodeClassString != barcodeClassString) {
+        _barcodeClassString = barcodeClassString;
+        
+        _barcodeSample = barcodeSample;
         
         // Update the view.
         [self configureView];
     }
+
 }
 
 #pragma mark - Text Field
@@ -74,7 +77,7 @@
     // Initialise barcode contents using the text in the textfield
     self.barcodeObject = [[NSClassFromString(self.barcodeClassString) alloc] initWithContent:_contentTextField.text];
 
-    // Draw the barcode. If the barcode doesn't support the content...
+    // Draw the barcode. If the barcode doesn't support the content show nothing
     if(self.barcodeObject) {
         self.barcodeImageView.image = [UIImage imageWithBarCode:self.barcodeObject options:options];
     }
@@ -166,8 +169,10 @@
     _contentTextField.returnKeyType = UIReturnKeyDone;
     _contentTextField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     _contentTextField.delegate = self;
-    _contentTextField.text = SAMPLE_CONTENTS;
     _contentTextField.placeholder = @"Enter barcode";
+
+    // Initialise the barcode contents with the sample barcode content
+    _contentTextField.text = self.barcodeSample;
     
     // Draw the barcode using the current options
     [self _updateWithOptions];
@@ -177,10 +182,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-
-    // Create the height constraint for the tableview. In XCode5-DP6 I (Geoff Breemer) can no longer edit constraints, so this is the only way to create an less than or equal to constraint rather than the default equality
-    NSLayoutConstraint *tableHeight = [NSLayoutConstraint constraintWithItem:self.barcodeImageView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationLessThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:396];
-    [self.barcodeImageView addConstraint:tableHeight];
 
     // Configure all other controls
     [self configureView];
