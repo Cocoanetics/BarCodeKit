@@ -19,53 +19,53 @@
 // and always start with a bar (and thus always end with a space). The first dimension of the array contains the character, the
 // second dimension the encoding. For example: a "0" is encoded as "131112"
 static char *char_encodings[NUMBER_OF_CODE93_CHARACTERS][2] = {
-    {"0", "131112"},
-    {"1", "111213"},
-    {"2", "111312"},
-    {"3", "111411"},
-    {"4", "121113"},
-    {"5", "121212"},
-    {"6", "121311"},
-    {"7", "111114"},
-    {"8", "131211"},
-    {"9", "141111"},
-    {"A", "211113"},
-    {"B", "211212"},
-    {"C", "211311"},
-    {"D", "221112"},
-    {"E", "221211"},
-    {"F", "231111"},
-    {"G", "112113"},
-    {"H", "112212"},
-    {"I", "112311"},
-    {"J", "122112"},
-    {"K", "132111"},
-    {"L", "111123"},
-    {"M", "111222"},
-    {"N", "111321"},
-    {"O", "121122"},
-    {"P", "131121"},
-    {"Q", "212112"},
-    {"R", "212211"},
-    {"S", "211122"},
-    {"T", "211221"},
-    {"U", "221121"},
-    {"V", "222111"},
-    {"W", "112122"},
-    {"X", "112221"},
-    {"Y", "122121"},
-    {"Z", "123111"},
-    {"-", "121131"},
-    {".", "311112"},
-    {" ", "311211"},
-    {"$", "321111"},
-    {"/", "112131"},
-    {"+", "113121"},
-    {"%", "211131"},
-    {"($)", "121221"},
-    {"(%)", "312111"},
-    {"(/)", "311121"},
-    {"(+)", "122211"},
+	{"0", "131112"},
+	{"1", "111213"},
+	{"2", "111312"},
+	{"3", "111411"},
+	{"4", "121113"},
+	{"5", "121212"},
+	{"6", "121311"},
+	{"7", "111114"},
+	{"8", "131211"},
+	{"9", "141111"},
+	{"A", "211113"},
+	{"B", "211212"},
+	{"C", "211311"},
+	{"D", "221112"},
+	{"E", "221211"},
+	{"F", "231111"},
+	{"G", "112113"},
+	{"H", "112212"},
+	{"I", "112311"},
+	{"J", "122112"},
+	{"K", "132111"},
+	{"L", "111123"},
+	{"M", "111222"},
+	{"N", "111321"},
+	{"O", "121122"},
+	{"P", "131121"},
+	{"Q", "212112"},
+	{"R", "212211"},
+	{"S", "211122"},
+	{"T", "211221"},
+	{"U", "221121"},
+	{"V", "222111"},
+	{"W", "112122"},
+	{"X", "112221"},
+	{"Y", "122121"},
+	{"Z", "123111"},
+	{"-", "121131"},
+	{".", "311112"},
+	{" ", "311211"},
+	{"$", "321111"},
+	{"/", "112131"},
+	{"+", "113121"},
+	{"%", "211131"},
+	{"($)", "121221"},
+	{"(%)", "312111"},
+	{"(/)", "311121"},
+	{"(+)", "122211"},
 };
 
 @implementation BCKCode93ContentCodeCharacter
@@ -77,19 +77,19 @@ static char *char_encodings[NUMBER_OF_CODE93_CHARACTERS][2] = {
 // modulo-47 check characters. For example: the A is the tenth character in the array so this method returns the value 10
 - (NSUInteger)characterValue
 {
-    const char *searchChar = [_character UTF8String];
-    
-    for (NSUInteger i=0; i<NUMBER_OF_CODE93_CHARACTERS; i++)
-    {
-        char *testChar = char_encodings[i][CHARACTER_DIMENSION];
-        
-        if(!strcmp(testChar, searchChar))
-        {
-            return i;
-        }
-    }
-
-    return -1;
+	const char *searchChar = [_character UTF8String];
+	
+	for (NSUInteger i=0; i<NUMBER_OF_CODE93_CHARACTERS; i++)
+	{
+		char *testChar = char_encodings[i][CHARACTER_DIMENSION];
+		
+		if (!strcmp(testChar, searchChar))
+		{
+			return i;
+		}
+	}
+	
+	return -1;
 }
 
 // Initialise the code character using its value. Only values for the 43 regular and four special characters are valid.
@@ -100,12 +100,12 @@ static char *char_encodings[NUMBER_OF_CODE93_CHARACTERS][2] = {
 	
 	if (self)
 	{
-        if(characterValue >= NUMBER_OF_CODE93_CHARACTERS)
-            return nil;
-        else
-            _character = [NSString stringWithUTF8String:char_encodings[characterValue][CHARACTER_DIMENSION]];
-    }
-
+		if (characterValue >= NUMBER_OF_CODE93_CHARACTERS)
+			return nil;
+		else
+			_character = [NSString stringWithUTF8String:char_encodings[characterValue][CHARACTER_DIMENSION]];
+	}
+	
 	return self;
 }
 
@@ -117,8 +117,8 @@ static char *char_encodings[NUMBER_OF_CODE93_CHARACTERS][2] = {
 	
 	if (self)
 	{
-        if(([character length]!=1 && [character length]!=3) || ![self _encodingForCharacter:character])
-            return nil;
+		if (([character length]!=1 && [character length]!=3) || ![self _encodingForCharacter:character])
+			return nil;
 		
 		_character = [character copy];
 	}
@@ -135,8 +135,8 @@ static char *char_encodings[NUMBER_OF_CODE93_CHARACTERS][2] = {
 	for (NSUInteger i=0; i<NUMBER_OF_CODE93_CHARACTERS; i++)
 	{
 		char *testChar = char_encodings[i][CHARACTER_DIMENSION];
-
-		if(!strcmp(testChar, searchChar))
+		
+		if (!strcmp(testChar, searchChar))
 		{
 			return char_encodings[i][ENCODING_DIMENSION];
 		}
@@ -149,19 +149,19 @@ static char *char_encodings[NUMBER_OF_CODE93_CHARACTERS][2] = {
 - (NSString *)_bitsForEncoding:(char *)encoding
 {
 	NSMutableString *tmpString = [NSMutableString string];
-
+	
 	for (NSUInteger index=0; index<strlen(encoding); index++)
 	{
 		bool isOddBit = (index%2 == 0);
-        int numberOfModules = encoding[index] - '0';
-
-        for(int i=0;i<numberOfModules;i++)
-        {
-            if(isOddBit)
-                [tmpString appendString:@"1"];
-            else
-                [tmpString appendString:@"0"];
-        }
+		int numberOfModules = encoding[index] - '0';
+		
+		for(int i=0;i<numberOfModules;i++)
+		{
+			if (isOddBit)
+				[tmpString appendString:@"1"];
+			else
+				[tmpString appendString:@"0"];
+		}
 	}
 	
 	return tmpString;

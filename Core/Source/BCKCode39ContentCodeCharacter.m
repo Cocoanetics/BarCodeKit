@@ -70,12 +70,12 @@ static char *char_encodings[NUMBER_OF_CODE39_CHARACTERS][2] = {
 	
 	if (self)
 	{
-        if(characterValue >= NUMBER_OF_CODE39_CHARACTERS)
-            return nil;
-        else
-            _character = [NSString stringWithUTF8String:char_encodings[characterValue][CHARACTER_DIMENSION]];
-    }
-    
+		if (characterValue >= NUMBER_OF_CODE39_CHARACTERS)
+			return nil;
+		else
+			_character = [NSString stringWithUTF8String:char_encodings[characterValue][CHARACTER_DIMENSION]];
+	}
+	
 	return self;
 }
 
@@ -100,19 +100,19 @@ static char *char_encodings[NUMBER_OF_CODE39_CHARACTERS][2] = {
 // modulo-43 check characters. For example: the A is the tenth character in the array so this method returns the value 10
 - (NSUInteger)characterValue
 {
-    const char *searchChar = [_character UTF8String];
-    
-    for (NSUInteger i=0; i<NUMBER_OF_CODE39_CHARACTERS; i++)
-    {
-        char *testChar = char_encodings[i][CHARACTER_DIMENSION];
-        
-        if(!strcmp(testChar, searchChar))
-        {
-            return i;
-        }
-    }
-    
-    return -1;
+	const char *searchChar = [_character UTF8String];
+	
+	for (NSUInteger i=0; i<NUMBER_OF_CODE39_CHARACTERS; i++)
+	{
+		char *testChar = char_encodings[i][CHARACTER_DIMENSION];
+		
+		if (!strcmp(testChar, searchChar))
+		{
+			return i;
+		}
+	}
+	
+	return -1;
 }
 
 - (char *)_encodingForCharacter:(NSString *)character

@@ -20,7 +20,7 @@
 		// If the content length is even, all is good
 		// otherwise 0 prefix it to make it even
 		NSString *dataString;
-		if ( content.length % 2 == 0 )
+		if (content.length % 2 == 0)
 			dataString = content;
 		else
 			dataString = [@"0" stringByAppendingString:content];
@@ -42,9 +42,8 @@
 - (BOOL)_isValidContent:(NSString *)content
 {
 	// Must be of even length - this should always be the (as we 0 prefix this) but just in case...
-	if ( content.length % 2 != 0 )
+	if (content.length % 2 != 0)
 	{
-		//NSLog(@"Code2of5 codes must have even length " );
 		return NO;
 	}
 	
@@ -68,22 +67,24 @@
 
 #pragma mark - Subclass Methods
 
-+(NSString *)barcodeStandard
++ (NSString *)barcodeStandard
 {
-    return @"International standard ISO/IEC 16390";
+	return @"International standard ISO/IEC 16390";
 }
 
-+(NSString *)barcodeDescription
++ (NSString *)barcodeDescription
 {
-    return @"Interleaved 2 of 5 (Code 25)";
+	return @"Interleaved 2 of 5 (Code 25)";
 }
 
 - (NSArray *)codeCharacters
 {
-    // If the array was created earlier just return it
-    if(_codeCharacters)
-        return _codeCharacters;
-    
+	// If the array was created earlier just return it
+	if (_codeCharacters)
+	{
+		return _codeCharacters;
+	}
+   
 	NSMutableArray *tmpArray = [NSMutableArray array];
 	
 	// start marker
@@ -103,7 +104,7 @@
 	// end marker
 	[tmpArray addObject:[BCKInterleaved2of5CodeCharacter endMarkerCodeCharacter]];
 	
-    _codeCharacters = [tmpArray copy];
+	_codeCharacters = [tmpArray copy];
 	return _codeCharacters;
 }
 

@@ -20,6 +20,6 @@
  @param contenCodeCharacters The array of contentCodeCharacters the Modulo-43 check character will be generated for. Must not include start/stop and space code characters.
  @return The Modulo-43 check content code character.
  */
--(BCKCode39ContentCodeCharacter *)generateModulo43ForContentCodeCharacter:(NSArray*)contentCodeCharacters;
+- (BCKCode39ContentCodeCharacter *)generateModulo43ForContentCodeCharacter:(NSArray *)contentCodeCharacters;
 
 @end

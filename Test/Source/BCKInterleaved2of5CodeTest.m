@@ -48,5 +48,4 @@
 	STAssertNil(code, @"2 Of 5 Codes must be numeric only");
 }
 
-
 @end

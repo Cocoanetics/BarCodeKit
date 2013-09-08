@@ -79,14 +79,14 @@
 
 #pragma mark - Subclassing Methods
 
-+(NSString *)barcodeStandard
++ (NSString *)barcodeStandard
 {
-    return @"International standard ISO/IEC 15420";
+	return @"International standard ISO/IEC 15420";
 }
 
-+(NSString *)barcodeDescription
++ (NSString *)barcodeDescription
 {
-    return @"EAN-8";
+	return @"EAN-8";
 }
 
 - (NSUInteger)horizontalQuietZoneWidth
@@ -97,15 +97,17 @@
 // generate the code characters from the content
 - (NSArray *)codeCharacters
 {
-    // If the array was created earlier just return it
-    if(_codeCharacters)
-        return _codeCharacters;
-    
+	// If the array was created earlier just return it
+	if (_codeCharacters)
+	{
+		return _codeCharacters;
+	}
+   
 	NSMutableArray *tmpArray = [NSMutableArray array];
-
+	
 	// variant pattern is fixed
 	static char *variant_pattern = "LLLLRRRR";
-
+	
 	// start marker
 	[tmpArray addObject:[BCKEANCodeCharacter endMarkerCodeCharacter]];
 	
@@ -126,7 +128,7 @@
 	// end marker
 	[tmpArray addObject:[BCKEANCodeCharacter endMarkerCodeCharacter]];
 	
-    _codeCharacters = [tmpArray copy];
+	_codeCharacters = [tmpArray copy];
 	return _codeCharacters;
 }
 

@@ -26,18 +26,16 @@
 
 - (void)setUp
 {
-    [super setUp];
-    // Put setup code here; it will be run once, before the first test case.
-    
-    self.codeWithModulo43CheckDigit = [[BCKCode39CodeModulo43 alloc] initWithContent:@"OLIVER"];
+	[super setUp];
+   
+	self.codeWithModulo43CheckDigit = [[BCKCode39CodeModulo43 alloc] initWithContent:@"OLIVER"];
 }
 
 - (void)tearDown
 {
-    self.codeWithModulo43CheckDigit = nil;
-    
-    // Put teardown code here; it will be run once, after the last test case.
-    [super tearDown];
+	self.codeWithModulo43CheckDigit = nil;
+	
+	[super tearDown];
 }
 
 // tests encoding a basic word

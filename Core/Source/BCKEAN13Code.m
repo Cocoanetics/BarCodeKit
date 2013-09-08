@@ -91,14 +91,14 @@ static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
 
 #pragma mark - Subclassing Methods
 
-+(NSString *)barcodeStandard
++ (NSString *)barcodeStandard
 {
-    return @"International standard ISO/IEC 15420";
+	return @"International standard ISO/IEC 15420";
 }
 
-+(NSString *)barcodeDescription
++ (NSString *)barcodeDescription
 {
-    return @"EAN-13 and UPC-A";
+	return @"EAN-13 and UPC-A";
 }
 
 - (NSUInteger)horizontalQuietZoneWidth
@@ -108,11 +108,13 @@ static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
 
 - (NSArray *)codeCharacters
 {
-    // If the array was created earlier just return it
-    if(_codeCharacters)
-        return _codeCharacters;
-    
-    NSMutableArray *tmpArray = [NSMutableArray array];
+	// If the array was created earlier just return it
+	if (_codeCharacters)
+	{
+		return _codeCharacters;
+	}
+   
+	NSMutableArray *tmpArray = [NSMutableArray array];
 	
 	// variant pattern derives from first digit
 	NSUInteger firstDigit = [self _digitAtIndex:0];
@@ -138,7 +140,7 @@ static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
 	// end marker
 	[tmpArray addObject:[BCKEANCodeCharacter endMarkerCodeCharacter]];
 	
-    _codeCharacters = [tmpArray copy];
+	_codeCharacters = [tmpArray copy];
 	return _codeCharacters;
 }
 

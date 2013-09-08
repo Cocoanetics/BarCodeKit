@@ -50,14 +50,14 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	return [NSString stringWithFormat:@"<%@ content='%@'>", NSStringFromClass([self class]), [self bitString]];
 }
 
-+(NSString *)barcodeStandard
++ (NSString *)barcodeStandard
 {
-    return nil;
+	return nil;
 }
 
-+(NSString *)barcodeDescription
++ (NSString *)barcodeDescription
 {
-    return nil;
+	return nil;
 }
 
 #pragma mark - Options Helper Methods
@@ -702,7 +702,7 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	if ([self _shouldDrawCaptionFromOptions:options])
 	{
 		NSString *fontName = [self _captionFontNameFromOptions:options];
-
+		
 		// indent quiet zones to have 1 px distance
 		leftQuietZoneNumberFrame.size.width -= barScale;
 		

@@ -18,6 +18,6 @@
  @param characer The character to return the encoding for.
  @return The Code39 representation of all supported ASCII characters, including Full ASCII.
  */
-+(NSString*)fullASCIIEncoding:(NSString*)character;
++ (NSString *)fullASCIIEncoding:(NSString *)character;
 
 @end

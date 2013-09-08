@@ -25,85 +25,85 @@
 // Returns an array of NSString objects of theClass' subclasses (direct subclasses only)
 - (NSArray *) allSubclassesForClass:(Class)theClass
 {
-    NSMutableArray *mySubclasses = [NSMutableArray array];
-    unsigned int numOfClasses;
-    
-    Class *classes = objc_copyClassList(&numOfClasses);
-    
-    for (unsigned int ci = 0; ci < numOfClasses; ci++) {
-        Class superClass = classes[ci];
-        do {
-            superClass = class_getSuperclass(superClass);
-        } while (superClass && superClass != theClass);
-        
-        if (superClass == theClass) {                   // change to (superClass) to find all descendants, not just the direct ones
-            [mySubclasses addObject: NSStringFromClass(classes[ci])];
-        }
-    }
-    free(classes);
-    
-    // Sort alphabetically and return the array
-    return [mySubclasses sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+	NSMutableArray *mySubclasses = [NSMutableArray array];
+	unsigned int numOfClasses;
+	
+	Class *classes = objc_copyClassList(&numOfClasses);
+	
+	for (unsigned int ci = 0; ci < numOfClasses; ci++)
+	{
+		Class superClass = classes[ci];
+		do
+		{
+			superClass = class_getSuperclass(superClass);
+		}
+		while (superClass && superClass != theClass);
+		
+		if (superClass == theClass)
+		{
+			// change to (superClass) to find all descendants, not just the direct ones
+			[mySubclasses addObject: NSStringFromClass(classes[ci])];
+		}
+	}
+	
+	free(classes);
+	
+	// Sort alphabetically and return the array
+	return [mySubclasses sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
 }
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-
-    // Load the array of available BCKCode subclasses
-    self.barcodeTypes = [self allSubclassesForClass:[BCKCode class]];
-    
-    // Load the sample barcodes from the property list
-    NSString * plistPath = [[NSBundle mainBundle] pathForResource:@"SampleBarcodes" ofType:@"plist"];
-    self.barcodeSamples = [NSDictionary dictionaryWithContentsOfFile:plistPath];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+	[super viewDidLoad];
+	
+	// Load the array of available BCKCode subclasses
+	self.barcodeTypes = [self allSubclassesForClass:[BCKCode class]];
+	
+	// Load the sample barcodes from the property list
+	NSString * plistPath = [[NSBundle mainBundle] pathForResource:@"SampleBarcodes" ofType:@"plist"];
+	self.barcodeSamples = [NSDictionary dictionaryWithContentsOfFile:plistPath];
 }
 
 #pragma mark - Table View
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+	return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.barcodeTypes.count;
+	return self.barcodeTypes.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-
-    Class barcodeClass = NSClassFromString(self.barcodeTypes[indexPath.row]);
-    
-    // Just display the Class name
-    cell.textLabel.text = [barcodeClass barcodeDescription];
-    cell.detailTextLabel.text = [barcodeClass barcodeStandard];
-    
-    return cell;
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+	
+	Class barcodeClass = NSClassFromString(self.barcodeTypes[indexPath.row]);
+	
+	// Just display the Class name
+	cell.textLabel.text = [barcodeClass barcodeDescription];
+	cell.detailTextLabel.text = [barcodeClass barcodeStandard];
+	
+	return cell;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Pass the Class struct of the selected barcode type
-    if ([[segue identifier] isEqualToString:@"showBarcode"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-//        [[segue destinationViewController] setBarcodeClassString:self.barcodeTypes[indexPath.row]];
-        
-        NSString *barcodeClass = self.barcodeTypes[indexPath.row];
-        NSString *barcodeSample = [self.barcodeSamples valueForKey:barcodeClass];
-
-        if(!barcodeSample)
-            barcodeSample = [self.barcodeSamples valueForKey:DEFAULT_BARCODE_KEY];
-        
-        [[segue destinationViewController] initWithBarcodeClassString:barcodeClass andBarcodeSample:barcodeSample];
-    }
+	// Pass the Class struct of the selected barcode type
+	if ([[segue identifier] isEqualToString:@"showBarcode"])
+	{
+		NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+		
+		NSString *barcodeClass = self.barcodeTypes[indexPath.row];
+		NSString *barcodeSample = [self.barcodeSamples valueForKey:barcodeClass];
+		
+		if(!barcodeSample)
+			barcodeSample = [self.barcodeSamples valueForKey:DEFAULT_BARCODE_KEY];
+		
+		[[segue destinationViewController] initWithBarcodeClassString:barcodeClass andBarcodeSample:barcodeSample];
+	}
 }
 
 @end
