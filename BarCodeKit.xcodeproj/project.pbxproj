@@ -26,6 +26,10 @@
 		6C20911F17D20DDF00869F6E /* BCKBarcodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20911D17D20DDF00869F6E /* BCKBarcodeViewController.m */; };
 		6C2AF51017D5EE3F00175AE0 /* BCKCode39FullASCII.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2AF50F17D5EE3F00175AE0 /* BCKCode39FullASCII.m */; };
 		6C2AF51217D5EEAD00175AE0 /* BCKCode39FullASCIITest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2AF51117D5EEAD00175AE0 /* BCKCode39FullASCIITest.m */; };
+		6C4D158417DDDD0B00854E31 /* BCKCode11Code.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4D158317DDDD0B00854E31 /* BCKCode11Code.m */; };
+		6C4D158617DDDD2800854E31 /* BCKCode11CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4D158517DDDD2800854E31 /* BCKCode11CodeTest.m */; };
+		6C4D158A17DDDDF000854E31 /* BCKCode11CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4D158917DDDDF000854E31 /* BCKCode11CodeCharacter.m */; };
+		6C4D158D17DDDE0800854E31 /* BCKCode11ContentCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4D158C17DDDE0800854E31 /* BCKCode11ContentCodeCharacter.m */; };
 		6C818CAC17CB6BF300AEE26F /* BCKCode93CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C818CAB17CB6BF300AEE26F /* BCKCode93CodeTest.m */; };
 		6C818CAF17CB703300AEE26F /* BCKCode93Code.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C818CAE17CB703300AEE26F /* BCKCode93Code.m */; };
 		6C818CB217CCAA6300AEE26F /* BCKCode93CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C818CB117CCAA6300AEE26F /* BCKCode93CodeCharacter.m */; };
@@ -113,6 +117,13 @@
 		6C2AF50E17D5EE3F00175AE0 /* BCKCode39FullASCII.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode39FullASCII.h; sourceTree = "<group>"; };
 		6C2AF50F17D5EE3F00175AE0 /* BCKCode39FullASCII.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode39FullASCII.m; sourceTree = "<group>"; };
 		6C2AF51117D5EEAD00175AE0 /* BCKCode39FullASCIITest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode39FullASCIITest.m; sourceTree = "<group>"; };
+		6C4D158217DDDD0B00854E31 /* BCKCode11Code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode11Code.h; sourceTree = "<group>"; };
+		6C4D158317DDDD0B00854E31 /* BCKCode11Code.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode11Code.m; sourceTree = "<group>"; };
+		6C4D158517DDDD2800854E31 /* BCKCode11CodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode11CodeTest.m; sourceTree = "<group>"; };
+		6C4D158817DDDDF000854E31 /* BCKCode11CodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode11CodeCharacter.h; sourceTree = "<group>"; };
+		6C4D158917DDDDF000854E31 /* BCKCode11CodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode11CodeCharacter.m; sourceTree = "<group>"; };
+		6C4D158B17DDDE0800854E31 /* BCKCode11ContentCodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode11ContentCodeCharacter.h; sourceTree = "<group>"; };
+		6C4D158C17DDDE0800854E31 /* BCKCode11ContentCodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode11ContentCodeCharacter.m; sourceTree = "<group>"; };
 		6C818CAB17CB6BF300AEE26F /* BCKCode93CodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode93CodeTest.m; sourceTree = "<group>"; };
 		6C818CAD17CB703300AEE26F /* BCKCode93Code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode93Code.h; sourceTree = "<group>"; };
 		6C818CAE17CB703300AEE26F /* BCKCode93Code.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode93Code.m; sourceTree = "<group>"; };
@@ -236,6 +247,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6C4D158117DDDCE900854E31 /* Code11 */ = {
+			isa = PBXGroup;
+			children = (
+				6C4D158217DDDD0B00854E31 /* BCKCode11Code.h */,
+				6C4D158317DDDD0B00854E31 /* BCKCode11Code.m */,
+			);
+			name = Code11;
+			sourceTree = "<group>";
+		};
+		6C4D158717DDDDAC00854E31 /* Code11 */ = {
+			isa = PBXGroup;
+			children = (
+				6C4D158817DDDDF000854E31 /* BCKCode11CodeCharacter.h */,
+				6C4D158917DDDDF000854E31 /* BCKCode11CodeCharacter.m */,
+				6C4D158B17DDDE0800854E31 /* BCKCode11ContentCodeCharacter.h */,
+				6C4D158C17DDDE0800854E31 /* BCKCode11ContentCodeCharacter.m */,
+			);
+			name = Code11;
+			sourceTree = "<group>";
+		};
 		6C818CA917CB64A300AEE26F /* Code93 */ = {
 			isa = PBXGroup;
 			children = (
@@ -349,6 +380,7 @@
 		A7378DFC17C25892008921C4 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				6C4D158517DDDD2800854E31 /* BCKCode11CodeTest.m */,
 				A7378E0417C25A2D008921C4 /* BCKCode39CodeTest.m */,
 				6C2AF51117D5EEAD00175AE0 /* BCKCode39FullASCIITest.m */,
 				6C818CAB17CB6BF300AEE26F /* BCKCode93CodeTest.m */,
@@ -367,6 +399,7 @@
 				A76405E117B52E7700D45F51 /* BCKCode.h */,
 				A76405E217B52E7700D45F51 /* BCKCode.m */,
 				A7378D8617C23ACE008921C4 /* EAN/UPC */,
+				6C4D158117DDDCE900854E31 /* Code11 */,
 				A7378D8517C23AC3008921C4 /* Code39 */,
 				6C818CA917CB64A300AEE26F /* Code93 */,
 				A13B58DF17C6961600454150 /* Interleaved 2 of 5 */,
@@ -381,6 +414,7 @@
 				A7337C6A17C12C8800BC2D2D /* BCKCodeCharacter.h */,
 				A7337C6B17C12C8800BC2D2D /* BCKCodeCharacter.m */,
 				A7378D8317C222E6008921C4 /* EAN/UPC */,
+				6C4D158717DDDDAC00854E31 /* Code11 */,
 				A7378D8417C222F1008921C4 /* Code39 */,
 				6C818CAA17CB64B100AEE26F /* Code93 */,
 				A13B58E017C6963B00454150 /* Interleaved 2 of 5 */,
@@ -657,6 +691,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C4D158617DDDD2800854E31 /* BCKCode11CodeTest.m in Sources */,
 				6C2AF51217D5EEAD00175AE0 /* BCKCode39FullASCIITest.m in Sources */,
 				A7378E0E17C263C7008921C4 /* BCKUPCECodeTest.m in Sources */,
 				A7378E0A17C25DF3008921C4 /* BCKEAN13CodeTest.m in Sources */,
@@ -691,11 +726,14 @@
 				A7337C6C17C12C8800BC2D2D /* BCKCodeCharacter.m in Sources */,
 				A13B58E517C6A10200454150 /* BCKInterleaved2of5Code.m in Sources */,
 				A764061C17B53AE700D45F51 /* BCKEANCodeCharacter.m in Sources */,
+				6C4D158A17DDDDF000854E31 /* BCKCode11CodeCharacter.m in Sources */,
 				6C818CB517CCAC0400AEE26F /* BCKCode93ContentCodeCharacter.m in Sources */,
+				6C4D158417DDDD0B00854E31 /* BCKCode11Code.m in Sources */,
 				A764060D17B52EC600D45F51 /* BCKCode.m in Sources */,
 				EA6CF87917CA4FAE009C8994 /* BCKCode128Code.m in Sources */,
 				A764060E17B52EC600D45F51 /* BCKEAN13Code.m in Sources */,
 				EA6CF88117CA563F009C8994 /* BCKCode128ContentCodeCharacter.m in Sources */,
+				6C4D158D17DDDE0800854E31 /* BCKCode11ContentCodeCharacter.m in Sources */,
 				A764061917B5362D00D45F51 /* BCKEAN8Code.m in Sources */,
 				A764062517B53B7B00D45F51 /* BCKEANDigitCodeCharacter.m in Sources */,
 				A7343F4917BF599100EF9B83 /* UIImage+BarCodeKit.m in Sources */,
