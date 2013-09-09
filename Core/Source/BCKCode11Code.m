@@ -68,7 +68,7 @@ NSString * const BCKCode11Modulo11CheckCharacterSecondOption = @"BCKCode11Modulo
     }];
 	
 	// Return the check character by taking the weighted sum modulo 11
-	return [[BCKCode11ContentCodeCharacter alloc] initWithValue:(weightedSum % 11)];
+	return [[BCKCode11ContentCodeCharacter alloc] initWithCharacterValue:(weightedSum % 11)];
 }
 
 - (NSArray *)codeCharacters
@@ -112,7 +112,7 @@ NSString * const BCKCode11Modulo11CheckCharacterSecondOption = @"BCKCode11Modulo
     [finalArray addObject:[BCKCode11CodeCharacter spacingCodeCharacter]];
 
     // Add the second modulo-11 check digit "K" (include the first modulo-11 check character code "C") if the barcode is longer than 9 digits
-    if([_content length] >= 10)
+    if ([_content length] >= 10)
     {
         tmpCharacter = [self _generateModulo11:BCKCode11Modulo11CheckCharacterSecondOption forContentCodeCharacters:contentCharacterArray];
         [finalArray addObject:tmpCharacter];

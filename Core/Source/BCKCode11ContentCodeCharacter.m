@@ -34,7 +34,7 @@ static char *char_encodings[NUMBER_OF_CODE11_CHARACTERS][2] = {
 
 // Initialise the code character using its value. Only values for numeric characters and the dash character are valid.
 // For example: to initialise the code character with an 1 initialise it by passing the value 1
-- (instancetype)initWithValue:(NSUInteger)characterValue
+- (instancetype)initWithCharacterValue:(NSUInteger)characterValue
 {
 	self = [super init];
 	
