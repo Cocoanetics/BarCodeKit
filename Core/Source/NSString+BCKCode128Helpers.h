@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 /**
  Helper methods for determining next next characters that should be encoded.
  */
@@ -20,10 +18,19 @@
  */
 - (BOOL)containsOnlyNumbers;
 
+/**
+ @returns `YES` if the first two characters in the receiver are numbers
+ */
 - (BOOL)firstTwoCharactersAreNumbers;
 
+/**
+ @returns `YES` if the first four characters in the receiver are numbers
+ */
 - (BOOL)firstFourCharactersAreNumbers;
 
+/**
+ @returns `YES` if the first six characters in the receiver are numbers
+ */
 - (BOOL)firstSixCharactersAreNumbers;
 
 @end
