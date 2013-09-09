@@ -15,12 +15,14 @@
 	<key>BCKCode39FullASCIIModulo43</key>
 	<string>BaRcOdEkIt!</string>
 	<key>BCKInterleaved2of5Code</key>
-	<string>12344321</string>
+	<string>1234567895</string>
 	<key>BCKEAN13Code</key>
-	<string>9123456789122</string>
+	<string>5901234123457</string>
 	<key>BCKEAN8Code</key>
-	<string>43235837</string>
+	<string>96385074</string>
 	<key>BCKCode128Code</key>
 	<string>BaRcOdEkIt!</string>
+	<key>BCKUPCECode</key>
+	<string>04252614</string>
 </dict>
 </plist>
