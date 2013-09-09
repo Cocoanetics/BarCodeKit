@@ -143,6 +143,7 @@
 		A13B58E717C6A1C700454150 /* BCKInterleaved2of5CodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKInterleaved2of5CodeCharacter.m; sourceTree = "<group>"; };
 		A13B58E917C6A1E500454150 /* BCKInterleaved2of5DigitPairCodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKInterleaved2of5DigitPairCodeCharacter.h; sourceTree = "<group>"; };
 		A13B58EA17C6A1E500454150 /* BCKInterleaved2of5DigitPairCodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKInterleaved2of5DigitPairCodeCharacter.m; sourceTree = "<group>"; };
+		A716E43C17DE1A5C00DB6F9C /* AppledocSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppledocSettings.plist; sourceTree = "<group>"; };
 		A7337C6417C1250F00BC2D2D /* BCKCode39Code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode39Code.h; sourceTree = "<group>"; };
 		A7337C6517C1250F00BC2D2D /* BCKCode39Code.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode39Code.m; sourceTree = "<group>"; };
 		A7337C6717C1276700BC2D2D /* BCKCode39CodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode39CodeCharacter.h; sourceTree = "<group>"; };
@@ -360,6 +361,7 @@
 		A7378D8D17C253FE008921C4 /* Documentation */ = {
 			isa = PBXGroup;
 			children = (
+				A716E43C17DE1A5C00DB6F9C /* AppledocSettings.plist */,
 				A73B88CE17C77F4B00A75680 /* Change Log-template.markdown */,
 				A73B88CD17C77DE300A75680 /* Readme.markdown */,
 				A7378D8E17C253FE008921C4 /* Setup Guide-template.markdown */,
