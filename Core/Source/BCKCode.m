@@ -9,14 +9,15 @@
 #import "BCKCode.h"
 #import "BarCodeKit.h"
 
+#import <CoreText/CoreText.h>
+
 // options
 NSString * const BCKCodeDrawingBarScaleOption = @"BCKCodeDrawingBarScale";
 NSString * const BCKCodeDrawingPrintCaptionOption = @"BCKCodeDrawingPrintCaption";
+NSString * const BCKCodeDrawingCaptionFontNameOption = @"BCKCodeDrawingCaptionFontName";
 NSString * const BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption = @"BCKCodeDrawingMarkerBarsOverlapCaptionPercent";
 NSString * const BCKCodeDrawingFillEmptyQuietZonesOption = @"BCKCodeDrawingFillEmptyQuietZones";
 NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
-
-
 
 @implementation BCKCode
 
@@ -49,7 +50,17 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	return [NSString stringWithFormat:@"<%@ content='%@'>", NSStringFromClass([self class]), [self bitString]];
 }
 
-#pragma mark - Helper Methods
++ (NSString *)barcodeStandard
+{
+	return nil;
+}
+
++ (NSString *)barcodeDescription
+{
+	return nil;
+}
+
+#pragma mark - Options Helper Methods
 
 // returns the actually displayed left quiet zone text based on the options
 - (NSString *)_leftQuietZoneDisplayTextWithOptions:(NSDictionary *)options
@@ -253,82 +264,31 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	NSString *leftDigits = [self _leftCaptionZoneDisplayTextWithOptions:options];
 	NSString *rightDigits = [self _rightCaptionZoneDisplayTextWithOptions:options];
 	
+	NSString *fontName = [self _captionFontNameFromOptions:options];
+	
 	CGFloat optimalCaptionFontSize = CGFLOAT_MAX;
 	
 	if ([leftQuietZoneText length])
 	{
-		optimalCaptionFontSize = MIN(optimalCaptionFontSize, [self _optimalFontSizeToFitText:leftQuietZoneText insideWidth:[self _horizontalQuietZoneWidthWithOptions:options]]);
+		optimalCaptionFontSize = MIN(optimalCaptionFontSize, [self _optimalFontSizeToFitText:leftQuietZoneText fontName:fontName insideWidth:[self _horizontalQuietZoneWidthWithOptions:options]]);
 	}
 	
 	if ([leftDigits length])
 	{
-		optimalCaptionFontSize = MIN(optimalCaptionFontSize, [self _optimalFontSizeToFitText:leftDigits insideWidth:[self _leftCaptionZoneWidthWithOptions:options]]);
+		optimalCaptionFontSize = MIN(optimalCaptionFontSize, [self _optimalFontSizeToFitText:leftDigits fontName:fontName insideWidth:[self _leftCaptionZoneWidthWithOptions:options]]);
 	}
 	
 	if ([rightDigits length])
 	{
-		optimalCaptionFontSize = MIN(optimalCaptionFontSize, [self _optimalFontSizeToFitText:rightDigits insideWidth:[self _rightCaptionZoneWidthWithOptions:options]]);
+		optimalCaptionFontSize = MIN(optimalCaptionFontSize, [self _optimalFontSizeToFitText:rightDigits fontName:fontName insideWidth:[self _rightCaptionZoneWidthWithOptions:options]]);
 	}
 	
 	if ([rightQuietZoneText length])
 	{
-		optimalCaptionFontSize = MIN(optimalCaptionFontSize, [self _optimalFontSizeToFitText:rightQuietZoneText insideWidth:[self _horizontalQuietZoneWidthWithOptions:options]]);
+		optimalCaptionFontSize = MIN(optimalCaptionFontSize, [self _optimalFontSizeToFitText:rightQuietZoneText fontName:fontName insideWidth:[self _horizontalQuietZoneWidthWithOptions:options]]);
 	}
 	
 	return optimalCaptionFontSize;
-}
-
-- (UIFont *)_captionFontWithSize:(CGFloat)fontSize
-{
-	UIFont *font = [UIFont fontWithName:@"OCRB" size:fontSize];
-	
-	if (!font)
-	{
-		font = [UIFont systemFontOfSize:fontSize];
-	}
-	
-	return font;
-}
-
-- (CGFloat)_optimalFontSizeToFitText:(NSString *)text insideWidth:(CGFloat)width
-{
-	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-	paragraphStyle.alignment = NSTextAlignmentCenter;
-	
-	CGFloat fontSize = 1;
-	
-	do
-	{
-		UIFont *font = [self _captionFontWithSize:fontSize];
-		
-		NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle};
-		
-		CGSize neededSize = [text sizeWithAttributes:attributes];
-		
-		if (neededSize.width >= width)
-		{
-			break;
-		}
-		
-		fontSize++;
-	}
-	while (1);
-	
-	return fontSize;
-}
-
-- (CGFloat)_barScaleFromOptions:(NSDictionary *)options
-{
-	NSNumber *barScaleNum = [options objectForKey:BCKCodeDrawingBarScaleOption];
-	
-	if (barScaleNum)
-	{
-		return [barScaleNum floatValue];
-	}
-	else
-	{
-		return 1;  // default
-	}
 }
 
 - (BOOL)_shouldDrawCaptionFromOptions:(NSDictionary *)options
@@ -355,6 +315,138 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	}
 	
 	return 1; // default
+}
+
+- (NSString *)_captionFontNameFromOptions:(NSDictionary *)options
+{
+	NSString *fontName = [options objectForKey:BCKCodeDrawingCaptionFontNameOption];
+	
+	if (fontName)
+	{
+		return fontName;
+	}
+	
+	return [self defaultCaptionFontName];
+}
+
+#pragma mark - Caption Text
+
+- (NSAttributedString *)_attributedStringForCaptionText:(NSString *)text fontName:(NSString *)fontName fontSize:(CGFloat)fontSize
+{
+	// create a centered paragraph style
+	CTTextAlignment alignment = kCTCenterTextAlignment;
+	CTParagraphStyleSetting settings[] = {{kCTParagraphStyleSpecifierAlignment, sizeof(alignment), &alignment}};
+	CTParagraphStyleRef paragraphStyle = CTParagraphStyleCreate(settings, 1);
+	
+	CTFontRef font = CTFontCreateWithName((__bridge CFStringRef)(fontName), fontSize, NULL);
+	
+	// fall back
+	if (!font)
+	{
+		font = CTFontCreateWithName(CFSTR("Helvetica"), fontSize, NULL);
+	}
+	
+	UIColor *textColor = [UIColor blackColor];
+	
+	NSDictionary *attributes = @{(id)kCTParagraphStyleAttributeName: CFBridgingRelease(paragraphStyle),
+										  (id)kCTFontAttributeName: CFBridgingRelease(font),
+										  (id)kCTForegroundColorAttributeName: (id)textColor.CGColor};
+	
+	return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+
+- (CTFrameRef)_frameWithCaptionText:(NSString *)text fontName:(NSString *)fontName fontSize:(CGFloat)fontSize constraintedToWidth:(CGFloat)constraintWidth
+{
+	if (!constraintWidth)
+	{
+		constraintWidth = CGFLOAT_MAX;
+	}
+	
+	NSAttributedString *attributedString = [self _attributedStringForCaptionText:text fontName:fontName fontSize:fontSize];
+	
+	CTFramesetterRef framesetter =  CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)(attributedString));
+	CTTypesetterRef typesetter = CTFramesetterGetTypesetter(framesetter);
+	CGRect rect = CGRectMake(0, 0, constraintWidth, 10000);
+	CFIndex length = CTTypesetterSuggestLineBreak(typesetter, 0, rect.size.width);
+	CFRange stringRange = CFRangeMake(0, length);
+	CGPathRef path = CGPathCreateWithRect(rect, NULL);
+	CTFrameRef frame = CTFramesetterCreateFrame(framesetter, stringRange, path, NULL);
+	
+	CGPathRelease(path);
+	CFRelease(framesetter);
+	
+	return frame;
+}
+
+- (CGSize)_sizeNeededByFirstLineInFrame:(CTFrameRef)frame
+{
+	NSArray *lines = (__bridge NSArray *)CTFrameGetLines(frame);
+	
+	if (![lines count])
+	{
+		return CGSizeZero;
+	}
+	
+	CTLineRef line = (__bridge CTLineRef)(lines[0]);
+	
+	// determine size of line
+	CGFloat ascent;
+	CGFloat descent;
+	CGFloat leading;
+	
+	CGSize neededSize;
+	
+	neededSize.width = CTLineGetTypographicBounds(line, &ascent, &descent, &leading);
+	neededSize.height = ascent + descent;
+	
+	return neededSize;
+}
+
+- (CGFloat)_optimalFontSizeToFitText:(NSString *)text fontName:(NSString *)fontName insideWidth:(CGFloat)width
+{
+	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+	paragraphStyle.alignment = NSTextAlignmentCenter;
+	
+	CGFloat fontSize = 1;
+	
+	do
+	{
+		CTFrameRef frame = [self _frameWithCaptionText:text fontName:fontName fontSize:fontSize constraintedToWidth:width];
+		
+		if (!frame)
+		{
+			break;
+		}
+		
+		CGSize neededSize = [self _sizeNeededByFirstLineInFrame:frame];
+		
+		CFRelease(frame);
+		
+		if (neededSize.width >= width)
+		{
+			break;
+		}
+		
+		fontSize++;
+	}
+	while (1);
+	
+	return fontSize;
+}
+
+- (CGFloat)_barScaleFromOptions:(NSDictionary *)options
+{
+	NSNumber *barScaleNum = [options objectForKey:BCKCodeDrawingBarScaleOption];
+	
+	if (barScaleNum)
+	{
+		return [barScaleNum floatValue];
+	}
+	else
+	{
+		return 1;  // default
+	}
 }
 
 #pragma mark - Subclassing Methods
@@ -386,33 +478,69 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 
 - (BOOL)markerBarsCanOverlapBottomCaption
 {
-	return YES;
+	return NO;
 }
 
 - (BOOL)allowsFillingOfEmptyQuietZones
 {
-	return YES;
+	return NO;
+}
+
+- (NSString *)defaultCaptionFontName
+{
+	return @"Helvetica";
 }
 
 #pragma mark - Drawing
 
-- (void)_drawCaptionText:(NSString *)text fontSize:(CGFloat)fontSize inRect:(CGRect)rect context:(CGContextRef)context
+- (void)_drawCaptionText:(NSString *)text fontName:fontName fontSize:(CGFloat)fontSize inRect:(CGRect)rect context:(CGContextRef)context
 {
 	if (![text length])
 	{
 		return;
 	}
 	
-	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-	paragraphStyle.alignment = NSTextAlignmentCenter;
+	CGRect bounds = CGContextGetClipBoundingBox(context);
+	NSAssert(CGPointEqualToPoint(bounds.origin, CGPointZero), @"%s requires {0,0} clip origin", __PRETTY_FUNCTION__);
 	
-	UIFont *font =[self _captionFontWithSize:fontSize];
-	NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle};
+	CTFrameRef frame = [self _frameWithCaptionText:text fontName:fontName fontSize:fontSize constraintedToWidth:rect.size.width];
 	
-	CGSize leftSize = [text sizeWithAttributes:attributes];
-	[[UIColor blackColor] setFill];
+	if (!frame)
+	{
+		return;
+	}
 	
-	[text drawAtPoint:CGPointMake(CGRectGetMidX(rect)-leftSize.width/2.0f, CGRectGetMaxY(rect)-font.ascender-0.5) withAttributes:attributes];
+	NSArray *lines = (__bridge NSArray *)CTFrameGetLines(frame);
+	
+	if (![lines count])
+	{
+		return;
+	}
+	
+	CTLineRef line = (__bridge CTLineRef)(lines[0]);
+	
+	CGFloat ascent;
+	CGFloat descent;
+	CGFloat leading;
+	CGFloat width = CTLineGetTypographicBounds(line, &ascent, &descent, &leading);
+	
+	CGContextSaveGState(context);
+	
+	// Flip the coordinate system
+	CGContextSetTextMatrix(context, CGAffineTransformIdentity);
+	CGContextScaleCTM(context, 1.0, -1.0);
+	CGContextTranslateCTM(context, 0, -bounds.size.height);
+	
+	// CTLines need to be positioned via text position, {0,0} is bottom of context
+	CGFloat x = CGRectGetMidX(rect) - width/2.0f;
+	CGFloat y = descent;
+	CGContextSetTextPosition(context, x, y);
+	
+	// draw the line
+	CTLineDraw(line, context);
+	
+	CGContextRestoreGState(context);
+	CFRelease(frame);
 }
 
 - (CGSize)sizeWithRenderOptions:(NSDictionary *)options
@@ -462,8 +590,15 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	if ([self _shouldDrawCaptionFromOptions:options])
 	{
 		optimalCaptionFontSize = [self _captionFontSizeWithOptions:options];
-		UIFont *font = [self _captionFontWithSize:optimalCaptionFontSize];
-		captionHeight = ceilf(font.ascender);
+		NSString *fontName = [self _captionFontNameFromOptions:options];
+		
+		NSString *entireCaption = [NSString stringWithFormat:@"%@%@%@%@", leftQuietZoneText, leftDigits, rightDigits, rightQuietZoneText];
+		
+		CTFrameRef frame = [self _frameWithCaptionText:entireCaption fontName:fontName fontSize:optimalCaptionFontSize constraintedToWidth:0];
+		CGSize neededSize = [self _sizeNeededByFirstLineInFrame:frame];
+		CFRelease(frame);
+		
+		captionHeight = neededSize.height;
 		
 		bottomCaptionRegion = CGRectMake(0, size.height-captionHeight - barScale, size.width, captionHeight + barScale);
 	}
@@ -566,12 +701,14 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	
 	if ([self _shouldDrawCaptionFromOptions:options])
 	{
+		NSString *fontName = [self _captionFontNameFromOptions:options];
+		
 		// indent quiet zones to have 1 px distance
 		leftQuietZoneNumberFrame.size.width -= barScale;
 		
 		rightQuietZoneNumberFrame.origin.x += barScale;
 		rightQuietZoneNumberFrame.size.width -= barScale;
-
+		
 		// determine if there is a middle marker
 		BOOL hasMiddleMarker = (middleMarkerFrame.origin.x < CGRectGetMaxX(frameBetweenEndMarkers));
 		
@@ -631,18 +768,17 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 			}
 			
 			// Draw Captions
-			
-			[self _drawCaptionText:leftDigits fontSize:optimalCaptionFontSize inRect:leftNumberFrame context:context];
-			[self _drawCaptionText:rightDigits fontSize:optimalCaptionFontSize inRect:rightNumberFrame context:context];
+			[self _drawCaptionText:leftDigits fontName:fontName fontSize:optimalCaptionFontSize inRect:leftNumberFrame context:context];
+			[self _drawCaptionText:rightDigits fontName:fontName fontSize:optimalCaptionFontSize inRect:rightNumberFrame context:context];
 			
 			if (leftQuietZoneText)
 			{
-				[self _drawCaptionText:leftQuietZoneText fontSize:optimalCaptionFontSize inRect:leftQuietZoneNumberFrame context:context];
+				[self _drawCaptionText:leftQuietZoneText fontName:fontName fontSize:optimalCaptionFontSize inRect:leftQuietZoneNumberFrame context:context];
 			}
 			
 			if (rightQuietZoneText)
 			{
-				[self _drawCaptionText:rightQuietZoneText fontSize:optimalCaptionFontSize inRect:rightQuietZoneNumberFrame context:context];
+				[self _drawCaptionText:rightQuietZoneText fontName:fontName fontSize:optimalCaptionFontSize inRect:rightQuietZoneNumberFrame context:context];
 			}
 		}
 		else
@@ -653,7 +789,7 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 			leftQuietZoneNumberFrame = CGRectIntersection(bottomCaptionRegion, leftQuietZoneNumberFrame);
 			rightQuietZoneNumberFrame = CGRectIntersection(bottomCaptionRegion, rightQuietZoneNumberFrame);
 			frameBetweenEndMarkers = CGRectIntersection(bottomCaptionRegion, frameBetweenEndMarkers);
-
+			
 			// indent by 1 bar width if left marker ends with a bar
 			BCKCodeCharacter *leftOuterMarker = codeCharacters[0];
 			
@@ -693,16 +829,16 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 			}
 			
 			NSString *text = [self captionTextForZone:BCKCodeDrawingCaptionTextZone];
-			[self _drawCaptionText:text fontSize:[self _captionFontSizeWithOptions:options] inRect:frameBetweenEndMarkers context:context];
+			[self _drawCaptionText:text fontName:fontName fontSize:[self _captionFontSizeWithOptions:options] inRect:frameBetweenEndMarkers context:context];
 			
 			if (leftQuietZoneText)
 			{
-				[self _drawCaptionText:leftQuietZoneText fontSize:optimalCaptionFontSize inRect:leftQuietZoneNumberFrame context:context];
+				[self _drawCaptionText:leftQuietZoneText fontName:fontName fontSize:optimalCaptionFontSize inRect:leftQuietZoneNumberFrame context:context];
 			}
 			
 			if (rightQuietZoneText)
 			{
-				[self _drawCaptionText:rightQuietZoneText fontSize:optimalCaptionFontSize inRect:rightQuietZoneNumberFrame context:context];
+				[self _drawCaptionText:rightQuietZoneText fontName:fontName fontSize:optimalCaptionFontSize inRect:rightQuietZoneNumberFrame context:context];
 			}
 		}
 	}

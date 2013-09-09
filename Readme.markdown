@@ -6,7 +6,10 @@ This project lets you generate bar codes for a variety of code standards.
 - EAN-13/UPC-A
 - EAN-8
 - UPC-E
-- Code39
+- Code 11
+- Code 39 (plain, mod 43, Full ASCII plain and mod 43)
+- Code 93
+- Code 128
 - Interleaved 2 of 5
 
 Documentation

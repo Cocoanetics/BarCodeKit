@@ -19,7 +19,6 @@
 
 @end
 
-
 @implementation BCKEAN13CodeTest
 
 // tests encoding a basic word

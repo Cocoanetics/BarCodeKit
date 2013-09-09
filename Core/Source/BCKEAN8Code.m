@@ -9,6 +9,7 @@
 #import "BCKEAN8Code.h"
 #import "BCKEANCodeCharacter.h"
 
+
 @implementation BCKEAN8Code
 
 - (instancetype)initWithContent:(NSString *)content
@@ -78,6 +79,16 @@
 
 #pragma mark - Subclassing Methods
 
++ (NSString *)barcodeStandard
+{
+	return @"International standard ISO/IEC 15420";
+}
+
++ (NSString *)barcodeDescription
+{
+	return @"EAN-8";
+}
+
 - (NSUInteger)horizontalQuietZoneWidth
 {
 	return 7;
@@ -86,11 +97,17 @@
 // generate the code characters from the content
 - (NSArray *)codeCharacters
 {
+	// If the array was created earlier just return it
+	if (_codeCharacters)
+	{
+		return _codeCharacters;
+	}
+   
 	NSMutableArray *tmpArray = [NSMutableArray array];
-
+	
 	// variant pattern is fixed
 	static char *variant_pattern = "LLLLRRRR";
-
+	
 	// start marker
 	[tmpArray addObject:[BCKEANCodeCharacter endMarkerCodeCharacter]];
 	
@@ -111,12 +128,28 @@
 	// end marker
 	[tmpArray addObject:[BCKEANCodeCharacter endMarkerCodeCharacter]];
 	
-	return [tmpArray copy];
+	_codeCharacters = [tmpArray copy];
+	return _codeCharacters;
+}
+
+- (NSString *)defaultCaptionFontName
+{
+	return @"OCRB";
 }
 
 - (CGFloat)aspectRatio
 {
 	return 26.73 / 21.31;
+}
+
+- (BOOL)markerBarsCanOverlapBottomCaption
+{
+	return YES;
+}
+
+- (BOOL)allowsFillingOfEmptyQuietZones
+{
+	return YES;
 }
 
 @end

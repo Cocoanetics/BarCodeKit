@@ -11,15 +11,15 @@
 
 // the variant pattern to use based on the check digit (last) and first digit
 static char *variant_patterns[10][2] = {{"EEEOOO", "OOOEEE"},  // 0
-                                        {"EEOEOO", "OOEOEE"},  // 1
-                                        {"EEOOEO", "OOEEOE"},  // 2
-                                        {"EEOOOE", "OOEEEO"},  // 3
-                                        {"EOEEOO", "OEOOEE"},  // 4
-                                        {"EOOEEO", "OOEOEE"},  // 5
-                                        {"EOOOEE", "OEEEOO"},  // 6
-                                        {"EOEOEO", "OEOEOE"},  // 7
-                                        {"EOEOOE", "OEOEEO"},  // 8
-                                        {"EOOEOE", "OEEOEO"}   // 9
+	{"EEOEOO", "OOEOEE"},  // 1
+	{"EEOOEO", "OOEEOE"},  // 2
+	{"EEOOOE", "OOEEEO"},  // 3
+	{"EOEEOO", "OEOOEE"},  // 4
+	{"EOOEEO", "OOEOEE"},  // 5
+	{"EOOOEE", "OEEEOO"},  // 6
+	{"EOEOEO", "OEOEOE"},  // 7
+	{"EOEOOE", "OEOEEO"},  // 8
+	{"EOOEOE", "OEEOEO"}   // 9
 };
 
 @implementation BCKUPCECode
@@ -95,6 +95,16 @@ static char *variant_patterns[10][2] = {{"EEEOOO", "OOOEEE"},  // 0
 
 #pragma mark - Subclassing Methods
 
++ (NSString *)barcodeStandard
+{
+	return @"International standard ISO/IEC 15420";
+}
+
++ (NSString *)barcodeDescription
+{
+	return @"UPC-E";
+}
+
 - (NSUInteger)horizontalQuietZoneWidth
 {
 	return 7;
@@ -102,6 +112,12 @@ static char *variant_patterns[10][2] = {{"EEEOOO", "OOOEEE"},  // 0
 
 - (NSArray *)codeCharacters
 {
+	// If the array was created earlier just return it
+	if (_codeCharacters)
+	{
+		return _codeCharacters;
+	}
+   
 	NSMutableArray *tmpArray = [NSMutableArray array];
 	
 	// variant pattern derives from first and last digits
@@ -124,7 +140,8 @@ static char *variant_patterns[10][2] = {{"EEEOOO", "OOOEEE"},  // 0
 	// end marker
 	[tmpArray addObject:[BCKEANCodeCharacter endMarkerCodeCharacterForUPCE]];
 	
-	return [tmpArray copy];
+	_codeCharacters = [tmpArray copy];
+	return _codeCharacters;
 }
 
 - (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone
@@ -145,9 +162,24 @@ static char *variant_patterns[10][2] = {{"EEEOOO", "OOOEEE"},  // 0
 	return nil;
 }
 
+- (NSString *)defaultCaptionFontName
+{
+	return @"OCRB";
+}
+
 - (CGFloat)aspectRatio
 {
 	return 26.73 / 21.31;
+}
+
+- (BOOL)markerBarsCanOverlapBottomCaption
+{
+	return YES;
+}
+
+- (BOOL)allowsFillingOfEmptyQuietZones
+{
+	return YES;
 }
 
 @end
