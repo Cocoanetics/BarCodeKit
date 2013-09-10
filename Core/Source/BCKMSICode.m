@@ -122,29 +122,45 @@
     }
     
     // Add the requested check digit
-    switch (_checkDigitScheme) {
-        case BCKMSINoCheckDigitScheme:          // No check digit required
+    switch (_checkDigitScheme)
+	{
+        case BCKMSINoCheckDigitScheme:
+		{
+			// No check digit required
             break;
+		}
+			
         case BCKMSICodeMod10CheckDigitScheme:
+		{
             [finalArray addObject:[self _generateUsingLuhnAlgorithm:contentCharacterArray]];
             break;
+		}
+			
         case BCKMSICodeMod11CheckDigitScheme:
+		{
             [finalArray addObject:[self _generateReverseModulo11:contentCharacterArray]];
             break;
+		}
+			
         case BCKMSICodeMod1010CheckDigitScheme:
+		{
             tmpCharacter = [self _generateUsingLuhnAlgorithm:contentCharacterArray];
             [contentCharacterArray addObject:tmpCharacter];
             [finalArray addObject:tmpCharacter];
             tmpCharacter = [self _generateUsingLuhnAlgorithm:contentCharacterArray];
             [finalArray addObject:tmpCharacter];
             break;
+		}
+			
         case BCKMSICodeMod1110CheckDigitScheme:
+		{
             tmpCharacter = [self _generateReverseModulo11:contentCharacterArray];
             [contentCharacterArray addObject:tmpCharacter];
             [finalArray addObject:tmpCharacter];
             tmpCharacter = [self _generateUsingLuhnAlgorithm:contentCharacterArray];
             [finalArray addObject:tmpCharacter];
             break;
+		}
     }
     
 	// Add the stop code character

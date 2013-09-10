@@ -9,7 +9,7 @@
 #import "BCKCodeCharacter.h"
 
 /**
- Specialized class of BCKCodeCharacter used for generating Code11 codes
+ Specialized class of BCKCodeCharacter used for generating MSI codes
  */
 @interface BCKMSICodeCharacter : BCKCodeCharacter
 
