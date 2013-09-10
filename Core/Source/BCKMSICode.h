@@ -21,17 +21,17 @@ typedef NS_ENUM(char, BCKMSICodeCheckDigitScheme) {
 	 MSI code Mod 10, default option if [super initWithContent:] is used to initialise the barcode
 	 */
     BCKMSICodeMod10CheckDigitScheme,
-
+	
     /**
 	 MSI code Mod 11
 	 */
     BCKMSICodeMod11CheckDigitScheme,
-
+	
     /**
 	 MSI code Mod 1010
 	 */
     BCKMSICodeMod1010CheckDigitScheme,
-
+	
     /**
 	 MSI code Mod 1110
 	 */

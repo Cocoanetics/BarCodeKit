@@ -34,7 +34,7 @@
     __block NSUInteger counter = 0;
     
 	[contentCodeCharacters enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(BCKMSIContentCodeCharacter *obj, NSUInteger idx, BOOL *stop) {
-
+		
         NSUInteger charValue;
         
         if((counter % 2) != 0)
@@ -49,7 +49,7 @@
                 charValue = (charValue % 10) + 1;
             }
         }
-
+		
         counter++;
 		weightedSum+=charValue;
     }];
@@ -63,7 +63,7 @@
 	__block NSUInteger weight = 2;
     
 	[contentCodeCharacters enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(BCKMSIContentCodeCharacter *obj, NSUInteger idx, BOOL *stop) {
-
+		
 		weightedSum+=weight * [obj characterValue];
 		weight++;
         
@@ -72,7 +72,7 @@
             weight = 2;
         }
     }];
-
+	
 	return [[BCKMSIContentCodeCharacter alloc] initWithCharacterValue:((11 - (weightedSum % 11))) % 11];
 }
 
@@ -87,7 +87,7 @@
 	}
 	
 	return self;
-
+	
 }
 
 - (BCKCode *)initWithContent:(NSString *)content
