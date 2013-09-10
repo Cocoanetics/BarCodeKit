@@ -26,5 +26,7 @@
 	<string>04252614</string>
 	<key>BCKCode11Code</key>
 	<string>123456789-</string>
+	<key>BCKMSICode</key>
+	<string>1234567</string>
 </dict>
 </plist>

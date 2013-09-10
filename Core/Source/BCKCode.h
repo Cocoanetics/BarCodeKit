@@ -55,6 +55,8 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
  - BCKCode93Code - Code 93 - no international standard
  - BCKInterleaved2of5Code - Interleaved 2 of 5 - International standard ISO/IEC 16390
  - BCKCode128Code - Code 128 - International Standard ISO/IEC 15417
+ - BCKCode11Code - Code 11 - no international standard
+ - BCKMSICode - MSI or Modified Plessey barcode - no international standard
  
  For rendering codes several options can be combined in an options dictionary:
  
