@@ -78,17 +78,17 @@
 	return [[BCKMSIContentCodeCharacter alloc] initWithCharacterValue:((11 - (weightedSum % 11))) % 11];
 }
 
-- (instancetype)initWithContent:(NSString *)content andCheckDigitScheme:(BCKMSICodeCheckDigitScheme)checkDigitScheme
+- (instancetype)initWithContent:(NSString *)content andCheckDigitScheme:(BCKMSICodeCheckDigitScheme)checkDigitScheme error:(NSError**)error
 {
     self = [super initWithContent:content];
-	
+
 	if (self)
 	{
-        if (![self _isValidContent:content])
+        if (![BCKMSICode canEncodeContent:content error:error])
 		{
 			return nil;
 		}
-
+        
 		_checkDigitScheme = checkDigitScheme;
 		_content = [content copy];
 	}
@@ -96,29 +96,30 @@
 	return self;
 }
 
-- (BCKCode *)initWithContent:(NSString *)content
+- (BCKCode *)initWithContent:(NSString *)content error:(NSError**)error
 {
-    return [self initWithContent:content andCheckDigitScheme:BCKMSINoCheckDigitScheme];
+    return [self initWithContent:content andCheckDigitScheme:BCKMSINoCheckDigitScheme error:error];
 }
 
-#pragma mark - Helper Methods
+#pragma mark - Subclass Methods
 
-- (BOOL)_isValidContent:(NSString *)content
++ (BOOL)canEncodeContent:(NSString *)content error:(NSError **)error
 {
 	for (NSUInteger index=0; index<[content length]; index++)
 	{
 		NSString *character = [content substringWithRange:NSMakeRange(index, 1)];
 		BCKMSICodeCharacter *codeCharacter = [[BCKMSIContentCodeCharacter alloc] initWithCharacter:character];
+
 		if (!codeCharacter)
 		{
+            *error = [BCKMSICode initialiseError:@"Content can not be encoded by BCKMSICode, alpha-numeric characters detected"];
+            
 			return NO;
 		}
 	}
 	
 	return YES;
 }
-
-#pragma mark - Subclass Methods
 
 - (NSArray *)codeCharacters
 {

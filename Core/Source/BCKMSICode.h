@@ -44,11 +44,12 @@ typedef NS_ENUM(char, BCKMSICodeCheckDigitScheme) {
 @interface BCKMSICode : BCKCode
 
 /**
- Designated initializer for BCKMSICode objects. If initWithContent is used the check digit scheme defaults to BCKMSINoCheckDigitScheme
+ Designated initializer for BCKMSICode objects. initWithContent: may be used instead, in that case the check digit scheme defaults to BCKMSINoCheckDigitScheme
  @param content The number string for the code
  @param checkDigitScheme The check digit scheme to use
- @return A BCKMSICode object encoding the barcode content and including the requested check digit scheme. Returns nil if the content provided cannot be encoded.
+ @param error Double redirection to an NSError object
+ @return A BCKMSICode object encoding the barcode content using the requested check digit scheme. Returns nil if the content provided cannot be encoded, in which case the NSError instance will provide error details.
  */
-- (instancetype)initWithContent:(NSString *)content andCheckDigitScheme:(BCKMSICodeCheckDigitScheme)checkDigitScheme;
+- (instancetype)initWithContent:(NSString *)content andCheckDigitScheme:(BCKMSICodeCheckDigitScheme)checkDigitScheme error:(NSError**)error;
 
 @end

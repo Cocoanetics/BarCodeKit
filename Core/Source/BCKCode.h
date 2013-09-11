@@ -78,11 +78,19 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
  */
 
 /**
- Root initializer for sub-classes of the BCKCode class cluster. You should not call this on BCKCode directly, but always on concrete subclasses based on the kind of code you want to generate.
+ DEPRECATED - Root initializer for sub-classes of the BCKCode class cluster. You should not call this on BCKCode directly, but always on concrete subclasses based on the kind of code you want to generate.
  @param content The number string for the code
  @return The requested BCKCode subclass. Returns nil if the content provided cannot be encoded using the requested BCKCode subclass
  */
 - (instancetype)initWithContent:(NSString *)content;
+
+/**
+ Root initializer for sub-classes of the BCKCode class cluster. You should not call this on BCKCode directly, but always on concrete subclasses based on the kind of code you want to generate.
+ @param content The number string for the code
+ @param error Double indirection to an NSError instance
+ @return The requested BCKCode subclass. Returns nil if the provided content cannot be encoded by the requested BCKCode subclass, the error object will contain error details
+ */
+- (instancetype)initWithContent:(NSString *)content error:(NSError**)error;
 
 /**
  @name Drawing Bar Codes
@@ -158,5 +166,19 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
  Human readable description of the barcode class (e.g. EAN-8)
  */
 + (NSString *)barcodeDescription;
+
+/**
+ Checks whether contents is encodable by the BCKCode class.
+ @param content The barcode to be encoded by the BCKCode subclass
+ @return YES if the contents is encodable, in which case the error object is set to nil. NO if it is not, the error object contains error information
+ */
++ (BOOL)canEncodeContent:(NSString *)content error:(NSError **)error;
+
+/**
+ Creates an NSError instance with default BarCodeKit settings and a custom error message
+ @param errorMessage The error message
+ @return An instance of NSError set to default settings and the custom errorMessage
+ */
++ (NSError*)initialiseError:(NSString*)errorMessage;
 
 @end
