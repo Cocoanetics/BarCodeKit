@@ -28,6 +28,7 @@
 	return @"MSI (Modified Plessey)";
 }
 
+// Create the check digit using Luhn's algorithm (aka Mod 10)
 - (BCKMSIContentCodeCharacter *)_generateUsingLuhnAlgorithm:(NSArray *)contentCodeCharacters
 {
 	__block NSUInteger weightedSum = 0;
@@ -57,6 +58,7 @@
     return [[BCKMSIContentCodeCharacter alloc] initWithCharacterValue:((weightedSum * 9) % 10)];
 }
 
+// Create the check digit using the reverse module 11 algorithm (aka Mod 11)
 - (BCKMSIContentCodeCharacter *)_generateReverseModulo11:(NSArray *)contentCodeCharacters
 {
 	__block NSUInteger weightedSum = 0;
@@ -76,23 +78,47 @@
 	return [[BCKMSIContentCodeCharacter alloc] initWithCharacterValue:((11 - (weightedSum % 11))) % 11];
 }
 
-- (instancetype)initWithContent:(NSString *)content andCheckDigitScheme:(BCKMSICodeCheckDigitScheme)checkDigitScheme
+- (instancetype)initWithContent:(NSString *)content andCheckDigitScheme:(BCKMSICodeCheckDigitScheme)checkDigitScheme error:(NSError**)error
 {
     self = [super initWithContent:content];
-	
+
 	if (self)
 	{
+        if (![BCKMSICode canEncodeContent:content error:error])
+		{
+			return nil;
+		}
+        
 		_checkDigitScheme = checkDigitScheme;
 		_content = [content copy];
 	}
 	
 	return self;
-	
 }
 
-- (BCKCode *)initWithContent:(NSString *)content
+- (BCKCode *)initWithContent:(NSString *)content error:(NSError**)error
 {
-    return [self initWithContent:content andCheckDigitScheme:BCKMSINoCheckDigitScheme];
+    return [self initWithContent:content andCheckDigitScheme:BCKMSINoCheckDigitScheme error:error];
+}
+
+#pragma mark - Subclass Methods
+
++ (BOOL)canEncodeContent:(NSString *)content error:(NSError **)error
+{
+	for (NSUInteger index=0; index<[content length]; index++)
+	{
+		NSString *character = [content substringWithRange:NSMakeRange(index, 1)];
+		BCKMSICodeCharacter *codeCharacter = [[BCKMSIContentCodeCharacter alloc] initWithCharacter:character];
+
+		if (!codeCharacter)
+		{
+            *error = [BCKMSICode initialiseError:@"Content can not be encoded by BCKMSICode, alpha-numeric characters detected"];
+            
+			return NO;
+		}
+	}
+	
+	return YES;
 }
 
 - (NSArray *)codeCharacters
