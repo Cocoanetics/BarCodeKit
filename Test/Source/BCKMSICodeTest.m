@@ -33,6 +33,12 @@
     [super tearDown];
 }
 
+- (void)testEncodeInvalid
+{
+    BCKMSICode *code = [[BCKMSICode alloc] initWithContent:@"1234a"];
+	STAssertNil(code, @"Should not be able to encode alphanumeric characters in MSI");
+}
+
 - (void)testCheckDigitSchemes
 {
     BCKMSICode *code;

@@ -28,6 +28,7 @@
 	return @"MSI (Modified Plessey)";
 }
 
+// Create the check digit using Luhn's algorithm (aka Mod 10)
 - (BCKMSIContentCodeCharacter *)_generateUsingLuhnAlgorithm:(NSArray *)contentCodeCharacters
 {
 	__block NSUInteger weightedSum = 0;
@@ -57,6 +58,7 @@
     return [[BCKMSIContentCodeCharacter alloc] initWithCharacterValue:((weightedSum * 9) % 10)];
 }
 
+// Create the check digit using the reverse module 11 algorithm (aka Mod 11)
 - (BCKMSIContentCodeCharacter *)_generateReverseModulo11:(NSArray *)contentCodeCharacters
 {
 	__block NSUInteger weightedSum = 0;
@@ -82,18 +84,41 @@
 	
 	if (self)
 	{
+        if (![self _isValidContent:content])
+		{
+			return nil;
+		}
+
 		_checkDigitScheme = checkDigitScheme;
 		_content = [content copy];
 	}
 	
 	return self;
-	
 }
 
 - (BCKCode *)initWithContent:(NSString *)content
 {
     return [self initWithContent:content andCheckDigitScheme:BCKMSINoCheckDigitScheme];
 }
+
+#pragma mark - Helper Methods
+
+- (BOOL)_isValidContent:(NSString *)content
+{
+	for (NSUInteger index=0; index<[content length]; index++)
+	{
+		NSString *character = [content substringWithRange:NSMakeRange(index, 1)];
+		BCKMSICodeCharacter *codeCharacter = [[BCKMSIContentCodeCharacter alloc] initWithCharacter:character];
+		if (!codeCharacter)
+		{
+			return NO;
+		}
+	}
+	
+	return YES;
+}
+
+#pragma mark - Subclass Methods
 
 - (NSArray *)codeCharacters
 {
