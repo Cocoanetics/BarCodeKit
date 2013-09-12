@@ -8,6 +8,7 @@
 
 #import "BCKCode39FullASCII.h"
 #import "BCKCode39CodeCharacter.h"
+#import "NSError+BCKCode.h"
 
 @implementation BCKCode39FullASCII
 
@@ -167,6 +168,13 @@
 }
 
 #pragma mark - Subclass Methods
+
++ (BOOL)canEncodeContent:(NSString *)content error:(NSError *__autoreleasing *)error
+{
+	// TODO: implement
+	
+	return YES;
+}
 
 + (NSString *)barcodeDescription
 {

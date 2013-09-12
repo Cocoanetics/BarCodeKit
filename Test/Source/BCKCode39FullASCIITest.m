@@ -25,7 +25,10 @@
 // tests encoding a basic word
 - (void)testEncode
 {
-	BCKCode39FullASCII *code = [[BCKCode39FullASCII alloc] initWithContent:@"OLIVER"];
+	NSError *error;
+	BCKCode39FullASCII *code = [[BCKCode39FullASCII alloc] initWithContent:@"OLIVER" error:&error];
+	STAssertNotNil(code, [error localizedDescription]);
+	
 	NSString *expected = @"1001011011010110101101001010110101001101011010011010100110101011011010110010101101010110010100101101101";
 	NSString *actual = [code bitString];
 	BOOL isEqual = [expected isEqualToString:actual];
@@ -36,7 +39,10 @@
 // tests encoding a barcode containing full ASCII characters
 - (void)testEncodeFullASCII
 {
-	BCKCode39FullASCII *codeFullASCII = [[BCKCode39FullASCII alloc] initWithContent:@"a"];
+	NSError *error;
+	BCKCode39FullASCII *codeFullASCII = [[BCKCode39FullASCII alloc] initWithContent:@"a" error:&error];
+	STAssertNotNil(codeFullASCII, [error localizedDescription]);
+
 	NSString *expected = @"100101101101010010100100101101010010110100101101101";
 	NSString *actual = [codeFullASCII bitString];
 	BOOL isEqual = [expected isEqualToString:actual];
@@ -47,7 +53,10 @@
 // tests encoding a barcode containing full ASCII characters with the Modulo-43 check character
 - (void)testEncodeFullASCIIWithModulo43
 {
-	BCKCode39FullASCIIModulo43 *codeFullASCIIModulo43 = [[BCKCode39FullASCIIModulo43 alloc] initWithContent:@"a"];
+	NSError *error;
+	BCKCode39FullASCIIModulo43 *codeFullASCIIModulo43 = [[BCKCode39FullASCIIModulo43 alloc] initWithContent:@"a" error:&error];
+	STAssertNotNil(codeFullASCIIModulo43, [error localizedDescription]);
+	
 	NSString *expected = @"1001011011010100101001001011010100101101101001011010100101101101";
 	NSString *actual = [codeFullASCIIModulo43 bitString];
 	BOOL isEqual = [expected isEqualToString:actual];

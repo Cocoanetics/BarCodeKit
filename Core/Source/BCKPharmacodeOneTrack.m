@@ -18,14 +18,10 @@
 
 - (instancetype)initWithContent:(NSString *)content error:(NSError**)error
 {
-    self = [super initWithContent:content];
+    self = [super initWithContent:content error:error];
     
 	if (self)
 	{
-        if (![BCKPharmacodeOneTrack canEncodeContent:content error:error])
-		{
-			return nil;
-		}
     }
 	
 	return self;

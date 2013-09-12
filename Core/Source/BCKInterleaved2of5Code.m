@@ -8,30 +8,25 @@
 
 #import "BCKInterleaved2of5Code.h"
 #import "BCKInterleaved2of5CodeCharacter.h"
+#import "NSError+BCKCode.h"
 
 @implementation BCKInterleaved2of5Code
 
-- (instancetype)initWithContent:(NSString *)content
+- (instancetype)initWithContent:(NSString *)content error:(NSError *__autoreleasing *)error
 {
-	self = [super init];
+	// If the content length is even, all is good
+	// otherwise 0 prefix it to make it even
 	
+	if (content.length % 2 != 0)
+	{
+		content = [@"0" stringByAppendingString:content];
+	}
+	
+	self = [super initWithContent:content error:error];
+
 	if (self)
 	{
-		// If the content length is even, all is good
-		// otherwise 0 prefix it to make it even
-		NSString *dataString;
-		if (content.length % 2 == 0)
-			dataString = content;
-		else
-			dataString = [@"0" stringByAppendingString:content];
-		
-		if (![self _isValidContent:dataString])
-		{
-			return nil;
-		}
-		
-		_content = [dataString copy];
-		
+		_content = [content copy];
 	}
 	
 	return self;
@@ -39,11 +34,17 @@
 
 #pragma mark - Helper Methods
 
-- (BOOL)_isValidContent:(NSString *)content
++ (BOOL)canEncodeContent:(NSString *)content error:(NSError *__autoreleasing *)error
 {
 	// Must be of even length - this should always be the (as we 0 prefix this) but just in case...
 	if (content.length % 2 != 0)
 	{
+		if (error)
+		{
+			NSString *message = [NSString stringWithFormat:@"%@ requires content to be of even length", NSStringFromClass([self class])];
+			*error = [NSError BCKCodeErrorWithMessage:message];
+		}
+		
 		return NO;
 	}
 	
@@ -57,7 +58,13 @@
 		
 		if (!codeCharacter)
 		{
-			//NSLog(@"Characters '%@' and '%@' cannot be encoded in Code2of5", digit1, digit2);
+			if (error)
+			{
+				//NSLog();
+				NSString *message = [NSString stringWithFormat:@"Characters '%@' and '%@' cannot be encoded in %@", digit1, digit2, NSStringFromClass([self class])];
+				*error = [NSError BCKCodeErrorWithMessage:message];
+			}
+
 			return NO;
 		}
 	}

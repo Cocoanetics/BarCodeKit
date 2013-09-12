@@ -9,6 +9,7 @@
 #import "BCKCode93Code.h"
 #import "BCKCode93CodeCharacter.h"
 #import "BCKCode93ContentCodeCharacter.h"
+#import "NSError+BCKCode.h"
 
 @implementation BCKCode93Code
 
@@ -202,6 +203,13 @@ NSString * const BCKCode93Modulo47CheckCharacterSecondOption = @"BCKCode93Modulo
 }
 
 #pragma mark - Subclass Methods
+
++ (BOOL)canEncodeContent:(NSString *)content error:(NSError *__autoreleasing *)error
+{
+	// TODO: implement
+	
+	return YES;
+}
 
 + (NSString *)barcodeStandard
 {

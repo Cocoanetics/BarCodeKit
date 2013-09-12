@@ -8,10 +8,18 @@
 
 #import "BCKCode39CodeModulo43.h"
 #import "BCKCode39ContentCodeCharacter.h"
+#import "NSError+BCKCode.h"
 
 @implementation BCKCode39CodeModulo43
 
 #pragma mark - Subclass Methods
+
++ (BOOL)canEncodeContent:(NSString *)content error:(NSError *__autoreleasing *)error
+{
+	// TODO: implement
+	
+	return YES;
+}
 
 + (NSString *)barcodeDescription
 {

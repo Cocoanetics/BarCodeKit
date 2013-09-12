@@ -7,38 +7,11 @@
 //
 
 #import "BCKCode39Code.h"
-
 #import "BCKCode39CodeCharacter.h"
 #import "BCKCode39ContentCodeCharacter.h"
+#import "NSError+BCKCode.h"
 
 @implementation BCKCode39Code
-
-+ (NSString *)barcodeStandard
-{
-	return @"International standard ISO/IEC 16388";
-}
-
-+ (NSString *)barcodeDescription
-{
-	return @"Code 39";
-}
-
-- (instancetype)initWithContent:(NSString *)content
-{
-	self = [super init];
-	
-	if (self)
-	{
-		if (![self _isValidContent:content])
-		{
-			return nil;
-		}
-		
-		_content = [content copy];
-	}
-	
-	return self;
-}
 
 - (BCKCode39ContentCodeCharacter *)generateModulo43ForContentCodeCharacter:(NSArray *)contentCodeCharacters
 {
@@ -54,16 +27,23 @@
 	return [[BCKCode39ContentCodeCharacter alloc] initWithValue:(weightedSum % 43)];
 }
 
-#pragma mark - Helper Methods
+#pragma mark - Subclass Methods
 
-- (BOOL)_isValidContent:(NSString *)content
++ (BOOL)canEncodeContent:(NSString *)content error:(NSError *__autoreleasing *)error
 {
 	for (NSUInteger index=0; index<[content length]; index++)
 	{
 		NSString *character = [content substringWithRange:NSMakeRange(index, 1)];
 		BCKCode39CodeCharacter *codeCharacter = [[BCKCode39ContentCodeCharacter alloc] initWithCharacter:character];
+		
 		if (!codeCharacter)
 		{
+			if (error)
+			{
+				NSString *message = [NSString stringWithFormat:@"Character at index %d '%@' cannot be encoded in %@", index, character, NSStringFromClass([self class])];
+				*error = [NSError BCKCodeErrorWithMessage:message];
+			}
+			
 			return NO;
 		}
 	}
@@ -71,7 +51,15 @@
 	return YES;
 }
 
-#pragma mark - Subclass Methods
++ (NSString *)barcodeStandard
+{
+	return @"International standard ISO/IEC 16388";
+}
+
++ (NSString *)barcodeDescription
+{
+	return @"Code 39";
+}
 
 - (NSArray *)codeCharacters
 {

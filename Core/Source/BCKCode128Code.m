@@ -9,10 +9,44 @@
 #import "BCKCode128Code.h"
 #import "BCKCode128ContentCodeCharacter.h"
 #import "NSString+BCKCode128Helpers.h"
+#import "NSError+BCKCode.h"
 
 @implementation BCKCode128Code
 {
 	BCKCode128Version _barcodeVersion;
+}
+
+
+- (BCKCode *)initWithContent:(NSString *)content error:(NSError *__autoreleasing *)error
+{
+	self = [super initWithContent:content error:error];
+	
+	if (self)
+	{
+		_barcodeVersion = [BCKCode128ContentCodeCharacter code128VersionNeeded:content];
+	}
+	
+	return self;
+}
+
+#pragma mark - Subclass Methods
+
++ (BOOL)canEncodeContent:(NSString *)content error:(NSError *__autoreleasing *)error
+{
+	BCKCode128Version barcodeVersion = [BCKCode128ContentCodeCharacter code128VersionNeeded:content];
+	
+	if (barcodeVersion == Code128Unsupported)
+	{
+		if (*error)
+		{
+			NSString *message = [NSString stringWithFormat:@"String '%@' cannot be encoded in Code128", content];
+			*error = [NSError BCKCodeErrorWithMessage:message];
+		}
+		
+		return NO;
+	}
+	
+	return YES;
 }
 
 + (NSString *)barcodeStandard
@@ -24,28 +58,6 @@
 {
 	return @"Code 128";
 }
-
-- (BCKCode *)initWithContent:(NSString *)content
-{
-	self = [super initWithContent:content];
-	
-	if (self)
-	{
-		BCKCode128Version versionUsed = [BCKCode128ContentCodeCharacter code128VersionNeeded:content];
-		if (versionUsed == Code128Unsupported)
-		{
-			NSLog(@"String '%@' cannot be encoded in Code128", content);
-			return nil;
-		}
-		
-		_barcodeVersion = versionUsed;
-		_content = [content copy];
-	}
-	
-	return self;
-}
-
-#pragma mark - Subclass Methods
 
 - (NSArray *)codeCharacters
 {
