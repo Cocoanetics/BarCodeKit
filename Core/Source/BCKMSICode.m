@@ -72,15 +72,10 @@
 
 - (instancetype)initWithContent:(NSString *)content andCheckDigitScheme:(BCKMSICodeCheckDigitScheme)checkDigitScheme error:(NSError**)error
 {
-    self = [super initWithContent:content];
+    self = [super initWithContent:content error:error];
 
 	if (self)
 	{
-        if (![BCKMSICode canEncodeContent:content error:error])
-		{
-			return nil;
-		}
-        
 		_checkDigitScheme = checkDigitScheme;
 	}
 	

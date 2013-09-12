@@ -91,7 +91,9 @@
 									  BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption: @(_captionOverlap)};
 	
 	// Initialise barcode contents using the text in the textfield
-	_barcodeObject = [[NSClassFromString(self.barcodeClassString) alloc] initWithContent:_contentTextField.text];
+	Class codeClass = NSClassFromString(self.barcodeClassString);
+	NSError *error;
+	_barcodeObject = [[codeClass alloc] initWithContent:_contentTextField.text error:&error];
 	
 	// Draw the barcode. If the barcode doesn't support the content clear the image
 	if (_barcodeObject)
@@ -100,6 +102,9 @@
 	}
 	else
 	{
+		//TODO: Show encoding error
+		NSLog(@"%@", [error localizedDescription]);
+		
 		self.barcodeImageView.image = nil;
 	}
 }

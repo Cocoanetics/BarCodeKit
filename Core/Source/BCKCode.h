@@ -83,7 +83,7 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
  @param content The number string for the code
  @return The requested BCKCode subclass. Returns nil if the content provided cannot be encoded using the requested BCKCode subclass
  */
-- (instancetype)initWithContent:(NSString *)content;
+- (instancetype)initWithContent:(NSString *)content __attribute__((deprecated("use - [BCKCode initWithContent:error:] instead")));
 
 /**
  Root initializer for sub-classes of the BCKCode class cluster. You should not call this on BCKCode directly, but always on concrete subclasses based on the kind of code you want to generate.

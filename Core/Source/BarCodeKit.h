@@ -23,3 +23,6 @@
 // code character for Code93
 #import "BCKCode93CodeCharacter.h"
 #import "BCKCode93ContentCodeCharacter.h"
+
+// error reporting
+#import "NSError+BCKCode.h"

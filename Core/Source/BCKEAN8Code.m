@@ -8,49 +8,11 @@
 
 #import "BCKEAN8Code.h"
 #import "BCKEANCodeCharacter.h"
-
+#import "NSError+BCKCode.h"
 
 @implementation BCKEAN8Code
 
-- (instancetype)initWithContent:(NSString *)content
-{
-	self = [super initWithContent:content];
-	
-	if (self)
-	{
-		if (![self _isValidContent:_content])
-		{
-			return nil;
-		}
-	}
-	
-	return self;
-}
-
 #pragma mark - Helper Methods
-
-- (BOOL)_isValidContent:(NSString *)content
-{
-	NSUInteger length = [content length];
-	
-	if (length != 8)
-	{
-		return NO;
-	}
-	
-	for (NSUInteger index=0; index<[content length]; index++)
-	{
-		NSString *character = [content substringWithRange:NSMakeRange(index, 1)];
-		char c = [character UTF8String][0];
-		
-		if (!(c>='0' && c<='9'))
-		{
-			return NO;
-		}
-	}
-	
-	return YES;
-}
 
 - (NSUInteger)_digitAtIndex:(NSUInteger)index
 {
@@ -78,6 +40,41 @@
 }
 
 #pragma mark - Subclassing Methods
+
++ (BOOL)canEncodeContent:(NSString *)content error:(NSError *__autoreleasing *)error
+{
+	NSUInteger length = [content length];
+	
+	if (length != 8)
+	{
+		if (error)
+		{
+			NSString *message = [NSString stringWithFormat:@"%@ requires content to be 8 digits", NSStringFromClass([self class])];
+			*error = [NSError BCKCodeErrorWithMessage:message];
+		}
+		
+		return NO;
+	}
+	
+	for (NSUInteger index=0; index<[content length]; index++)
+	{
+		NSString *character = [content substringWithRange:NSMakeRange(index, 1)];
+		char c = [character UTF8String][0];
+		
+		if (!(c>='0' && c<='9'))
+		{
+			if (error)
+			{
+				NSString *message = [NSString stringWithFormat:@"%@ cannot encode '%@' at index %d", NSStringFromClass([self class]), character, index];
+				*error = [NSError BCKCodeErrorWithMessage:message];
+			}
+			
+			return NO;
+		}
+	}
+	
+	return YES;
+}
 
 + (NSString *)barcodeStandard
 {

@@ -31,6 +31,23 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	
 	if (self)
 	{
+		NSError *encodeError = nil;
+		
+		// query the sub-classes method to check if this can be encoded
+		if (![[self class] canEncodeContent:content error:&encodeError])
+		{
+			if (error)
+			{
+				*error = encodeError;
+			}
+			else
+			{
+				NSLog(@"%s %@", __PRETTY_FUNCTION__, [encodeError localizedDescription]);
+			}
+			
+			return nil;
+		}
+		
 		_content = [content copy];
 	}
     
@@ -39,14 +56,7 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 
 - (instancetype)initWithContent:(NSString *)content
 {
-	self = [super init];
-	
-	if (self)
-	{
-		_content = [content copy];
-	}
-	
-	return self;
+	return [self initWithContent:content error:NULL];
 }
 
 - (NSString *)bitString
@@ -469,7 +479,10 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 
 + (BOOL)canEncodeContent:(NSString *)content error:(NSError **)error
 {
-    [NSError BCKCodeErrorWithMessage:ENCODE_ERROR_MESSAGE];
+	if (error)
+	{
+		*error = [NSError BCKCodeErrorWithMessage:ENCODE_ERROR_MESSAGE];
+	}
     
     return NO;
 }

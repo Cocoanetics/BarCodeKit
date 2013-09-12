@@ -203,6 +203,13 @@ NSString * const BCKCode93Modulo47CheckCharacterSecondOption = @"BCKCode93Modulo
 
 #pragma mark - Subclass Methods
 
++ (BOOL)canEncodeContent:(NSString *)content error:(NSError *__autoreleasing *)error
+{
+	// TODO: implement
+	
+	return YES;
+}
+
 + (NSString *)barcodeStandard
 {
 	return @"Not an international standard";
