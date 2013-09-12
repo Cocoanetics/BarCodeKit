@@ -18,17 +18,7 @@
 	BCKMSICodeCheckDigitScheme _checkDigitScheme;
 }
 
-#pragma mark - Subclass Methods
-
-+ (NSString *)barcodeStandard
-{
-	return @"Not an international standard";
-}
-
-+ (NSString *)barcodeDescription
-{
-	return @"MSI (Modified Plessey)";
-}
+#pragma mark - Helper Methods
 
 // Create the check digit using Luhn's algorithm (aka Mod 10)
 - (BCKMSIContentCodeCharacter *)_generateUsingLuhnAlgorithm:(NSArray *)contentCodeCharacters
@@ -92,7 +82,6 @@
 		}
         
 		_checkDigitScheme = checkDigitScheme;
-//		_content = [content copy];
 	}
 	
 	return self;
@@ -104,6 +93,16 @@
 }
 
 #pragma mark - Subclass Methods
+
++ (NSString *)barcodeStandard
+{
+	return @"Not an international standard";
+}
+
++ (NSString *)barcodeDescription
+{
+	return @"MSI (Modified Plessey)";
+}
 
 + (BOOL)canEncodeContent:(NSString *)content error:(NSError **)error
 {

@@ -28,5 +28,7 @@
 	<string>123456789-</string>
 	<key>BCKMSICode</key>
 	<string>1234567</string>
+	<key>BCKPharmacodeOneTrack</key>
+	<string>542</string>
 </dict>
 </plist>
