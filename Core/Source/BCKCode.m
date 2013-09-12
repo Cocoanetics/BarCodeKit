@@ -8,6 +8,7 @@
 
 #import "BCKCode.h"
 #import "BarCodeKit.h"
+#import "NSError+BCKCode.h"
 
 #import <CoreText/CoreText.h>
 
@@ -19,21 +20,9 @@ NSString * const BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption = @"BCKCode
 NSString * const BCKCodeDrawingFillEmptyQuietZonesOption = @"BCKCodeDrawingFillEmptyQuietZones";
 NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 
+#define ENCODE_ERROR_MESSAGE @"BCKCode is an abstract class that cannot encode anything"
+
 @implementation BCKCode
-
-+ (NSError *)initialiseError:(NSString*)errorMessage
-{
-    NSError *error = nil;
-
-    if(errorMessage)
-    {
-        NSMutableDictionary* details = [NSMutableDictionary dictionary];
-        [details setValue:errorMessage forKey:NSLocalizedDescriptionKey];
-        error = [NSError errorWithDomain:@"com.cocoanetics.barcodekit" code:200 userInfo:details];
-    }
-
-    return error;
-}
 
 // The NSError object is ignored in BCKCode's initWithContent method. BCKCode subclasses are required to initialise it in case of errors, for example if canEncodeContent: returns NO
 - (instancetype)initWithContent:(NSString *)content error:(NSError**)error
@@ -48,7 +37,6 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	return self;
 }
 
-// DEPRECATED - to be deleted once all subclasses have been refactored to use the NSError version
 - (instancetype)initWithContent:(NSString *)content
 {
 	self = [super init];
@@ -481,7 +469,7 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 
 + (BOOL)canEncodeContent:(NSString *)content error:(NSError **)error
 {
-    [BCKCode initialiseError:@"BCKCode is an abstract class that cannot encode anything"];
+    [NSError BCKCodeErrorWithMessage:ENCODE_ERROR_MESSAGE];
     
     return NO;
 }

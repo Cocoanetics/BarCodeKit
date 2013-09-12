@@ -7,26 +7,18 @@
 //
 
 #import "BCKMSICode.h"
-
 #import "BCKMSICodeCharacter.h"
 #import "BCKMSIContentCodeCharacter.h"
+#import "NSError+BCKCode.h"
+
+#define ENCODE_ERROR_MESSAGE @"Content can not be encoded by BCKMSICode, alpha-numeric characters detected"
 
 @implementation BCKMSICode
 {
 	BCKMSICodeCheckDigitScheme _checkDigitScheme;
 }
 
-#pragma mark - Subclass Methods
-
-+ (NSString *)barcodeStandard
-{
-	return @"Not an international standard";
-}
-
-+ (NSString *)barcodeDescription
-{
-	return @"MSI (Modified Plessey)";
-}
+#pragma mark - Helper Methods
 
 // Create the check digit using Luhn's algorithm (aka Mod 10)
 - (BCKMSIContentCodeCharacter *)_generateUsingLuhnAlgorithm:(NSArray *)contentCodeCharacters
@@ -90,7 +82,6 @@
 		}
         
 		_checkDigitScheme = checkDigitScheme;
-		_content = [content copy];
 	}
 	
 	return self;
@@ -103,6 +94,16 @@
 
 #pragma mark - Subclass Methods
 
++ (NSString *)barcodeStandard
+{
+	return @"Not an international standard";
+}
+
++ (NSString *)barcodeDescription
+{
+	return @"MSI (Modified Plessey)";
+}
+
 + (BOOL)canEncodeContent:(NSString *)content error:(NSError **)error
 {
 	for (NSUInteger index=0; index<[content length]; index++)
@@ -112,7 +113,7 @@
 
 		if (!codeCharacter)
 		{
-            *error = [BCKMSICode initialiseError:@"Content can not be encoded by BCKMSICode, alpha-numeric characters detected"];
+            *error = [NSError BCKCodeErrorWithMessage:ENCODE_ERROR_MESSAGE];
             
 			return NO;
 		}

@@ -56,13 +56,6 @@
 	STAssertTrue(isEqual, @"Result from encoding using default check digit scheme is incorrect");
 }
 
-- (void)testCanEncodeTestForBCKCode
-{
-    NSError *error = nil;
-    
-    STAssertFalse([BCKCode canEncodeContent:@"12345" error:&error], @"BCKCOde should always return NO for canEncodeContent:");
-}
-
 - (void)testCheckDigitSchemes
 {
     BCKMSICode *code;
