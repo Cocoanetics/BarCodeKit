@@ -78,7 +78,8 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
  */
 
 /**
- DEPRECATED - Root initializer for sub-classes of the BCKCode class cluster. You should not call this on BCKCode directly, but always on concrete subclasses based on the kind of code you want to generate.
+ Root initializer for sub-classes of the BCKCode class cluster. You should not call this on BCKCode directly, but always on concrete subclasses based on the kind of code you want to generate.
+ @warning This method is deprecated, use - [BCKCode initWithContent:error:] instead
  @param content The number string for the code
  @return The requested BCKCode subclass. Returns nil if the content provided cannot be encoded using the requested BCKCode subclass
  */
@@ -173,12 +174,5 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
  @return YES if the contents is encodable, in which case the error object is set to nil. NO if it is not, the error object contains error information
  */
 + (BOOL)canEncodeContent:(NSString *)content error:(NSError **)error;
-
-/**
- Creates an NSError instance with default BarCodeKit settings and a custom error message
- @param errorMessage The error message
- @return An instance of NSError set to default settings and the custom errorMessage
- */
-+ (NSError*)initialiseError:(NSString*)errorMessage;
 
 @end

@@ -7,9 +7,11 @@
 //
 
 #import "BCKMSICode.h"
-
 #import "BCKMSICodeCharacter.h"
 #import "BCKMSIContentCodeCharacter.h"
+#import "NSError+BCKCode.h"
+
+#define ENCODE_ERROR_MESSAGE @"Content can not be encoded by BCKMSICode, alpha-numeric characters detected"
 
 @implementation BCKMSICode
 {
@@ -90,7 +92,7 @@
 		}
         
 		_checkDigitScheme = checkDigitScheme;
-		_content = [content copy];
+//		_content = [content copy];
 	}
 	
 	return self;
@@ -112,7 +114,7 @@
 
 		if (!codeCharacter)
 		{
-            *error = [BCKMSICode initialiseError:@"Content can not be encoded by BCKMSICode, alpha-numeric characters detected"];
+            *error = [NSError BCKCodeErrorWithMessage:ENCODE_ERROR_MESSAGE];
             
 			return NO;
 		}
