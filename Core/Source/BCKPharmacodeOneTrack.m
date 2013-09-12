@@ -61,27 +61,32 @@
 // Pharmacode One Track only supports integer values from 3 to 131070
 + (BOOL)canEncodeContent:(NSString *)content error:(NSError **)error
 {
-    NSCharacterSet* notDigits = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
-    BOOL success = NO;
-
+    NSCharacterSet *notDigits = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
+ 
     if ([content rangeOfCharacterFromSet:notDigits].location == NSNotFound)
     {
         NSInteger integerValue = [content integerValue];
-        if((integerValue < 3) || (integerValue > 131070))
+        if ((integerValue < 3) || (integerValue > 131070))
         {
-            *error = [NSError BCKCodeErrorWithMessage:ENCODE_ERROR_MESSAGE];
-        }
-        else
-        {
-            success = YES;
+			if (error)
+			{
+				*error = [NSError BCKCodeErrorWithMessage:ENCODE_ERROR_MESSAGE];
+			}
+			
+			return NO;
         }
     }
     else
     {
-        *error = [NSError BCKCodeErrorWithMessage:ENCODE_ERROR_MESSAGE];
+		if (error)
+		{
+			*error = [NSError BCKCodeErrorWithMessage:ENCODE_ERROR_MESSAGE];
+		}
+		
+		return NO;
     }
 	
-	return success;
+	return YES;
 }
 
 - (NSUInteger)horizontalQuietZoneWidth
