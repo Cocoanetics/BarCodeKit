@@ -7,6 +7,7 @@
 #import "BCKCode39Code.h"
 #import "BCKInterleaved2of5Code.h"
 #import "BCKCode93Code.h"
+#import "BCKCode128Code.h"
 
 // code characters for EAN/UPC
 #import "BCKEANCodeCharacter.h"
