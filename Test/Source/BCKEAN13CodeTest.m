@@ -24,7 +24,10 @@
 // tests encoding a basic word
 - (void)testEncode
 {
-	BCKEAN13Code *code = [[BCKEAN13Code alloc] initWithContent:@"9780596516178"];
+	NSError *error;
+	BCKEAN13Code *code = [[BCKEAN13Code alloc] initWithContent:@"9780596516178" error:&error];
+	STAssertNotNil(code, [error localizedDescription]);
+	
 	NSString *expected = @"10101110110001001010011101100010010111010111101010100111011001101010000110011010001001001000101";
 	NSString *actual = [code bitString];
 	BOOL isEqual = [expected isEqualToString:actual];
@@ -35,14 +38,18 @@
 // text cannot be encoded
 - (void)testEncodeInvalidText
 {
-	BCKEAN13Code *code = [[BCKEAN13Code alloc] initWithContent:@"foo"];
+	NSError *error;
+	BCKEAN13Code *code = [[BCKEAN13Code alloc] initWithContent:@"foo" error:&error];
 	STAssertNil(code, @"Should not be able to encode non-digits in EAN13");
+	STAssertNotNil(error, @"No error message returned");
 }
 
 - (void)testEncodeInvalidNumber
 {
-	BCKEAN13Code *code = [[BCKEAN13Code alloc] initWithContent:@"978059651617"];
+	NSError *error;
+	BCKEAN13Code *code = [[BCKEAN13Code alloc] initWithContent:@"978059651617" error:&error];
 	STAssertNil(code, @"Should not be able to too few digits in EAN13");
+	STAssertNotNil(error, @"No error message returned");
 }
 
 @end

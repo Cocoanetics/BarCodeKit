@@ -25,7 +25,10 @@
 // tests encoding a basic barcode
 - (void)testEncode
 {
-	BCKInterleaved2of5Code *code = [[BCKInterleaved2of5Code alloc] initWithContent:@"1234567890"];
+	NSError *error;
+	BCKInterleaved2of5Code *code = [[BCKInterleaved2of5Code alloc] initWithContent:@"1234567890" error:&error];
+	STAssertNotNil(code, [error localizedDescription]);
+
 	NSString *expected = @"101011010010101100110110100101001101001100101010010101100110101101001100101101";
 	NSString *actual = [code bitString];
 	BOOL isEqual = [expected isEqualToString:actual];
@@ -37,15 +40,18 @@
 // but not implemented yet)
 - (void)testEncodeOddLength
 {
-	BCKInterleaved2of5Code *code = [[BCKInterleaved2of5Code alloc] initWithContent:@"123456789"];
-	STAssertNotNil(code, @"2 Of 5 Codes must have even size (divisible by 2)");
+	NSError *error;
+	BCKInterleaved2of5Code *code = [[BCKInterleaved2of5Code alloc] initWithContent:@"123456789" error:&error];
+	STAssertNotNil(code, [error localizedDescription]);
 }
 
 // Alpha characters are not supported in this format
 - (void)testEncodeInvalidCharacters
 {
-	BCKInterleaved2of5Code *code = [[BCKInterleaved2of5Code alloc] initWithContent:@"123abc"];
+	NSError *error;
+	BCKInterleaved2of5Code *code = [[BCKInterleaved2of5Code alloc] initWithContent:@"123abc" error:&error];
 	STAssertNil(code, @"2 Of 5 Codes must be numeric only");
+	STAssertNotNil(error, @"No error message returned");
 }
 
 @end

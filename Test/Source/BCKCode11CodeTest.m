@@ -34,7 +34,10 @@
 
 - (void)testEncode
 {
-	BCKCode11Code *code = [[BCKCode11Code alloc] initWithContent:@"123-45"];
+	NSError *error;
+	BCKCode11Code *code = [[BCKCode11Code alloc] initWithContent:@"123-45" error:&error];
+	STAssertNotNil(code, [error localizedDescription]);
+	
 	NSString *expected = @"1011001011010110100101101100101010110101011011011011010110110101011001";
 	NSString *actual = [code bitString];
 	BOOL isEqual = [expected isEqualToString:actual];
@@ -44,7 +47,10 @@
 
 - (void)testEncodeLong
 {
-	BCKCode11Code *code = [[BCKCode11Code alloc] initWithContent:@"01234528987"];
+	NSError *error;
+	BCKCode11Code *code = [[BCKCode11Code alloc] initWithContent:@"01234528987" error:NULL];
+	STAssertNotNil(code, [error localizedDescription]);
+	
 	NSString *expected = @"101100101010110110101101001011011001010101101101101101010010110110100101101010110100101010011010110110110100101011001";
 	NSString *actual = [code bitString];
 	BOOL isEqual = [expected isEqualToString:actual];

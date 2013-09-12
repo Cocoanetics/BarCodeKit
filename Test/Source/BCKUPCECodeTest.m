@@ -24,7 +24,9 @@
 // tests encoding a basic word
 - (void)testEncode
 {
-	BCKUPCECode *code = [[BCKUPCECode alloc] initWithContent:@"12345670"];
+	NSError *error;
+	BCKUPCECode *code = [[BCKUPCECode alloc] initWithContent:@"12345670" error:&error];
+	STAssertNotNil(code, [error localizedDescription]);
 	
 	NSString *expected = @"101001001101111010100011011100100001010010001010101";
 	NSString *actual = [code bitString];
@@ -36,15 +38,19 @@
 // text cannot be encoded
 - (void)testEncodeInvalidText
 {
-	BCKUPCECode *code = [[BCKUPCECode alloc] initWithContent:@"1234567x"];
+	NSError *error;
+	BCKUPCECode *code = [[BCKUPCECode alloc] initWithContent:@"1234567x" error:&error];
 	STAssertNil(code, @"Should not be able to encode non-digits in UPC-E");
+	STAssertNotNil(error, @"No error message returned");
 }
 
 // only 8 digit numbers can be encoded
 - (void)testEncodeInvalidNumber
 {
-	BCKUPCECode *code = [[BCKUPCECode alloc] initWithContent:@"1234567"];
+	NSError *error;
+	BCKUPCECode *code = [[BCKUPCECode alloc] initWithContent:@"1234567" error:&error];
 	STAssertNil(code, @"Should not be able to too few digits in UPC-E");
+	STAssertNotNil(error, @"No error message returned");
 }
 
 @end
