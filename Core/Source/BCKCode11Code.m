@@ -7,15 +7,15 @@
 //
 
 #import "BCKCode11Code.h"
-
 #import "BCKCode11CodeCharacter.h"
 #import "BCKCode11ContentCodeCharacter.h"
+#import "NSError+BCKCode.h"
+
 
 @implementation BCKCode11Code
 
 #define FIRSTMODULO11MAXWEIGHT 10       // the weight ranges from 1 to 10 for the first modulo-11 check
 #define SECONDMODULO11MAXWEIGHT 9       // the weight ranges from 1 to 9 for the second modulo-11 check
-
 
 // Pass the appropriate option to generate the first or second modulo-11 check character
 NSString * const BCKCode11Modulo11CheckCharacterFirstOption = @"BCKCode11Modulo11CheckCharacterFirst";

@@ -9,6 +9,7 @@
 #import "BCKCode93Code.h"
 #import "BCKCode93CodeCharacter.h"
 #import "BCKCode93ContentCodeCharacter.h"
+#import "NSError+BCKCode.h"
 
 @implementation BCKCode93Code
 

@@ -8,6 +8,7 @@
 
 #import "BCKCode39FullASCIIModulo43.h"
 #import "BCKCode39CodeCharacter.h"
+#import "NSError+BCKCode.h"
 
 @implementation BCKCode39FullASCIIModulo43
 

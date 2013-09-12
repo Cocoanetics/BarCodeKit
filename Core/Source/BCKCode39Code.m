@@ -7,7 +7,6 @@
 //
 
 #import "BCKCode39Code.h"
-
 #import "BCKCode39CodeCharacter.h"
 #import "BCKCode39ContentCodeCharacter.h"
 #import "NSError+BCKCode.h"

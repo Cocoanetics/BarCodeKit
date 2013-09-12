@@ -6,7 +6,9 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
-#import "BarCodeKit.h"
+#import "BCKUPCECode.h"
+#import "BCKEANCodeCharacter.h"
+#import "NSError+BCKCode.h"
 
 // the variant pattern to use based on the check digit (last) and first digit
 static char *variant_patterns[10][2] = {{"EEEOOO", "OOOEEE"},  // 0
