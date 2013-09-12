@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @class BCKCode;
 
 /**

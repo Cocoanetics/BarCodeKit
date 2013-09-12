@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 /**
  Helper methods for `NSError` to create BarCodeKit specific `NSError` instances.
  */
@@ -22,7 +20,6 @@
  @param message The error message the `NSError` object should be initialised with
  @returns An `NSError` object initialised with the error message
  */
-
 + (NSError *)BCKCodeErrorWithMessage:(NSString *)message;
 
 @end

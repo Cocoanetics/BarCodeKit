@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
 #import "BCKCode11Code.h"
 
 @interface BCKCode11Code () // private
