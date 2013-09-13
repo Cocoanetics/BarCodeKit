@@ -191,4 +191,19 @@
 	}];
 }
 
+// tests encoding a barcode containing characters not included in full ASCII
+- (void)testEncodeNonFullASCII
+{
+    NSError *error = nil;
+    BOOL isEqual;
+    
+	BCKCode93Code *codeFullASCII = [[BCKCode93Code alloc] initWithContent:@"abcdö123" error:&error];
+	STAssertNil(codeFullASCII, @"Should not be able to encode non full ASCII characters in BCKCode93Code");
+    
+    isEqual = [[error localizedDescription] isEqualToString:@"Character at index 4 'ö' cannot be encoded in BCKCode93Code"];
+    
+    STAssertNotNil(error, @"Error object should not be nil");
+    STAssertTrue(isEqual, @"Error message should indicate invalid content");
+}
+
 @end

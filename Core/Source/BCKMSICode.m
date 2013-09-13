@@ -11,8 +11,6 @@
 #import "BCKMSIContentCodeCharacter.h"
 #import "NSError+BCKCode.h"
 
-#define ENCODE_ERROR_MESSAGE @"Content can not be encoded by BCKMSICode, alpha-numeric characters detected"
-
 @implementation BCKMSICode
 {
 	BCKMSICodeCheckDigitScheme _checkDigitScheme;
@@ -51,7 +49,7 @@
 }
 
 // Create the check digit using the reverse module 11 algorithm (aka Mod 11)
-- (BCKMSIContentCodeCharacter *)_generateReverseModulo11:(NSArray *)contentCodeCharacters
+- (BCKMSIContentCodeCharacter *)_generateUsingReverseModulo11:(NSArray *)contentCodeCharacters
 {
 	__block NSUInteger weightedSum = 0;
 	__block NSUInteger weight = 2;
@@ -108,7 +106,11 @@
 
 		if (!codeCharacter)
 		{
-            *error = [NSError BCKCodeErrorWithMessage:ENCODE_ERROR_MESSAGE];
+			if (error)
+			{
+				NSString *message = [NSString stringWithFormat:@"Character at index %d '%@' cannot be encoded in %@", index, character, NSStringFromClass([self class])];
+				*error = [NSError BCKCodeErrorWithMessage:message];
+			}
             
 			return NO;
 		}
@@ -160,7 +162,7 @@
 			
         case BCKMSICodeMod11CheckDigitScheme:
 		{
-            [finalArray addObject:[self _generateReverseModulo11:contentCharacterArray]];
+            [finalArray addObject:[self _generateUsingReverseModulo11:contentCharacterArray]];
             break;
 		}
 			
@@ -176,7 +178,7 @@
 			
         case BCKMSICodeMod1110CheckDigitScheme:
 		{
-            tmpCharacter = [self _generateReverseModulo11:contentCharacterArray];
+            tmpCharacter = [self _generateUsingReverseModulo11:contentCharacterArray];
             [contentCharacterArray addObject:tmpCharacter];
             [finalArray addObject:tmpCharacter];
             tmpCharacter = [self _generateUsingLuhnAlgorithm:contentCharacterArray];

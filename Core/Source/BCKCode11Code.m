@@ -25,7 +25,22 @@ NSString * const BCKCode11Modulo11CheckCharacterSecondOption = @"BCKCode11Modulo
 
 + (BOOL)canEncodeContent:(NSString *)content error:(NSError *__autoreleasing *)error
 {
-	// TODO: implement
+	for (NSUInteger index=0; index<[content length]; index++)
+	{
+		NSString *character = [content substringWithRange:NSMakeRange(index, 1)];
+		BCKCode11CodeCharacter *codeCharacter = [[BCKCode11ContentCodeCharacter alloc] initWithCharacter:character];
+		
+		if (!codeCharacter)
+		{
+			if (error)
+			{
+				NSString *message = [NSString stringWithFormat:@"Character at index %d '%@' cannot be encoded in %@", index, character, NSStringFromClass([self class])];
+				*error = [NSError BCKCodeErrorWithMessage:message];
+			}
+			
+			return NO;
+		}
+	}
 	
 	return YES;
 }

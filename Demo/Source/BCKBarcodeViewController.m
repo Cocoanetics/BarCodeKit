@@ -13,6 +13,7 @@
 @interface BCKBarcodeViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *barcodeImageView;
+@property (weak, nonatomic) IBOutlet UILabel *errorMessage;
 @property (nonatomic, strong) NSString *barcodeSample;
 @property (nonatomic, strong) NSString *barcodeClassString;
 
@@ -29,7 +30,7 @@
 	UISwitch *_fillQuietZonesSwitch;
 	UISlider *_barScaleSlider;
 	UISlider *_captionOverlapSlider;
-	UITextField *_contentTextField;
+	UITextField *_contentsTextField;
 	
 	// Options variables
 	BOOL _captionOption;
@@ -73,13 +74,22 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-	[_contentTextField resignFirstResponder];
+	[_contentsTextField resignFirstResponder];
 	[self _updateWithOptions];
 	
 	return NO;
 }
 
 #pragma mark - Options methods
+
+- (void)enableAllControls:(BOOL)enabled
+{
+    _captionSwitch.enabled = enabled;
+	_debugSwitch.enabled = enabled;
+	_fillQuietZonesSwitch.enabled = enabled;
+	_barScaleSlider.enabled = enabled;
+	_captionOverlapSlider.enabled = enabled;
+}
 
 // Create a new barcode when the options or the contents change
 - (void)_updateWithOptions
@@ -93,19 +103,22 @@
 	// Initialise barcode contents using the text in the textfield
 	Class codeClass = NSClassFromString(self.barcodeClassString);
 	NSError *error;
-	_barcodeObject = [[codeClass alloc] initWithContent:_contentTextField.text error:&error];
+	_barcodeObject = [[codeClass alloc] initWithContent:_contentsTextField.text error:&error];
 	
-	// Draw the barcode. If the barcode doesn't support the content clear the image
+	// Draw the barcode. If the barcode doesn't support the content clear the image and show the error message, disable all controls except the text field
 	if (_barcodeObject)
 	{
+        [self enableAllControls:YES];
+        self.errorMessage.hidden = YES;
 		self.barcodeImageView.image = [UIImage imageWithBarCode:_barcodeObject options:options];
+        self.errorMessage.text = @"";
 	}
 	else
 	{
-		//TODO: Show encoding error
-		NSLog(@"%@", [error localizedDescription]);
-		
+        [self enableAllControls:NO];
+        self.errorMessage.hidden = NO;
 		self.barcodeImageView.image = nil;
+        self.errorMessage.text = [NSString stringWithFormat:@"Encoding error: %@\n\nPlease try a different contents.", [error localizedDescription]];
 	}
 }
 
@@ -185,17 +198,20 @@
 	[_captionOverlapSlider addTarget:self action:@selector(_overlapChange:) forControlEvents:UIControlEventValueChanged];
 	_captionOverlapSlider.value = _captionOverlap;
 	
-	_contentTextField = [[UITextField alloc] initWithFrame:CGRectMake(110.0f, 10.0f, 205.0f, 30.0f)];
-	_contentTextField.clearsOnBeginEditing = NO;
-	_contentTextField.textAlignment = NSTextAlignmentRight;
-	_contentTextField.keyboardType = UIKeyboardTypeASCIICapable;
-	_contentTextField.returnKeyType = UIReturnKeyDone;
-	_contentTextField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-	_contentTextField.delegate = self;
-	_contentTextField.placeholder = @"Enter barcode";
+	_contentsTextField = [[UITextField alloc] initWithFrame:CGRectMake(110.0f, 10.0f, 205.0f, 30.0f)];
+	_contentsTextField.clearsOnBeginEditing = NO;
+	_contentsTextField.textAlignment = NSTextAlignmentRight;
+	_contentsTextField.keyboardType = UIKeyboardTypeASCIICapable;
+	_contentsTextField.returnKeyType = UIReturnKeyDone;
+	_contentsTextField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+	_contentsTextField.delegate = self;
+	_contentsTextField.placeholder = @"Enter barcode";
 	
 	// Initialise the barcode contents with the sample barcode content passed to the view controller
-	_contentTextField.text = self.barcodeSample;
+	_contentsTextField.text = self.barcodeSample;
+    
+    // Initially hide the error message UILabel
+    self.errorMessage.hidden = YES;
 	
 	// Draw the barcode using the current options
 	[self _updateWithOptions];
@@ -209,7 +225,7 @@
 	[self _configureView];
 
 	// Determine which options to show by adding options to the array used as the tableview's model
-	NSMutableArray *tmpBarcodeOptions = [NSMutableArray arrayWithObjects:@[@"Content", _contentTextField],
+	NSMutableArray *tmpBarcodeOptions = [NSMutableArray arrayWithObjects:@[@"Contents", _contentsTextField],
                                          @[@"Debug", _debugSwitch],
                                          @[@"Bar scale", _barScaleSlider],
                                          @[@"Caption", _captionSwitch],

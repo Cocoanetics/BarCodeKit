@@ -14,13 +14,6 @@
 
 #pragma mark - Subclass Methods
 
-+ (BOOL)canEncodeContent:(NSString *)content error:(NSError *__autoreleasing *)error
-{
-	// TODO: implement
-	
-	return YES;
-}
-
 + (NSString *)barcodeDescription
 {
 	return @"Code 39 mod 43";

@@ -58,4 +58,19 @@
 	STAssertTrue(isEqual, @"Result from encoding long contents incorrect");
 }
 
+// tests encoding a barcode containing characters not included in full ASCII
+- (void)testEncodeInvalid
+{
+    NSError *error = nil;
+    BOOL isEqual;
+    
+	BCKCode11Code *codeFullASCII = [[BCKCode11Code alloc] initWithContent:@"123ö45" error:&error];
+	STAssertNil(codeFullASCII, @"Should not be able to encode invalid characters in BCKCode11Code");
+    
+    isEqual = [[error localizedDescription] isEqualToString:@"Character at index 3 'ö' cannot be encoded in BCKCode11Code"];
+    
+    STAssertNotNil(error, @"Error object should not be nil");
+    STAssertTrue(isEqual, @"Error message should indicate invalid content");
+}
+
 @end

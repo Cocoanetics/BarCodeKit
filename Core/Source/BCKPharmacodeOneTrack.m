@@ -10,22 +10,9 @@
 #import "BCKPharmaOneTrackContentCodeCharacter.h"
 #import "NSError+BCKCode.h"
 
-#define ENCODE_ERROR_MESSAGE @"Pharmacode One Track only supports integer values between 3 and 131070"
-
 // source: http://www.gomaro.ch/ftproot/Laetus_PHARMA-CODE.pdf
 
 @implementation BCKPharmacodeOneTrack
-
-- (instancetype)initWithContent:(NSString *)content error:(NSError**)error
-{
-    self = [super initWithContent:content error:error];
-    
-	if (self)
-	{
-    }
-	
-	return self;
-}
 
 - (NSArray *)codeCharacters
 {
@@ -70,7 +57,8 @@
         {
 			if (error)
 			{
-				*error = [NSError BCKCodeErrorWithMessage:ENCODE_ERROR_MESSAGE];
+                NSString *message = [NSString stringWithFormat:@"Contents cannot be encoded in %@, only integer values between 3 and 131070 are supported", NSStringFromClass([self class])];
+				*error = [NSError BCKCodeErrorWithMessage:message];
 			}
 			
 			return NO;
@@ -80,7 +68,8 @@
     {
 		if (error)
 		{
-			*error = [NSError BCKCodeErrorWithMessage:ENCODE_ERROR_MESSAGE];
+            NSString *message = [NSString stringWithFormat:@"Contents cannot be encoded in %@, only integer values between 3 and 131070 are supported", NSStringFromClass([self class])];
+            *error = [NSError BCKCodeErrorWithMessage:message];
 		}
 		
 		return NO;
