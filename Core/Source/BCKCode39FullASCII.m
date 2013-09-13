@@ -8,21 +8,10 @@
 
 #import "BCKCode39FullASCII.h"
 #import "BCKCode39CodeCharacter.h"
+#import "BCKCode39ContentCodeCharacter.h"
 #import "NSError+BCKCode.h"
 
 @implementation BCKCode39FullASCII
-
-- (instancetype)initWithContent:(NSString *)content
-{
-	self = [super init];
-	
-	if (self)
-	{
-		_content = [content copy];
-	}
-	
-	return self;
-}
 
 #pragma mark Helper Methods
 
@@ -171,7 +160,22 @@
 
 + (BOOL)canEncodeContent:(NSString *)content error:(NSError *__autoreleasing *)error
 {
-	// TODO: implement
+	for (NSUInteger index=0; index<[content length]; index++)
+	{
+		NSString *character = [content substringWithRange:NSMakeRange(index, 1)];
+		
+        // Check the encoding dictionary to ensure all characters are encodable
+		if (![BCKCode39FullASCII fullASCIIEncoding:character])
+		{
+			if (error)
+			{
+				NSString *message = [NSString stringWithFormat:@"Character at index %d '%@' cannot be encoded in %@", index, character, NSStringFromClass([self class])];
+				*error = [NSError BCKCodeErrorWithMessage:message];
+			}
+			
+			return NO;
+		}
+	}
 	
 	return YES;
 }

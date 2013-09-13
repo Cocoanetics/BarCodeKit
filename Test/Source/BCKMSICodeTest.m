@@ -36,12 +36,15 @@
 - (void)testEncodeInvalid
 {
     NSError *error = nil;
+    BOOL isEqual;
     
     BCKMSICode *code = [[BCKMSICode alloc] initWithContent:@"1234a" error:&error];
 	STAssertNil(code, @"Should not be able to encode alphanumeric characters in MSI");
-
+    
+    isEqual = [[error localizedDescription] isEqualToString:@"Character at index 4 'a' cannot be encoded in BCKMSICode"];
+    
     STAssertNotNil(error, @"Error object should not be nil");
-    STAssertEquals([error localizedDescription], @"Content can not be encoded by BCKMSICode, alpha-numeric characters detected", @"Error message should indicate invalid content");
+    STAssertTrue(isEqual, @"Error message should indicate invalid content");
 }
 
 - (void)testDefaultCheckDigitScheme

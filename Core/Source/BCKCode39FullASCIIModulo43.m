@@ -12,26 +12,7 @@
 
 @implementation BCKCode39FullASCIIModulo43
 
-- (instancetype)initWithContent:(NSString *)content
-{
-	self = [super init];
-	
-	if (self)
-	{
-		_content = [content copy];
-	}
-	
-	return self;
-}
-
 #pragma mark - Subclass Methods
-
-+ (BOOL)canEncodeContent:(NSString *)content error:(NSError *__autoreleasing *)error
-{
-	// TODO: implement
-	
-	return YES;
-}
 
 + (NSString *)barcodeDescription
 {
