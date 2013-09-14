@@ -37,7 +37,7 @@
 	
 	if (barcodeVersion == Code128Unsupported)
 	{
-		if (*error)
+		if (error)
 		{
 			NSString *message = [NSString stringWithFormat:@"String '%@' cannot be encoded in Code128", content];
 			*error = [NSError BCKCodeErrorWithMessage:message];

@@ -21,14 +21,14 @@
 	{
 		return _codeCharacters;
 	}
-
-    NSMutableArray *finalArray = [NSMutableArray array];
-
-    // The content is encoded as one Content Code Character
-    BCKPharmaOneTrackContentCodeCharacter *tmpCharacter = [[BCKPharmaOneTrackContentCodeCharacter alloc] initWithInteger:
-                                                           [_content integerValue]];
-    [finalArray addObject:tmpCharacter];
-
+	
+	NSMutableArray *finalArray = [NSMutableArray array];
+	
+	// The content is encoded as one Content Code Character
+	BCKPharmaOneTrackContentCodeCharacter *tmpCharacter = [[BCKPharmaOneTrackContentCodeCharacter alloc] initWithInteger:
+																			 [_content integerValue]];
+	[finalArray addObject:tmpCharacter];
+	
 	_codeCharacters = [finalArray copy];
 	return _codeCharacters;
 }
@@ -48,32 +48,32 @@
 // Pharmacode One Track only supports integer values from 3 to 131070
 + (BOOL)canEncodeContent:(NSString *)content error:(NSError **)error
 {
-    NSCharacterSet *notDigits = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
- 
-    if ([content rangeOfCharacterFromSet:notDigits].location == NSNotFound)
-    {
-        NSInteger integerValue = [content integerValue];
-        if ((integerValue < 3) || (integerValue > 131070))
-        {
+	NSCharacterSet *notDigits = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
+	
+	if ([content rangeOfCharacterFromSet:notDigits].location == NSNotFound)
+	{
+		NSInteger integerValue = [content integerValue];
+		if ((integerValue < 3) || (integerValue > 131070))
+		{
 			if (error)
 			{
-                NSString *message = [NSString stringWithFormat:@"Contents cannot be encoded in %@, only integer values between 3 and 131070 are supported", NSStringFromClass([self class])];
+				NSString *message = [NSString stringWithFormat:@"Contents cannot be encoded in %@, only integer values between 3 and 131070 are supported", NSStringFromClass([self class])];
 				*error = [NSError BCKCodeErrorWithMessage:message];
 			}
 			
 			return NO;
-        }
-    }
-    else
-    {
+		}
+	}
+	else
+	{
 		if (error)
 		{
-            NSString *message = [NSString stringWithFormat:@"Contents cannot be encoded in %@, only integer values between 3 and 131070 are supported", NSStringFromClass([self class])];
-            *error = [NSError BCKCodeErrorWithMessage:message];
+			NSString *message = [NSString stringWithFormat:@"Contents cannot be encoded in %@, only integer values between 3 and 131070 are supported", NSStringFromClass([self class])];
+			*error = [NSError BCKCodeErrorWithMessage:message];
 		}
 		
 		return NO;
-    }
+	}
 	
 	return YES;
 }

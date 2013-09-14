@@ -21,18 +21,6 @@
 
 @implementation BCKCodabarCodeTest
 
-- (void)setUp
-{
-    [super setUp];
-    // Put setup code here; it will be run once, before the first test case.
-}
-
-- (void)tearDown
-{
-    // Put teardown code here; it will be run once, after the last test case.
-    [super tearDown];
-}
-
 - (void)testEncodeValid
 {
 	NSError *error;
@@ -61,32 +49,32 @@
 
 - (void)testEncodeInvalid
 {
-    NSError *error = nil;
-    BCKCodabarCode *code = nil;
-
-    code = [[BCKCodabarCode alloc] initWithContent:@"AA" error:&error];
+	NSError *error = nil;
+	BCKCodabarCode *code = nil;
+	
+	code = [[BCKCodabarCode alloc] initWithContent:@"AA" error:&error];
 	STAssertNil(code, @"Should have at least one character in addition to one start and one stop character in Codabar");
-    STAssertNotNil(error, @"Error object should not be nil");
-    error = nil;
-    code = nil;
-
-    code = [[BCKCodabarCode alloc] initWithContent:@"1234A" error:&error];
+	STAssertNotNil(error, @"Error object should not be nil");
+	error = nil;
+	code = nil;
+	
+	code = [[BCKCodabarCode alloc] initWithContent:@"1234A" error:&error];
 	STAssertNil(code, @"Should have valid start character in Codabar");
-    STAssertNotNil(error, @"Error object should not be nil");
-    error = nil;
-    code = nil;
-
-    code = [[BCKCodabarCode alloc] initWithContent:@"A2343" error:&error];
+	STAssertNotNil(error, @"Error object should not be nil");
+	error = nil;
+	code = nil;
+	
+	code = [[BCKCodabarCode alloc] initWithContent:@"A2343" error:&error];
 	STAssertNil(code, @"Should have valid stop character in Codabar");
-    STAssertNotNil(error, @"Error object should not be nil");
-    error = nil;
-    code = nil;
-
-    code = [[BCKCodabarCode alloc] initWithContent:@"A23a43B" error:&error];
+	STAssertNotNil(error, @"Error object should not be nil");
+	error = nil;
+	code = nil;
+	
+	code = [[BCKCodabarCode alloc] initWithContent:@"A23a43B" error:&error];
 	STAssertNil(code, @"Should have valid characters in Codabar");
-    STAssertNotNil(error, @"Error object should not be nil");
-    error = nil;
-    code = nil;
+	STAssertNotNil(error, @"Error object should not be nil");
+	error = nil;
+	code = nil;
 }
 
 

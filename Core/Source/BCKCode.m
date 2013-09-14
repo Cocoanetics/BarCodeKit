@@ -50,7 +50,7 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 		
 		_content = [content copy];
 	}
-    
+	
 	return self;
 }
 
@@ -483,8 +483,8 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	{
 		*error = [NSError BCKCodeErrorWithMessage:ENCODE_ERROR_MESSAGE];
 	}
-    
-    return NO;
+	
+	return NO;
 }
 
 - (NSUInteger)horizontalQuietZoneWidth
