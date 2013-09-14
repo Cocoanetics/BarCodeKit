@@ -94,11 +94,11 @@ static char *char_encodings[NUMBER_OF_CODE11_CHARACTERS][2] = {
 	
 	for (NSUInteger i=0; i<NUMBER_OF_CODE11_CHARACTERS; i++)
 	{
-		char testChar = char_encodings[i][0][0];
+		char testChar = char_encodings[i][CHARACTER_DIMENSION][0];
 		
 		if (testChar == searchChar)
 		{
-			return char_encodings[i][1];
+			return char_encodings[i][ENCODING_DIMENSION];
 		}
 	}
 	
