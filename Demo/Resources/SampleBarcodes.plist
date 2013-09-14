@@ -30,5 +30,7 @@
 	<string>1234567</string>
 	<key>BCKPharmacodeOneTrack</key>
 	<string>542</string>
+	<key>BCKCodabarCode</key>
+	<string>A4-0$1:5/6.7+B</string>
 </dict>
 </plist>

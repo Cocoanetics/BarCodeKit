@@ -38,6 +38,10 @@
 		6C9302C617D7376400867E2E /* BCKCode39FullASCIIModulo43.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9302C517D7376400867E2E /* BCKCode39FullASCIIModulo43.m */; };
 		6C93DE7B17E1BF7A002F0BF5 /* NSError+BCKCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C93DE7A17E1BF7A002F0BF5 /* NSError+BCKCode.m */; };
 		6C93DE7D17E1C31F002F0BF5 /* BCKCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C93DE7C17E1C31F002F0BF5 /* BCKCodeTest.m */; };
+		6CA8DC4E17E402FA009F210C /* BCKCodabarCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA8DC4D17E402FA009F210C /* BCKCodabarCodeTest.m */; };
+		6CA8DC5217E403B2009F210C /* BCKCodabarCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA8DC5117E403B2009F210C /* BCKCodabarCodeCharacter.m */; };
+		6CA8DC5517E403C5009F210C /* BCKCodabarContentCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA8DC5417E403C5009F210C /* BCKCodabarContentCodeCharacter.m */; };
+		6CA8DC5917E408E6009F210C /* BCKCodabarCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA8DC5817E408E6009F210C /* BCKCodabarCode.m */; };
 		6CD088E117E1CA5B00B817B4 /* BCKPharmacodeOneTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD088E017E1CA5B00B817B4 /* BCKPharmacodeOneTrack.m */; };
 		6CD0EDA317DC156600A549D4 /* SampleBarcodes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CD0EDA217DC156600A549D4 /* SampleBarcodes.plist */; };
 		6CE3E69917DF1D5400BFD408 /* BCKMSICodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CE3E69817DF1D5400BFD408 /* BCKMSICodeCharacter.m */; };
@@ -147,6 +151,13 @@
 		6C93DE7917E1BF7A002F0BF5 /* NSError+BCKCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+BCKCode.h"; sourceTree = "<group>"; };
 		6C93DE7A17E1BF7A002F0BF5 /* NSError+BCKCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+BCKCode.m"; sourceTree = "<group>"; };
 		6C93DE7C17E1C31F002F0BF5 /* BCKCodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCodeTest.m; sourceTree = "<group>"; };
+		6CA8DC4D17E402FA009F210C /* BCKCodabarCodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCodabarCodeTest.m; sourceTree = "<group>"; };
+		6CA8DC5017E403B2009F210C /* BCKCodabarCodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCodabarCodeCharacter.h; sourceTree = "<group>"; };
+		6CA8DC5117E403B2009F210C /* BCKCodabarCodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCodabarCodeCharacter.m; sourceTree = "<group>"; };
+		6CA8DC5317E403C5009F210C /* BCKCodabarContentCodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCodabarContentCodeCharacter.h; sourceTree = "<group>"; };
+		6CA8DC5417E403C5009F210C /* BCKCodabarContentCodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCodabarContentCodeCharacter.m; sourceTree = "<group>"; };
+		6CA8DC5717E408E6009F210C /* BCKCodabarCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCodabarCode.h; sourceTree = "<group>"; };
+		6CA8DC5817E408E6009F210C /* BCKCodabarCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCodabarCode.m; sourceTree = "<group>"; };
 		6CD088DF17E1CA5B00B817B4 /* BCKPharmacodeOneTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKPharmacodeOneTrack.h; sourceTree = "<group>"; };
 		6CD088E017E1CA5B00B817B4 /* BCKPharmacodeOneTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKPharmacodeOneTrack.m; sourceTree = "<group>"; };
 		6CD0EDA217DC156600A549D4 /* SampleBarcodes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SampleBarcodes.plist; sourceTree = "<group>"; };
@@ -312,6 +323,26 @@
 			name = Code93;
 			sourceTree = "<group>";
 		};
+		6CA8DC4F17E40384009F210C /* Codabar */ = {
+			isa = PBXGroup;
+			children = (
+				6CA8DC5017E403B2009F210C /* BCKCodabarCodeCharacter.h */,
+				6CA8DC5117E403B2009F210C /* BCKCodabarCodeCharacter.m */,
+				6CA8DC5317E403C5009F210C /* BCKCodabarContentCodeCharacter.h */,
+				6CA8DC5417E403C5009F210C /* BCKCodabarContentCodeCharacter.m */,
+			);
+			name = Codabar;
+			sourceTree = "<group>";
+		};
+		6CA8DC5617E408C9009F210C /* Codabar */ = {
+			isa = PBXGroup;
+			children = (
+				6CA8DC5717E408E6009F210C /* BCKCodabarCode.h */,
+				6CA8DC5817E408E6009F210C /* BCKCodabarCode.m */,
+			);
+			name = Codabar;
+			sourceTree = "<group>";
+		};
 		6CD088DE17E1CA3E00B817B4 /* Pharmacode */ = {
 			isa = PBXGroup;
 			children = (
@@ -444,6 +475,7 @@
 		A7378DFC17C25892008921C4 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				6CA8DC4D17E402FA009F210C /* BCKCodabarCodeTest.m */,
 				6C4D158517DDDD2800854E31 /* BCKCode11CodeTest.m */,
 				A7378E0417C25A2D008921C4 /* BCKCode39CodeTest.m */,
 				6C2AF51117D5EEAD00175AE0 /* BCKCode39FullASCIITest.m */,
@@ -465,6 +497,7 @@
 			children = (
 				A76405E117B52E7700D45F51 /* BCKCode.h */,
 				A76405E217B52E7700D45F51 /* BCKCode.m */,
+				6CA8DC5617E408C9009F210C /* Codabar */,
 				A7378D8617C23ACE008921C4 /* EAN/UPC */,
 				6C4D158117DDDCE900854E31 /* Code11 */,
 				A7378D8517C23AC3008921C4 /* Code39 */,
@@ -483,6 +516,7 @@
 				A7337C6A17C12C8800BC2D2D /* BCKCodeCharacter.h */,
 				A7337C6B17C12C8800BC2D2D /* BCKCodeCharacter.m */,
 				A7378D8317C222E6008921C4 /* EAN/UPC */,
+				6CA8DC4F17E40384009F210C /* Codabar */,
 				6C4D158717DDDDAC00854E31 /* Code11 */,
 				A7378D8417C222F1008921C4 /* Code39 */,
 				6C818CAA17CB64B100AEE26F /* Code93 */,
@@ -770,6 +804,7 @@
 				A7378E0A17C25DF3008921C4 /* BCKEAN13CodeTest.m in Sources */,
 				6C93DE7D17E1C31F002F0BF5 /* BCKCodeTest.m in Sources */,
 				6CFB2D5F17E1D30100017C55 /* BCKPharmacodeOneTrackTest.m in Sources */,
+				6CA8DC4E17E402FA009F210C /* BCKCodabarCodeTest.m in Sources */,
 				6C818CAC17CB6BF300AEE26F /* BCKCode93CodeTest.m in Sources */,
 				A7378E0C17C261D8008921C4 /* BCKEAN8CodeTest.m in Sources */,
 				A13B58E217C6A03A00454150 /* BCKInterleaved2of5CodeTest.m in Sources */,
@@ -800,8 +835,10 @@
 				6C9302C317D733C400867E2E /* BCKCode39CodeModulo43.m in Sources */,
 				6C818CB217CCAA6300AEE26F /* BCKCode93CodeCharacter.m in Sources */,
 				6C93DE7B17E1BF7A002F0BF5 /* NSError+BCKCode.m in Sources */,
+				6CA8DC5217E403B2009F210C /* BCKCodabarCodeCharacter.m in Sources */,
 				6CE3E69C17DF1D7D00BFD408 /* BCKMSIContentCodeCharacter.m in Sources */,
 				EA6CF87C17CA500A009C8994 /* BCKCode128CodeCharacter.m in Sources */,
+				6CA8DC5517E403C5009F210C /* BCKCodabarContentCodeCharacter.m in Sources */,
 				A7337C6C17C12C8800BC2D2D /* BCKCodeCharacter.m in Sources */,
 				A13B58E517C6A10200454150 /* BCKInterleaved2of5Code.m in Sources */,
 				A764061C17B53AE700D45F51 /* BCKEANCodeCharacter.m in Sources */,
@@ -822,6 +859,7 @@
 				A13B58E817C6A1C700454150 /* BCKInterleaved2of5CodeCharacter.m in Sources */,
 				6CE3E69F17DF1F4800BFD408 /* BCKMSICode.m in Sources */,
 				6C2AF51017D5EE3F00175AE0 /* BCKCode39FullASCII.m in Sources */,
+				6CA8DC5917E408E6009F210C /* BCKCodabarCode.m in Sources */,
 				EA0EF7DF17D3ACB500015F7B /* NSString+BCKCode128Helpers.m in Sources */,
 				A7378D8217C222AD008921C4 /* BCKCode39ContentCodeCharacter.m in Sources */,
 				6C9302C617D7376400867E2E /* BCKCode39FullASCIIModulo43.m in Sources */,
