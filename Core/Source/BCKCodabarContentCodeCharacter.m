@@ -106,7 +106,7 @@ static char *char_encodings[NUMBER_OF_CODABAR_CHARACTERS][2] = {
 	{
 		return nil;
 	}
-	NSLog(@"bits for %@=%@", _character, [self _bitsForEncoding:encoding]);
+
 	return [[self _bitsForEncoding:encoding] copy];
 }
 
