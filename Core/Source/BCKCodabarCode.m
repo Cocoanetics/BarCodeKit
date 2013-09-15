@@ -93,7 +93,7 @@
 		return _codeCharacters;
 	}
 	
-	// Array that holds all code characters, including start/stop, spacing, modulo-11 check digits
+	// Array that holds all code characters, including start/stop and space characters
 	NSMutableArray *finalArray = [NSMutableArray array];
 	
 	// Encode the barcode's content and add it to the array
@@ -153,6 +153,55 @@
 	}
 	
 	return nil;
+}
+
+- (BOOL)_shouldShowCheckDigitsFromOptions:(NSDictionary *)options
+{
+	NSNumber *num = [options objectForKey:BCKCodeDrawingShowCheckDigitsOption];
+	
+	if (num)
+	{
+		return [num boolValue];
+	}
+	else
+	{
+		return 0;  // default
+	}
+}
+
+- (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone withRenderOptions:(NSDictionary *)options
+{
+    NSString *contentWithoutStartStop = @"";
+    
+	if (captionZone == BCKCodeDrawingCaptionTextZone)
+	{
+        // Check digits must not be shown, remove the start and end code characters
+        if (![self _shouldShowCheckDigitsFromOptions:options])
+        {
+            for (NSUInteger index=0; index<[_content length]; index++)
+            {
+                if ( (index !=0 ) && (index != ([_content length] - 1)) )
+                {
+                    contentWithoutStartStop = [contentWithoutStartStop stringByAppendingString:[_content substringWithRange:NSMakeRange(index, 1)]];
+                }
+            }
+                
+            return contentWithoutStartStop;
+        }
+        // Check digits are to be shown so return the content string as provided to the subclass, including the start and stop character
+        else
+        {
+            return _content;
+        }
+	}
+	
+	return nil;
+    
+}
+
+- (BOOL)showCheckDigitsInCaption
+{
+	return YES;
 }
 
 - (UIFont *)_captionFontWithSize:(CGFloat)fontSize

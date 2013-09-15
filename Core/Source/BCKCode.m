@@ -19,6 +19,7 @@ NSString * const BCKCodeDrawingCaptionFontNameOption = @"BCKCodeDrawingCaptionFo
 NSString * const BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption = @"BCKCodeDrawingMarkerBarsOverlapCaptionPercent";
 NSString * const BCKCodeDrawingFillEmptyQuietZonesOption = @"BCKCodeDrawingFillEmptyQuietZones";
 NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
+NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheckDigits";
 
 #define ENCODE_ERROR_MESSAGE @"BCKCode is an abstract class that cannot encode anything"
 
@@ -317,6 +318,20 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	return optimalCaptionFontSize;
 }
 
+- (BOOL)_shouldShowCheckDigitsFromOptions:(NSDictionary *)options
+{
+	NSNumber *num = [options objectForKey:BCKCodeDrawingShowCheckDigitsOption];
+	
+	if (num)
+	{
+		return [num boolValue];
+	}
+	else
+	{
+		return 0;  // default
+	}
+}
+
 - (BOOL)_shouldDrawCaptionFromOptions:(NSDictionary *)options
 {
 	NSNumber *num = [options objectForKey:BCKCodeDrawingPrintCaptionOption];
@@ -497,9 +512,14 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	return nil;
 }
 
+- (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone withRenderOptions:(NSDictionary *)options
+{
+    return nil;
+}
+
 - (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone
 {
-	return nil;
+	return [self captionTextForZone:captionZone withRenderOptions:nil];
 }
 
 - (CGFloat)aspectRatio
@@ -525,6 +545,11 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 - (NSString *)defaultCaptionFontName
 {
 	return @"Helvetica";
+}
+
+- (BOOL)showCheckDigitsInCaption
+{
+	return NO;
 }
 
 #pragma mark - Drawing
@@ -863,9 +888,10 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 				[[UIColor colorWithRed:0 green:0 blue:1 alpha:0.6] set];
 				CGContextFillRect(context, rightQuietZoneNumberFrame);
 			}
-			
-			NSString *text = [self captionTextForZone:BCKCodeDrawingCaptionTextZone];
-			[self _drawCaptionText:text fontName:fontName fontSize:[self _captionFontSizeWithOptions:options] inRect:frameBetweenEndMarkers context:context];
+
+            NSString *text = [self captionTextForZone:BCKCodeDrawingCaptionTextZone withRenderOptions:options];
+            
+            [self _drawCaptionText:text fontName:fontName fontSize:[self _captionFontSizeWithOptions:options] inRect:frameBetweenEndMarkers context:context];
 			
 			if (leftQuietZoneText)
 			{

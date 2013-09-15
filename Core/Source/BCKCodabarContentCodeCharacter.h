@@ -17,4 +17,9 @@ Initialise a content code character using a character. Only supports the 10 nume
 */
 - (instancetype)initWithCharacter:(NSString *)character;
 
+/**
+ The character encoded by the Content Code Character
+ */
+@property (nonatomic, readonly) NSString *character;
+
 @end

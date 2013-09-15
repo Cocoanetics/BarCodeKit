@@ -45,7 +45,7 @@
 		weightedSum+=charValue;
     }];
     
-    return [[BCKMSIContentCodeCharacter alloc] initWithCharacterValue:((weightedSum * 9) % 10)];
+    return [[BCKMSIContentCodeCharacter alloc] initWithCharacterValue:((weightedSum * 9) % 10) isCheckDigit:YES];
 }
 
 // Create the check digit using the reverse module 11 algorithm (aka Mod 11)
@@ -65,7 +65,7 @@
         }
     }];
 	
-	return [[BCKMSIContentCodeCharacter alloc] initWithCharacterValue:((11 - (weightedSum % 11))) % 11];
+	return [[BCKMSIContentCodeCharacter alloc] initWithCharacterValue:((11 - (weightedSum % 11))) % 11 isCheckDigit:YES];
 }
 
 - (instancetype)initWithContent:(NSString *)content andCheckDigitScheme:(BCKMSICodeCheckDigitScheme)checkDigitScheme error:(NSError**)error
@@ -80,9 +80,10 @@
 	return self;
 }
 
+// Default to the most common check digit scheme: BCKMSICodeMod10CheckDigitScheme
 - (BCKCode *)initWithContent:(NSString *)content error:(NSError**)error
 {
-    return [self initWithContent:content andCheckDigitScheme:BCKMSINoCheckDigitScheme error:error];
+    return [self initWithContent:content andCheckDigitScheme:BCKMSICodeMod10CheckDigitScheme error:error];
 }
 
 #pragma mark - Subclass Methods
@@ -130,7 +131,7 @@
 	// Array that holds all code characters, including start/stop, spacing, modulo-11 check digits
 	NSMutableArray *finalArray = [NSMutableArray array];
 	NSMutableArray *contentCharacterArray = [NSMutableArray array]; // Holds the code characters for just the content
-    BCKMSIContentCodeCharacter *tmpCharacter = nil;
+    BCKMSICodeCharacter *tmpCharacter = nil;
 	
 	// Add the start code character
 	[finalArray addObject:[BCKMSICodeCharacter startMarkerCodeCharacter]];
@@ -216,14 +217,76 @@
 	return 10;
 }
 
-- (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone
+- (BOOL)_shouldShowCheckDigitsFromOptions:(NSDictionary *)options
 {
+	NSNumber *num = [options objectForKey:BCKCodeDrawingShowCheckDigitsOption];
+	
+	if (num)
+	{
+		return [num boolValue];
+	}
+	else
+	{
+		return 0;  // default
+	}
+}
+
+- (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone withRenderOptions:(NSDictionary *)options
+{
+    BCKMSIContentCodeCharacter *tmpCharacter = nil;
+    NSUInteger numCodeCharacters = 0;
+    NSString *tmpContent;
+
 	if (captionZone == BCKCodeDrawingCaptionTextZone)
 	{
-		return _content;
+        // Return a copy of _content and add the check digit(s) depending on which scheme is in use
+        if ([self _shouldShowCheckDigitsFromOptions:options])
+        {
+            numCodeCharacters = [self.codeCharacters count];
+
+            switch (_checkDigitScheme)
+            {
+                case BCKMSINoCheckDigitScheme:
+                {
+                    // Nothing to do because there are no check digits
+                    break;
+                }
+                    
+                case BCKMSICodeMod10CheckDigitScheme:
+                case BCKMSICodeMod11CheckDigitScheme:
+                {
+                    tmpCharacter = self.codeCharacters[numCodeCharacters - 2];
+                    tmpContent = [_content stringByAppendingString:tmpCharacter.character];
+                    break;
+                }
+                    
+                case BCKMSICodeMod1010CheckDigitScheme:
+                case BCKMSICodeMod1110CheckDigitScheme:
+                {
+                    tmpCharacter = self.codeCharacters[numCodeCharacters - 3];
+                    tmpContent = [_content stringByAppendingString:tmpCharacter.character];
+                    tmpCharacter = self.codeCharacters[numCodeCharacters - 2];
+                    tmpContent = [tmpContent stringByAppendingString:tmpCharacter.character];
+                    break;
+                }
+            }
+            
+            return tmpContent;
+        }
+        // Check digits are not to be shown so return the content string as provided to the subclass
+        else
+        {
+            return _content;
+        }
 	}
 	
 	return nil;
+    
+}
+
+- (BOOL)showCheckDigitsInCaption
+{
+    return YES;
 }
 
 - (UIFont *)_captionFontWithSize:(CGFloat)fontSize

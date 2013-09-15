@@ -30,7 +30,7 @@
 + (BCKMSICodeCharacter *)stopMarkerCodeCharacter;
 
 /**
- Generates a code character to represent a content character
+ Generates a code character to represent an MSI content character
  @param character The character to encode
  @returns The content code character
  */

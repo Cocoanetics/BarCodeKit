@@ -13,6 +13,7 @@ extern NSString * const BCKCodeDrawingCaptionFontNameOption;
 extern NSString * const BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption;
 extern NSString * const BCKCodeDrawingFillEmptyQuietZonesOption;
 extern NSString * const BCKCodeDrawingDebugOption;
+extern NSString * const BCKCodeDrawingShowCheckDigitsOption;
 
 /**
  Caption Zones
@@ -57,6 +58,8 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
  - BCKCode128Code - Code 128 - International Standard ISO/IEC 15417
  - BCKCode11Code - Code 11 - no international standard
  - BCKMSICode - MSI or Modified Plessey barcode - no international standard
+ - BCKPharmacodeOneTrack - Pharmacode One Track - no international standard
+ - BCKCodabar - Codabar - no international standard
  
  For rendering codes several options can be combined in an options dictionary:
  
@@ -66,6 +69,7 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
  - **BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption** - How many percent of the caption height are covered by elongated marker bars (default 1.0)
  - **BCKCodeDrawingFillEmptyQuietZonesOption** - Whether quiet zones should be filled with angle brackes (default NO)
  - **BCKCodeDrawingDebugOption** - Whether the caption areas should be tinted for debugging (default NO)
+ - **BCKCodeDrawingShowCheckDigitsOption - Whether check digits are to be shown as part of the caption
  */
 @interface BCKCode : NSObject
 {
@@ -134,6 +138,14 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
 - (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone;
 
 /**
+ The text to display in the given caption zone, or `nil` for no caption text. Defaults to `nil`. Subclasses can return the check digit or other text and alter the caption text using rendering options
+ @param captionZone The BCKCodeDrawingCaption zone that specifies the text zone
+ @param options The rendering options
+ @return The caption text to display in this zone, or `nil` for no caption text
+ */
+- (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone withRenderOptions:(NSDictionary *)options;
+
+/**
  Whether the code allows for marker bars to reach into the bottom caption region. If yes, then the percentage of overlap can be specified with the BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption.
  */
 @property (nonatomic, readonly) BOOL markerBarsCanOverlapBottomCaption;
@@ -148,6 +160,10 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
  */
 @property (nonatomic, readonly) NSString *defaultCaptionFontName;
 
+/**
+ Whether the code includes check digits in the caption printed below the barcode. The default implementation returns NO. Subclasses can indicate they support this option by overriding this method and returning YES.
+ */
+@property (nonatomic, readonly) BOOL showCheckDigitsInCaption;
 
 /**
  @name Getting Information about Bar Codes

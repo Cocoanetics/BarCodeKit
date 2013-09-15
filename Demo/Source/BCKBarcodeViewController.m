@@ -31,11 +31,13 @@
 	UISlider *_barScaleSlider;
 	UISlider *_captionOverlapSlider;
 	UITextField *_contentsTextField;
+	UISwitch *_checkDigitsInCaptionSwitch;
 	
 	// Options variables
 	BOOL _captionOption;
 	BOOL _debugOption;
 	BOOL _fillOption;
+    BOOL _checkDigitsInCaptionOption;
 	CGFloat _barScale;
 	CGFloat _captionOverlap;
 }
@@ -89,6 +91,7 @@
 	_fillQuietZonesSwitch.enabled = enabled;
 	_barScaleSlider.enabled = enabled;
 	_captionOverlapSlider.enabled = enabled;
+    _checkDigitsInCaptionSwitch.enabled = enabled;
 }
 
 // Create a new barcode when the options or the contents change
@@ -98,7 +101,8 @@
 									  BCKCodeDrawingFillEmptyQuietZonesOption: @(_fillOption),
 									  BCKCodeDrawingDebugOption: @(_debugOption),
 									  BCKCodeDrawingPrintCaptionOption: @(_captionOption),
-									  BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption: @(_captionOverlap)};
+									  BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption: @(_captionOverlap),
+                                        BCKCodeDrawingShowCheckDigitsOption: @(_checkDigitsInCaptionOption)};
 	
 	// Initialise barcode contents using the text in the textfield
 	Class codeClass = NSClassFromString(self.barcodeClassString);
@@ -158,6 +162,12 @@
 	[self _updateWithOptions];
 }
 
+- (void)_checkDigitsInCaptionChange:(UISwitch *)sender
+{
+	_checkDigitsInCaptionOption = sender.isOn;
+	[self _updateWithOptions];
+}
+
 #pragma mark - UI methods
 
 - (void)_configureView
@@ -168,9 +178,10 @@
 	_captionOption = YES;
 	_debugOption = NO;
 	_fillOption = YES;
+    _checkDigitsInCaptionOption = NO;
 	_barScale = 1.0;
 	_captionOverlap = 1.0;
-	
+
 	// Setup the various controls
 	_captionSwitch = [[UISwitch alloc] init];
 	[_captionSwitch addTarget:self action:@selector(_captionOptionChange:) forControlEvents:UIControlEventValueChanged];
@@ -207,6 +218,10 @@
 	_contentsTextField.delegate = self;
 	_contentsTextField.placeholder = @"Enter barcode";
 	
+    _checkDigitsInCaptionSwitch = [[UISwitch alloc] init];
+	[_checkDigitsInCaptionSwitch addTarget:self action:@selector(_checkDigitsInCaptionChange:) forControlEvents:UIControlEventValueChanged];
+	_checkDigitsInCaptionSwitch.on = _checkDigitsInCaptionOption;
+
 	// Initialise the barcode contents with the sample barcode content passed to the view controller
 	_contentsTextField.text = self.barcodeSample;
     
@@ -241,6 +256,11 @@
 		[tmpBarcodeOptions addObject:@[@"Caption overlap", _captionOverlapSlider]];
 	}
 	
+    if ([self _implementsMethod:self.barcodeClassString forMethod:@selector(showCheckDigitsInCaption)])
+	{
+		[tmpBarcodeOptions addObject:@[@"Show check digits", _checkDigitsInCaptionSwitch]];
+	}
+    
 	_barcodeOptions = [NSArray arrayWithArray:tmpBarcodeOptions];
 }
 

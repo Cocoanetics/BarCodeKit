@@ -9,7 +9,7 @@
 #import "BCKMSICodeCharacter.h"
 
 /**
- Specialized class of BCKCode11CodeCharacter used for generating MSI codes and representing content characters
+ Specialized class of BCKMSICodeCharacter used for generating MSI codes and representing content characters
  */
 @interface BCKMSIContentCodeCharacter : BCKMSICodeCharacter
 
@@ -21,16 +21,27 @@
 - (instancetype)initWithCharacter:(NSString *)character;
 
 /**
- Initialise a content code character using its character value. Only supports numeric characters
- @param characterValue The character value
+ Initialise a content code character using its character value.
+ @param characterValue The character value to encode
+ @param isCheckDigit Whether the character is a check digit (YES) or a regular check digit (NO)
  @returns the content code character
  */
-- (instancetype)initWithCharacterValue:(NSUInteger)characterValue;
+- (instancetype)initWithCharacterValue:(NSUInteger)characterValue isCheckDigit:(BOOL)isCheckDigit;
 
 /**
  Return a content code character's value. Only supports numeric characters
  @returns the content code character's value
  */
 - (NSUInteger)characterValue;
+
+/**
+ The character encoded by the Content Code Character
+ */
+@property (nonatomic, readonly) NSString *character;
+
+/**
+ Whether the content code character is a check digit character
+ */
+@property (nonatomic, readonly, getter = isCheckDigit) BOOL isCheckDigit;
 
 @end

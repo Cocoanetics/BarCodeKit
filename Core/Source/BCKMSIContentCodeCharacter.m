@@ -29,11 +29,12 @@ static char *char_encodings[NUMBER_OF_MSICODE_CHARACTERS][2] = {
 @implementation BCKMSIContentCodeCharacter
 {
 	NSString *_character;
+    BOOL _isCheckDigit;
 }
 
 // Initialise the code character using its value. Only values for numeric characters and the dash character are valid.
 // For example: to initialise the code character with an 1 initialise it by passing the value 1
-- (instancetype)initWithCharacterValue:(NSUInteger)characterValue
+- (instancetype)initWithCharacterValue:(NSUInteger)characterValue isCheckDigit:(BOOL)isCheckDigit
 {
 	self = [super init];
 	
@@ -45,6 +46,7 @@ static char *char_encodings[NUMBER_OF_MSICODE_CHARACTERS][2] = {
 		}
 		else
 		{
+            _isCheckDigit = isCheckDigit;
 			_character = [NSString stringWithUTF8String:char_encodings[characterValue][CHARACTER_DIMENSION]];
 		}
 	}
