@@ -9,7 +9,6 @@
 #import "BCKCode128Code.h"
 #import "BCKCode128ContentCodeCharacter.h"
 #import "NSString+BCKCode128Helpers.h"
-#import "NSError+BCKCode.h"
 
 @implementation BCKCode128Code
 {
@@ -23,7 +22,7 @@
 	
 	if (self)
 	{
-		_barcodeVersion = [BCKCode128ContentCodeCharacter code128VersionNeeded:content];
+		_barcodeVersion = [BCKCode128ContentCodeCharacter code128VersionNeeded:content error:NULL ];
 	}
 	
 	return self;
@@ -33,16 +32,10 @@
 
 + (BOOL)canEncodeContent:(NSString *)content error:(NSError *__autoreleasing *)error
 {
-	BCKCode128Version barcodeVersion = [BCKCode128ContentCodeCharacter code128VersionNeeded:content];
+	BCKCode128Version barcodeVersion = [BCKCode128ContentCodeCharacter code128VersionNeeded:content error:error];
 	
 	if (barcodeVersion == Code128Unsupported)
 	{
-		if (error)
-		{
-			NSString *message = [NSString stringWithFormat:@"String '%@' cannot be encoded in Code128", content];
-			*error = [NSError BCKCodeErrorWithMessage:message];
-		}
-		
 		return NO;
 	}
 	
@@ -200,7 +193,7 @@
 	
 	if (currentWriteVersion == Code128C && ![remainingContent firstTwoCharactersAreNumbers])
 	{
-		return [BCKCode128ContentCodeCharacter code128VersionNeeded:remainingContent];
+		return [BCKCode128ContentCodeCharacter code128VersionNeeded:remainingContent error:NULL];
 	}
 	
 	return currentWriteVersion;

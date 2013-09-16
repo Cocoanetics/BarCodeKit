@@ -8,6 +8,7 @@
 
 #import "BCKCode128ContentCodeCharacter.h"
 #import "NSString+BCKCode128Helpers.h"
+#import "NSError+BCKCode.h"
 
 NSUInteger const CODE_128_BINARY_INDEX = 3;
 NSUInteger const CODE_128_CHARACTERS_TABLE_SIZE = 103;
@@ -175,19 +176,18 @@ static NSArray *__charactersMap;
     return [__charactersMap[position][CODE_128_BINARY_INDEX] copy];
 }
 
-+ (BCKCode128Version)code128VersionNeeded:(NSString *)content
-{
++ (BCKCode128Version)code128VersionNeeded:(NSString *)content error:(NSError **)error {
     if (([content length] == 2 || [content length] >= 4) && [content containsOnlyNumbers])
     {
         return Code128C;
     }
 
-    if ([BCKCode128ContentCodeCharacter _canEncodeContent:content usingVariant:Code128A])
+    if ([BCKCode128ContentCodeCharacter _canEncodeContent:content usingVariant:Code128A error:error])
     {
         return Code128A;
     }
 
-    if ([BCKCode128ContentCodeCharacter _canEncodeContent:content usingVariant:Code128B])
+    if ([BCKCode128ContentCodeCharacter _canEncodeContent:content usingVariant:Code128B error:error])
     {
         return Code128B;
     }
@@ -226,15 +226,20 @@ static NSArray *__charactersMap;
     }
 }
 
-+ (BOOL)_canEncodeContent:(NSString *)content usingVariant:(BCKCode128Version)variant
-{
++ (BOOL)_canEncodeContent:(NSString *)content usingVariant:(BCKCode128Version)variant error:(NSError **)error {
     for (NSUInteger index=0; index<[content length]; index++)
     {
         NSString *characterString = [content substringWithRange:NSMakeRange(index, 1)];
 
         if (![self _character:characterString existsForVersion:variant])
         {
-            return NO;
+			if (error)
+			{
+				NSString *message = [NSString stringWithFormat:@"String '%@' cannot be encoded in Code128. Character at index %d (%@) not supported", content, index, characterString];
+				*error = [NSError BCKCodeErrorWithMessage:message];
+			}
+
+			return NO;
         }
     }
 

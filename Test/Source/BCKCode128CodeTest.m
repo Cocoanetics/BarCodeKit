@@ -155,4 +155,13 @@
     STAssertTrue(isEqual, @"Result from encoding incorrect");
 }
 
+- (void)testUnsupportedCharacterGivesMeaningfulError
+{
+	NSError *error;
+	BCKCode128Code *code = [[BCKCode128Code alloc] initWithContent:@"Ö" error:&error];
+
+	STAssertNil(code, @"Should have not created code with unsupported character");
+	STAssertNotNil(error, @"Should have assigned error");
+}
+
 @end
