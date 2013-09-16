@@ -21,18 +21,6 @@
 
 @implementation BCKMSICodeTest
 
-- (void)setUp
-{
-    [super setUp];
-    // Put setup code here; it will be run once, before the first test case.
-}
-
-- (void)tearDown
-{
-    // Put teardown code here; it will be run once, after the last test case.
-    [super tearDown];
-}
-
 - (void)testEncodeInvalid
 {
     NSError *error = nil;
@@ -52,11 +40,29 @@
     NSError *error = nil;
     
     BCKMSICode *code = [[BCKMSICode alloc] initWithContent:@"1234567" error:&error];
-	NSString *expected = @"1101001001001101001001101001001001101101001101001001001101001101001101101001001101101101001";
+	NSString *expected = @"1101001001001101001001101001001001101101001101001001001101001101001101101001001101101101001101001001001";
 	NSString *actual = [code bitString];
 	BOOL isEqual = [expected isEqualToString:actual];
 	
 	STAssertTrue(isEqual, @"Result from encoding using default check digit scheme is incorrect");
+}
+
+- (void)testCheckDigits
+{
+    NSError *error = nil;
+	BCKMSICode *code = [[BCKMSICode alloc] initWithContent:@"532263" andCheckDigitScheme:BCKMSICodeMod1010CheckDigitScheme error:&error];
+    
+    // Check that the last two code characters are marked as check digits
+    BCKMSIContentCodeCharacter *tmpCharacter = nil;
+    NSUInteger characterCount;
+    
+    characterCount = [code.codeCharacters count];
+    
+    tmpCharacter = code.codeCharacters[characterCount - 3];
+    STAssertTrue(tmpCharacter.isCheckDigit, @"First check digit character must have isCheckDigit equal to YES");
+    
+    tmpCharacter = code.codeCharacters[characterCount - 2];
+    STAssertTrue(tmpCharacter.isCheckDigit, @"Second check digit character must have isCheckDigit equal to YES");
 }
 
 - (void)testCheckDigitSchemes

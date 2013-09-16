@@ -26,8 +26,23 @@ static char *char_encodings[NUMBER_OF_CODABAR_STARTSTOPCHARACTERS][2] = {
     {"E", "1010010011"}};
 
 @implementation BCKCodabarCodeCharacter
+{
+    BOOL _isStartStop;
+}
 
 #pragma mark - Generating Special Characters
+
+- (instancetype)initWithBitString:(NSString *)bitString isMarker:(BOOL)isMarker isStartStop:(BOOL)isStartStop
+{
+	self = [super initWithBitString:bitString isMarker:isMarker];
+	
+	if (self)
+	{
+        _isStartStop = isStartStop;
+	}
+	
+	return self;
+}
 
 + (BCKCodabarCodeCharacter *)startStopCodeCharacter:(NSString *)character
 {
@@ -41,7 +56,7 @@ static char *char_encodings[NUMBER_OF_CODABAR_STARTSTOPCHARACTERS][2] = {
         {
             NSString *charString = [NSString stringWithUTF8String:char_encodings[i][ENCODING_DIMENSION]];
 
-            return [[BCKCodabarCodeCharacter alloc] initWithBitString:charString isMarker:NO];
+            return [[BCKCodabarCodeCharacter alloc] initWithBitString:charString isMarker:NO isStartStop:YES];
         }
     }
     

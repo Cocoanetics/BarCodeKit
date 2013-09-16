@@ -36,4 +36,9 @@
  */
 + (BCKCodabarCodeCharacter *)codeCharacterForCharacter:(NSString *)character;
 
+/**
+ Whether the code character is a start/stop character
+ */
+@property (nonatomic, readonly, getter = isStartStop) BOOL isStartStop;
+
 @end
