@@ -285,8 +285,13 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 
 - (CGFloat)_captionFontSizeWithOptions:(NSDictionary *)options
 {
-	NSString *leftQuietZoneText = [self _leftQuietZoneDisplayTextWithOptions:options];
-	NSString *rightQuietZoneText = [self _rightQuietZoneDisplayTextWithOptions:options];
+	// for sizing the caption we always assume that quiet zones are filled and check digits are shown
+	NSMutableDictionary *tmpOptions = [[NSMutableDictionary alloc] initWithDictionary:options];
+	tmpOptions[BCKCodeDrawingFillEmptyQuietZonesOption] = @(YES);
+	tmpOptions[BCKCodeDrawingShowCheckDigitsOption] = @(YES);
+	
+	NSString *leftQuietZoneText = [self _leftQuietZoneDisplayTextWithOptions:tmpOptions];
+	NSString *rightQuietZoneText = [self _rightQuietZoneDisplayTextWithOptions:tmpOptions];
 	
 	NSString *leftDigits = [self _leftCaptionZoneDisplayTextWithOptions:options];
 	NSString *rightDigits = [self _rightCaptionZoneDisplayTextWithOptions:options];
