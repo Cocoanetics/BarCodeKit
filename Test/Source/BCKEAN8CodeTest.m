@@ -11,6 +11,7 @@
 @interface BCKEAN8Code () // private
 
 - (NSString *)bitString;
+- (CGFloat)_captionFontSizeWithOptions:(NSDictionary *)options;
 
 @end
 
@@ -51,6 +52,17 @@
 	BCKEAN8Code *code = [[BCKEAN8Code alloc] initWithContent:@"2404698" error:&error];
 	STAssertNil(code, @"Should not be able to too few digits in EAN8");
 	STAssertNotNil(error, @"No error message returned");
+}
+
+- (void)testCaptionSizesSimilarWhenQuiteZonesOnOrOff
+{
+	NSError *error;
+	BCKEAN8Code *code = [[BCKEAN8Code alloc] initWithContent:@"75032814" error:&error];
+	STAssertNotNil(code, [error localizedDescription]);
+
+	CGFloat heightWithFill = [code _captionFontSizeWithOptions:@{BCKCodeDrawingFillEmptyQuietZonesOption : @(YES)}];
+	CGFloat heightWithoutFill = [code _captionFontSizeWithOptions:@{BCKCodeDrawingFillEmptyQuietZonesOption : @(NO)}];
+	STAssertEqualsWithAccuracy(heightWithFill, heightWithoutFill, 1, @"Caption size should be similar. Expected ~%f, but got %f", heightWithFill, heightWithoutFill);
 }
 
 @end
