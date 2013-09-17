@@ -145,16 +145,6 @@
 	return 10;
 }
 
-- (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone
-{
-	if (captionZone == BCKCodeDrawingCaptionTextZone)
-	{
-		return _content;
-	}
-	
-	return nil;
-}
-
 - (BOOL)_shouldShowCheckDigitsFromOptions:(NSDictionary *)options
 {
 	NSNumber *num = [options objectForKey:BCKCodeDrawingShowCheckDigitsOption];
@@ -196,7 +186,6 @@
 	}
 	
 	return nil;
-    
 }
 
 - (BOOL)showCheckDigitsInCaption

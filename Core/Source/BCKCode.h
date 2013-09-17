@@ -83,14 +83,6 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
 
 /**
  Root initializer for sub-classes of the BCKCode class cluster. You should not call this on BCKCode directly, but always on concrete subclasses based on the kind of code you want to generate.
- @warning This method is deprecated, use - [BCKCode initWithContent:error:] instead
- @param content The number string for the code
- @return The requested BCKCode subclass. Returns nil if the content provided cannot be encoded using the requested BCKCode subclass
- */
-- (instancetype)initWithContent:(NSString *)content __attribute__((deprecated("use - [BCKCode initWithContent:error:] instead")));
-
-/**
- Root initializer for sub-classes of the BCKCode class cluster. You should not call this on BCKCode directly, but always on concrete subclasses based on the kind of code you want to generate.
  @param content The number string for the code
  @param error Double indirection to an NSError instance
  @return The requested BCKCode subclass. Returns nil if the provided content cannot be encoded by the requested BCKCode subclass, the error object will contain error details
@@ -129,13 +121,6 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
  The width of the horizontal quiet zone (in bar units) on the left and right sides of the bar code.
  */
 - (NSUInteger)horizontalQuietZoneWidth;
-
-/**
- The text to display in the given caption zone, or `nil` for no caption text. Defaults to `nil`. Subclasses can return the check digit or other text.
- @param captionZone The BCKCodeDrawingCaption zone that specifies the text zone
- @return The caption text to display in this zone, or `nil` for no caption text
- */
-- (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone;
 
 /**
  The text to display in the given caption zone, or `nil` for no caption text. Defaults to `nil`. Subclasses can return the check digit or other text and alter the caption text using rendering options
@@ -190,5 +175,17 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
  @return YES if the contents is encodable, in which case the error object is set to nil. NO if it is not, the error object contains error information
  */
 + (BOOL)canEncodeContent:(NSString *)content error:(NSError **)error;
+
+/**
+ @name Deprecated Methods
+ */
+
+/**
+ Root initializer for sub-classes of the BCKCode class cluster. You should not call this on BCKCode directly, but always on concrete subclasses based on the kind of code you want to generate.
+ @warning This method is deprecated, use - [BCKCode initWithContent:error:] instead
+ @param content The number string for the code
+ @return The requested BCKCode subclass. Returns nil if the content provided cannot be encoded using the requested BCKCode subclass
+ */
+- (instancetype)initWithContent:(NSString *)content __attribute__((deprecated("use - [BCKCode initWithContent:error:] instead")));
 
 @end

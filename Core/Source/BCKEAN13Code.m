@@ -142,7 +142,7 @@ static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
 	return _codeCharacters;
 }
 
-- (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone
+- (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone withRenderOptions:(NSDictionary *)options
 {
 	if (captionZone == BCKCodeDrawingCaptionLeftQuietZone)
 	{

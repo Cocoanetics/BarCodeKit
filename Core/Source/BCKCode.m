@@ -92,7 +92,7 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 // returns the actually displayed left quiet zone text based on the options
 - (NSString *)_leftQuietZoneDisplayTextWithOptions:(NSDictionary *)options
 {
-	NSString *leftQuietZoneText = [self captionTextForZone:BCKCodeDrawingCaptionLeftQuietZone];
+	NSString *leftQuietZoneText = [self captionTextForZone:BCKCodeDrawingCaptionLeftQuietZone withRenderOptions:options];
 	
 	if (self.allowsFillingOfEmptyQuietZones && [[options objectForKey:BCKCodeDrawingFillEmptyQuietZonesOption] boolValue])
 	{
@@ -108,7 +108,7 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 // returns the actually displayed right quiet zone text based on the options
 - (NSString *)_rightQuietZoneDisplayTextWithOptions:(NSDictionary *)options
 {
-	NSString *rightQuietZoneText = [self captionTextForZone:BCKCodeDrawingCaptionRightQuietZone];
+	NSString *rightQuietZoneText = [self captionTextForZone:BCKCodeDrawingCaptionRightQuietZone withRenderOptions:options];
 	
 	if (self.allowsFillingOfEmptyQuietZones && [[options objectForKey:BCKCodeDrawingFillEmptyQuietZonesOption] boolValue])
 	{
@@ -520,11 +520,6 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 - (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone withRenderOptions:(NSDictionary *)options
 {
     return nil;
-}
-
-- (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone
-{
-	return [self captionTextForZone:captionZone withRenderOptions:nil];
 }
 
 - (CGFloat)aspectRatio
