@@ -130,7 +130,7 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 		return nil;
 	}
 
-	NSString *leftCaptionString = [self captionTextForZone:BCKCodeDrawingCaptionLeftNumberZone];
+	NSString *leftCaptionString = [self captionTextForZone:BCKCodeDrawingCaptionLeftNumberZone withRenderOptions:options];
 	if ([leftCaptionString length])
 	{
 		return [leftCaptionString copy];
@@ -179,7 +179,7 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 		return nil;
 	}
 
-	NSString *rightCaptionString = [self captionTextForZone:BCKCodeDrawingCaptionRightNumberZone];
+	NSString *rightCaptionString = [self captionTextForZone:BCKCodeDrawingCaptionRightNumberZone withRenderOptions:options];
 	if ([rightCaptionString length])
 	{
 		return [rightCaptionString copy];
