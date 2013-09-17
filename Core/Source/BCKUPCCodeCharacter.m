@@ -10,16 +10,19 @@
 
 @implementation BCKUPCCodeCharacter
 
-- (id)initMarkerWithEanCharacter:(BCKEANCodeCharacter *)character {
+- (id)initMarkerWithEanCharacter:(BCKEANCodeCharacter *)character
+{
 	self = [super initWithBitString:[character bitString] isMarker:YES];
-	if (self) {
+	if (self)
+	{
 
 	}
 	return self;
 }
 
 
-+ (BCKUPCCodeCharacter *)markerCharacterWithEANCharacter:(BCKEANCodeCharacter *)character {
++ (BCKUPCCodeCharacter *)markerCharacterWithEANCharacter:(BCKEANCodeCharacter *)character
+{
 	return [[BCKUPCCodeCharacter alloc] initMarkerWithEanCharacter:character];
 }
 

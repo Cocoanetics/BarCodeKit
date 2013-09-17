@@ -8,6 +8,9 @@
 
 #import "BCKCode.h"
 
+/**
+ Specialized subclass of BCKCode to represent an UPC-A code
+ */
 @interface BCKUPCACode : BCKCode
 
 @end

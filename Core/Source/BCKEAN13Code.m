@@ -96,7 +96,7 @@ static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
 
 + (NSString *)barcodeDescription
 {
-	return @"EAN-13 and UPC-A";
+	return @"EAN-13";
 }
 
 - (NSUInteger)horizontalQuietZoneWidth
