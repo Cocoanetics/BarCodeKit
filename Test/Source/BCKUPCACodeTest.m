@@ -38,7 +38,15 @@
 {
 	NSError *error;
 	BCKUPCACode *code = [[BCKUPCACode alloc] initWithContent:@"A8834510051B" error:&error];
-	STAssertNil(code, @"Should not be able to encode non-digits in EAN13");
+	STAssertNil(code, @"Should not be able to encode non-digits in UPC-A");
+	STAssertNotNil(error, @"No error message returned");
+}
+
+- (void)testCheckDigitVerified
+{
+	NSError *error;
+	BCKUPCACode *code = [[BCKUPCACode alloc] initWithContent:@"088345100510" error:&error];
+	STAssertNil(code, @"Should have verified UPC-A check digit");
 	STAssertNotNil(error, @"No error message returned");
 }
 

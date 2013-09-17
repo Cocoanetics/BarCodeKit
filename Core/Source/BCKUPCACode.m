@@ -37,6 +37,8 @@
 		return NO;
 	}
 
+	NSInteger checkSum = 0;
+
 	for (NSUInteger index=0; index<[content length]; index++)
 	{
 		NSString *character = [content substringWithRange:NSMakeRange(index, 1)];
@@ -52,6 +54,32 @@
 
 			return NO;
 		}
+
+		if (index == [content length] - 1) {
+			continue;
+		}
+
+		NSInteger multiply = ((index % 2) != 0 ? 1 : 3);
+		NSInteger digit = [character integerValue];
+		checkSum += (digit * multiply);
+	}
+
+	NSInteger remainder = checkSum % 10;
+	NSInteger calculatedCheck = 10 - remainder;
+	if (calculatedCheck == 10) {
+		calculatedCheck = 0;
+	}
+
+	NSInteger inputCheckNumber = [[content substringFromIndex:11] integerValue];
+
+	if (calculatedCheck != inputCheckNumber) {
+		if (error)
+		{
+			NSString *message = @"Invalid barcode provided. Check number does not match";
+			*error = [NSError BCKCodeErrorWithMessage:message];
+		}
+
+		return NO;
 	}
 
 	return YES;
