@@ -683,7 +683,7 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 	
 	__block NSUInteger drawnBitIndex = 0;
 	__block BOOL metMiddleMarker = NO;
-	__block CGRect leftQuietZoneNumberFrame = CGRectZero;
+	__block CGRect leftQuietZoneNumberFrame = CGRectNull;
 	__block CGRect leftNumberFrame = CGRectNull;
 	__block CGRect rightNumberFrame = CGRectNull;
 	__block CGRect frameBetweenEndMarkers = CGRectNull;
@@ -746,7 +746,10 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 			else
 			{
 				// left outer marker
-				leftQuietZoneNumberFrame = CGRectMake(0, 0, characterRect.origin.x, size.height);
+				if (CGRectIsNull(leftQuietZoneNumberFrame))
+				{
+					leftQuietZoneNumberFrame = CGRectMake(0, 0, characterRect.origin.x, size.height);
+				}
 			}
 			
 			// right outer marker
