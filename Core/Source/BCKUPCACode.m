@@ -1,79 +1,49 @@
 //
-//  BCKEAN13Code.m
+//  BCKUPCACode.m
 //  BarCodeKit
 //
-//  Created by Oliver Drobnik on 8/9/13.
+//  Created by Jaanus Siim on 9/17/13.
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
-#import "BCKEAN13Code.h"
-#import "BCKEANCodeCharacter.h"
+#import "BCKUPCACode.h"
 #import "NSError+BCKCode.h"
+#import "BCKEANCodeCharacter.h"
+#import "BCKUPCCodeCharacter.h"
 
-// the variant pattern to use based on the first digit
-static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
-	"LLGLGGRRRRRR",  // 1
-	"LLGGLGRRRRRR",  // 2
-	"LLGGGLRRRRRR",  // 3
-	"LGLLGGRRRRRR",  // 4
-	"LGGLLGRRRRRR",  // 5
-	"LGGGLLRRRRRR",  // 6
-	"LGLGLGRRRRRR",  // 7
-	"LGLGGLRRRRRR",  // 8
-	"LGGLGLRRRRRR"   // 9
-};
+@implementation BCKUPCACode
 
-@implementation BCKEAN13Code
+#pragma mark - Subclassing Methods
 
-#pragma mark - Helper Methods
-
+//TODO jaanus: copy/paste from EAN-13
 - (NSUInteger)_digitAtIndex:(NSUInteger)index
 {
 	NSString *digitStr = [self.content substringWithRange:NSMakeRange(index, 1)];
 	return [digitStr integerValue];
 }
 
-- (NSUInteger)_codeVariantIndexForDigitAtIndex:(NSUInteger)index withVariantPattern:(char *)variantPattern
-{
-	NSAssert(index>0 && index<13, @"Index must be from 1 to 12");
-	
-	char variantForDigit = variantPattern[index-1];
-	NSUInteger variantIndex = BCKEANCodeCharacterEncoding_L;
-	
-	if (variantForDigit == 'G')
-	{
-		variantIndex = BCKEANCodeCharacterEncoding_G;
-	}
-	else if (variantForDigit == 'R')
-	{
-		variantIndex = BCKEANCodeCharacterEncoding_R;
-	}
-	
-	return variantIndex;
-}
-
-#pragma mark - Subclassing Methods
-
 + (BOOL)canEncodeContent:(NSString *)content error:(NSError *__autoreleasing *)error
 {
 	NSUInteger length = [content length];
-	
-	if (length != 13)
+
+	if (length != 12)
 	{
 		if (error)
 		{
-			NSString *message = [NSString stringWithFormat:@"%@ requires content to be 13 digits", NSStringFromClass([self class])];
+			NSString *message = [NSString stringWithFormat:@"%@ requires content to be 12 digits", NSStringFromClass([self class])];
 			*error = [NSError BCKCodeErrorWithMessage:message];
 		}
-		
+
 		return NO;
 	}
-	
+
+	NSInteger checkSum = 0;
+
 	for (NSUInteger index=0; index<[content length]; index++)
 	{
 		NSString *character = [content substringWithRange:NSMakeRange(index, 1)];
 		char c = [character UTF8String][0];
-		
+
 		if (!(c>='0' && c<='9'))
 		{
 			if (error)
@@ -81,11 +51,37 @@ static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
 				NSString *message = [NSString stringWithFormat:@"%@ cannot encode '%@' at index %d", NSStringFromClass([self class]), character, index];
 				*error = [NSError BCKCodeErrorWithMessage:message];
 			}
-			
+
 			return NO;
 		}
+
+		if (index == [content length] - 1) {
+			continue;
+		}
+
+		NSInteger multiply = ((index % 2) != 0 ? 1 : 3);
+		NSInteger digit = [character integerValue];
+		checkSum += (digit * multiply);
 	}
-	
+
+	NSInteger remainder = checkSum % 10;
+	NSInteger calculatedCheck = 10 - remainder;
+	if (calculatedCheck == 10) {
+		calculatedCheck = 0;
+	}
+
+	NSInteger inputCheckNumber = [[content substringFromIndex:11] integerValue];
+
+	if (calculatedCheck != inputCheckNumber) {
+		if (error)
+		{
+			NSString *message = @"Invalid barcode provided. Check number does not match";
+			*error = [NSError BCKCodeErrorWithMessage:message];
+		}
+
+		return NO;
+	}
+
 	return YES;
 }
 
@@ -96,12 +92,12 @@ static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
 
 + (NSString *)barcodeDescription
 {
-	return @"EAN-13";
+	return @"UPC-A";
 }
 
 - (NSUInteger)horizontalQuietZoneWidth
 {
-	return 7;
+	return 10;
 }
 
 - (NSArray *)codeCharacters
@@ -111,44 +107,59 @@ static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
 	{
 		return _codeCharacters;
 	}
-   
+
 	NSMutableArray *tmpArray = [NSMutableArray array];
-	
-	// variant pattern derives from first digit
-	NSUInteger firstDigit = [self _digitAtIndex:0];
-	char *variant_pattern = variant_patterns[firstDigit];
-	
+
+
 	// start marker
 	[tmpArray addObject:[BCKEANCodeCharacter endMarkerCodeCharacter]];
-	
-	for (NSUInteger index = 1; index < 13; index ++)
+
+	for (NSUInteger index = 0; index < 12; index ++)
 	{
 		NSUInteger digit = [self _digitAtIndex:index];
-		BCKEANCodeCharacterEncoding encoding = [self _codeVariantIndexForDigitAtIndex:index withVariantPattern:variant_pattern];
-		
-		[tmpArray addObject:[BCKEANCodeCharacter codeCharacterForDigit:digit encoding:encoding]];
-		
-		if (index == 6)
+		BCKEANCodeCharacterEncoding encoding = (index <6 ? BCKEANCodeCharacterEncoding_L : BCKEANCodeCharacterEncoding_R);
+
+		BCKEANCodeCharacter *codeCharacter = [BCKEANCodeCharacter codeCharacterForDigit:digit encoding:encoding];
+		if (index == 0 || index == 11)
+		{
+			codeCharacter = [BCKUPCCodeCharacter markerCharacterWithEANCharacter:codeCharacter];
+		}
+
+		[tmpArray addObject:codeCharacter];
+
+		if (index == 5)
 		{
 			// middle marker
 			[tmpArray addObject:[BCKEANCodeCharacter middleMarkerCodeCharacter]];
 		}
 	}
-	
+
 	// end marker
 	[tmpArray addObject:[BCKEANCodeCharacter endMarkerCodeCharacter]];
-	
+
 	_codeCharacters = [tmpArray copy];
 	return _codeCharacters;
 }
 
-- (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone withRenderOptions:(NSDictionary *)options
+- (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone
 {
 	if (captionZone == BCKCodeDrawingCaptionLeftQuietZone)
 	{
 		return [self.content substringToIndex:1];
 	}
-	
+	else if (captionZone == BCKCodeDrawingCaptionRightQuietZone)
+	{
+		return [self.content substringFromIndex:11];
+	}
+	else if (captionZone == BCKCodeDrawingCaptionLeftNumberZone)
+	{
+		return [self.content substringWithRange:NSMakeRange(1, 5)];
+	}
+	else if (captionZone == BCKCodeDrawingCaptionRightNumberZone)
+	{
+		return [self.content substringWithRange:NSMakeRange(6, 5)];
+	}
+
 	return nil;
 }
 
@@ -163,11 +174,6 @@ static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
 }
 
 - (BOOL)markerBarsCanOverlapBottomCaption
-{
-	return YES;
-}
-
-- (BOOL)allowsFillingOfEmptyQuietZones
 {
 	return YES;
 }
