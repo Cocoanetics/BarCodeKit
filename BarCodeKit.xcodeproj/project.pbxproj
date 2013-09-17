@@ -92,6 +92,7 @@
 		EA6CF88117CA563F009C8994 /* BCKCode128ContentCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6CF88017CA563F009C8994 /* BCKCode128ContentCodeCharacter.m */; };
 		EAD33EA317E81BB400CE0608 /* BCKUPCACode.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD33EA217E81BB400CE0608 /* BCKUPCACode.m */; };
 		EAD33EA517E81BD200CE0608 /* BCKUPCACodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD33EA417E81BD200CE0608 /* BCKUPCACodeTest.m */; };
+		EAD33EAF17E8825800CE0608 /* BCKUPCCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD33EAE17E8825800CE0608 /* BCKUPCCodeCharacter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -242,6 +243,8 @@
 		EAD33EA117E81BB400CE0608 /* BCKUPCACode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKUPCACode.h; sourceTree = "<group>"; };
 		EAD33EA217E81BB400CE0608 /* BCKUPCACode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKUPCACode.m; sourceTree = "<group>"; };
 		EAD33EA417E81BD200CE0608 /* BCKUPCACodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKUPCACodeTest.m; sourceTree = "<group>"; };
+		EAD33EAD17E8825800CE0608 /* BCKUPCCodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKUPCCodeCharacter.h; sourceTree = "<group>"; };
+		EAD33EAE17E8825800CE0608 /* BCKUPCCodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKUPCCodeCharacter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -413,6 +416,8 @@
 				A764061B17B53AE700D45F51 /* BCKEANCodeCharacter.m */,
 				A764062317B53B7B00D45F51 /* BCKEANDigitCodeCharacter.h */,
 				A764062417B53B7B00D45F51 /* BCKEANDigitCodeCharacter.m */,
+				EAD33EAD17E8825800CE0608 /* BCKUPCCodeCharacter.h */,
+				EAD33EAE17E8825800CE0608 /* BCKUPCCodeCharacter.m */,
 			);
 			name = EAN/UPC;
 			sourceTree = "<group>";
@@ -868,6 +873,7 @@
 				A7337C6917C1276700BC2D2D /* BCKCode39CodeCharacter.m in Sources */,
 				A13B58E817C6A1C700454150 /* BCKInterleaved2of5CodeCharacter.m in Sources */,
 				6CE3E69F17DF1F4800BFD408 /* BCKMSICode.m in Sources */,
+				EAD33EAF17E8825800CE0608 /* BCKUPCCodeCharacter.m in Sources */,
 				6C2AF51017D5EE3F00175AE0 /* BCKCode39FullASCII.m in Sources */,
 				6CA8DC5917E408E6009F210C /* BCKCodabarCode.m in Sources */,
 				EA0EF7DF17D3ACB500015F7B /* NSString+BCKCode128Helpers.m in Sources */,

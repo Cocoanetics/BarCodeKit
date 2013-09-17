@@ -9,6 +9,7 @@
 #import "BCKUPCACode.h"
 #import "NSError+BCKCode.h"
 #import "BCKEANCodeCharacter.h"
+#import "BCKUPCCodeCharacter.h"
 
 @implementation BCKUPCACode
 
@@ -91,6 +92,11 @@
 		BCKEANCodeCharacterEncoding encoding = (index <6 ? BCKEANCodeCharacterEncoding_L : BCKEANCodeCharacterEncoding_R);
 
 		BCKEANCodeCharacter *codeCharacter = [BCKEANCodeCharacter codeCharacterForDigit:digit encoding:encoding];
+		if (index == 0 || index == 11)
+		{
+			codeCharacter = [BCKUPCCodeCharacter markerCharacterWithEANCharacter:codeCharacter];
+		}
+
 		[tmpArray addObject:codeCharacter];
 
 		if (index == 5)
