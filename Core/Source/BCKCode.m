@@ -129,6 +129,12 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 	{
 		return nil;
 	}
+
+	NSString *leftCaptionString = [self captionTextForZone:BCKCodeDrawingCaptionLeftNumberZone];
+	if ([leftCaptionString length])
+	{
+		return [leftCaptionString copy];
+	}
 	
 	NSMutableString *tmpString = [NSMutableString string];
 	__block BOOL metContent = NO;
@@ -172,7 +178,13 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 	{
 		return nil;
 	}
-	
+
+	NSString *rightCaptionString = [self captionTextForZone:BCKCodeDrawingCaptionRightNumberZone];
+	if ([rightCaptionString length])
+	{
+		return [rightCaptionString copy];
+	}
+
 	NSMutableString *tmpString = [NSMutableString string];
 	
 	__block BOOL metMiddleMarker = NO;
@@ -295,7 +307,7 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 	
 	NSString *leftDigits = [self _leftCaptionZoneDisplayTextWithOptions:options];
 	NSString *rightDigits = [self _rightCaptionZoneDisplayTextWithOptions:options];
-	
+
 	NSString *fontName = [self _captionFontNameFromOptions:options];
 	
 	CGFloat optimalCaptionFontSize = CGFLOAT_MAX;
