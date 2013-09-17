@@ -90,6 +90,8 @@
 		EA6CF87C17CA500A009C8994 /* BCKCode128CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6CF87B17CA500A009C8994 /* BCKCode128CodeCharacter.m */; };
 		EA6CF87E17CA513E009C8994 /* BCKCode128CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6CF87D17CA513E009C8994 /* BCKCode128CodeTest.m */; };
 		EA6CF88117CA563F009C8994 /* BCKCode128ContentCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6CF88017CA563F009C8994 /* BCKCode128ContentCodeCharacter.m */; };
+		EAD33EA317E81BB400CE0608 /* BCKUPCACode.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD33EA217E81BB400CE0608 /* BCKUPCACode.m */; };
+		EAD33EA517E81BD200CE0608 /* BCKUPCACodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD33EA417E81BD200CE0608 /* BCKUPCACodeTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -237,6 +239,9 @@
 		EA6CF87D17CA513E009C8994 /* BCKCode128CodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode128CodeTest.m; sourceTree = "<group>"; };
 		EA6CF87F17CA563F009C8994 /* BCKCode128ContentCodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode128ContentCodeCharacter.h; sourceTree = "<group>"; };
 		EA6CF88017CA563F009C8994 /* BCKCode128ContentCodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode128ContentCodeCharacter.m; sourceTree = "<group>"; };
+		EAD33EA117E81BB400CE0608 /* BCKUPCACode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKUPCACode.h; sourceTree = "<group>"; };
+		EAD33EA217E81BB400CE0608 /* BCKUPCACode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKUPCACode.m; sourceTree = "<group>"; };
+		EAD33EA417E81BD200CE0608 /* BCKUPCACodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKUPCACodeTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -445,6 +450,8 @@
 				A76405E417B52E7700D45F51 /* BCKEAN13Code.m */,
 				A764061617B533CD00D45F51 /* BCKEAN8Code.h */,
 				A764061717B533CD00D45F51 /* BCKEAN8Code.m */,
+				EAD33EA117E81BB400CE0608 /* BCKUPCACode.h */,
+				EAD33EA217E81BB400CE0608 /* BCKUPCACode.m */,
 				A7781E1617B6B301005B9604 /* BCKUPCECode.h */,
 				A7781E1717B6B301005B9604 /* BCKUPCECode.m */,
 			);
@@ -488,6 +495,7 @@
 				6CE3E6A017DF202900BFD408 /* BCKMSICodeTest.m */,
 				6C93DE7C17E1C31F002F0BF5 /* BCKCodeTest.m */,
 				6CFB2D5E17E1D30100017C55 /* BCKPharmacodeOneTrackTest.m */,
+				EAD33EA417E81BD200CE0608 /* BCKUPCACodeTest.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -806,6 +814,7 @@
 				6CFB2D5F17E1D30100017C55 /* BCKPharmacodeOneTrackTest.m in Sources */,
 				6CA8DC4E17E402FA009F210C /* BCKCodabarCodeTest.m in Sources */,
 				6C818CAC17CB6BF300AEE26F /* BCKCode93CodeTest.m in Sources */,
+				EAD33EA517E81BD200CE0608 /* BCKUPCACodeTest.m in Sources */,
 				A7378E0C17C261D8008921C4 /* BCKEAN8CodeTest.m in Sources */,
 				A13B58E217C6A03A00454150 /* BCKInterleaved2of5CodeTest.m in Sources */,
 				EA6CF87E17CA513E009C8994 /* BCKCode128CodeTest.m in Sources */,
@@ -845,6 +854,7 @@
 				6C4D158A17DDDDF000854E31 /* BCKCode11CodeCharacter.m in Sources */,
 				6C818CB517CCAC0400AEE26F /* BCKCode93ContentCodeCharacter.m in Sources */,
 				6C4D158417DDDD0B00854E31 /* BCKCode11Code.m in Sources */,
+				EAD33EA317E81BB400CE0608 /* BCKUPCACode.m in Sources */,
 				6CD088E117E1CA5B00B817B4 /* BCKPharmacodeOneTrack.m in Sources */,
 				A764060D17B52EC600D45F51 /* BCKCode.m in Sources */,
 				EA6CF87917CA4FAE009C8994 /* BCKCode128Code.m in Sources */,
