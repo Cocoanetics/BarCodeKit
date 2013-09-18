@@ -8,6 +8,9 @@
 
 #import "BCKCodeCharacter.h"
 
+/**
+ Specialized class of BCKCodeCharacter used for generating Pharma One Track codes
+ */
 @interface BCKPharmaOneTrackContentCodeCharacter : BCKCodeCharacter
 
 /**

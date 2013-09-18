@@ -17,6 +17,7 @@
  Designated initializer for the BCKStandard2of5Code class.
  @param content The number string for the code
  @param withModulo10 Whether the barcode should be encoded including the modulo 10 check digit character
+ @param error Optional output parameter to take on an `NSError` in case the content cannot be encoded in this barcode type
  @return An instance of the BCKStandard2of5Code class with the module 10 check digit when requested. Returns nil and an NSError instance if the content cannot be encoded
  */
 - (instancetype)initWithContent:(NSString *)content withModulo10:(BOOL)withModulo10 error:(NSError *__autoreleasing *)error;
@@ -24,6 +25,7 @@
 /**
  Initializer for the BCKStandard2of5Code class without the modulo 10 check digit.
  @param content The number string for the code
+ @param error Optional output parameter to take on an `NSError` in case the content cannot be encoded in this barcode type
  @return An instance of the BCKStandard2of5Code class without the module 10 check digit. Returns nil and an NSError instance if the content cannot be encoded
  */
 - (instancetype)initWithContent:(NSString *)content error:(NSError *__autoreleasing *)error;

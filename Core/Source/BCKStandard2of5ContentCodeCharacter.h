@@ -8,6 +8,9 @@
 
 #import "BCKStandard2of5CodeCharacter.h"
 
+/**
+ Specialized class of BCKCodeCharacter used for generating Standard 2 of 5 codes
+ */
 @interface BCKStandard2of5ContentCodeCharacter : BCKStandard2of5CodeCharacter
 
 /**

@@ -8,6 +8,9 @@
 
 #import "BCKCodabarCodeCharacter.h"
 
+/**
+ Specialized class of BCKCodeCharacter used for generating Codabar codes
+ */
 @interface BCKCodabarContentCodeCharacter : BCKCodabarCodeCharacter
 
 /**

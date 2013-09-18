@@ -19,6 +19,7 @@
 
 /**
  Generates a start/stop code character, used for Codabar. Supported start/stop characters are A, B, C, D, T, N, * and E. Does not count as a marker.
+ @param character The start/stop character
  @returns the start/stop code character
  */
 + (BCKCodabarCodeCharacter *)startStopCodeCharacter:(NSString *)character;

@@ -172,6 +172,7 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
 /**
  Checks whether contents is encodable by the BCKCode class.
  @param content The barcode to be encoded by the BCKCode subclass
+ @param error Optional output parameter to take on an `NSError` in case the content cannot be encoded in this barcode type
  @return YES if the contents is encodable, in which case the error object is set to nil. NO if it is not, the error object contains error information
  */
 + (BOOL)canEncodeContent:(NSString *)content error:(NSError **)error;
