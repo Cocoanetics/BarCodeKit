@@ -32,7 +32,9 @@
 	<string>542</string>
 	<key>BCKCodabarCode</key>
 	<string>A4-0$1:5/6.7+B</string>
-    <key>BCKUPCACode</key>
-    <string>018200001680</string>
+	<key>BCKUPCACode</key>
+	<string>018200001680</string>
+	<key>BCKStandard2of5Code</key>
+	<string>1234</string>
 </dict>
 </plist>
