@@ -49,6 +49,10 @@
 		6CE3E69C17DF1D7D00BFD408 /* BCKMSIContentCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CE3E69B17DF1D7D00BFD408 /* BCKMSIContentCodeCharacter.m */; };
 		6CE3E69F17DF1F4800BFD408 /* BCKMSICode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CE3E69E17DF1F4800BFD408 /* BCKMSICode.m */; };
 		6CE3E6A117DF202900BFD408 /* BCKMSICodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CE3E6A017DF202900BFD408 /* BCKMSICodeTest.m */; };
+		6CF2308617E9B2030065E50C /* BCKStandard2of5CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF2308517E9B2030065E50C /* BCKStandard2of5CodeCharacter.m */; };
+		6CF2308917E9B2A80065E50C /* BCKStandard2of5ContentCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF2308817E9B2A80065E50C /* BCKStandard2of5ContentCodeCharacter.m */; };
+		6CF2308C17E9B4790065E50C /* BCKStandard2of5Code.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF2308B17E9B4790065E50C /* BCKStandard2of5Code.m */; };
+		6CF2308E17E9BA560065E50C /* BCKStandard2of5CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF2308D17E9BA560065E50C /* BCKStandard2of5CodeTest.m */; };
 		6CFB2D5F17E1D30100017C55 /* BCKPharmacodeOneTrackTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFB2D5E17E1D30100017C55 /* BCKPharmacodeOneTrackTest.m */; };
 		6CFB2D6317E1D6AE00017C55 /* BCKPharmaOneTrackContentCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFB2D6217E1D6AE00017C55 /* BCKPharmaOneTrackContentCodeCharacter.m */; };
 		A13B58E217C6A03A00454150 /* BCKInterleaved2of5CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B58E117C6A03A00454150 /* BCKInterleaved2of5CodeTest.m */; };
@@ -173,6 +177,13 @@
 		6CE3E69D17DF1F4800BFD408 /* BCKMSICode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKMSICode.h; sourceTree = "<group>"; };
 		6CE3E69E17DF1F4800BFD408 /* BCKMSICode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKMSICode.m; sourceTree = "<group>"; };
 		6CE3E6A017DF202900BFD408 /* BCKMSICodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKMSICodeTest.m; sourceTree = "<group>"; };
+		6CF2308417E9B2030065E50C /* BCKStandard2of5CodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKStandard2of5CodeCharacter.h; sourceTree = "<group>"; };
+		6CF2308517E9B2030065E50C /* BCKStandard2of5CodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKStandard2of5CodeCharacter.m; sourceTree = "<group>"; };
+		6CF2308717E9B2A80065E50C /* BCKStandard2of5ContentCodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKStandard2of5ContentCodeCharacter.h; sourceTree = "<group>"; };
+		6CF2308817E9B2A80065E50C /* BCKStandard2of5ContentCodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKStandard2of5ContentCodeCharacter.m; sourceTree = "<group>"; };
+		6CF2308A17E9B4790065E50C /* BCKStandard2of5Code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKStandard2of5Code.h; sourceTree = "<group>"; };
+		6CF2308B17E9B4790065E50C /* BCKStandard2of5Code.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKStandard2of5Code.m; sourceTree = "<group>"; };
+		6CF2308D17E9BA560065E50C /* BCKStandard2of5CodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKStandard2of5CodeTest.m; sourceTree = "<group>"; };
 		6CFB2D5E17E1D30100017C55 /* BCKPharmacodeOneTrackTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKPharmacodeOneTrackTest.m; sourceTree = "<group>"; };
 		6CFB2D6117E1D6AE00017C55 /* BCKPharmaOneTrackContentCodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKPharmaOneTrackContentCodeCharacter.h; sourceTree = "<group>"; };
 		6CFB2D6217E1D6AE00017C55 /* BCKPharmaOneTrackContentCodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKPharmaOneTrackContentCodeCharacter.m; sourceTree = "<group>"; };
@@ -382,6 +393,26 @@
 			name = MSI;
 			sourceTree = "<group>";
 		};
+		6CF2307F17E9B1550065E50C /* Standard 2 of 5 */ = {
+			isa = PBXGroup;
+			children = (
+				6CF2308A17E9B4790065E50C /* BCKStandard2of5Code.h */,
+				6CF2308B17E9B4790065E50C /* BCKStandard2of5Code.m */,
+			);
+			name = "Standard 2 of 5";
+			sourceTree = "<group>";
+		};
+		6CF2308017E9B1620065E50C /* Standard 2 of 5 */ = {
+			isa = PBXGroup;
+			children = (
+				6CF2308417E9B2030065E50C /* BCKStandard2of5CodeCharacter.h */,
+				6CF2308517E9B2030065E50C /* BCKStandard2of5CodeCharacter.m */,
+				6CF2308717E9B2A80065E50C /* BCKStandard2of5ContentCodeCharacter.h */,
+				6CF2308817E9B2A80065E50C /* BCKStandard2of5ContentCodeCharacter.m */,
+			);
+			name = "Standard 2 of 5";
+			sourceTree = "<group>";
+		};
 		6CFB2D6017E1D67100017C55 /* Pharmacode */ = {
 			isa = PBXGroup;
 			children = (
@@ -504,6 +535,7 @@
 				6C93DE7C17E1C31F002F0BF5 /* BCKCodeTest.m */,
 				6CFB2D5E17E1D30100017C55 /* BCKPharmacodeOneTrackTest.m */,
 				EAD33EA417E81BD200CE0608 /* BCKUPCACodeTest.m */,
+				6CF2308D17E9BA560065E50C /* BCKStandard2of5CodeTest.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -522,6 +554,7 @@
 				EA6CF87617CA4ED7009C8994 /* Code128 */,
 				6CE3E69517DF1CF700BFD408 /* MSI */,
 				6CD088DE17E1CA3E00B817B4 /* Pharmacode */,
+				6CF2307F17E9B1550065E50C /* Standard 2 of 5 */,
 			);
 			name = Codes;
 			sourceTree = "<group>";
@@ -540,6 +573,7 @@
 				EA6CF87517CA4EBE009C8994 /* Code128 */,
 				6CE3E69617DF1D0800BFD408 /* MSI */,
 				6CFB2D6017E1D67100017C55 /* Pharmacode */,
+				6CF2308017E9B1620065E50C /* Standard 2 of 5 */,
 			);
 			name = "Code Characters";
 			sourceTree = "<group>";
@@ -826,6 +860,7 @@
 				A7378E0C17C261D8008921C4 /* BCKEAN8CodeTest.m in Sources */,
 				A13B58E217C6A03A00454150 /* BCKInterleaved2of5CodeTest.m in Sources */,
 				EA6CF87E17CA513E009C8994 /* BCKCode128CodeTest.m in Sources */,
+				6CF2308E17E9BA560065E50C /* BCKStandard2of5CodeTest.m in Sources */,
 				A7378E0517C25A2D008921C4 /* BCKCode39CodeTest.m in Sources */,
 				6CAA398F17E863F700C2D422 /* BCKCode39CodeClassClusterTest.m in Sources */,
 				6CE3E6A117DF202900BFD408 /* BCKMSICodeTest.m in Sources */,
@@ -861,8 +896,11 @@
 				A13B58E517C6A10200454150 /* BCKInterleaved2of5Code.m in Sources */,
 				A764061C17B53AE700D45F51 /* BCKEANCodeCharacter.m in Sources */,
 				6C4D158A17DDDDF000854E31 /* BCKCode11CodeCharacter.m in Sources */,
+				6CF2308C17E9B4790065E50C /* BCKStandard2of5Code.m in Sources */,
 				6C818CB517CCAC0400AEE26F /* BCKCode93ContentCodeCharacter.m in Sources */,
 				6C4D158417DDDD0B00854E31 /* BCKCode11Code.m in Sources */,
+				6CF2308917E9B2A80065E50C /* BCKStandard2of5ContentCodeCharacter.m in Sources */,
+				6CF2308617E9B2030065E50C /* BCKStandard2of5CodeCharacter.m in Sources */,
 				EAD33EA317E81BB400CE0608 /* BCKUPCACode.m in Sources */,
 				6CD088E117E1CA5B00B817B4 /* BCKPharmacodeOneTrack.m in Sources */,
 				A764060D17B52EC600D45F51 /* BCKCode.m in Sources */,
