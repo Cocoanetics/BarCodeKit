@@ -49,8 +49,6 @@
 	actual = [code bitString];
     isEqual = [expected isEqualToString:actual];
 	STAssertTrue(isEqual, @"Result from encoding simple barcode is incorrect");
-    NSLog(expected);
-    NSLog(actual);
 }
 
 @end
