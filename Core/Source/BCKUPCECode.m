@@ -88,7 +88,7 @@ static char *variant_patterns[10][2] = {{"EEEOOO", "OOOEEE"},  // 0
 		{
 			if (error)
 			{
-				NSString *message = [NSString stringWithFormat:@"%@ cannot encode '%@' at index %d", NSStringFromClass([self class]), character, index];
+				NSString *message = [NSString stringWithFormat:@"%@ cannot encode '%@' at index %d", NSStringFromClass([self class]), character, (int)index];
 				*error = [NSError BCKCodeErrorWithMessage:message];
 			}
 			

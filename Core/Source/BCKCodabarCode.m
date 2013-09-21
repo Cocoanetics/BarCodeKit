@@ -65,14 +65,14 @@
 			{
 				if (index==0)
 				{
-					message = [NSString stringWithFormat:@"Character at index %d '%@' is an invalid start character for %@", index, character, NSStringFromClass([self class])];
+					message = [NSString stringWithFormat:@"Character at index %d '%@' is an invalid start character for %@", (int)index, character, NSStringFromClass([self class])];
 				}
 				else if (index==[content length]-1)
 				{
-					message = [NSString stringWithFormat:@"Character at index %d '%@' is an invalid stop character for %@", index, character, NSStringFromClass([self class])];
+					message = [NSString stringWithFormat:@"Character at index %d '%@' is an invalid stop character for %@", (int)index, character, NSStringFromClass([self class])];
 				}
 				else {
-					message = [NSString stringWithFormat:@"Character at index %d '%@' cannot be encoded in %@", index, character, NSStringFromClass([self class])];
+					message = [NSString stringWithFormat:@"Character at index %d '%@' cannot be encoded in %@", (int)index, character, NSStringFromClass([self class])];
 				}
 				
 				*error = [NSError BCKCodeErrorWithMessage:message];
@@ -191,13 +191,6 @@
 - (BOOL)showCheckDigitsInCaption
 {
 	return YES;
-}
-
-- (UIFont *)_captionFontWithSize:(CGFloat)fontSize
-{
-	UIFont *font = [UIFont boldSystemFontOfSize:fontSize];
-	
-	return font;
 }
 
 @end

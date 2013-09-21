@@ -148,13 +148,6 @@
 	return nil;
 }
 
-- (UIFont *)_captionFontWithSize:(CGFloat)fontSize
-{
-	UIFont *font = [UIFont boldSystemFontOfSize:fontSize];
-	
-	return font;
-}
-
 - (NSString *)_nextCharacterToEncode:(NSString *)content writeVersion:(BCKCode128Version)writeVersion
 {
 	if (writeVersion == Code128C)

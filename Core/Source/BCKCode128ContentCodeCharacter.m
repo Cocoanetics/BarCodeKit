@@ -235,7 +235,7 @@ static NSArray *__charactersMap;
         {
 			if (error)
 			{
-				NSString *message = [NSString stringWithFormat:@"String '%@' cannot be encoded in Code128. Character at index %d (%@) not supported", content, index, characterString];
+				NSString *message = [NSString stringWithFormat:@"String '%@' cannot be encoded in Code128. Character at index %d (%@) not supported", content, (int)index, characterString];
 				*error = [NSError BCKCodeErrorWithMessage:message];
 			}
 

@@ -155,7 +155,7 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 			if ([character isKindOfClass:[BCKEANDigitCodeCharacter class]])
 			{
 				BCKEANDigitCodeCharacter *digitChar = (BCKEANDigitCodeCharacter *)character;
-				[tmpString appendFormat:@"%d", [digitChar digit]];
+				[tmpString appendFormat:@"%d", (int)[digitChar digit]];
 			}
 			
 			metContent = YES;
@@ -206,7 +206,7 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 			if (metMiddleMarker)
 			{
 				BCKEANDigitCodeCharacter *digitChar = (BCKEANDigitCodeCharacter *)character;
-				[tmpString appendFormat:@"%d", [digitChar digit]];
+				[tmpString appendFormat:@"%d", (int)[digitChar digit]];
 			}
 			
 			metContent = YES;
@@ -404,15 +404,11 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 		font = CTFontCreateWithName(CFSTR("Helvetica"), fontSize, NULL);
 	}
 	
-	UIColor *textColor = [UIColor blackColor];
-	
 	NSDictionary *attributes = @{(id)kCTParagraphStyleAttributeName: CFBridgingRelease(paragraphStyle),
-										  (id)kCTFontAttributeName: CFBridgingRelease(font),
-										  (id)kCTForegroundColorAttributeName: (id)textColor.CGColor};
+										  (id)kCTFontAttributeName: CFBridgingRelease(font)};
 	
 	return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
-
 
 - (CTFrameRef)_frameWithCaptionText:(NSString *)text fontName:(NSString *)fontName fontSize:(CGFloat)fontSize constraintedToWidth:(CGFloat)constraintWidth
 {
@@ -463,9 +459,6 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 
 - (CGFloat)_optimalFontSizeToFitText:(NSString *)text fontName:(NSString *)fontName insideWidth:(CGFloat)width
 {
-	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-	paragraphStyle.alignment = NSTextAlignmentCenter;
-	
 	CGFloat fontSize = 1;
 	
 	do
@@ -772,7 +765,8 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 	}];
 	
 	// paint all bars
-	[[UIColor blackColor] setFill];
+	
+	CGContextSetGrayFillColor(context, 0, 1);
 	CGContextFillPath(context);
 	
 	if ([self _shouldDrawCaptionFromOptions:options])
@@ -833,13 +827,16 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 			// DEBUG Option
 			if ([[options objectForKey:BCKCodeDrawingDebugOption] boolValue])
 			{
-				[[UIColor colorWithRed:1 green:0 blue:0 alpha:0.6] set];
+				CGContextSetRGBFillColor(context, 1, 0, 0, 0.6);
 				CGContextFillRect(context, leftNumberFrame);
-				[[UIColor colorWithRed:0 green:1 blue:0 alpha:0.6] set];
+				
+				CGContextSetRGBFillColor(context, 0, 1, 0, 0.6);
 				CGContextFillRect(context, rightNumberFrame);
-				[[UIColor colorWithRed:0 green:0 blue:1 alpha:0.6] set];
+				
+				CGContextSetRGBFillColor(context, 0, 0, 1, 0.6);
 				CGContextFillRect(context, leftQuietZoneNumberFrame);
-				[[UIColor colorWithRed:0 green:0 blue:1 alpha:0.6] set];
+				
+				CGContextSetRGBFillColor(context, 0, 0, 1, 0.6);
 				CGContextFillRect(context, rightQuietZoneNumberFrame);
 			}
 			
@@ -896,17 +893,19 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 			// DEBUG Option
 			if ([[options objectForKey:BCKCodeDrawingDebugOption] boolValue])
 			{
-				[[UIColor colorWithRed:1 green:0 blue:0 alpha:0.6] set];
+				CGContextSetRGBFillColor(context, 1, 0, 0, 0.6);
 				CGContextFillRect(context, frameBetweenEndMarkers);
-				[[UIColor colorWithRed:0 green:0 blue:1 alpha:0.6] set];
+				
+				CGContextSetRGBFillColor(context, 0, 0, 1, 0.6);
 				CGContextFillRect(context, leftQuietZoneNumberFrame);
-				[[UIColor colorWithRed:0 green:0 blue:1 alpha:0.6] set];
+				
+				CGContextSetRGBFillColor(context, 0, 0, 1, 0.6);
 				CGContextFillRect(context, rightQuietZoneNumberFrame);
 			}
-
-            NSString *text = [self captionTextForZone:BCKCodeDrawingCaptionTextZone withRenderOptions:options];
-            
-            [self _drawCaptionText:text fontName:fontName fontSize:[self _captionFontSizeWithOptions:options] inRect:frameBetweenEndMarkers context:context];
+			
+			NSString *text = [self captionTextForZone:BCKCodeDrawingCaptionTextZone withRenderOptions:options];
+			
+			[self _drawCaptionText:text fontName:fontName fontSize:[self _captionFontSizeWithOptions:options] inRect:frameBetweenEndMarkers context:context];
 			
 			if (leftQuietZoneText)
 			{
