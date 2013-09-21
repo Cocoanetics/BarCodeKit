@@ -9,7 +9,7 @@
 #import "BCKCodeCharacter.h"
 
 /**
- Specialized class of BCKCodeCharacter used for generating Code11 codes
+ Specialized class of BCKCodeCharacter used for generating Code11 code characters.
  */
 @interface BCKCode11CodeCharacter : BCKCodeCharacter
 
@@ -18,21 +18,21 @@
  */
 
 /**
- Generates an end marker code character, used for Code 11
- @returns the end marker code character
+ Generates a Code11 end marker code character.
+ @returns the end marker code character.
  */
 + (BCKCode11CodeCharacter *)endMarkerCodeCharacter;
 
 /**
- Generates an spacing character, used for Code 11. Does not count as a marker.
- @returns the end marker code character
+ Generates a Code11 spacing character. Does not count as a marker.
+ @returns the spacing marker code character.
  */
 + (BCKCode11CodeCharacter *)spacingCodeCharacter;
 
 /**
- Generates a code character to represent a content character
- @param character The character to encode
- @returns The content code character
+ Generates a code character to represent a Code11 content character.
+ @param character The character to encode.
+ @returns The content code character for the character.
  */
 + (BCKCode11CodeCharacter *)codeCharacterForCharacter:(NSString *)character;
 

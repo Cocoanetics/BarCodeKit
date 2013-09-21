@@ -11,6 +11,6 @@
 /**
  Specialized subclass of BCKCode to represent Pharmacode One Track barcodes.
  */
-@interface BCKPharmacodeOneTrack : BCKCode
+@interface BCKPharmacodeOneTrack : BCKCode <BCKCoding>
 
 @end

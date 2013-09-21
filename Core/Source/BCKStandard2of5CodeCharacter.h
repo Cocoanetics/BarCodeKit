@@ -9,7 +9,7 @@
 #import "BCKCodeCharacter.h"
 
 /**
- Specialized class of BCKCodeCharacter used for generating Standard/Industrial 2 of 5 codes
+ Specialized class of BCKCodeCharacter used for generating Standard/Industrial 2 of 5 codes.
  */
 @interface BCKStandard2of5CodeCharacter : BCKCodeCharacter
 
@@ -18,27 +18,27 @@
  */
 
 /**
- Generates a start marker code character, used for Standard/Industrial 2 of 5 barcodes
- @returns the start marker code character
+ Generates a Standard/Industrial 2 of 5 start marker code character.
+ @returns the start marker code character.
  */
 + (BCKStandard2of5CodeCharacter *)startMarkerCodeCharacter;
 
 /**
- Generates a spacing character, used for Standard/Industrial 2 of 5 barcodes. Does not count as a marker.
- @returns the end marker code character
+ Generates a Standard/Industrial 2 of 5 spacing character. Does not count as a marker.
+ @returns the spacing code character.
  */
 + (BCKStandard2of5CodeCharacter *)spacingCodeCharacter;
 
 /**
- Generates a stop marker code character, used for Standard/Industrial 2 of 5 barcodes
- @returns the stop marker code character
+ Generates a Standard/Industrial 2 of 5 stop marker code character.
+ @returns the stop marker code character.
  */
 + (BCKStandard2of5CodeCharacter *)stopMarkerCodeCharacter;
 
 /**
- Generates a code character to represent a Standard/Industrial 2 of 5 content character
- @param character The character to encode
- @returns The content code character
+ Generates a code character to represent a Standard/Industrial 2 of 5 content character. Only supports numeric characters.
+ @param character The character to encode.
+ @returns The content code character for the character.
  */
 + (BCKStandard2of5CodeCharacter *)codeCharacterForCharacter:(NSString *)character;
 

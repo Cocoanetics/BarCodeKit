@@ -6,11 +6,14 @@ This project lets you generate bar codes for a variety of code standards.
 - EAN-13/UPC-A
 - EAN-8
 - UPC-E
+- Codabar
 - Code 11
 - Code 39 (plain, mod 43, Full ASCII plain and mod 43)
-- Code 93
+- Code 93 (with mod 47)
 - Code 128
 - Interleaved 2 of 5
+- MSI - Modified Plessey (without check, mod 10, mod 11, mod 1010, mod 1011)
+- Standard/Industrial 2 of 5
 
 Documentation
 -------------

@@ -16,9 +16,9 @@
  */
 
 /**
- Creates an `NSError` instance with default BarCodeKit settings and a custom error message
- @param message The error message the `NSError` object should be initialised with
- @returns An `NSError` object initialised with the error message
+ Creates an `NSError` instance with default BarCodeKit settings and a custom error message.
+ @param message The error message the `NSError` object should be initialised with.
+ @returns A BarCodeKit specific `NSError` object initialised with the error message.
  */
 + (NSError *)BCKCodeErrorWithMessage:(NSString *)message;
 

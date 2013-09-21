@@ -9,27 +9,26 @@
 #import "BCKStandard2of5CodeCharacter.h"
 
 /**
- Specialized class of BCKCodeCharacter used for generating Standard 2 of 5 codes
+ Specialized class of BCKCodeCharacter used for generating Standard 2 of 5 codes.
  */
 @interface BCKStandard2of5ContentCodeCharacter : BCKStandard2of5CodeCharacter
 
 /**
- Initialise a content code character using a character. Only supports numeric characters
- @param character The character
- @returns the content code character
+ Initialise a content code character using a character. Only supports numeric characters.
+ @param character The character.
+ @returns the content code character for the character.
  */
 - (instancetype)initWithCharacter:(NSString *)character;
 
 /**
  Initialise a content code character using its character value.
- @param characterValue The character value to encode
- @returns the content code character
+ @param characterValue The character value to encode.
+ @returns the content code character for the character value.
  */
 - (instancetype)initWithCharacterValue:(NSUInteger)characterValue;
 
 /**
- Return a content code character's value. Only supports numeric characters
- @returns the content code character's value
+ The value of the character encoded by the content code character.
  */
 - (NSUInteger)characterValue;
 
