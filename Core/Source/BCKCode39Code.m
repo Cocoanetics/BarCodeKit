@@ -104,7 +104,7 @@
 		{
 			if (error)
 			{
-				NSString *message = [NSString stringWithFormat:@"Character at index %d '%@' cannot be encoded in %@", index, character, NSStringFromClass([self class])];
+				NSString *message = [NSString stringWithFormat:@"Character at index %d '%@' cannot be encoded in %@", (int)index, character, NSStringFromClass([self class])];
 				*error = [NSError BCKCodeErrorWithMessage:message];
 			}
 			
@@ -186,13 +186,6 @@
 	}
 	
 	return nil;
-}
-
-- (UIFont *)_captionFontWithSize:(CGFloat)fontSize
-{
-	UIFont *font = [UIFont boldSystemFontOfSize:fontSize];
-	
-	return font;
 }
 
 @end

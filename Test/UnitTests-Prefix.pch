@@ -1,11 +1,17 @@
 //
-//  Prefix header
-//
-//  The contents of this file are implicitly included at the beginning of every source file.
+//  BarCodeKit Tests Prefix header
 //
 
+#import <Availability.h>
+
+
 #ifdef __OBJC__
-	#import <UIKit/UIKit.h>
 	#import <Foundation/Foundation.h>
 	#import <SenTestingKit/SenTestingKit.h>
+
+	#if TARGET_OS_IPHONE
+		#import <UIKit/UIKit.h>
+	#else
+		#import <Cocoa/Cocoa.h>
+	#endif
 #endif
