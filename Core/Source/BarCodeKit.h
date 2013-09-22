@@ -1,5 +1,7 @@
 // all-in header for Bar Code Kit
 
+#import <Availability.h>
+
 // code implementations
 #import "BCKCodabarCode.h"
 #import "BCKEAN8Code.h"
@@ -61,4 +63,7 @@
 #import "NSError+BCKCode.h"
 
 // barcode rendering
-#import "UIImage+BarcodeKit.h"
+
+#if TARGET_OS_IPHONE
+	#import "UIImage+BarcodeKit.h"
+#endif
