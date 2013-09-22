@@ -9,8 +9,8 @@
 #import "BCKCode.h"
 
 /**
- Specialized subclass of BCKCode to represent Codabar barcodes.
+ Specialized subclass of BCKCode to represent a Codabar barcode.
  */
-@interface BCKCodabarCode : BCKCode
+@interface BCKCodabarCode : BCKCode <BCKCoding>
 
 @end

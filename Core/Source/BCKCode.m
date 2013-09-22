@@ -77,16 +77,6 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 	return [NSString stringWithFormat:@"<%@ content='%@'>", NSStringFromClass([self class]), [self bitString]];
 }
 
-+ (NSString *)barcodeStandard
-{
-	return nil;
-}
-
-+ (NSString *)barcodeDescription
-{
-	return nil;
-}
-
 #pragma mark - Options Helper Methods
 
 // returns the actually displayed left quiet zone text based on the options
@@ -502,6 +492,16 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 
 #pragma mark - Subclassing Methods
 
++ (NSString *)barcodeStandard
+{
+	return nil;
+}
+
++ (NSString *)barcodeDescription
+{
+	return nil;
+}
+
 + (BOOL)canEncodeContent:(NSString *)content error:(NSError **)error
 {
 	if (error)
@@ -512,6 +512,11 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 	return NO;
 }
 
+- (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone withRenderOptions:(NSDictionary *)options;
+{
+    return nil;
+}
+
 - (NSUInteger)horizontalQuietZoneWidth
 {
 	return 0;
@@ -520,11 +525,6 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 - (NSArray *)codeCharacters
 {
 	return nil;
-}
-
-- (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone withRenderOptions:(NSDictionary *)options
-{
-    return nil;
 }
 
 - (CGFloat)aspectRatio
@@ -550,11 +550,6 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 - (NSString *)defaultCaptionFontName
 {
 	return @"Helvetica";
-}
-
-- (BOOL)showCheckDigitsInCaption
-{
-	return NO;
 }
 
 #pragma mark - Drawing

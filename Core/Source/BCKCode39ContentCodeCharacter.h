@@ -9,23 +9,27 @@
 #import "BCKCode39CodeCharacter.h"
 
 /**
- Specialized class of BCKCode39CodeCharacter used for generating Code39 codes and representing content characters
+ Specialized class of BCKCode39CodeCharacter used for generating Code39 codes and representing content characters.
  */
 @interface BCKCode39ContentCodeCharacter : BCKCode39CodeCharacter
 
+/**
+ Initialise a content code character using a character. Only supports the 43 regular characters and 7 special characters.
+ @param character The character.
+ @returns the content code character for the character.
+ */
 - (instancetype)initWithCharacter:(NSString *)character;
 
-
 /**
- Initialise a content code character using its character value. Only supports the 43 regular characters and 7 special characters
- @param characterValue The character value
- @returns the content code character
+ Initialise a content code character using its character value. Only supports the 43 regular characters and 7 special characters.
+ @param characterValue The character value.
+ @returns the content code character for the character value.
  */
 - (instancetype)initWithValue:(NSUInteger)characterValue;
 
 /**
- Return a content code character's value. Only supports the 43 regular characters and 7 special characters
- @returns the content code character's value
+ Return a content code character's value. Only supports the 43 regular characters and 7 special characters.
+ @returns the content code character's value.
  */
 - (NSUInteger)characterValue;
 

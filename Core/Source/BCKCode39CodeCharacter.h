@@ -9,7 +9,7 @@
 #import "BCKCodeCharacter.h"
 
 /**
- Specialized class of BCKCodeCharacter used for generating Code39 codes
+ Specialized class of BCKCodeCharacter used for generating Code39 code characters.
  */
 @interface BCKCode39CodeCharacter : BCKCodeCharacter
 
@@ -18,21 +18,21 @@
  */
 
 /**
- Generates an end marker code character, used for Code 39
- @returns the end marker code character
+ Generates a Code39 end marker code character.
+ @returns the end marker code character.
  */
 + (BCKCode39CodeCharacter *)endMarkerCodeCharacter;
 
 /**
- Generates an spacing character, used for Code 39. Does not count as a marker.
- @returns the end marker code character
+ Generates a Code39 spacing character. Does not count as a marker.
+ @returns the spacing code character.
  */
 + (BCKCode39CodeCharacter *)spacingCodeCharacter;
 
 /**
- Generates a code character to represent a content character
- @param character The character to encode
- @returns The content code character
+ Generates a code character to represent a Code39 content character.
+ @param character The character to encode.
+ @returns The content code character for the character.
  */
 + (BCKCode39CodeCharacter *)codeCharacterForCharacter:(NSString *)character;
 

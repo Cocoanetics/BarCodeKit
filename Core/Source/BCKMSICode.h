@@ -18,7 +18,7 @@ typedef NS_ENUM(char, BCKMSICodeCheckDigitScheme) {
     BCKMSINoCheckDigitScheme = 0,
 	
 	/**
-	 MSI code Mod 10, default option if [super initWithContent:] is used to initialise the barcode
+	 MSI code Mod 10, default scheme
 	 */
     BCKMSICodeMod10CheckDigitScheme,
 	
@@ -39,16 +39,16 @@ typedef NS_ENUM(char, BCKMSICodeCheckDigitScheme) {
 };
 
 /**
- Specialized subclass of BCKCode to represent MSI barcodes.
+ Specialized subclass of BCKCode to represent MSI (Modified Plessey) barcodes.
  */
-@interface BCKMSICode : BCKCode
+@interface BCKMSICode : BCKCode <BCKCoding>
 
 /**
- Designated initializer for BCKMSICode objects. initWithContent: may be used instead, in that case the check digit scheme defaults to BCKMSINoCheckDigitScheme
- @param content The number string for the code
- @param checkDigitScheme The check digit scheme to use
- @param error Double redirection to an NSError object
- @return A BCKMSICode object encoding the barcode content using the requested check digit scheme. Returns nil if the content provided cannot be encoded, in which case the NSError instance will provide error details.
+ Designated initializer for BCKMSICode objects. initWithContent: may also be used, in that case the check digit scheme defaults to BCKMSICodeMod10CheckDigitScheme, the most commonly used scheme.
+ @param content The content string to be encoded by the subclass.
+ @param checkDigitScheme The requested check digit scheme.
+ @param error Optional output parameter to take an `NSError` in case the content cannot be encoded by this barcode class. Pass `nil` if not error information is not required.
+ @return A BCKMSICode object encoding the content string using the requested check digit scheme. Returns `nil` if the provided content cannot be encoded by the requested BCKCode subclass, the error object will provide error details.
  */
 - (instancetype)initWithContent:(NSString *)content andCheckDigitScheme:(BCKMSICodeCheckDigitScheme)checkDigitScheme error:(NSError**)error;
 

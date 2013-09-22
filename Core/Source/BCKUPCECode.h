@@ -9,8 +9,8 @@
 #import "BCKCode.h"
 
 /**
- Specialized subclass of BCKCode to represent an UPC-E code
+ Specialized subclass of BCKCode to represent an UPC-E barcode.
  */
-@interface BCKUPCECode : BCKCode
+@interface BCKUPCECode : BCKCode <BCKCoding>
 
 @end
