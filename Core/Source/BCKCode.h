@@ -166,6 +166,7 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
  - BCKPharmacodeOneTrack - Pharmacode One Track - no international standard
  - BCKCodabarCode - Codabar - no international standard
  - BCKStandard2of5Code - Codabar - no international standard
+ - BCKFacingIdentificationMarkCode - FIM - no international standard
  
  For rendering codes several options can be combined in an options dictionary:
  

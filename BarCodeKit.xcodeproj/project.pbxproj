@@ -43,6 +43,14 @@
 		6CA8DC5517E403C5009F210C /* BCKCodabarContentCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA8DC5417E403C5009F210C /* BCKCodabarContentCodeCharacter.m */; };
 		6CA8DC5917E408E6009F210C /* BCKCodabarCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA8DC5817E408E6009F210C /* BCKCodabarCode.m */; };
 		6CAA398F17E863F700C2D422 /* BCKCode39CodeClassClusterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CAA398E17E863F700C2D422 /* BCKCode39CodeClassClusterTest.m */; };
+		6CC6BAA517F1910200F3ECCF /* BCKFacingIdentificationMarkCodeCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CC6BAA317F1910200F3ECCF /* BCKFacingIdentificationMarkCodeCharacter.h */; };
+		6CC6BAA617F1910200F3ECCF /* BCKFacingIdentificationMarkCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC6BAA417F1910200F3ECCF /* BCKFacingIdentificationMarkCodeCharacter.m */; };
+		6CC6BAA717F1910200F3ECCF /* BCKFacingIdentificationMarkCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC6BAA417F1910200F3ECCF /* BCKFacingIdentificationMarkCodeCharacter.m */; };
+		6CC6BAAA17F191AB00F3ECCF /* BCKFacingIdentificationMarkCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CC6BAA817F191AB00F3ECCF /* BCKFacingIdentificationMarkCode.h */; };
+		6CC6BAAB17F191AB00F3ECCF /* BCKFacingIdentificationMarkCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC6BAA917F191AB00F3ECCF /* BCKFacingIdentificationMarkCode.m */; };
+		6CC6BAAC17F191AB00F3ECCF /* BCKFacingIdentificationMarkCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC6BAA917F191AB00F3ECCF /* BCKFacingIdentificationMarkCode.m */; };
+		6CC6BAAE17F1A3C000F3ECCF /* BCKFacingIdentificationMarkCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC6BAAD17F1A3C000F3ECCF /* BCKFacingIdentificationMarkCodeTest.m */; };
+		6CC6BAAF17F1A3C000F3ECCF /* BCKFacingIdentificationMarkCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC6BAAD17F1A3C000F3ECCF /* BCKFacingIdentificationMarkCodeTest.m */; };
 		6CD088E117E1CA5B00B817B4 /* BCKPharmacodeOneTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD088E017E1CA5B00B817B4 /* BCKPharmacodeOneTrack.m */; };
 		6CD0EDA317DC156600A549D4 /* SampleBarcodes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CD0EDA217DC156600A549D4 /* SampleBarcodes.plist */; };
 		6CE3E69917DF1D5400BFD408 /* BCKMSICodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CE3E69817DF1D5400BFD408 /* BCKMSICodeCharacter.m */; };
@@ -271,6 +279,11 @@
 		6CA8DC5717E408E6009F210C /* BCKCodabarCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCodabarCode.h; sourceTree = "<group>"; };
 		6CA8DC5817E408E6009F210C /* BCKCodabarCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCodabarCode.m; sourceTree = "<group>"; };
 		6CAA398E17E863F700C2D422 /* BCKCode39CodeClassClusterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode39CodeClassClusterTest.m; sourceTree = "<group>"; };
+		6CC6BAA317F1910200F3ECCF /* BCKFacingIdentificationMarkCodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKFacingIdentificationMarkCodeCharacter.h; sourceTree = "<group>"; };
+		6CC6BAA417F1910200F3ECCF /* BCKFacingIdentificationMarkCodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKFacingIdentificationMarkCodeCharacter.m; sourceTree = "<group>"; };
+		6CC6BAA817F191AB00F3ECCF /* BCKFacingIdentificationMarkCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKFacingIdentificationMarkCode.h; sourceTree = "<group>"; };
+		6CC6BAA917F191AB00F3ECCF /* BCKFacingIdentificationMarkCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKFacingIdentificationMarkCode.m; sourceTree = "<group>"; };
+		6CC6BAAD17F1A3C000F3ECCF /* BCKFacingIdentificationMarkCodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKFacingIdentificationMarkCodeTest.m; sourceTree = "<group>"; };
 		6CD088DF17E1CA5B00B817B4 /* BCKPharmacodeOneTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKPharmacodeOneTrack.h; sourceTree = "<group>"; };
 		6CD088E017E1CA5B00B817B4 /* BCKPharmacodeOneTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKPharmacodeOneTrack.m; sourceTree = "<group>"; };
 		6CD0EDA217DC156600A549D4 /* SampleBarcodes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SampleBarcodes.plist; sourceTree = "<group>"; };
@@ -310,7 +323,7 @@
 		A7378D8017C222AD008921C4 /* BCKCode39ContentCodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode39ContentCodeCharacter.h; sourceTree = "<group>"; };
 		A7378D8117C222AD008921C4 /* BCKCode39ContentCodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode39ContentCodeCharacter.m; sourceTree = "<group>"; };
 		A7378D8E17C253FE008921C4 /* Setup Guide-template.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Setup Guide-template.markdown"; sourceTree = "<group>"; };
-		A7378D9317C2584E008921C4 /* Unit Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7378D9317C2584E008921C4 /* Unit Tests (iOS).octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit Tests (iOS).octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7378D9417C2584E008921C4 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		A7378DFD17C258B1008921C4 /* UnitTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UnitTests-Prefix.pch"; sourceTree = "<group>"; };
 		A7378DFE17C258C5008921C4 /* UnitTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
@@ -481,6 +494,24 @@
 			name = Codabar;
 			sourceTree = "<group>";
 		};
+		6CC6BAA117F1909A00F3ECCF /* FIM */ = {
+			isa = PBXGroup;
+			children = (
+				6CC6BAA317F1910200F3ECCF /* BCKFacingIdentificationMarkCodeCharacter.h */,
+				6CC6BAA417F1910200F3ECCF /* BCKFacingIdentificationMarkCodeCharacter.m */,
+			);
+			name = FIM;
+			sourceTree = "<group>";
+		};
+		6CC6BAA217F190BF00F3ECCF /* FIM */ = {
+			isa = PBXGroup;
+			children = (
+				6CC6BAA817F191AB00F3ECCF /* BCKFacingIdentificationMarkCode.h */,
+				6CC6BAA917F191AB00F3ECCF /* BCKFacingIdentificationMarkCode.m */,
+			);
+			name = FIM;
+			sourceTree = "<group>";
+		};
 		6CD088DE17E1CA3E00B817B4 /* Pharmacode */ = {
 			isa = PBXGroup;
 			children = (
@@ -646,6 +677,7 @@
 				A7378E0917C25DF3008921C4 /* BCKEAN13CodeTest.m */,
 				A7378E0B17C261D8008921C4 /* BCKEAN8CodeTest.m */,
 				A13B58E117C6A03A00454150 /* BCKInterleaved2of5CodeTest.m */,
+				6CC6BAAD17F1A3C000F3ECCF /* BCKFacingIdentificationMarkCodeTest.m */,
 				A7378E0D17C263C7008921C4 /* BCKUPCECodeTest.m */,
 				EA6CF87D17CA513E009C8994 /* BCKCode128CodeTest.m */,
 				6CE3E6A017DF202900BFD408 /* BCKMSICodeTest.m */,
@@ -665,10 +697,11 @@
 				6CA8DC5617E408C9009F210C /* Codabar */,
 				A7378D8617C23ACE008921C4 /* EAN/UPC */,
 				6C4D158117DDDCE900854E31 /* Code11 */,
+				EA6CF87617CA4ED7009C8994 /* Code128 */,
 				A7378D8517C23AC3008921C4 /* Code39 */,
 				6C818CA917CB64A300AEE26F /* Code93 */,
+				6CC6BAA217F190BF00F3ECCF /* FIM */,
 				A13B58DF17C6961600454150 /* Interleaved 2 of 5 */,
-				EA6CF87617CA4ED7009C8994 /* Code128 */,
 				6CE3E69517DF1CF700BFD408 /* MSI */,
 				6CD088DE17E1CA3E00B817B4 /* Pharmacode */,
 				6CF2307F17E9B1550065E50C /* Standard 2 of 5 */,
@@ -684,10 +717,11 @@
 				A7378D8317C222E6008921C4 /* EAN/UPC */,
 				6CA8DC4F17E40384009F210C /* Codabar */,
 				6C4D158717DDDDAC00854E31 /* Code11 */,
+				EA6CF87517CA4EBE009C8994 /* Code128 */,
 				A7378D8417C222F1008921C4 /* Code39 */,
 				6C818CAA17CB64B100AEE26F /* Code93 */,
+				6CC6BAA117F1909A00F3ECCF /* FIM */,
 				A13B58E017C6963B00454150 /* Interleaved 2 of 5 */,
-				EA6CF87517CA4EBE009C8994 /* Code128 */,
 				6CE3E69617DF1D0800BFD408 /* MSI */,
 				6CFB2D6017E1D67100017C55 /* Pharmacode */,
 				6CF2308017E9B1620065E50C /* Standard 2 of 5 */,
@@ -712,7 +746,7 @@
 			children = (
 				A764059717B50F9100D45F51 /* Demo.app */,
 				A76405EB17B52E9700D45F51 /* libBarCodeKit.a */,
-				A7378D9317C2584E008921C4 /* Unit Tests.octest */,
+				A7378D9317C2584E008921C4 /* Unit Tests (iOS).octest */,
 				A7CFEF2417EE040F006446C9 /* Unit Tests (Mac).octest */,
 				A7CFEF3A17EE04C8006446C9 /* BarCodeKit.framework */,
 			);
@@ -850,6 +884,7 @@
 				A7CFEF6817EE04EE006446C9 /* BCKEANDigitCodeCharacter.h in Headers */,
 				A7CFEF7017EE04F7006446C9 /* BCKCode11CodeCharacter.h in Headers */,
 				A7CFEFA417EE0548006446C9 /* BCKCode39FullASCIIModulo43.h in Headers */,
+				6CC6BAAA17F191AB00F3ECCF /* BCKFacingIdentificationMarkCode.h in Headers */,
 				A7CFEF6417EE04E9006446C9 /* BCKCodeCharacter.h in Headers */,
 				A7CFEFB217EE0559006446C9 /* NSError+BCKCode.h in Headers */,
 				A7CFEFB017EE0559006446C9 /* BCKStandard2of5Code.h in Headers */,
@@ -861,6 +896,7 @@
 				A7CFEFA217EE0548006446C9 /* BCKCode39FullASCII.h in Headers */,
 				A7CFEFA617EE054B006446C9 /* BCKCode93Code.h in Headers */,
 				A7CFEFAC17EE0559006446C9 /* BCKMSICode.h in Headers */,
+				6CC6BAA517F1910200F3ECCF /* BCKFacingIdentificationMarkCodeCharacter.h in Headers */,
 				A7CFEFA017EE0548006446C9 /* BCKCode39CodeModulo43.h in Headers */,
 				A7CFEF7A17EE0501006446C9 /* BCKCode93ContentCodeCharacter.h in Headers */,
 				A7CFEF7E17EE0506006446C9 /* BCKInterleaved2of5DigitPairCodeCharacter.h in Headers */,
@@ -894,7 +930,7 @@
 			);
 			name = "Unit Tests (iOS)";
 			productName = "BarCodeKit Tests";
-			productReference = A7378D9317C2584E008921C4 /* Unit Tests.octest */;
+			productReference = A7378D9317C2584E008921C4 /* Unit Tests (iOS).octest */;
 			productType = "com.apple.product-type.bundle";
 		};
 		A764059617B50F9100D45F51 /* Demo */ = {
@@ -1072,6 +1108,7 @@
 				6C818CAC17CB6BF300AEE26F /* BCKCode93CodeTest.m in Sources */,
 				EAD33EA517E81BD200CE0608 /* BCKUPCACodeTest.m in Sources */,
 				A7378E0C17C261D8008921C4 /* BCKEAN8CodeTest.m in Sources */,
+				6CC6BAAE17F1A3C000F3ECCF /* BCKFacingIdentificationMarkCodeTest.m in Sources */,
 				A13B58E217C6A03A00454150 /* BCKInterleaved2of5CodeTest.m in Sources */,
 				EA6CF87E17CA513E009C8994 /* BCKCode128CodeTest.m in Sources */,
 				6CF2308E17E9BA560065E50C /* BCKStandard2of5CodeTest.m in Sources */,
@@ -1126,8 +1163,10 @@
 				6CE3E69917DF1D5400BFD408 /* BCKMSICodeCharacter.m in Sources */,
 				A764062517B53B7B00D45F51 /* BCKEANDigitCodeCharacter.m in Sources */,
 				A7343F4917BF599100EF9B83 /* UIImage+BarCodeKit.m in Sources */,
+				6CC6BAA617F1910200F3ECCF /* BCKFacingIdentificationMarkCodeCharacter.m in Sources */,
 				A7337C6917C1276700BC2D2D /* BCKCode39CodeCharacter.m in Sources */,
 				A13B58E817C6A1C700454150 /* BCKInterleaved2of5CodeCharacter.m in Sources */,
+				6CC6BAAB17F191AB00F3ECCF /* BCKFacingIdentificationMarkCode.m in Sources */,
 				6CE3E69F17DF1F4800BFD408 /* BCKMSICode.m in Sources */,
 				EAD33EAF17E8825800CE0608 /* BCKUPCCodeCharacter.m in Sources */,
 				6C2AF51017D5EE3F00175AE0 /* BCKCode39FullASCII.m in Sources */,
@@ -1154,6 +1193,7 @@
 				A7CFEFBF17EE090B006446C9 /* BCKInterleaved2of5CodeTest.m in Sources */,
 				A7CFEFB717EE090B006446C9 /* BCKCodabarCodeTest.m in Sources */,
 				A7CFEFC017EE090B006446C9 /* BCKUPCECodeTest.m in Sources */,
+				6CC6BAAF17F1A3C000F3ECCF /* BCKFacingIdentificationMarkCodeTest.m in Sources */,
 				A7CFEFC317EE090B006446C9 /* BCKCodeTest.m in Sources */,
 				A7CFEFBC17EE090B006446C9 /* BCKCode93CodeTest.m in Sources */,
 				A7CFEFC417EE090B006446C9 /* BCKPharmacodeOneTrackTest.m in Sources */,
@@ -1184,6 +1224,7 @@
 				A7CFEF9F17EE0548006446C9 /* BCKCode39Code.m in Sources */,
 				A7CFEF7B17EE0501006446C9 /* BCKCode93ContentCodeCharacter.m in Sources */,
 				A7CFEF7517EE04FB006446C9 /* BCKCode39CodeCharacter.m in Sources */,
+				6CC6BAA717F1910200F3ECCF /* BCKFacingIdentificationMarkCodeCharacter.m in Sources */,
 				A7CFEF7F17EE0506006446C9 /* BCKInterleaved2of5DigitPairCodeCharacter.m in Sources */,
 				A7CFEF8317EE050B006446C9 /* BCKCode128ContentCodeCharacter.m in Sources */,
 				A7CFEF8B17EE0514006446C9 /* BCKPharmaOneTrackContentCodeCharacter.m in Sources */,
@@ -1202,6 +1243,7 @@
 				A7CFEF9B17EE0541006446C9 /* BCKUPCECode.m in Sources */,
 				A7CFEF6917EE04EE006446C9 /* BCKEANDigitCodeCharacter.m in Sources */,
 				A7CFEF6517EE04E9006446C9 /* BCKCodeCharacter.m in Sources */,
+				6CC6BAAC17F191AB00F3ECCF /* BCKFacingIdentificationMarkCode.m in Sources */,
 				A7CFEF9117EE051E006446C9 /* BCKCode.m in Sources */,
 				A7CFEFA317EE0548006446C9 /* BCKCode39FullASCII.m in Sources */,
 				A7CFEFA517EE0548006446C9 /* BCKCode39FullASCIIModulo43.m in Sources */,
@@ -1554,6 +1596,7 @@
 				A7CFEF3317EE040F006446C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A7CFEF5D17EE04C8006446C9 /* Build configuration list for PBXNativeTarget "BarCodeKit (Mac)" */ = {
 			isa = XCConfigurationList;
@@ -1562,6 +1605,7 @@
 				A7CFEF5F17EE04C8006446C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

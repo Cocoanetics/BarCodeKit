@@ -9,6 +9,7 @@
 #import "BCKUPCECode.h"
 #import "BCKCode39Code.h"
 #import "BCKCode93Code.h"
+#import "BCKFacingIdentificationMarkCode.h"
 #import "BCKInterleaved2of5Code.h"
 #import "BCKCode128Code.h"
 #import "BCKMSICode.h"
@@ -39,6 +40,9 @@
 // code character for Code93
 #import "BCKCode93CodeCharacter.h"
 #import "BCKCode93ContentCodeCharacter.h"
+
+// code character for Facing Identification Mark
+#import "BCKFacingIdentificationMarkCodeCharacter.h"
 
 // code character for Interleaved 2 of 5
 #import "BCKInterleaved2of5CodeCharacter.h"
