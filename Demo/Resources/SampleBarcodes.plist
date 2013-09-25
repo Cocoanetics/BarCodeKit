@@ -36,5 +36,7 @@
 	<string>018200001680</string>
 	<key>BCKStandard2of5Code</key>
 	<string>1234</string>
+	<key>BCKFacingIdentificationMarkCode</key>
+	<string>0</string>
 </dict>
 </plist>
