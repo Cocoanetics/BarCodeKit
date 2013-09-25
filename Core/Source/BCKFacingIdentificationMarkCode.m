@@ -15,6 +15,7 @@
 	BCKFacingIdentificationMarkTypes _fimType;
 }
 
+// To ensure the DemoApp can display this class take the integer value of the content string and passes it as the BCKFacingIdentificationMarkTypes to the designated initialiser
 - (instancetype)initWithContent:(NSString *)content error:(NSError**)error
 {
     return [self initWithFIMType:[content integerValue] error:error];
@@ -77,12 +78,8 @@
 		return _codeCharacters;
 	}
 	
-	NSMutableArray *tmpArray = [NSMutableArray array];
+	_codeCharacters = [NSArray arrayWithObject:[BCKFacingIdentificationMarkCodeCharacter facingIdentificationMarkCode:_fimType]];
 
-	// end marker
-	[tmpArray addObject:[BCKFacingIdentificationMarkCodeCharacter facingIdentificationMarkCode:_fimType]];
-	
-	_codeCharacters = [tmpArray copy];
 	return _codeCharacters;
 }
 

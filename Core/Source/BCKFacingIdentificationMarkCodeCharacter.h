@@ -15,7 +15,7 @@
 @interface BCKFacingIdentificationMarkCodeCharacter : BCKCodeCharacter
 
 /**
- Creates in instance for the requested Facing Identification Mark code character.
+ Creates an instance for the requested Facing Identification Mark code character.
  @returns the code character.
  */
 + (BCKFacingIdentificationMarkCodeCharacter *)facingIdentificationMarkCode:(BCKFacingIdentificationMarkTypes)fimType;

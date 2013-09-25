@@ -31,28 +31,6 @@
     }
     
     return nil;
-/*
- switch (fimType) {
- case BCKFIMTypeA:
- return [[BCKFacingIdentificationMarkCodeCharacter alloc] initWithBitString:@"110010011" isMarker:NO];
- break;
- case BCKFIMTypeB:
- return [[BCKFacingIdentificationMarkCodeCharacter alloc] initWithBitString:@"101101101" isMarker:NO];
- break;
- case BCKFIMTypeC:
- return [[BCKFacingIdentificationMarkCodeCharacter alloc] initWithBitString:@"110101011" isMarker:NO];
- break;
- case BCKFIMTypeD:
- return [[BCKFacingIdentificationMarkCodeCharacter alloc] initWithBitString:@"111010111" isMarker:NO];
- break;
- case BCKFIMTypeE:
- return [[BCKFacingIdentificationMarkCodeCharacter alloc] initWithBitString:@"101000101" isMarker:NO];
- break;
- }
- 
- return nil;
-
- */
 }
 
 @end
