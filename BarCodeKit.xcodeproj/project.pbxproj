@@ -30,6 +30,17 @@
 		6C4D158617DDDD2800854E31 /* BCKCode11CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4D158517DDDD2800854E31 /* BCKCode11CodeTest.m */; };
 		6C4D158A17DDDDF000854E31 /* BCKCode11CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4D158917DDDDF000854E31 /* BCKCode11CodeCharacter.m */; };
 		6C4D158D17DDDE0800854E31 /* BCKCode11ContentCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4D158C17DDDE0800854E31 /* BCKCode11ContentCodeCharacter.m */; };
+		6C638D0E17F303C700CD3F1B /* BCKEAN2SupplementCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C638D0D17F303C600CD3F1B /* BCKEAN2SupplementCodeTest.m */; };
+		6C638D0F17F303C700CD3F1B /* BCKEAN2SupplementCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C638D0D17F303C600CD3F1B /* BCKEAN2SupplementCodeTest.m */; };
+		6C638D1517F303F900CD3F1B /* BCKEAN2CodeCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C638D1117F303F900CD3F1B /* BCKEAN2CodeCharacter.h */; };
+		6C638D1617F303F900CD3F1B /* BCKEAN2CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C638D1217F303F900CD3F1B /* BCKEAN2CodeCharacter.m */; };
+		6C638D1717F303F900CD3F1B /* BCKEAN2CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C638D1217F303F900CD3F1B /* BCKEAN2CodeCharacter.m */; };
+		6C638D1817F303F900CD3F1B /* BCKEAN2DataCodeCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C638D1317F303F900CD3F1B /* BCKEAN2DataCodeCharacter.h */; };
+		6C638D1917F303F900CD3F1B /* BCKEAN2DataCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C638D1417F303F900CD3F1B /* BCKEAN2DataCodeCharacter.m */; };
+		6C638D1A17F303F900CD3F1B /* BCKEAN2DataCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C638D1417F303F900CD3F1B /* BCKEAN2DataCodeCharacter.m */; };
+		6C638D1E17F3040E00CD3F1B /* BCKEAN2SupplementCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C638D1C17F3040E00CD3F1B /* BCKEAN2SupplementCode.h */; };
+		6C638D1F17F3040E00CD3F1B /* BCKEAN2SupplementCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C638D1D17F3040E00CD3F1B /* BCKEAN2SupplementCode.m */; };
+		6C638D2017F3040E00CD3F1B /* BCKEAN2SupplementCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C638D1D17F3040E00CD3F1B /* BCKEAN2SupplementCode.m */; };
 		6C818CAC17CB6BF300AEE26F /* BCKCode93CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C818CAB17CB6BF300AEE26F /* BCKCode93CodeTest.m */; };
 		6C818CAF17CB703300AEE26F /* BCKCode93Code.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C818CAE17CB703300AEE26F /* BCKCode93Code.m */; };
 		6C818CB217CCAA6300AEE26F /* BCKCode93CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C818CB117CCAA6300AEE26F /* BCKCode93CodeCharacter.m */; };
@@ -257,6 +268,13 @@
 		6C4D158917DDDDF000854E31 /* BCKCode11CodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode11CodeCharacter.m; sourceTree = "<group>"; };
 		6C4D158B17DDDE0800854E31 /* BCKCode11ContentCodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode11ContentCodeCharacter.h; sourceTree = "<group>"; };
 		6C4D158C17DDDE0800854E31 /* BCKCode11ContentCodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode11ContentCodeCharacter.m; sourceTree = "<group>"; };
+		6C638D0D17F303C600CD3F1B /* BCKEAN2SupplementCodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKEAN2SupplementCodeTest.m; sourceTree = "<group>"; };
+		6C638D1117F303F900CD3F1B /* BCKEAN2CodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKEAN2CodeCharacter.h; sourceTree = "<group>"; };
+		6C638D1217F303F900CD3F1B /* BCKEAN2CodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKEAN2CodeCharacter.m; sourceTree = "<group>"; };
+		6C638D1317F303F900CD3F1B /* BCKEAN2DataCodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKEAN2DataCodeCharacter.h; sourceTree = "<group>"; };
+		6C638D1417F303F900CD3F1B /* BCKEAN2DataCodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKEAN2DataCodeCharacter.m; sourceTree = "<group>"; };
+		6C638D1C17F3040E00CD3F1B /* BCKEAN2SupplementCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKEAN2SupplementCode.h; sourceTree = "<group>"; };
+		6C638D1D17F3040E00CD3F1B /* BCKEAN2SupplementCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKEAN2SupplementCode.m; sourceTree = "<group>"; };
 		6C818CAB17CB6BF300AEE26F /* BCKCode93CodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode93CodeTest.m; sourceTree = "<group>"; };
 		6C818CAD17CB703300AEE26F /* BCKCode93Code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode93Code.h; sourceTree = "<group>"; };
 		6C818CAE17CB703300AEE26F /* BCKCode93Code.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode93Code.m; sourceTree = "<group>"; };
@@ -454,6 +472,26 @@
 			name = Code11;
 			sourceTree = "<group>";
 		};
+		6C638D1017F303D100CD3F1B /* EAN-2 Supplement */ = {
+			isa = PBXGroup;
+			children = (
+				6C638D1117F303F900CD3F1B /* BCKEAN2CodeCharacter.h */,
+				6C638D1217F303F900CD3F1B /* BCKEAN2CodeCharacter.m */,
+				6C638D1317F303F900CD3F1B /* BCKEAN2DataCodeCharacter.h */,
+				6C638D1417F303F900CD3F1B /* BCKEAN2DataCodeCharacter.m */,
+			);
+			name = "EAN-2 Supplement";
+			sourceTree = "<group>";
+		};
+		6C638D1B17F3040200CD3F1B /* EAN-2 Supplement */ = {
+			isa = PBXGroup;
+			children = (
+				6C638D1C17F3040E00CD3F1B /* BCKEAN2SupplementCode.h */,
+				6C638D1D17F3040E00CD3F1B /* BCKEAN2SupplementCode.m */,
+			);
+			name = "EAN-2 Supplement";
+			sourceTree = "<group>";
+		};
 		6C818CA917CB64A300AEE26F /* Code93 */ = {
 			isa = PBXGroup;
 			children = (
@@ -593,6 +631,7 @@
 		A7378D8317C222E6008921C4 /* EAN/UPC */ = {
 			isa = PBXGroup;
 			children = (
+				6C638D1017F303D100CD3F1B /* EAN-2 Supplement */,
 				A764061A17B53AE700D45F51 /* BCKEANCodeCharacter.h */,
 				A764061B17B53AE700D45F51 /* BCKEANCodeCharacter.m */,
 				A764062317B53B7B00D45F51 /* BCKEANDigitCodeCharacter.h */,
@@ -632,6 +671,7 @@
 		A7378D8617C23ACE008921C4 /* EAN/UPC */ = {
 			isa = PBXGroup;
 			children = (
+				6C638D1B17F3040200CD3F1B /* EAN-2 Supplement */,
 				A76405E317B52E7700D45F51 /* BCKEAN13Code.h */,
 				A76405E417B52E7700D45F51 /* BCKEAN13Code.m */,
 				A764061617B533CD00D45F51 /* BCKEAN8Code.h */,
@@ -671,6 +711,7 @@
 				6CA8DC4D17E402FA009F210C /* BCKCodabarCodeTest.m */,
 				6C4D158517DDDD2800854E31 /* BCKCode11CodeTest.m */,
 				A7378E0417C25A2D008921C4 /* BCKCode39CodeTest.m */,
+				6C638D0D17F303C600CD3F1B /* BCKEAN2SupplementCodeTest.m */,
 				6C2AF51117D5EEAD00175AE0 /* BCKCode39FullASCIITest.m */,
 				6CAA398E17E863F700C2D422 /* BCKCode39CodeClassClusterTest.m */,
 				6C818CAB17CB6BF300AEE26F /* BCKCode93CodeTest.m */,
@@ -881,6 +922,7 @@
 				A7CFEF8817EE0510006446C9 /* BCKMSIContentCodeCharacter.h in Headers */,
 				A7CFEF8C17EE0519006446C9 /* BCKStandard2of5CodeCharacter.h in Headers */,
 				A7CFEF8617EE0510006446C9 /* BCKMSICodeCharacter.h in Headers */,
+				6C638D1E17F3040E00CD3F1B /* BCKEAN2SupplementCode.h in Headers */,
 				A7CFEF6817EE04EE006446C9 /* BCKEANDigitCodeCharacter.h in Headers */,
 				A7CFEF7017EE04F7006446C9 /* BCKCode11CodeCharacter.h in Headers */,
 				A7CFEFA417EE0548006446C9 /* BCKCode39FullASCIIModulo43.h in Headers */,
@@ -899,11 +941,13 @@
 				6CC6BAA517F1910200F3ECCF /* BCKFacingIdentificationMarkCodeCharacter.h in Headers */,
 				A7CFEFA017EE0548006446C9 /* BCKCode39CodeModulo43.h in Headers */,
 				A7CFEF7A17EE0501006446C9 /* BCKCode93ContentCodeCharacter.h in Headers */,
+				6C638D1817F303F900CD3F1B /* BCKEAN2DataCodeCharacter.h in Headers */,
 				A7CFEF7E17EE0506006446C9 /* BCKInterleaved2of5DigitPairCodeCharacter.h in Headers */,
 				A7CFEF8A17EE0514006446C9 /* BCKPharmaOneTrackContentCodeCharacter.h in Headers */,
 				A7CFEF8017EE050B006446C9 /* BCKCode128CodeCharacter.h in Headers */,
 				A7CFEFAA17EE0559006446C9 /* BCKCode128Code.h in Headers */,
 				A7CFEF6E17EE04F2006446C9 /* BCKCodabarContentCodeCharacter.h in Headers */,
+				6C638D1517F303F900CD3F1B /* BCKEAN2CodeCharacter.h in Headers */,
 				A7CFEF7417EE04FB006446C9 /* BCKCode39CodeCharacter.h in Headers */,
 				A7CFEFAE17EE0559006446C9 /* BCKPharmacodeOneTrack.h in Headers */,
 				A7CFEF9217EE053D006446C9 /* BCKCodabarCode.h in Headers */,
@@ -1099,6 +1143,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C4D158617DDDD2800854E31 /* BCKCode11CodeTest.m in Sources */,
+				6C638D0E17F303C700CD3F1B /* BCKEAN2SupplementCodeTest.m in Sources */,
 				6C2AF51217D5EEAD00175AE0 /* BCKCode39FullASCIITest.m in Sources */,
 				A7378E0E17C263C7008921C4 /* BCKUPCECodeTest.m in Sources */,
 				A7378E0A17C25DF3008921C4 /* BCKEAN13CodeTest.m in Sources */,
@@ -1138,6 +1183,7 @@
 				A7781E1817B6B301005B9604 /* BCKUPCECode.m in Sources */,
 				6C9302C317D733C400867E2E /* BCKCode39CodeModulo43.m in Sources */,
 				6C818CB217CCAA6300AEE26F /* BCKCode93CodeCharacter.m in Sources */,
+				6C638D1917F303F900CD3F1B /* BCKEAN2DataCodeCharacter.m in Sources */,
 				6C93DE7B17E1BF7A002F0BF5 /* NSError+BCKCode.m in Sources */,
 				6CA8DC5217E403B2009F210C /* BCKCodabarCodeCharacter.m in Sources */,
 				6CE3E69C17DF1D7D00BFD408 /* BCKMSIContentCodeCharacter.m in Sources */,
@@ -1148,6 +1194,7 @@
 				A764061C17B53AE700D45F51 /* BCKEANCodeCharacter.m in Sources */,
 				6C4D158A17DDDDF000854E31 /* BCKCode11CodeCharacter.m in Sources */,
 				6CF2308C17E9B4790065E50C /* BCKStandard2of5Code.m in Sources */,
+				6C638D1F17F3040E00CD3F1B /* BCKEAN2SupplementCode.m in Sources */,
 				6C818CB517CCAC0400AEE26F /* BCKCode93ContentCodeCharacter.m in Sources */,
 				6C4D158417DDDD0B00854E31 /* BCKCode11Code.m in Sources */,
 				6CF2308917E9B2A80065E50C /* BCKStandard2of5ContentCodeCharacter.m in Sources */,
@@ -1172,6 +1219,7 @@
 				6C2AF51017D5EE3F00175AE0 /* BCKCode39FullASCII.m in Sources */,
 				6CA8DC5917E408E6009F210C /* BCKCodabarCode.m in Sources */,
 				EA0EF7DF17D3ACB500015F7B /* NSString+BCKCode128Helpers.m in Sources */,
+				6C638D1617F303F900CD3F1B /* BCKEAN2CodeCharacter.m in Sources */,
 				A7378D8217C222AD008921C4 /* BCKCode39ContentCodeCharacter.m in Sources */,
 				6C9302C617D7376400867E2E /* BCKCode39FullASCIIModulo43.m in Sources */,
 				A7337C6617C1250F00BC2D2D /* BCKCode39Code.m in Sources */,
@@ -1184,6 +1232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7CFEFC517EE090B006446C9 /* BCKUPCACodeTest.m in Sources */,
+				6C638D0F17F303C700CD3F1B /* BCKEAN2SupplementCodeTest.m in Sources */,
 				A7CFEFBD17EE090B006446C9 /* BCKEAN13CodeTest.m in Sources */,
 				A7CFEFBB17EE090B006446C9 /* BCKCode39CodeClassClusterTest.m in Sources */,
 				A7CFEFBA17EE090B006446C9 /* BCKCode39FullASCIITest.m in Sources */,
@@ -1216,6 +1265,7 @@
 				A7CFEF9717EE0541006446C9 /* BCKEAN8Code.m in Sources */,
 				A7CFEFAB17EE0559006446C9 /* BCKCode128Code.m in Sources */,
 				A7CFEF8F17EE0519006446C9 /* BCKStandard2of5ContentCodeCharacter.m in Sources */,
+				6C638D1A17F303F900CD3F1B /* BCKEAN2DataCodeCharacter.m in Sources */,
 				A7CFEF6B17EE04EE006446C9 /* BCKUPCCodeCharacter.m in Sources */,
 				A7CFEFA917EE0550006446C9 /* BCKInterleaved2of5Code.m in Sources */,
 				A7CFEF6F17EE04F2006446C9 /* BCKCodabarContentCodeCharacter.m in Sources */,
@@ -1241,12 +1291,14 @@
 				A7CFEFAD17EE0559006446C9 /* BCKMSICode.m in Sources */,
 				A7CFEFA117EE0548006446C9 /* BCKCode39CodeModulo43.m in Sources */,
 				A7CFEF9B17EE0541006446C9 /* BCKUPCECode.m in Sources */,
+				6C638D2017F3040E00CD3F1B /* BCKEAN2SupplementCode.m in Sources */,
 				A7CFEF6917EE04EE006446C9 /* BCKEANDigitCodeCharacter.m in Sources */,
 				A7CFEF6517EE04E9006446C9 /* BCKCodeCharacter.m in Sources */,
 				6CC6BAAC17F191AB00F3ECCF /* BCKFacingIdentificationMarkCode.m in Sources */,
 				A7CFEF9117EE051E006446C9 /* BCKCode.m in Sources */,
 				A7CFEFA317EE0548006446C9 /* BCKCode39FullASCII.m in Sources */,
 				A7CFEFA517EE0548006446C9 /* BCKCode39FullASCIIModulo43.m in Sources */,
+				6C638D1717F303F900CD3F1B /* BCKEAN2CodeCharacter.m in Sources */,
 				A7CFEFA717EE054B006446C9 /* BCKCode93Code.m in Sources */,
 				A7CFEFB317EE0559006446C9 /* NSError+BCKCode.m in Sources */,
 			);
