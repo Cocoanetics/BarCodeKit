@@ -244,13 +244,13 @@
                                          @[@"Bar scale", _barScaleSlider],
                                          nil];
 
-    if ([_barcodeObject requiresCaptionText] == YES)
+    if ([_barcodeObject respondsToSelector:@selector(captionTextForZone:withRenderOptions:)])
     {
         [tmpBarcodeOptions addObject:@[@"Debug", _debugSwitch]];
         [tmpBarcodeOptions addObject:@[@"Caption", _captionSwitch]];
     }
     
-	if ([self _implementsMethod:self.barcodeClassString forMethod:@selector(allowsFillingOfEmptyQuietZones)])
+	if ([_barcodeObject allowsFillingOfEmptyQuietZones])
 	{
 		[tmpBarcodeOptions addObject:@[@"Fill Quiet Zones", _fillQuietZonesSwitch]];
 	}

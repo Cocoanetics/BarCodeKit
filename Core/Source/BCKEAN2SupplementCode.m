@@ -149,12 +149,6 @@
 	return @"EAN 2 Supplement";
 }
 
-- (BOOL)requiresCaptionText
-{
-    return NO;
-    
-}
-
 - (NSArray *)codeCharacters
 {
     BCKEAN2CodeCharacterEncoding tableOne, tableTwo;

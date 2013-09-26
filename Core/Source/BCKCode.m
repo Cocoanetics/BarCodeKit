@@ -119,7 +119,7 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 	{
 		return nil;
 	}
-
+	
 	NSString *leftCaptionString = [self captionTextForZone:BCKCodeDrawingCaptionLeftNumberZone withRenderOptions:options];
 	if ([leftCaptionString length])
 	{
@@ -168,13 +168,13 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 	{
 		return nil;
 	}
-
+	
 	NSString *rightCaptionString = [self captionTextForZone:BCKCodeDrawingCaptionRightNumberZone withRenderOptions:options];
 	if ([rightCaptionString length])
 	{
 		return [rightCaptionString copy];
 	}
-
+	
 	NSMutableString *tmpString = [NSMutableString string];
 	
 	__block BOOL metMiddleMarker = NO;
@@ -295,7 +295,7 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 	
 	NSString *leftDigits = [self _leftCaptionZoneDisplayTextWithOptions:options];
 	NSString *rightDigits = [self _rightCaptionZoneDisplayTextWithOptions:options];
-
+	
 	NSString *fontName = [self _captionFontNameFromOptions:options];
 	
 	CGFloat optimalCaptionFontSize = CGFLOAT_MAX;
@@ -339,6 +339,11 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 
 - (BOOL)_shouldDrawCaptionFromOptions:(NSDictionary *)options
 {
+	if (![self respondsToSelector:@selector(captionTextForZone:withRenderOptions:)])
+	{
+		return NO;
+	}
+	
 	NSNumber *num = [options objectForKey:BCKCodeDrawingPrintCaptionOption];
 	
 	if (num)
@@ -393,7 +398,7 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 	}
 	
 	NSDictionary *attributes = @{(id)kCTParagraphStyleAttributeName: CFBridgingRelease(paragraphStyle),
-										  (id)kCTFontAttributeName: CFBridgingRelease(font)};
+								 (id)kCTFontAttributeName: CFBridgingRelease(font)};
 	
 	return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
@@ -510,11 +515,6 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 	return NO;
 }
 
-- (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone withRenderOptions:(NSDictionary *)options;
-{
-    return nil;
-}
-
 - (NSUInteger)horizontalQuietZoneWidth
 {
 	return 0;
@@ -548,11 +548,6 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 - (NSString *)defaultCaptionFontName
 {
 	return @"Helvetica";
-}
-
-- (BOOL)requiresCaptionText
-{
-    return YES;
 }
 
 #pragma mark - Drawing
@@ -641,18 +636,23 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 	CGFloat barScale = [self _barScaleFromOptions:options];
 	CGSize size = [self sizeWithRenderOptions:options];
 	
-	NSString *leftQuietZoneText = [self _leftQuietZoneDisplayTextWithOptions:options];
-	NSString *leftDigits = [self _leftCaptionZoneDisplayTextWithOptions:options];
-	NSString *rightDigits = [self _rightCaptionZoneDisplayTextWithOptions:options];
-	NSString *rightQuietZoneText = [self _rightQuietZoneDisplayTextWithOptions:options];
-	
 	CGFloat captionHeight = 0;
 	CGFloat optimalCaptionFontSize = 0;
 	CGRect bottomCaptionRegion = CGRectMake(0, size.height, size.width, 0);
 	
+	NSString *leftQuietZoneText = nil;
+	NSString *leftDigits = nil;
+	NSString *rightDigits = nil;
+	NSString *rightQuietZoneText = nil;
+	
 	// determine height of caption if needed
 	if ([self _shouldDrawCaptionFromOptions:options])
 	{
+		leftQuietZoneText = [self _leftQuietZoneDisplayTextWithOptions:options];
+		leftDigits = [self _leftCaptionZoneDisplayTextWithOptions:options];
+		rightDigits = [self _rightCaptionZoneDisplayTextWithOptions:options];
+		rightQuietZoneText = [self _rightQuietZoneDisplayTextWithOptions:options];
+		
 		optimalCaptionFontSize = [self _captionFontSizeWithOptions:options];
 		NSString *fontName = [self _captionFontNameFromOptions:options];
 		
@@ -839,8 +839,15 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 			}
 			
 			// Draw Captions
-			[self _drawCaptionText:leftDigits fontName:fontName fontSize:optimalCaptionFontSize inRect:leftNumberFrame context:context];
-			[self _drawCaptionText:rightDigits fontName:fontName fontSize:optimalCaptionFontSize inRect:rightNumberFrame context:context];
+			if (leftDigits)
+			{
+				[self _drawCaptionText:leftDigits fontName:fontName fontSize:optimalCaptionFontSize inRect:leftNumberFrame context:context];
+			}
+			
+			if (rightDigits)
+			{
+				[self _drawCaptionText:rightDigits fontName:fontName fontSize:optimalCaptionFontSize inRect:rightNumberFrame context:context];
+			}
 			
 			if (leftQuietZoneText)
 			{
@@ -903,7 +910,10 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 			
 			NSString *text = [self captionTextForZone:BCKCodeDrawingCaptionTextZone withRenderOptions:options];
 			
-			[self _drawCaptionText:text fontName:fontName fontSize:[self _captionFontSizeWithOptions:options] inRect:frameBetweenEndMarkers context:context];
+			if (text)
+			{
+				[self _drawCaptionText:text fontName:fontName fontSize:[self _captionFontSizeWithOptions:options] inRect:frameBetweenEndMarkers context:context];
+			}
 			
 			if (leftQuietZoneText)
 			{

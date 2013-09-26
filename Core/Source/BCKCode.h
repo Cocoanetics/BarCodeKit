@@ -76,15 +76,17 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
  */
 + (BOOL)canEncodeContent:(NSString *)content error:(NSError **)error;
 
+@optional
+
 /**
  The caption text to display in the given caption zone, or `nil` for no caption text. Defaults to `nil`. Subclasses can return the check digit or other text and also alter the caption text by providing rendering options.
+ 
+ @note Not implementing this method disables caption drawing altogether
  @param captionZone The BCKCodeDrawingCaption zone specifying the required text zone.
  @param options The rendering options.
  @return The caption text to display in this zone, or `nil` for no caption text.
  */
 - (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone withRenderOptions:(NSDictionary *)options;
-
-@optional
 
 /**
  @name Creating Barcodes
@@ -136,11 +138,6 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
  Whether the barcode includes check digits in the caption printed below the barcode. By default any check digits that are not markers are included in the caption text. Subclasses can indicate support for this excluding check digits from the caption by overriding this method and returning `YES`. Defaults to `NO`.
  */
 - (BOOL)showCheckDigitsInCaption;
-
-/**
- Whether the barcode supports showing caption text below the barcode. Subclasses can indicate they never require a caption by overriding this method and returning `NO`. Defaults to `YES`.
- */
-- (BOOL)requiresCaptionText;
 
 /**
  @name Deprecated Methods
