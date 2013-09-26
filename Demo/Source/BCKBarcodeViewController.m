@@ -241,11 +241,15 @@
 
 	// Determine which options to show by adding options to the array used as the tableview's model
 	NSMutableArray *tmpBarcodeOptions = [NSMutableArray arrayWithObjects:@[@"Contents", _contentsTextField],
-                                         @[@"Debug", _debugSwitch],
                                          @[@"Bar scale", _barScaleSlider],
-                                         @[@"Caption", _captionSwitch],
                                          nil];
 
+    if ([_barcodeObject requiresCaptionText] == YES)
+    {
+        [tmpBarcodeOptions addObject:@[@"Debug", _debugSwitch]];
+        [tmpBarcodeOptions addObject:@[@"Caption", _captionSwitch]];
+    }
+    
 	if ([self _implementsMethod:self.barcodeClassString forMethod:@selector(allowsFillingOfEmptyQuietZones)])
 	{
 		[tmpBarcodeOptions addObject:@[@"Fill Quiet Zones", _fillQuietZonesSwitch]];
