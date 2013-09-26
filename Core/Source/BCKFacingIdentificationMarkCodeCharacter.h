@@ -16,8 +16,9 @@
 
 /**
  Creates an instance for the requested Facing Identification Mark code character.
+ @param fimType The BCKFacingIdentificationMarkType
  @returns the code character.
  */
-+ (BCKFacingIdentificationMarkCodeCharacter *)facingIdentificationMarkCode:(BCKFacingIdentificationMarkTypes)fimType;
++ (BCKFacingIdentificationMarkCodeCharacter *)facingIdentificationMarkCode:(BCKFacingIdentificationMarkType)fimType;
 
 @end

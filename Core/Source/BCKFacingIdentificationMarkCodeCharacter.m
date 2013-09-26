@@ -10,7 +10,7 @@
 
 @implementation BCKFacingIdentificationMarkCodeCharacter
 
-+ (BCKFacingIdentificationMarkCodeCharacter *)facingIdentificationMarkCode:(BCKFacingIdentificationMarkTypes)fimType
++ (BCKFacingIdentificationMarkCodeCharacter *)facingIdentificationMarkCode:(BCKFacingIdentificationMarkType)fimType
 {
     switch (fimType) {
         case BCKFIMTypeA:
