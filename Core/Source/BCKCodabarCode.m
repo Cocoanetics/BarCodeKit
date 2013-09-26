@@ -13,7 +13,7 @@
 
 @implementation BCKCodabarCode
 
-#pragma mark - Subclass Methods
+#pragma mark - BCKCoding Methods
 
 + (NSString *)barcodeStandard
 {

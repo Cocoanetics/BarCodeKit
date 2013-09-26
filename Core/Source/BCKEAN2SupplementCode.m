@@ -33,7 +33,7 @@
 	return [digitStr integerValue];
 }
 
-#pragma mark - Subclass Methods
+#pragma mark - BCKCoding Methods
 
 + (void)_parityPatternForContent:(NSString *)content digitOneTable:(BCKEAN2CodeCharacterEncoding *)digitOneTable digitTwoTable:(BCKEAN2CodeCharacterEncoding *)digitTwoTable
 {

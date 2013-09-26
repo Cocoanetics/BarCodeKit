@@ -156,7 +156,7 @@
 	return [encodingDictionary valueForKey:character];
 }
 
-#pragma mark - Subclass Methods
+#pragma mark - BCKCoding Methods
 
 + (BOOL)canEncodeContent:(NSString *)content error:(NSError *__autoreleasing *)error
 {

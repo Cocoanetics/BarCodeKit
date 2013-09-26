@@ -21,7 +21,7 @@
 NSString * const BCKCode11Modulo11CheckCharacterFirstOption = @"BCKCode11Modulo11CheckCharacterFirst";
 NSString * const BCKCode11Modulo11CheckCharacterSecondOption = @"BCKCode11Modulo11CheckCharacterSecond";
 
-#pragma mark - Subclass Methods
+#pragma mark - BCKCoding Methods
 
 + (BOOL)canEncodeContent:(NSString *)content error:(NSError *__autoreleasing *)error
 {

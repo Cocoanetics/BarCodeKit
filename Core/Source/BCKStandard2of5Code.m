@@ -61,7 +61,7 @@
     return [[BCKStandard2of5ContentCodeCharacter alloc] initWithCharacterValue:((10 - ((oddSum * 3 + evenSum) % 10) ) % 10)];
 }
 
-#pragma mark - Subclass Methods
+#pragma mark - BCKCoding Methods
 
 + (NSString *)barcodeStandard
 {

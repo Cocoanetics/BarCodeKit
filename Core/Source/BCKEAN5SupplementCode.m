@@ -99,7 +99,7 @@
 	return [digitStr integerValue];
 }
 
-#pragma mark - Subclass Methods
+#pragma mark - BCKCoding Methods
 
 + (BOOL)canEncodeContent:(NSString *)content error:(NSError *__autoreleasing *)error
 {

@@ -428,7 +428,7 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 	}
 }
 
-#pragma mark - Subclassing Methods
+#pragma mark - BCKCoding Methods
 
 + (NSString *)barcodeStandard
 {

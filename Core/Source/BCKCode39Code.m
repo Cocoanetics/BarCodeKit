@@ -91,7 +91,7 @@
 	return [[BCKCode39ContentCodeCharacter alloc] initWithValue:(weightedSum % 43)];
 }
 
-#pragma mark - Subclass Methods
+#pragma mark - BCKCoding Methods
 
 + (BOOL)canEncodeContent:(NSString *)content error:(NSError *__autoreleasing *)error
 {

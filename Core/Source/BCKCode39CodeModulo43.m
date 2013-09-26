@@ -12,7 +12,7 @@
 
 @implementation BCKCode39CodeModulo43
 
-#pragma mark - Subclass Methods
+#pragma mark - BCKCoding Methods
 
 + (NSString *)barcodeDescription
 {

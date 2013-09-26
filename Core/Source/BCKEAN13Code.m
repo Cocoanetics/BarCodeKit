@@ -46,7 +46,7 @@ static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
 	return variantIndex;
 }
 
-#pragma mark - Subclassing Methods
+#pragma mark - BCKCoding Methods
 
 + (BOOL)canEncodeContent:(NSString *)content error:(NSError *__autoreleasing *)error
 {

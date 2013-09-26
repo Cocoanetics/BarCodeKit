@@ -86,7 +86,7 @@
     return [self initWithContent:content andCheckDigitScheme:BCKMSICodeMod10CheckDigitScheme error:error];
 }
 
-#pragma mark - Subclass Methods
+#pragma mark - BCKCoding Methods
 
 + (NSString *)barcodeStandard
 {

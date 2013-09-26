@@ -32,7 +32,7 @@
 	return self;
 }
 
-#pragma mark - Helper Methods
+#pragma mark - BCKCoding Methods
 
 + (BOOL)canEncodeContent:(NSString *)content error:(NSError *__autoreleasing *)error
 {
@@ -71,8 +71,6 @@
 	
 	return YES;
 }
-
-#pragma mark - Subclass Methods
 
 + (NSString *)barcodeStandard
 {
