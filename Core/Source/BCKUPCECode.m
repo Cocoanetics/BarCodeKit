@@ -27,12 +27,6 @@ static char *variant_patterns[10][2] = {{"EEEOOO", "OOOEEE"},  // 0
 
 #pragma mark - Helper Methods
 
-- (NSUInteger)_digitAtIndex:(NSUInteger)index
-{
-	NSString *digitStr = [self.content substringWithRange:NSMakeRange(index, 1)];
-	return [digitStr integerValue];
-}
-
 - (NSUInteger)_codeVariantIndexForDigitAtIndex:(NSUInteger)index withVariantPattern:(char *)variantPattern
 {
 	NSAssert(index>=0 && index<8, @"Index must be from 0 to 7");
@@ -48,7 +42,7 @@ static char *variant_patterns[10][2] = {{"EEEOOO", "OOOEEE"},  // 0
 	return variantIndex;
 }
 
-#pragma mark - Subclassing Methods
+#pragma mark - BCKCoding Methods
 
 + (BOOL)canEncodeContent:(NSString *)content error:(NSError *__autoreleasing *)error
 {
@@ -99,11 +93,6 @@ static char *variant_patterns[10][2] = {{"EEEOOO", "OOOEEE"},  // 0
 	return YES;
 }
 
-+ (NSString *)barcodeStandard
-{
-	return @"International standard ISO/IEC 15420";
-}
-
 + (NSString *)barcodeDescription
 {
 	return @"UPC-E";
@@ -125,8 +114,8 @@ static char *variant_patterns[10][2] = {{"EEEOOO", "OOOEEE"},  // 0
 	NSMutableArray *tmpArray = [NSMutableArray array];
 	
 	// variant pattern derives from first and last digits
-	NSUInteger firstDigit = [self _digitAtIndex:0];
-	NSUInteger checkDigit = [self _digitAtIndex:7];
+	NSUInteger firstDigit = [self digitAtIndex:0];
+	NSUInteger checkDigit = [self digitAtIndex:7];
 	
 	char *variant_pattern = variant_patterns[checkDigit][firstDigit];
 	
@@ -135,7 +124,7 @@ static char *variant_patterns[10][2] = {{"EEEOOO", "OOOEEE"},  // 0
 	
 	for (NSUInteger index = 1; index < 7; index ++)
 	{
-		NSUInteger digit = [self _digitAtIndex:index];
+		NSUInteger digit = [self digitAtIndex:index];
 		BCKEANCodeCharacterEncoding encoding = [self _codeVariantIndexForDigitAtIndex:index-1 withVariantPattern:variant_pattern];
 		
 		[tmpArray addObject:[BCKEANCodeCharacter codeCharacterForDigit:digit encoding:encoding]];
@@ -158,32 +147,14 @@ static char *variant_patterns[10][2] = {{"EEEOOO", "OOOEEE"},  // 0
 	{
 		return [self.content substringFromIndex:7];
 	}
-	else if (captionZone == BCKCodeDrawingCaptionTextZone)
-	{
-		return [self.content substringWithRange:NSMakeRange(1, 6)];
-	}
 	
-	return nil;
-}
-
-- (NSString *)defaultCaptionFontName
-{
-	return @"OCRB";
+	// get digit zones from code characters
+	return [super captionTextForZone:captionZone withRenderOptions:options];
 }
 
 - (CGFloat)aspectRatio
 {
 	return 26.73 / 21.31;
-}
-
-- (BOOL)markerBarsCanOverlapBottomCaption
-{
-	return YES;
-}
-
-- (BOOL)allowsFillingOfEmptyQuietZones
-{
-	return YES;
 }
 
 @end

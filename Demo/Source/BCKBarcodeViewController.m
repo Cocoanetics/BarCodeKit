@@ -14,13 +14,14 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *barcodeImageView;
 @property (weak, nonatomic) IBOutlet UILabel *errorMessage;
-@property (nonatomic, strong) NSString *barcodeSample;
-@property (nonatomic, strong) NSString *barcodeClassString;
 
 @end
 
 @implementation BCKBarcodeViewController
 {
+	Class _barcodeClass;
+	NSString *_sampleContent;
+	
     BCKCode *_barcodeObject;
     NSArray *_barcodeOptions;
     
@@ -45,31 +46,13 @@
 #pragma mark - Initialisation
 
 // Use this method to pass all model information (the name of the BCKCode subclass and the sample barcode) to the viewcontroller
--(void)initWithBarcodeClassString:(NSString *)barcodeClassString andBarcodeSample:(NSString *)barcodeSample
+- (void)setBarcodeClass:(Class)barcodeClass andSampleContent:(NSString *)sampleContent;
 {
-	if (_barcodeClassString != barcodeClassString)
-	{
-		_barcodeClassString = barcodeClassString;
-		_barcodeSample = barcodeSample;
-		
-		// Update the view.
-		[self _configureView];
-	}
-}
-
-// Returns YES if className implements methodName, this is used to check whether one of BCKCode's subclasses implements property getters
--(BOOL)_implementsMethod:(NSString *)className forMethod:(SEL)methodName
-{
-	int unsigned numMethods;
-	Method *methods = class_copyMethodList(NSClassFromString(className), &numMethods);
+	_barcodeClass = barcodeClass;
+	_sampleContent = [sampleContent copy];
 	
-	for (int i = 0; i < numMethods; i++)
-	{
-		if (methodName == method_getName(methods[i]))
-			return YES;
-	}
-	
-	return NO;
+	// Update the view.
+	[self _configureView];
 }
 
 #pragma mark - Text Field
@@ -105,9 +88,8 @@
                                         BCKCodeDrawingShowCheckDigitsOption: @(_checkDigitsInCaptionOption)};
 	
 	// Initialise barcode contents using the text in the textfield
-	Class codeClass = NSClassFromString(self.barcodeClassString);
 	NSError *error;
-	_barcodeObject = [[codeClass alloc] initWithContent:_contentsTextField.text error:&error];
+	_barcodeObject = [[_barcodeClass alloc] initWithContent:_contentsTextField.text error:&error];
 	
 	// Draw the barcode. If the barcode doesn't support the content clear the image and show the error message, disable all controls except the text field
 	if (_barcodeObject)
@@ -172,7 +154,7 @@
 
 - (void)_configureView
 {
-	self.title = self.barcodeClassString;
+	self.title = NSStringFromClass(_barcodeClass);
 	
 	// Set default options
 	_captionOption = YES;
@@ -223,7 +205,7 @@
 	_checkDigitsInCaptionSwitch.on = _checkDigitsInCaptionOption;
 
 	// Initialise the barcode contents with the sample barcode content passed to the view controller
-	_contentsTextField.text = self.barcodeSample;
+	_contentsTextField.text = _sampleContent;
     
     // Initially hide the error message UILabel
     self.errorMessage.hidden = YES;
@@ -255,23 +237,17 @@
 		[tmpBarcodeOptions addObject:@[@"Fill Quiet Zones", _fillQuietZonesSwitch]];
 	}
 	
-	if ([self _implementsMethod:self.barcodeClassString forMethod:@selector(markerBarsCanOverlapBottomCaption)])
+	if ([_barcodeObject markerBarsCanOverlapBottomCaption])
 	{
 		[tmpBarcodeOptions addObject:@[@"Caption overlap", _captionOverlapSlider]];
 	}
 	
-    if ([self _implementsMethod:self.barcodeClassString forMethod:@selector(showCheckDigitsInCaption)])
+    if ([_barcodeObject showCheckDigitsInCaption])
 	{
 		[tmpBarcodeOptions addObject:@[@"Show check digits", _checkDigitsInCaptionSwitch]];
 	}
     
 	_barcodeOptions = [NSArray arrayWithArray:tmpBarcodeOptions];
-}
-
-- (void)didReceiveMemoryWarning
-{
-	[super didReceiveMemoryWarning];
-	// Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table View

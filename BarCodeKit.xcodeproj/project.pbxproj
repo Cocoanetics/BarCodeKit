@@ -93,6 +93,9 @@
 		A7337C6917C1276700BC2D2D /* BCKCode39CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A7337C6817C1276700BC2D2D /* BCKCode39CodeCharacter.m */; };
 		A7337C6C17C12C8800BC2D2D /* BCKCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A7337C6B17C12C8800BC2D2D /* BCKCodeCharacter.m */; };
 		A7343F4917BF599100EF9B83 /* UIImage+BarCodeKit.m in Sources */ = {isa = PBXBuildFile; fileRef = A7343F4817BF599100EF9B83 /* UIImage+BarCodeKit.m */; };
+		A735482B17F465BF00C1F7EC /* BCKGTINCode.h in Headers */ = {isa = PBXBuildFile; fileRef = A735482917F465BF00C1F7EC /* BCKGTINCode.h */; };
+		A735482C17F465BF00C1F7EC /* BCKGTINCode.m in Sources */ = {isa = PBXBuildFile; fileRef = A735482A17F465BF00C1F7EC /* BCKGTINCode.m */; };
+		A735482D17F465BF00C1F7EC /* BCKGTINCode.m in Sources */ = {isa = PBXBuildFile; fileRef = A735482A17F465BF00C1F7EC /* BCKGTINCode.m */; };
 		A7378D8217C222AD008921C4 /* BCKCode39ContentCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A7378D8117C222AD008921C4 /* BCKCode39ContentCodeCharacter.m */; };
 		A7378D9517C2584E008921C4 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7378D9417C2584E008921C4 /* SenTestingKit.framework */; };
 		A7378D9617C2584E008921C4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A764059A17B50F9100D45F51 /* Foundation.framework */; };
@@ -356,6 +359,8 @@
 		A7337C6B17C12C8800BC2D2D /* BCKCodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCodeCharacter.m; sourceTree = "<group>"; };
 		A7343F4717BF599100EF9B83 /* UIImage+BarCodeKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BarCodeKit.h"; sourceTree = "<group>"; };
 		A7343F4817BF599100EF9B83 /* UIImage+BarCodeKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BarCodeKit.m"; sourceTree = "<group>"; };
+		A735482917F465BF00C1F7EC /* BCKGTINCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKGTINCode.h; sourceTree = "<group>"; };
+		A735482A17F465BF00C1F7EC /* BCKGTINCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKGTINCode.m; sourceTree = "<group>"; };
 		A7378D8017C222AD008921C4 /* BCKCode39ContentCodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode39ContentCodeCharacter.h; sourceTree = "<group>"; };
 		A7378D8117C222AD008921C4 /* BCKCode39ContentCodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode39ContentCodeCharacter.m; sourceTree = "<group>"; };
 		A7378D8E17C253FE008921C4 /* Setup Guide-template.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Setup Guide-template.markdown"; sourceTree = "<group>"; };
@@ -716,6 +721,8 @@
 				A76405E417B52E7700D45F51 /* BCKEAN13Code.m */,
 				A764061617B533CD00D45F51 /* BCKEAN8Code.h */,
 				A764061717B533CD00D45F51 /* BCKEAN8Code.m */,
+				A735482917F465BF00C1F7EC /* BCKGTINCode.h */,
+				A735482A17F465BF00C1F7EC /* BCKGTINCode.m */,
 				EAD33EA117E81BB400CE0608 /* BCKUPCACode.h */,
 				EAD33EA217E81BB400CE0608 /* BCKUPCACode.m */,
 				A7781E1617B6B301005B9604 /* BCKUPCECode.h */,
@@ -996,6 +1003,7 @@
 				A7CFEFAE17EE0559006446C9 /* BCKPharmacodeOneTrack.h in Headers */,
 				A7CFEF9217EE053D006446C9 /* BCKCodabarCode.h in Headers */,
 				A7CFEF8217EE050B006446C9 /* BCKCode128ContentCodeCharacter.h in Headers */,
+				A735482B17F465BF00C1F7EC /* BCKGTINCode.h in Headers */,
 				A7CFEF9617EE0541006446C9 /* BCKEAN8Code.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1236,6 +1244,7 @@
 				EA6CF87C17CA500A009C8994 /* BCKCode128CodeCharacter.m in Sources */,
 				6CA8DC5517E403C5009F210C /* BCKCodabarContentCodeCharacter.m in Sources */,
 				A7337C6C17C12C8800BC2D2D /* BCKCodeCharacter.m in Sources */,
+				A735482C17F465BF00C1F7EC /* BCKGTINCode.m in Sources */,
 				A13B58E517C6A10200454150 /* BCKInterleaved2of5Code.m in Sources */,
 				A764061C17B53AE700D45F51 /* BCKEANCodeCharacter.m in Sources */,
 				6CCD743F17F436A700D293EE /* BCKEAN5SupplementDataCodeCharacter.m in Sources */,
@@ -1307,6 +1316,7 @@
 			files = (
 				A7CFEF7117EE04F7006446C9 /* BCKCode11CodeCharacter.m in Sources */,
 				A7CFEF6717EE04EE006446C9 /* BCKEANCodeCharacter.m in Sources */,
+				A735482D17F465BF00C1F7EC /* BCKGTINCode.m in Sources */,
 				A7CFEF8117EE050B006446C9 /* BCKCode128CodeCharacter.m in Sources */,
 				A7CFEF7917EE0501006446C9 /* BCKCode93CodeCharacter.m in Sources */,
 				A7CFEF9D17EE0544006446C9 /* BCKCode11Code.m in Sources */,

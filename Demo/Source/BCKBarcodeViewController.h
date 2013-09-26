@@ -10,6 +10,6 @@
 
 @interface BCKBarcodeViewController : UIViewController <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
 
--(void)initWithBarcodeClassString:(NSString *)barcodeClassString andBarcodeSample:(NSString *)barcodeSample;
+- (void)setBarcodeClass:(Class)barcodeClass andSampleContent:(NSString *)content;
 
 @end

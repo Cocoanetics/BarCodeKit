@@ -27,12 +27,6 @@ static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
 
 #pragma mark - Helper Methods
 
-- (NSUInteger)_digitAtIndex:(NSUInteger)index
-{
-	NSString *digitStr = [self.content substringWithRange:NSMakeRange(index, 1)];
-	return [digitStr integerValue];
-}
-
 - (NSUInteger)_codeVariantIndexForDigitAtIndex:(NSUInteger)index withVariantPattern:(char *)variantPattern
 {
 	NSAssert(index>0 && index<13, @"Index must be from 1 to 12");
@@ -89,19 +83,9 @@ static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
 	return YES;
 }
 
-+ (NSString *)barcodeStandard
-{
-	return @"International standard ISO/IEC 15420";
-}
-
 + (NSString *)barcodeDescription
 {
 	return @"EAN-13";
-}
-
-- (NSUInteger)horizontalQuietZoneWidth
-{
-	return 7;
 }
 
 - (NSArray *)codeCharacters
@@ -115,7 +99,7 @@ static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
 	NSMutableArray *tmpArray = [NSMutableArray array];
 	
 	// variant pattern derives from first digit
-	NSUInteger firstDigit = [self _digitAtIndex:0];
+	NSUInteger firstDigit = [self digitAtIndex:0];
 	char *variant_pattern = variant_patterns[firstDigit];
 	
 	// start marker
@@ -123,7 +107,7 @@ static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
 	
 	for (NSUInteger index = 1; index < 13; index ++)
 	{
-		NSUInteger digit = [self _digitAtIndex:index];
+		NSUInteger digit = [self digitAtIndex:index];
 		BCKEANCodeCharacterEncoding encoding = [self _codeVariantIndexForDigitAtIndex:index withVariantPattern:variant_pattern];
 		
 		[tmpArray addObject:[BCKEANCodeCharacter codeCharacterForDigit:digit encoding:encoding]];
@@ -149,22 +133,13 @@ static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
 		return [self.content substringToIndex:1];
 	}
 	
-	return nil;
-}
-
-- (NSString *)defaultCaptionFontName
-{
-	return @"OCRB";
+	// get digit zones from code characters
+	return [super captionTextForZone:captionZone withRenderOptions:options];
 }
 
 - (CGFloat)aspectRatio
 {
 	return 39.29 / 25.91;
-}
-
-- (BOOL)markerBarsCanOverlapBottomCaption
-{
-	return YES;
 }
 
 - (BOOL)allowsFillingOfEmptyQuietZones
