@@ -11,7 +11,7 @@
 /**
  The five types of Facing Identification Mark codes
  */
-typedef NS_ENUM(char, BCKFacingIdentificationMarkTypes) {
+typedef NS_ENUM(char, BCKFacingIdentificationMarkType) {
 	/**
 	 FIM A is used for courtesy reply mail and metered reply mail with a preprinted POSTNET bar code
 	 */
@@ -38,6 +38,9 @@ typedef NS_ENUM(char, BCKFacingIdentificationMarkTypes) {
     BCKFIMTypeE
 };
 
+/**
+ Specialized subclass of BCKCode representing Facing Identification Marks codes.
+ */
 @interface BCKFacingIdentificationMarkCode : BCKCode <BCKCoding>
 
 /**
@@ -46,6 +49,6 @@ typedef NS_ENUM(char, BCKFacingIdentificationMarkTypes) {
  @param error Optional output parameter to take an `NSError` in case the barcode class could not be initiated. Pass `nil` if error information is not required.
  @return An instance of the BCKFacingIdentificationMarkCode for the desired FIM type. Returns `nil` in case of an error, the error object will provide error details.
  */
-- (instancetype)initWithFIMType:(BCKFacingIdentificationMarkTypes)fimType error:(NSError *__autoreleasing *)error;
+- (instancetype)initWithFIMType:(BCKFacingIdentificationMarkType)fimType error:(NSError *__autoreleasing *)error;
 
 @end

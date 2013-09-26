@@ -12,13 +12,13 @@
 
 @implementation BCKFacingIdentificationMarkCode
 {
-	BCKFacingIdentificationMarkTypes _fimType;
+	BCKFacingIdentificationMarkType _fimType;
 }
 
 // To ensure the DemoApp can display this class take the integer value of the content string and passes it as the BCKFacingIdentificationMarkTypes to the designated initialiser
 - (instancetype)initWithContent:(NSString *)content error:(NSError**)error
 {
-	BCKFacingIdentificationMarkTypes fimType = [[self class] _fimTypeFromContent:content];
+	BCKFacingIdentificationMarkType fimType = [[self class] _fimTypeFromContent:content];
 	
 	if (!fimType)
 	{
@@ -34,7 +34,7 @@
 	return [self initWithFIMType:fimType error:error];
 }
 
-- (instancetype)initWithFIMType:(BCKFacingIdentificationMarkTypes)fimType error:(NSError *__autoreleasing *)error;
+- (instancetype)initWithFIMType:(BCKFacingIdentificationMarkType)fimType error:(NSError *__autoreleasing *)error;
 {
 	NSString *content = [[self class] _contentForFimType:fimType];
 	
@@ -61,7 +61,7 @@
 + (BOOL)canEncodeContent:(NSString *)content error:(NSError **)error
 {
 	// convert content to fimType
-	BCKFacingIdentificationMarkTypes fimType = [self _fimTypeFromContent:content];
+	BCKFacingIdentificationMarkType fimType = [self _fimTypeFromContent:content];
 
 	if (fimType)
 	{
@@ -75,11 +75,6 @@
 	}
 	
 	return NO;
-}
-
-- (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone withRenderOptions:(NSDictionary *)options;
-{
-    return nil;
 }
 
 - (NSArray *)codeCharacters
@@ -97,7 +92,7 @@
 
 #pragma mark - Utilities
 
-+ (BCKFacingIdentificationMarkTypes)_fimTypeFromContent:(NSString *)content
++ (BCKFacingIdentificationMarkType)_fimTypeFromContent:(NSString *)content
 {
 	if ([content isEqualToString:@"1"] || [[content lowercaseString] isEqualToString:@"a"])
 	{
@@ -127,7 +122,7 @@
 	return 0; // invalid
 }
 
-+ (NSString *)_contentForFimType:(BCKFacingIdentificationMarkTypes)fimType
++ (NSString *)_contentForFimType:(BCKFacingIdentificationMarkType)fimType
 {
 	switch (fimType)
 	{
