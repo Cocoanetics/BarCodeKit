@@ -15,7 +15,7 @@ typedef NS_ENUM(char, BCKFacingIdentificationMarkTypes) {
 	/**
 	 FIM A is used for courtesy reply mail and metered reply mail with a preprinted POSTNET bar code
 	 */
-    BCKFIMTypeA = 0,
+    BCKFIMTypeA = 1,
 	
 	/**
 	 FIM B is used for business reply mail without a preprinted ZIP+4 bar code
@@ -36,7 +36,6 @@ typedef NS_ENUM(char, BCKFacingIdentificationMarkTypes) {
 	 FIM E is used for customized services
 	 */
     BCKFIMTypeE
-    
 };
 
 @interface BCKFacingIdentificationMarkCode : BCKCode <BCKCoding>

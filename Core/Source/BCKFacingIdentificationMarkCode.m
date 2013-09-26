@@ -18,34 +18,32 @@
 // To ensure the DemoApp can display this class take the integer value of the content string and passes it as the BCKFacingIdentificationMarkTypes to the designated initialiser
 - (instancetype)initWithContent:(NSString *)content error:(NSError**)error
 {
-    return [self initWithFIMType:[content integerValue] error:error];
+	BCKFacingIdentificationMarkTypes fimType = [[self class] _fimTypeFromContent:content];
+	
+	if (!fimType)
+	{
+		if (error)
+		{
+			NSString *message = [NSString stringWithFormat:@"'%@' is not a supported FIM type for %@", content, NSStringFromClass([self class])];
+			*error = [NSError BCKCodeErrorWithMessage:message];
+			
+			return nil;
+		}
+	}
+	
+	return [self initWithFIMType:fimType error:error];
 }
 
 - (instancetype)initWithFIMType:(BCKFacingIdentificationMarkTypes)fimType error:(NSError *__autoreleasing *)error;
 {
-    if (fimType == BCKFIMTypeA ||
-        fimType == BCKFIMTypeB ||
-        fimType == BCKFIMTypeC ||
-        fimType == BCKFIMTypeD ||
-        fimType == BCKFIMTypeE)
-    {
-        self = [super initWithContent:@"" error:error];
-        
-        if (self)
-        {
-            _fimType = fimType;
-        }
-    }
-    else
-    {
-        if (error)
-        {
-            NSString *message = [NSString stringWithFormat:@"%d is not a supported FIM type for %@", fimType, NSStringFromClass([self class])];
-            *error = [NSError BCKCodeErrorWithMessage:message];
-        }
-        self = nil;
-    }
-
+	NSString *content = [[self class] _contentForFimType:fimType];
+	
+	self = [super initWithContent:content error:error];
+	
+	if (self)
+	{
+		_fimType = fimType;
+	}
     
 	return self;
 }
@@ -62,12 +60,26 @@
 
 + (BOOL)canEncodeContent:(NSString *)content error:(NSError **)error
 {
-    return YES;
+	// convert content to fimType
+	BCKFacingIdentificationMarkTypes fimType = [self _fimTypeFromContent:content];
+
+	if (fimType)
+	{
+		return YES;
+	}
+	
+	if (error)
+	{
+		NSString *message = [NSString stringWithFormat:@"%d is not a supported FIM type for %@", fimType, NSStringFromClass([self class])];
+		*error = [NSError BCKCodeErrorWithMessage:message];
+	}
+	
+	return NO;
 }
 
 - (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone withRenderOptions:(NSDictionary *)options;
 {
-    return @"";
+    return nil;
 }
 
 - (NSArray *)codeCharacters
@@ -82,5 +94,71 @@
 
 	return _codeCharacters;
 }
+
+#pragma mark - Utilities
+
++ (BCKFacingIdentificationMarkTypes)_fimTypeFromContent:(NSString *)content
+{
+	if ([content isEqualToString:@"1"] || [[content lowercaseString] isEqualToString:@"a"])
+	{
+		return BCKFIMTypeA;
+	}
+	
+	if ([content isEqualToString:@"2"] || [[content lowercaseString] isEqualToString:@"b"])
+	{
+		return BCKFIMTypeB;
+	}
+
+	if ([content isEqualToString:@"3"] || [[content lowercaseString] isEqualToString:@"c"])
+	{
+		return BCKFIMTypeC;
+	}
+
+	if ([content isEqualToString:@"4"] || [[content lowercaseString] isEqualToString:@"d"])
+	{
+		return BCKFIMTypeD;
+	}
+
+	if ([content isEqualToString:@"5"] || [[content lowercaseString] isEqualToString:@"e"])
+	{
+		return BCKFIMTypeE;
+	}
+
+	return 0; // invalid
+}
+
++ (NSString *)_contentForFimType:(BCKFacingIdentificationMarkTypes)fimType
+{
+	switch (fimType)
+	{
+		case BCKFIMTypeA:
+		{
+			return @"A";
+		}
+			
+		case BCKFIMTypeB:
+		{
+			return @"B";
+		}
+
+		case BCKFIMTypeC:
+		{
+			return @"C";
+		}
+
+		case BCKFIMTypeD:
+		{
+			return @"D";
+		}
+
+		case BCKFIMTypeE:
+		{
+			return @"E";
+		}
+	}
+	
+	return nil;
+}
+
 
 @end
