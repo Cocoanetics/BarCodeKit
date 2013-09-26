@@ -138,6 +138,11 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
 - (BOOL)showCheckDigitsInCaption;
 
 /**
+ Whether the barcode supports showing caption text below the barcode. Subclasses can indicate they never require a caption by overriding this method and returning `NO`. Defaults to `YES`.
+ */
+- (BOOL)requiresCaptionText;
+
+/**
  @name Deprecated Methods
  */
 
@@ -167,6 +172,8 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
  - BCKCodabarCode - Codabar - no international standard
  - BCKStandard2of5Code - Codabar - no international standard
  - BCKFacingIdentificationMarkCode - FIM - no international standard
+ - BCKEAN2SupplementCode - no international standard
+ - BCKEAN5SupplementCode - no international standard
  
  For rendering codes several options can be combined in an options dictionary:
  

@@ -283,8 +283,6 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 	return bitsAfterMiddle * [self _barScaleFromOptions:options];
 }
 
-
-
 - (CGFloat)_captionFontSizeWithOptions:(NSDictionary *)options
 {
 	// for sizing the caption we always assume that quiet zones are filled and check digits are shown
@@ -550,6 +548,11 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 - (NSString *)defaultCaptionFontName
 {
 	return @"Helvetica";
+}
+
+- (BOOL)requiresCaptionText
+{
+    return YES;
 }
 
 #pragma mark - Drawing

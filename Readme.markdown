@@ -15,6 +15,7 @@ This project lets you generate bar codes for a variety of code standards.
 - MSI - Modified Plessey (without check, mod 10, mod 11, mod 1010, mod 1011)
 - Standard/Industrial 2 of 5
 - Facing Identification Mark (FIM)
+- EAN-2 and EAN-5 supplemental codes
 
 Documentation
 -------------
