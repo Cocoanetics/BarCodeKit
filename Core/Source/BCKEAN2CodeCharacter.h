@@ -34,13 +34,13 @@ typedef NS_ENUM(NSUInteger, BCKEAN2CodeCharacterEncoding)
  Generates an EAN-2  Supplement start code character.
  @returns the start code character
  */
-+ (BCKEANCodeCharacter *)startCodeCharacter;
++ (BCKEAN2CodeCharacter *)startCodeCharacter;
 
 /**
  Generates an EAN-2  Supplement separator code character.
  @returns the separator code character
  */
-+ (BCKEANCodeCharacter *)separatorCodeCharacter;
++ (BCKEAN2CodeCharacter *)separatorCodeCharacter;
 
 /**
  Generates a code character to represent a EAN-2  Supplement digit with a specific BCKEAN2CodeCharacterEncoding.
@@ -48,6 +48,6 @@ typedef NS_ENUM(NSUInteger, BCKEAN2CodeCharacterEncoding)
  @param encoding The BCKEAN2CodeCharacterEncoding to use.
  @returns The digit code character.
  */
-+ (BCKEANCodeCharacter *)codeCharacterForDigit:(NSUInteger)digit encoding:(BCKEAN2CodeCharacterEncoding)encoding;
++ (BCKEAN2CodeCharacter *)codeCharacterForDigit:(NSUInteger)digit encoding:(BCKEAN2CodeCharacterEncoding)encoding;
 
 @end

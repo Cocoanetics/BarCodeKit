@@ -35,7 +35,7 @@
 - (void)testEncodeValidAlternative
 {
     NSError *error = nil;
-    BCKFacingIdentificationMarkCode *code = [[BCKFacingIdentificationMarkCode alloc] initWithContent:@"4" error:&error];
+    BCKFacingIdentificationMarkCode *code = [[BCKFacingIdentificationMarkCode alloc] initWithContent:@"e" error:&error];
     
     NSString *expected = @"100010000000100010";
 	NSString *actual = [code bitString];
@@ -47,7 +47,7 @@
 - (void)testEncodeInvalidAlternative
 {
     NSError *error = nil;
-    BCKFacingIdentificationMarkCode *code = [[BCKFacingIdentificationMarkCode alloc] initWithContent:@"5" error:&error];
+    BCKFacingIdentificationMarkCode *code = [[BCKFacingIdentificationMarkCode alloc] initWithContent:@"f" error:&error];
     
 	NSString *actual = [code bitString];
 	
