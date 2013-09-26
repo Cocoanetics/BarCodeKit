@@ -37,23 +37,35 @@
 
 + (void)_parityPatternForContent:(NSString *)content digitOneTable:(BCKEAN2CodeCharacterEncoding *)digitOneTable digitTwoTable:(BCKEAN2CodeCharacterEncoding *)digitTwoTable
 {
-    switch ([content integerValue] % 4) {
+    switch ([content integerValue] % 4)
+	{
         case 0:
+		{
             *digitOneTable = BCKEAN2CodeCharacterEncoding_L;
             *digitTwoTable = BCKEAN2CodeCharacterEncoding_L;
             break;
+		}
+			
         case 1:
+		{
             *digitOneTable = BCKEAN2CodeCharacterEncoding_L;
             *digitTwoTable = BCKEAN2CodeCharacterEncoding_G;
             break;
+		}
+			
         case 2:
+		{
             *digitOneTable = BCKEAN2CodeCharacterEncoding_G;
             *digitTwoTable = BCKEAN2CodeCharacterEncoding_L;
             break;
+		}
+			
         case 3:
+		{
             *digitOneTable = BCKEAN2CodeCharacterEncoding_G;
             *digitTwoTable = BCKEAN2CodeCharacterEncoding_G;
             break;
+		}
     }
 }
 
@@ -111,6 +123,7 @@
 		}
 
         codeCharacter = [[BCKEAN2DataCodeCharacter alloc] initWithDigit:[character integerValue] encoding:tableTwo];
+		
 		if (!codeCharacter)
 		{
 			if (error)
