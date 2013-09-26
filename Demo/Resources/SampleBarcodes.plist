@@ -38,5 +38,7 @@
 	<string>1234</string>
 	<key>BCKFacingIdentificationMarkCode</key>
 	<string>0</string>
+	<key>BCKEAN5SupplementCode</key>
+	<string>54495</string>
 </dict>
 </plist>
