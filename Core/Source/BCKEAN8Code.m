@@ -14,12 +14,6 @@
 
 #pragma mark - Helper Methods
 
-- (NSUInteger)_digitAtIndex:(NSUInteger)index
-{
-	NSString *digitStr = [self.content substringWithRange:NSMakeRange(index, 1)];
-	return [digitStr integerValue];
-}
-
 - (NSUInteger)_codeVariantIndexForDigitAtIndex:(NSUInteger)index withVariantPattern:(char *)variantPattern
 {
 	NSAssert(index>=0 && index<8, @"Index must be from 0 to 7");
@@ -39,7 +33,7 @@
 	return variantIndex;
 }
 
-#pragma mark - Subclassing Methods
+#pragma mark - BCKCoding Methods
 
 + (BOOL)canEncodeContent:(NSString *)content error:(NSError *__autoreleasing *)error
 {
@@ -76,19 +70,9 @@
 	return YES;
 }
 
-+ (NSString *)barcodeStandard
-{
-	return @"International standard ISO/IEC 15420";
-}
-
 + (NSString *)barcodeDescription
 {
 	return @"EAN-8";
-}
-
-- (NSUInteger)horizontalQuietZoneWidth
-{
-	return 7;
 }
 
 // generate the code characters from the content
@@ -110,7 +94,7 @@
 	
 	for (NSUInteger index = 0; index < 8; index ++)
 	{
-		NSUInteger digit = [self _digitAtIndex:index];
+		NSUInteger digit = [self digitAtIndex:index];
 		BCKEANCodeCharacterEncoding encoding = [self _codeVariantIndexForDigitAtIndex:index withVariantPattern:variant_pattern];
 		
 		[tmpArray addObject:[BCKEANCodeCharacter codeCharacterForDigit:digit encoding:encoding]];
@@ -129,19 +113,9 @@
 	return _codeCharacters;
 }
 
-- (NSString *)defaultCaptionFontName
-{
-	return @"OCRB";
-}
-
 - (CGFloat)aspectRatio
 {
 	return 26.73 / 21.31;
-}
-
-- (BOOL)markerBarsCanOverlapBottomCaption
-{
-	return YES;
 }
 
 - (BOOL)allowsFillingOfEmptyQuietZones

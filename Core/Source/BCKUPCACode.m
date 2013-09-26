@@ -13,14 +13,7 @@
 
 @implementation BCKUPCACode
 
-#pragma mark - Subclassing Methods
-
-//TODO jaanus: copy/paste from EAN-13
-- (NSUInteger)_digitAtIndex:(NSUInteger)index
-{
-	NSString *digitStr = [self.content substringWithRange:NSMakeRange(index, 1)];
-	return [digitStr integerValue];
-}
+#pragma mark - BCKCoding Methods
 
 + (BOOL)canEncodeContent:(NSString *)content error:(NSError *__autoreleasing *)error
 {
@@ -85,11 +78,6 @@
 	return YES;
 }
 
-+ (NSString *)barcodeStandard
-{
-	return @"International standard ISO/IEC 15420";
-}
-
 + (NSString *)barcodeDescription
 {
 	return @"UPC-A";
@@ -116,7 +104,7 @@
 
 	for (NSUInteger index = 0; index < 12; index ++)
 	{
-		NSUInteger digit = [self _digitAtIndex:index];
+		NSUInteger digit = [self digitAtIndex:index];
 		BCKEANCodeCharacterEncoding encoding = (index <6 ? BCKEANCodeCharacterEncoding_L : BCKEANCodeCharacterEncoding_R);
 
 		BCKEANCodeCharacter *codeCharacter = [BCKEANCodeCharacter codeCharacterForDigit:digit encoding:encoding];
@@ -151,31 +139,14 @@
 	{
 		return [self.content substringFromIndex:11];
 	}
-	else if (captionZone == BCKCodeDrawingCaptionLeftNumberZone)
-	{
-		return [self.content substringWithRange:NSMakeRange(1, 5)];
-	}
-	else if (captionZone == BCKCodeDrawingCaptionRightNumberZone)
-	{
-		return [self.content substringWithRange:NSMakeRange(6, 5)];
-	}
 
-	return nil;
-}
-
-- (NSString *)defaultCaptionFontName
-{
-	return @"OCRB";
+	// get digit zones from code characters
+	return [super captionTextForZone:captionZone withRenderOptions:options];
 }
 
 - (CGFloat)aspectRatio
 {
 	return 39.29 / 25.91;
-}
-
-- (BOOL)markerBarsCanOverlapBottomCaption
-{
-	return YES;
 }
 
 @end

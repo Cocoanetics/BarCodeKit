@@ -4,6 +4,7 @@
 
 // code implementations
 #import "BCKCodabarCode.h"
+#import "BCKGTINCode.h"
 #import "BCKEAN8Code.h"
 #import "BCKEAN13Code.h"
 #import "BCKUPCECode.h"

@@ -64,7 +64,7 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 {
 	NSMutableString *tmpString = [NSMutableString string];
 	
-	for (BCKEANCodeCharacter *oneCharacter in [self codeCharacters])
+	for (BCKCodeCharacter *oneCharacter in [self codeCharacters])
 	{
 		[tmpString appendString:[oneCharacter bitString]];
 	}
@@ -126,37 +126,6 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 		return [leftCaptionString copy];
 	}
 	
-	NSMutableString *tmpString = [NSMutableString string];
-	__block BOOL metContent = NO;
-	
-	// aggregate digits before marker
-	[[self codeCharacters] enumerateObjectsUsingBlock:^(BCKEANCodeCharacter *character, NSUInteger charIndex, BOOL *stop) {
-		
-		if ([character isMarker])
-		{
-			if (metContent)
-			{
-				*stop = YES;
-				return;
-			}
-		}
-		else
-		{
-			if ([character isKindOfClass:[BCKEANDigitCodeCharacter class]])
-			{
-				BCKEANDigitCodeCharacter *digitChar = (BCKEANDigitCodeCharacter *)character;
-				[tmpString appendFormat:@"%d", (int)[digitChar digit]];
-			}
-			
-			metContent = YES;
-		}
-	}];
-	
-	if ([tmpString length])
-	{
-		return [tmpString copy];
-	}
-	
 	return nil;
 }
 
@@ -175,40 +144,6 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 		return [rightCaptionString copy];
 	}
 	
-	NSMutableString *tmpString = [NSMutableString string];
-	
-	__block BOOL metMiddleMarker = NO;
-	__block BOOL metContent = NO;
-	
-	// aggregate digits after marker
-	[[self codeCharacters] enumerateObjectsUsingBlock:^(BCKEANCodeCharacter *character, NSUInteger charIndex, BOOL *stop) {
-		
-		if ([character isMarker])
-		{
-			if (metContent && !metMiddleMarker)
-			{
-				metMiddleMarker = YES;
-			}
-			
-		}
-		else
-		{
-			if (metMiddleMarker)
-			{
-				BCKEANDigitCodeCharacter *digitChar = (BCKEANDigitCodeCharacter *)character;
-				[tmpString appendFormat:@"%d", (int)[digitChar digit]];
-			}
-			
-			metContent = YES;
-		}
-		
-	}];
-	
-	if ([tmpString length])
-	{
-		return [tmpString copy];
-	}
-	
 	return nil;
 }
 
@@ -223,7 +158,7 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 	__block BOOL metContent = NO;
 	
 	// aggregate digits before marker
-	[[self codeCharacters] enumerateObjectsUsingBlock:^(BCKEANCodeCharacter *character, NSUInteger charIndex, BOOL *stop) {
+	[[self codeCharacters] enumerateObjectsUsingBlock:^(BCKCodeCharacter *character, NSUInteger charIndex, BOOL *stop) {
 		
 		if ([character isMarker])
 		{
@@ -255,7 +190,7 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 	__block BOOL metContent = NO;
 	
 	// aggregate digits before marker
-	[[self codeCharacters] enumerateObjectsUsingBlock:^(BCKEANCodeCharacter *character, NSUInteger charIndex, BOOL *stop) {
+	[[self codeCharacters] enumerateObjectsUsingBlock:^(BCKCodeCharacter *character, NSUInteger charIndex, BOOL *stop) {
 		
 		if ([character isMarker])
 		{
@@ -545,6 +480,11 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 	return NO;
 }
 
+- (BOOL)showCheckDigitsInCaption
+{
+	return NO;
+}
+
 - (NSString *)defaultCaptionFontName
 {
 	return @"Helvetica";
@@ -688,7 +628,7 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 	NSArray *codeCharacters = [self codeCharacters];
 	
 	// enumerate the code characters
-	[codeCharacters enumerateObjectsUsingBlock:^(BCKEANCodeCharacter *character, NSUInteger charIndex, BOOL *stop) {
+	[codeCharacters enumerateObjectsUsingBlock:^(BCKCodeCharacter *character, NSUInteger charIndex, BOOL *stop) {
 		
 		// bar length is different for markers and digits
 		CGFloat barLength = digitBarLength;

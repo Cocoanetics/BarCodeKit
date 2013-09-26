@@ -23,7 +23,7 @@
 #pragma mark - Other
 
 // Returns an array of NSString objects of theClass' subclasses (direct subclasses only)
-- (NSArray *) allSubclassesForClass:(Class)theClass
+- (NSArray *)allSubclassesForClass:(Class)theClass
 {
 	NSMutableArray *mySubclasses = [NSMutableArray array];
 	unsigned int numOfClasses;
@@ -33,6 +33,7 @@
 	for (unsigned int ci = 0; ci < numOfClasses; ci++)
 	{
 		Class superClass = classes[ci];
+		
 		do
 		{
 			superClass = class_getSuperclass(superClass);
@@ -41,8 +42,16 @@
 		
 		if (superClass == theClass)
 		{
+			Class barcodeClass = classes[ci];
+			
+			if (![barcodeClass barcodeDescription])
+			{
+				// skip abstract class
+				continue;
+			}
+			
 			// change to (superClass) to find all descendants, not just the direct ones
-			[mySubclasses addObject: NSStringFromClass(classes[ci])];
+			[mySubclasses addObject: NSStringFromClass(barcodeClass)];
 		}
 	}
 	
@@ -96,13 +105,17 @@
 	{
 		NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
 		
-		NSString *barcodeClass = self.barcodeTypes[indexPath.row];
-		NSString *barcodeSample = [self.barcodeSamples valueForKey:barcodeClass];
+		NSString *barcodeClassString = self.barcodeTypes[indexPath.row];
+		Class barcodeClass = NSClassFromString(barcodeClassString);
 		
-		if(!barcodeSample)
+		NSString *barcodeSample = [self.barcodeSamples valueForKey:barcodeClassString];
+		
+		if (!barcodeSample)
+		{
 			barcodeSample = [self.barcodeSamples valueForKey:DEFAULT_BARCODE_KEY];
+		}
 		
-		[[segue destinationViewController] initWithBarcodeClassString:barcodeClass andBarcodeSample:barcodeSample];
+		[[segue destinationViewController] setBarcodeClass:barcodeClass andSampleContent:barcodeSample];
 	}
 }
 

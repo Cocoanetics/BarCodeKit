@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
-#import "BCKCode.h"
+#import "BCKGTINCode.h"
 
 /**
  Specialized subclass of BCKCode to represent an EAN-13 barcode.
  */
-@interface BCKEAN13Code : BCKCode <BCKCoding>
+@interface BCKEAN13Code : BCKGTINCode <BCKCoding>
 
 @end

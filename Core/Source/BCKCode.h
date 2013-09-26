@@ -79,7 +79,7 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
 @optional
 
 /**
- The caption text to display in the given caption zone, or `nil` for no caption text. Defaults to `nil`. Subclasses can return the check digit or other text and also alter the caption text by providing rendering options.
+ The caption text to display in the given caption zone. If you return `nil` then the digits are taken from 
  
  @note Not implementing this method disables caption drawing altogether
  @param captionZone The BCKCodeDrawingCaption zone specifying the required text zone.
