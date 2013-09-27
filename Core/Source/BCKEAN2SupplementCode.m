@@ -1,5 +1,5 @@
 //
-//  BCKEAN2Code.m
+//  BCKEAN2SupplementCode.m
 //  BarCodeKit
 //
 //  Created by Geoff Breemer on 25/09/13.
@@ -7,8 +7,7 @@
 //
 
 #import "BCKEAN2SupplementCode.h"
-#import "BCKEAN2CodeCharacter.h"
-#import "BCKEAN2DataCodeCharacter.h"
+#import "BCKGTINSupplementDataCodeCharacter.h"
 #import "NSError+BCKCode.h"
 
 @implementation BCKEAN2SupplementCode
@@ -26,53 +25,53 @@
 
 #pragma mark - Helper Methods
 
-- (NSUInteger)_digitAtIndex:(NSUInteger)index
+- (NSUInteger)digitAtIndex:(NSUInteger)index
 {
 	NSString *digitStr = [self.content substringWithRange:NSMakeRange(index, 1)];
-
+    
 	return [digitStr integerValue];
 }
 
-#pragma mark - BCKCoding Methods
-
-+ (void)_parityPatternForContent:(NSString *)content digitOneTable:(BCKEAN2CodeCharacterEncoding *)digitOneTable digitTwoTable:(BCKEAN2CodeCharacterEncoding *)digitTwoTable
++ (void)_parityPatternForContent:(NSString *)content digitOneTable:(BCKGTINSupplementCodeCharacterEncoding *)digitOneTable digitTwoTable:(BCKGTINSupplementCodeCharacterEncoding *)digitTwoTable
 {
     switch ([content integerValue] % 4)
 	{
         case 0:
 		{
-            *digitOneTable = BCKEAN2CodeCharacterEncoding_L;
-            *digitTwoTable = BCKEAN2CodeCharacterEncoding_L;
+            *digitOneTable = BCKGTINSupplementCodeCharacterEncoding_L;
+            *digitTwoTable = BCKGTINSupplementCodeCharacterEncoding_L;
             break;
 		}
 			
         case 1:
 		{
-            *digitOneTable = BCKEAN2CodeCharacterEncoding_L;
-            *digitTwoTable = BCKEAN2CodeCharacterEncoding_G;
+            *digitOneTable = BCKGTINSupplementCodeCharacterEncoding_L;
+            *digitTwoTable = BCKGTINSupplementCodeCharacterEncoding_G;
             break;
 		}
 			
         case 2:
 		{
-            *digitOneTable = BCKEAN2CodeCharacterEncoding_G;
-            *digitTwoTable = BCKEAN2CodeCharacterEncoding_L;
+            *digitOneTable = BCKGTINSupplementCodeCharacterEncoding_G;
+            *digitTwoTable = BCKGTINSupplementCodeCharacterEncoding_L;
             break;
 		}
 			
         case 3:
 		{
-            *digitOneTable = BCKEAN2CodeCharacterEncoding_G;
-            *digitTwoTable = BCKEAN2CodeCharacterEncoding_G;
+            *digitOneTable = BCKGTINSupplementCodeCharacterEncoding_G;
+            *digitTwoTable = BCKGTINSupplementCodeCharacterEncoding_G;
             break;
 		}
     }
 }
 
+#pragma mark - BCKCoding Methods
+
 + (BOOL)canEncodeContent:(NSString *)content error:(NSError *__autoreleasing *)error
 {
-    BCKEAN2CodeCharacterEncoding tableOne, tableTwo;
-    BCKEAN2CodeCharacter *codeCharacter;
+    BCKGTINSupplementCodeCharacterEncoding tableOne, tableTwo;
+    BCKGTINSupplementCodeCharacter *codeCharacter;
 
     NSCharacterSet *notDigits = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
 	
@@ -109,7 +108,7 @@
 	{
 		NSString *character = [content substringWithRange:NSMakeRange(index, 1)];
 
-		codeCharacter = [[BCKEAN2DataCodeCharacter alloc] initWithDigit:[character integerValue] encoding:tableOne];
+		codeCharacter = [[BCKGTINSupplementDataCodeCharacter alloc] initWithDigit:[character integerValue] encoding:tableOne];
 
 		if (!codeCharacter)
 		{
@@ -122,7 +121,7 @@
 			return NO;
 		}
 
-        codeCharacter = [[BCKEAN2DataCodeCharacter alloc] initWithDigit:[character integerValue] encoding:tableTwo];
+        codeCharacter = [[BCKGTINSupplementDataCodeCharacter alloc] initWithDigit:[character integerValue] encoding:tableTwo];
 		
 		if (!codeCharacter)
 		{
@@ -141,17 +140,17 @@
 
 + (NSString *)barcodeStandard
 {
-	return @"Not an international standard";
+	return @"International standard ISO/IEC 15420";
 }
 
 + (NSString *)barcodeDescription
 {
-	return @"EAN 2 Supplement";
+	return @"EAN-2 Supplement";
 }
 
 - (NSArray *)codeCharacters
 {
-    BCKEAN2CodeCharacterEncoding tableOne, tableTwo;
+    BCKGTINSupplementCodeCharacterEncoding tableOne, tableTwo;
 	NSMutableArray *finalArray = [NSMutableArray array];
 
 	// If the array was created earlier just return it
@@ -164,19 +163,24 @@
     [[self class] _parityPatternForContent:_content digitOneTable:&tableOne digitTwoTable:&tableTwo];
 
 	// Add the start code character
-	[finalArray addObject:[BCKEAN2CodeCharacter startCodeCharacter]];
+	[finalArray addObject:[BCKGTINSupplementCodeCharacter startCodeCharacter]];
 
     // Add the digit code character for the first digit
-	[finalArray addObject:[BCKEAN2DataCodeCharacter codeCharacterForDigit:[self _digitAtIndex:0] encoding:tableOne]];
+	[finalArray addObject:[BCKGTINSupplementDataCodeCharacter codeCharacterForDigit:[self digitAtIndex:0] encoding:tableOne]];
 	
     // Add the separator code character
-	[finalArray addObject:[BCKEAN2CodeCharacter separatorCodeCharacter]];
+	[finalArray addObject:[BCKGTINSupplementCodeCharacter separatorCodeCharacter]];
 
     // Add the digit code character for the second digit
-	[finalArray addObject:[BCKEAN2DataCodeCharacter codeCharacterForDigit:[self _digitAtIndex:1] encoding:tableTwo]];
+	[finalArray addObject:[BCKGTINSupplementDataCodeCharacter codeCharacterForDigit:[self digitAtIndex:1] encoding:tableTwo]];
     
 	_codeCharacters = [finalArray copy];
 	return _codeCharacters;
+}
+
+- (CGFloat)aspectRatio
+{
+	return .5;
 }
 
 @end

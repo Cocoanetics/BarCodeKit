@@ -1,14 +1,14 @@
 //
-//  BCKEAN2DataCodeCharacter.m
+//  BCKGTINSupplementDataCodeCharacter.m
 //  BarCodeKit
 //
-//  Created by Geoff Breemer on 25/09/13.
+//  Created by Geoff Breemer on 27/09/13.
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
-#import "BCKEAN2DataCodeCharacter.h"
+#import "BCKGTINSupplementDataCodeCharacter.h"
 
-// source: http://en.wikipedia.org/wiki/EAN_2
+// source: http://en.wikipedia.org/wiki/EAN_2 and http://en.wikipedia.org/wiki/EAN_5
 
 // the encoding variants for each digits, L/G
 static char *digit_encodings[10][2] = {{"0001101", "0100111"},  // 0
@@ -23,13 +23,13 @@ static char *digit_encodings[10][2] = {{"0001101", "0100111"},  // 0
 	{"0001011", "0010111"}   // 9
 };
 
-@implementation BCKEAN2DataCodeCharacter
+@implementation BCKGTINSupplementDataCodeCharacter
 {
 	NSUInteger _digit;
-	BCKEAN2CodeCharacterEncoding _encoding;
+	BCKGTINSupplementCodeCharacterEncoding _encoding;
 }
 
-- (instancetype)initWithDigit:(NSUInteger)digit encoding:(BCKEAN2CodeCharacterEncoding)encoding
+- (instancetype)initWithDigit:(NSUInteger)digit encoding:(BCKGTINSupplementCodeCharacterEncoding)encoding
 {
 	self = [super init];
 	
