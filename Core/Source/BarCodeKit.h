@@ -21,6 +21,8 @@
 #import "BCKEANCodeCharacter.h"
 #import "BCKEANDigitCodeCharacter.h"
 #import "BCKUPCCodeCharacter.h"
+#import "BCKGTINSupplementCodeCharacter.h"
+#import "BCKGTINSupplementDataCodeCharacter.h"
 
 // code character for Codabar
 #import "BCKCodabarCodeCharacter.h"
