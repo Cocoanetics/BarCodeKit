@@ -16,6 +16,7 @@
 #import "BCKMSICode.h"
 #import "BCKPharmacodeOneTrack.h"
 #import "BCKStandard2of5Code.h"
+#import "BCKISBNCode.h"
 
 // code characters for EAN/UPC
 #import "BCKEANCodeCharacter.h"
