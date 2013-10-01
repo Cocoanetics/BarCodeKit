@@ -16,9 +16,9 @@
  - initWithContent:error: and pass it an ISBN10 or ISBN13 character string, including hyphen separators and check digit, but without the "ISBN " prefix
  - one of two initialisers accepting the ISBN code's elements, with or without the ISBN check digit.
  
- The ISBN10 check digit is **not** always identical to the EAN13 check digit. This is because the ISBN10 check digit (if provided to the initialiser) is ignored during the conversion to ISBN13 and encoding to EAN13. However, the title text shown above the barcode image shows the ISBN10 character string with the original check digit. BCKISBNCode will validate any check digits provided and reject the character string if the check digit is invalid.
+ The ISBN10 check digit is **not** always identical to the EAN13 check digit. This is because the ISBN10 check digit (if provided to the initialiser) is ignored during the conversion to ISBN13 and EAN13 encoding. However, the title text shown above the barcode image shows the ISBN10 character string with the original check digit. BCKISBNCode will validate any check digits provided and reject the character string if the check digit is invalid.
  
- For example, ISBN10 string `3-16-148410-X` is converted to ISBN13/EAN13 string as `9783161484100`. The title text for that ISBN10 string is `ISBN 3-16-148410-X`.
+ For example, ISBN10 string `3-16-148410-X` is converted to ISBN13/EAN13 as `9783161484100`. The title text for that ISBN10 string is `ISBN 3-16-148410-X`.
  
  */
 @interface BCKISBNCode : BCKEAN13Code

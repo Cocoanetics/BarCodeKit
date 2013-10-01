@@ -13,4 +13,12 @@
  */
 @interface BCKEAN13Code : BCKGTINCode <BCKCoding>
 
+/**
+ Generate the EAN13 check digit for the characterstring.
+ @param characterString The EAN13 string without the EAN13 check digit.
+ @return An `NSString` containing the characterString and its EAN13 check digit.
+
+ */
+- (NSString *)generateEAN13CheckDigit:(NSString *)characterString;
+
 @end

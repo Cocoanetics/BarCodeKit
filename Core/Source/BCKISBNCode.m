@@ -18,45 +18,17 @@ typedef NS_ENUM(char, BCKISBNCodeRegularExpressionType) {
 };
 
 @interface BCKISBNCode ()
+
     @property (nonatomic, strong) NSString *titleText;  // Holds the ISBN string displayed above the resulting barcode image, which is *not* the same as the EAN13 code
+
 @end
 
 @implementation BCKISBNCode
 
 #pragma mark Helper Methods
 
-// Returns the check digit for a 12-character string. The string must be an ISBN13 string *without* the last check digit or a 12 character EAN13 sting *without* the last check digit
-- (NSString *)_generateEAN13OrISBN13CheckDigit:(NSString *)characterString
-{
-    NSUInteger weightedSum = 0;
-    NSUInteger checkDigit;
-    
-    for (NSUInteger index=0; index<([characterString length]); index++)
-	{
-		NSString *character = [characterString substringWithRange:NSMakeRange(index, 1)];
-        
-        if (index % 2 == 0)
-        {
-            weightedSum += [character integerValue] * 1;
-        }
-        else
-        {
-            weightedSum += [character integerValue] * 3;
-        }
-    }
-    
-    checkDigit = 10 - weightedSum % 10;
-    
-    if (checkDigit == 10)
-    {
-        checkDigit = 0;
-    }
-    
-    return [NSString stringWithFormat:@"%d", checkDigit];
-}
-
 // Returns the check digit for a 9-character string. The string must be an ISBN10 string *without* the last check digit
-- (NSString *)_generateISBN10CheckDigit:(NSString *)isbnString
++ (NSString *)_generateISBN10CheckDigit:(NSString *)isbnString
 {
     NSUInteger weightedSum = 0;
     NSUInteger weight = 10;
@@ -289,7 +261,7 @@ typedef NS_ENUM(char, BCKISBNCodeRegularExpressionType) {
         
         if ([tmpISBNString length] == 9)
         {
-            isbnCheckDigit = [self _generateISBN10CheckDigit:tmpISBNString];
+            isbnCheckDigit = [[self class] _generateISBN10CheckDigit:tmpISBNString];
         }
         else
         {
@@ -310,7 +282,8 @@ typedef NS_ENUM(char, BCKISBNCodeRegularExpressionType) {
         
         if ([tmpISBNString length] == 12)
         {
-            isbnCheckDigit = [self _generateEAN13OrISBN13CheckDigit:tmpISBNString];
+            // The algorithm to generate the EAN13 check digit is identical to the ISBN13 check digit algorithm
+            isbnCheckDigit = [self generateEAN13CheckDigit:tmpISBNString];
         }
         else
         {
@@ -327,7 +300,7 @@ typedef NS_ENUM(char, BCKISBNCodeRegularExpressionType) {
     return [self initWithPrefix:prefix andRegistrationGroup:registrationGroup andRegistrant:registrant andPublication:publication andCheckDigit:isbnCheckDigit error:error];
 }
 
-// Designated initialiser. Note that the EAN13 check digit may be different then the ISBN check digit.
+// Designated initialiser. Note that the EAN13 check digit may be different than the ISBN check digit.
 - (instancetype)initWithPrefix:(NSString *)prefix
           andRegistrationGroup:(NSString *)registrationGroup
                  andRegistrant:(NSString *)registrant
@@ -343,7 +316,7 @@ typedef NS_ENUM(char, BCKISBNCodeRegularExpressionType) {
         tmpISBNString = [NSString stringWithFormat:@"%@%@%@", registrationGroup, registrant, publication];
 
         // Validate that the ISBN10 check digit is correct for the ISBN10 string
-        if (![[checkDigit uppercaseString] isEqualToString:[self _generateISBN10CheckDigit:tmpISBNString]])
+        if (![[checkDigit uppercaseString] isEqualToString:[[self class] _generateISBN10CheckDigit:tmpISBNString]])
         {
             if (error)
             {
@@ -358,7 +331,7 @@ typedef NS_ENUM(char, BCKISBNCodeRegularExpressionType) {
         tmpISBNString = [NSString stringWithFormat:@"%@%@%@%@", BOOKLAND_COUNTRY_CODE, registrationGroup, registrant, publication];
         
         // Calculate the EAN-13 check digit for the ISBN10 string
-        NSString *ean13CheckDigit = [self _generateEAN13OrISBN13CheckDigit:tmpISBNString];
+        NSString *ean13CheckDigit = [self generateEAN13CheckDigit:tmpISBNString];
         
         // Construct the EAN-13 string with the EAN13 check digit (NOT the ISBN check digit)
         tmpISBNString = [NSString stringWithFormat:@"%@%@%@%@%@", BOOKLAND_COUNTRY_CODE, registrationGroup, registrant, publication, ean13CheckDigit];
@@ -369,7 +342,7 @@ typedef NS_ENUM(char, BCKISBNCodeRegularExpressionType) {
         tmpISBNString = [NSString stringWithFormat:@"%@%@%@%@", prefix, registrationGroup, registrant, publication];
         
         // Validate that the ISBN13 check digit provided is correct for the temporary ISBN13 string
-        if (![checkDigit isEqualToString:[self _generateEAN13OrISBN13CheckDigit:tmpISBNString]])
+        if (![checkDigit isEqualToString:[self generateEAN13CheckDigit:tmpISBNString]])
         {
             if (error)
             {
@@ -381,7 +354,7 @@ typedef NS_ENUM(char, BCKISBNCodeRegularExpressionType) {
         }
         
         // Calculate the EAN-13 check digit for the temporary ISBN13 string
-        NSString *ean13CheckDigit = [self _generateEAN13OrISBN13CheckDigit:tmpISBNString];
+        NSString *ean13CheckDigit = [self generateEAN13CheckDigit:tmpISBNString];
         
         // Construct the EAN-13 content string with the EAN13 check digit (NOT the ISBN check digit)
         tmpISBNString = [NSString stringWithFormat:@"%@%@%@%@%@", prefix, registrationGroup, registrant, publication, ean13CheckDigit];
@@ -411,17 +384,7 @@ typedef NS_ENUM(char, BCKISBNCodeRegularExpressionType) {
 
 + (BOOL)canEncodeContent:(NSString *)content error:(NSError *__autoreleasing *)error
 {
-    if ([content length] != 10 && [content length] != 13)
-    {
-        if (error)
-		{
-			NSString *message = [NSString stringWithFormat:@"Content strings must be 10 or 13 characters long"];
-			*error = [NSError BCKCodeErrorWithMessage:message];
-		}
-        
-        return NO;
-    }
-    
+    // By the time this class method is called the content string will be an EAN13 string. So rely on super to perform the necessary checks
 	return YES;
 }
 
