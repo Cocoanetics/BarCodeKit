@@ -9,7 +9,7 @@
 #import "BCKGTINCode.h"
 
 /**
- Specialized subclass of BCKCode to represent an EAN-13 barcode.
+ Specialized subclass of BCKCode to represent an EAN-13 barcode. Serves as the base class for BCKISBNCode and BCKISSNCode.
  */
 @interface BCKEAN13Code : BCKGTINCode <BCKCoding>
 

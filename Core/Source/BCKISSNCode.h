@@ -20,7 +20,7 @@
  
  For example, ISSN string `2434-561X` is converted to EAN13 as `9772434561006`. The title text for that ISSN string is `ISSN 2434-561X`.
  
- Use `BCKEAN2SupplementCode` or `BCKEAN5SupplementCode` to encode a separate barcode image to encode issue numbers for example.
+ Use BCKEAN2SupplementCode or BCKEAN5SupplementCode to encode a separate barcode image to encode issue numbers for example.
  
  */
 @interface BCKISSNCode : BCKEAN13Code

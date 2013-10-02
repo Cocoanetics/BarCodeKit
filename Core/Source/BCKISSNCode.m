@@ -243,10 +243,15 @@
 
 #pragma mark Subclass Methods
 
+- (BOOL)allowsFillingOfEmptyQuietZones
+{
+    return NO;
+}
+
 + (BOOL)canEncodeContent:(NSString *)content error:(NSError *__autoreleasing *)error
 {
     // By the time this class method is called the content string will be an EAN13 string. So rely on super to perform the necessary checks
-	return YES;
+	return [super canEncodeContent:content error:error];
 }
 
 + (NSString *)barcodeStandard
