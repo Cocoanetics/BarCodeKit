@@ -15,13 +15,15 @@
  - BCKEAN13Code
  - BCKUPCACode
  - BCKUPCECode
+ - BCKISBNCode
+ - BCKISSNCode
  */
 @interface BCKGTINCode : BCKCode <BCKCoding>
 
 /**
- Convenience method to retrieve a digit by index
- @param index The index of the digit
- @returns The digit value
+ Convenience method to retrieve a digit by index.
+ @param index The index of the digit.
+ @returns The digit value.
  */
 - (NSUInteger)digitAtIndex:(NSUInteger)index;
 

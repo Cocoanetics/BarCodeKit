@@ -1,7 +1,7 @@
 BarCodeKit
 ==========
 
-This project lets you generate bar codes for a variety of code standards.
+This project lets you generate bar codes for a variety of code standards:
 
 - EAN-13/UPC-A
 - EAN-8
@@ -12,10 +12,12 @@ This project lets you generate bar codes for a variety of code standards.
 - Code 93 (with mod 47)
 - Code 128
 - Interleaved 2 of 5
-- MSI - Modified Plessey (without check, mod 10, mod 11, mod 1010, mod 1011)
+- MSI - Modified Plessey (plain, mod 10, mod 11, mod 1010, mod 1011)
 - Standard/Industrial 2 of 5
 - Facing Identification Mark (FIM)
 - EAN-2 and EAN-5 supplement codes
+- ISBN (10 and 13 digits)
+- ISSN
 
 Documentation
 -------------

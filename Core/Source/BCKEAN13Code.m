@@ -27,6 +27,36 @@ static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
 
 #pragma mark - Helper Methods
 
+// Returns the check digit for a 12-character string.
+- (NSString *)generateEAN13CheckDigit:(NSString *)characterString
+{
+    NSUInteger weightedSum = 0;
+    NSUInteger checkDigit;
+    
+    for (NSUInteger index=0; index<([characterString length]); index++)
+	{
+		NSString *character = [characterString substringWithRange:NSMakeRange(index, 1)];
+        
+        if (index % 2 == 0)
+        {
+            weightedSum += [character integerValue] * 1;
+        }
+        else
+        {
+            weightedSum += [character integerValue] * 3;
+        }
+    }
+    
+    checkDigit = 10 - weightedSum % 10;
+    
+    if (checkDigit == 10)
+    {
+        checkDigit = 0;
+    }
+    
+    return [NSString stringWithFormat:@"%lu", (unsigned long)checkDigit];
+}
+
 - (NSUInteger)_codeVariantIndexForDigitAtIndex:(NSUInteger)index withVariantPattern:(char *)variantPattern
 {
 	NSAssert(index>0 && index<13, @"Index must be from 1 to 12");
