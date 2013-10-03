@@ -93,6 +93,15 @@
 		A13B58E517C6A10200454150 /* BCKInterleaved2of5Code.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B58E417C6A10200454150 /* BCKInterleaved2of5Code.m */; };
 		A13B58E817C6A1C700454150 /* BCKInterleaved2of5CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B58E717C6A1C700454150 /* BCKInterleaved2of5CodeCharacter.m */; };
 		A13B58EB17C6A1E500454150 /* BCKInterleaved2of5DigitPairCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B58EA17C6A1E500454150 /* BCKInterleaved2of5DigitPairCodeCharacter.m */; };
+		A702E43917FDF08800506B2B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7CFEF3B17EE04C8006446C9 /* Cocoa.framework */; };
+		A702E43F17FDF08800506B2B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A702E43D17FDF08800506B2B /* InfoPlist.strings */; };
+		A702E44117FDF08800506B2B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A702E44017FDF08800506B2B /* main.m */; };
+		A702E44517FDF08800506B2B /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A702E44317FDF08800506B2B /* Credits.rtf */; };
+		A702E44817FDF08800506B2B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A702E44717FDF08800506B2B /* AppDelegate.m */; };
+		A702E44B17FDF08800506B2B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A702E44917FDF08800506B2B /* MainMenu.xib */; };
+		A702E44D17FDF08800506B2B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A702E44C17FDF08800506B2B /* Images.xcassets */; };
+		A702E47617FDF2F000506B2B /* DemoWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = A702E47517FDF2F000506B2B /* DemoWindowController.m */; };
+		A702E47817FDF30D00506B2B /* DemoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = A702E47717FDF30D00506B2B /* DemoWindow.xib */; };
 		A7337C6617C1250F00BC2D2D /* BCKCode39Code.m in Sources */ = {isa = PBXBuildFile; fileRef = A7337C6517C1250F00BC2D2D /* BCKCode39Code.m */; };
 		A7337C6917C1276700BC2D2D /* BCKCode39CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A7337C6817C1276700BC2D2D /* BCKCode39CodeCharacter.m */; };
 		A7337C6C17C12C8800BC2D2D /* BCKCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A7337C6B17C12C8800BC2D2D /* BCKCodeCharacter.m */; };
@@ -356,6 +365,19 @@
 		A13B58E717C6A1C700454150 /* BCKInterleaved2of5CodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKInterleaved2of5CodeCharacter.m; sourceTree = "<group>"; };
 		A13B58E917C6A1E500454150 /* BCKInterleaved2of5DigitPairCodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKInterleaved2of5DigitPairCodeCharacter.h; sourceTree = "<group>"; };
 		A13B58EA17C6A1E500454150 /* BCKInterleaved2of5DigitPairCodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKInterleaved2of5DigitPairCodeCharacter.m; sourceTree = "<group>"; };
+		A702E43817FDF08800506B2B /* BarCodeKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarCodeKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A702E43C17FDF08800506B2B /* BarCodeKitMac-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BarCodeKitMac-Info.plist"; sourceTree = "<group>"; };
+		A702E43E17FDF08800506B2B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A702E44017FDF08800506B2B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A702E44217FDF08800506B2B /* BarCodeKitMac-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BarCodeKitMac-Prefix.pch"; sourceTree = "<group>"; };
+		A702E44417FDF08800506B2B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		A702E44617FDF08800506B2B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A702E44717FDF08800506B2B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A702E44A17FDF08800506B2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		A702E44C17FDF08800506B2B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A702E47417FDF2F000506B2B /* DemoWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoWindowController.h; sourceTree = "<group>"; };
+		A702E47517FDF2F000506B2B /* DemoWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoWindowController.m; sourceTree = "<group>"; };
+		A702E47717FDF30D00506B2B /* DemoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DemoWindow.xib; sourceTree = "<group>"; };
 		A716E43C17DE1A5C00DB6F9C /* AppledocSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppledocSettings.plist; sourceTree = "<group>"; };
 		A7337C6417C1250F00BC2D2D /* BCKCode39Code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode39Code.h; sourceTree = "<group>"; };
 		A7337C6517C1250F00BC2D2D /* BCKCode39Code.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode39Code.m; sourceTree = "<group>"; };
@@ -431,6 +453,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A702E43517FDF08800506B2B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A702E43917FDF08800506B2B /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A7378D9017C2584E008921C4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -673,6 +703,33 @@
 			name = "Interleaved 2 of 5";
 			sourceTree = "<group>";
 		};
+		A702E43A17FDF08800506B2B /* BarCodeKitMac */ = {
+			isa = PBXGroup;
+			children = (
+				A702E44617FDF08800506B2B /* AppDelegate.h */,
+				A702E44717FDF08800506B2B /* AppDelegate.m */,
+				A702E44917FDF08800506B2B /* MainMenu.xib */,
+				A702E44C17FDF08800506B2B /* Images.xcassets */,
+				A702E43B17FDF08800506B2B /* Supporting Files */,
+				A702E47417FDF2F000506B2B /* DemoWindowController.h */,
+				A702E47517FDF2F000506B2B /* DemoWindowController.m */,
+				A702E47717FDF30D00506B2B /* DemoWindow.xib */,
+			);
+			path = BarCodeKitMac;
+			sourceTree = "<group>";
+		};
+		A702E43B17FDF08800506B2B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A702E43C17FDF08800506B2B /* BarCodeKitMac-Info.plist */,
+				A702E43D17FDF08800506B2B /* InfoPlist.strings */,
+				A702E44017FDF08800506B2B /* main.m */,
+				A702E44217FDF08800506B2B /* BarCodeKitMac-Prefix.pch */,
+				A702E44317FDF08800506B2B /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		A7378D8317C222E6008921C4 /* EAN/UPC */ = {
 			isa = PBXGroup;
 			children = (
@@ -831,8 +888,9 @@
 			children = (
 				A7378D8D17C253FE008921C4 /* Documentation */,
 				A76405DF17B52E5200D45F51 /* Core */,
-				A7FB2BB217B6206300712C1C /* Demo */,
+				A7FB2BB217B6206300712C1C /* Demo (iOS) */,
 				A7378DFB17C25892008921C4 /* Test */,
+				A702E43A17FDF08800506B2B /* BarCodeKitMac */,
 				A764059917B50F9100D45F51 /* Frameworks */,
 				A764059817B50F9100D45F51 /* Products */,
 			);
@@ -846,6 +904,7 @@
 				A7378D9317C2584E008921C4 /* Unit Tests (iOS).octest */,
 				A7CFEF2417EE040F006446C9 /* Unit Tests (Mac).octest */,
 				A7CFEF3A17EE04C8006446C9 /* BarCodeKit.framework */,
+				A702E43817FDF08800506B2B /* BarCodeKit.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -898,7 +957,7 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		A7FB2BB217B6206300712C1C /* Demo */ = {
+		A7FB2BB217B6206300712C1C /* Demo (iOS) */ = {
 			isa = PBXGroup;
 			children = (
 				A7A6B58317B62D27007FF7DB /* DemoApp-Info.plist */,
@@ -906,6 +965,7 @@
 				A7FB2BB317B6206300712C1C /* Resources */,
 				A7FB2BB517B6206300712C1C /* Source */,
 			);
+			name = "Demo (iOS)";
 			path = Demo;
 			sourceTree = "<group>";
 		};
@@ -1019,6 +1079,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		A702E43717FDF08800506B2B /* Demo (Mac) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A702E45F17FDF08900506B2B /* Build configuration list for PBXNativeTarget "Demo (Mac)" */;
+			buildPhases = (
+				A702E43417FDF08800506B2B /* Sources */,
+				A702E43517FDF08800506B2B /* Frameworks */,
+				A702E43617FDF08800506B2B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Demo (Mac)";
+			productName = BarCodeKitMac;
+			productReference = A702E43817FDF08800506B2B /* BarCodeKit.app */;
+			productType = "com.apple.product-type.application";
+		};
 		A7378D9217C2584E008921C4 /* Unit Tests (iOS) */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A7378DA117C2584E008921C4 /* Build configuration list for PBXNativeTarget "Unit Tests (iOS)" */;
@@ -1141,11 +1218,24 @@
 				A7378D9217C2584E008921C4 /* Unit Tests (iOS) */,
 				A7CFEF2317EE040F006446C9 /* Unit Tests (Mac) */,
 				A7378D8817C2519C008921C4 /* Documentation */,
+				A702E43717FDF08800506B2B /* Demo (Mac) */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		A702E43617FDF08800506B2B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A702E43F17FDF08800506B2B /* InfoPlist.strings in Resources */,
+				A702E47817FDF30D00506B2B /* DemoWindow.xib in Resources */,
+				A702E44D17FDF08800506B2B /* Images.xcassets in Resources */,
+				A702E44517FDF08800506B2B /* Credits.rtf in Resources */,
+				A702E44B17FDF08800506B2B /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A7378D9117C2584E008921C4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1198,6 +1288,16 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A702E43417FDF08800506B2B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A702E47617FDF2F000506B2B /* DemoWindowController.m in Sources */,
+				A702E44817FDF08800506B2B /* AppDelegate.m in Sources */,
+				A702E44117FDF08800506B2B /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A7378D8F17C2584E008921C4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1398,7 +1498,81 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		A702E43D17FDF08800506B2B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A702E43E17FDF08800506B2B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		A702E44317FDF08800506B2B /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A702E44417FDF08800506B2B /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		A702E44917FDF08800506B2B /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A702E44A17FDF08800506B2B /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		A702E46017FDF08900506B2B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BarCodeKitMac/BarCodeKitMac-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "BarCodeKitMac/BarCodeKitMac-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = BarCodeKit;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		A702E46117FDF08900506B2B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BarCodeKitMac/BarCodeKitMac-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "BarCodeKitMac/BarCodeKitMac-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = BarCodeKit;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		A7378D8A17C2519C008921C4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1670,6 +1844,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A702E45F17FDF08900506B2B /* Build configuration list for PBXNativeTarget "Demo (Mac)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A702E46017FDF08900506B2B /* Debug */,
+				A702E46117FDF08900506B2B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		A7378D8917C2519C008921C4 /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
