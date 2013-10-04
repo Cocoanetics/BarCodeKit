@@ -3,6 +3,19 @@ Change Log
 
 This is the history of version updates.
 
+Version 1.2.0
+
+- ADDED: Mac Compatibility
+- ADDED: Demo App for Mac
+- ADDED: Facing Identification Mark Code
+- ADDED: EAN-2 and EAN-5 Supplements
+- ADDED: Standard 2 of 5 Code
+- ADDED: Pharmacode One-Track Code
+- ADDED: Optimized Presentation for UPC-A
+- ADDED: ISSN Code
+- ADDED: ISBN Code
+- CHANGED: Codes now check if they are able to encode content and return an error message with the reason if not
+
 Version 1.1.0
 
 - ADDED: Code 128 Implementation
