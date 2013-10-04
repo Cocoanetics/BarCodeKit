@@ -102,6 +102,9 @@
 		A702E4F917FEBBB000506B2B /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A702E4F817FEBBB000506B2B /* CoreText.framework */; };
 		A702E4FA17FEBC1700506B2B /* SampleBarcodes.plist in Resources */ = {isa = PBXBuildFile; fileRef = A702E48A17FE902A00506B2B /* SampleBarcodes.plist */; };
 		A702E4FB17FEBC1A00506B2B /* OCRB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A702E48917FE902A00506B2B /* OCRB.ttf */; };
+		A721D0AE17FEC63200A82189 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A721D0AB17FEC63200A82189 /* Default-568h@2x.png */; };
+		A721D0AF17FEC63200A82189 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A721D0AC17FEC63200A82189 /* Default.png */; };
+		A721D0B017FEC63200A82189 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A721D0AD17FEC63200A82189 /* Default@2x.png */; };
 		A7337C6617C1250F00BC2D2D /* BCKCode39Code.m in Sources */ = {isa = PBXBuildFile; fileRef = A7337C6517C1250F00BC2D2D /* BCKCode39Code.m */; };
 		A7337C6917C1276700BC2D2D /* BCKCode39CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A7337C6817C1276700BC2D2D /* BCKCode39CodeCharacter.m */; };
 		A7337C6C17C12C8800BC2D2D /* BCKCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A7337C6B17C12C8800BC2D2D /* BCKCodeCharacter.m */; };
@@ -394,6 +397,9 @@
 		A702E4EC17FEA7A700506B2B /* BarCodeKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BarCodeKit-Prefix.pch"; sourceTree = "<group>"; };
 		A702E4F817FEBBB000506B2B /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		A716E43C17DE1A5C00DB6F9C /* AppledocSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppledocSettings.plist; sourceTree = "<group>"; };
+		A721D0AB17FEC63200A82189 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		A721D0AC17FEC63200A82189 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		A721D0AD17FEC63200A82189 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		A7337C6417C1250F00BC2D2D /* BCKCode39Code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode39Code.h; sourceTree = "<group>"; };
 		A7337C6517C1250F00BC2D2D /* BCKCode39Code.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode39Code.m; sourceTree = "<group>"; };
 		A7337C6717C1276700BC2D2D /* BCKCode39CodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode39CodeCharacter.h; sourceTree = "<group>"; };
@@ -754,6 +760,9 @@
 		A702E48C17FE902A00506B2B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A721D0AB17FEC63200A82189 /* Default-568h@2x.png */,
+				A721D0AC17FEC63200A82189 /* Default.png */,
+				A721D0AD17FEC63200A82189 /* Default@2x.png */,
 				A702E4E717FEA77200506B2B /* Main_iPhone.storyboard */,
 				A702E4E817FEA77200506B2B /* Images.xcassets */,
 			);
@@ -1236,6 +1245,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Oliver Drobnik";
 				TargetAttributes = {
+					A702E4AF17FE916E00506B2B = {
+						DevelopmentTeam = Z7L2YCUH45;
+					};
 					A7CFEF2317EE040F006446C9 = {
 						TestTargetID = A764059617B50F9100D45F51;
 					};
@@ -1271,8 +1283,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A702E4F417FEBADC00506B2B /* Main_iPhone.storyboard in Resources */,
+				A721D0AF17FEC63200A82189 /* Default.png in Resources */,
 				A702E4F317FEBAD300506B2B /* Images.xcassets in Resources */,
 				A702E4FB17FEBC1A00506B2B /* OCRB.ttf in Resources */,
+				A721D0AE17FEC63200A82189 /* Default-568h@2x.png in Resources */,
+				A721D0B017FEC63200A82189 /* Default@2x.png in Resources */,
 				A702E4FA17FEBC1700506B2B /* SampleBarcodes.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1567,8 +1582,8 @@
 		A702E4D517FE916F00506B2B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Demo/iOS/BarCodeKit-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1577,9 +1592,10 @@
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				INFOPLIST_FILE = "Demo/iOS/BarCodeKit-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = BarCodeKit;
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1587,15 +1603,16 @@
 		A702E4D617FE916F00506B2B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Demo/iOS/BarCodeKit-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				INFOPLIST_FILE = "Demo/iOS/BarCodeKit-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = BarCodeKit;
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
