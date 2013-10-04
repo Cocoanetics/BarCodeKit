@@ -33,23 +33,16 @@
 																								  bitsPerPixel:0];
 	
 	// set offscreen context
-	NSGraphicsContext *g = [NSGraphicsContext graphicsContextWithBitmapImageRep:offscreenRep];
-	[NSGraphicsContext saveGraphicsState];
-	[NSGraphicsContext setCurrentContext:g];
+	NSGraphicsContext *graphicsContext = [NSGraphicsContext graphicsContextWithBitmapImageRep:offscreenRep];
+	[NSGraphicsContext setCurrentContext:graphicsContext];
+	CGContextRef context = [graphicsContext graphicsPort];
 	
-	CGContextRef context = [g graphicsPort];
-	
-	// flip
-	
+	// need to flip context
 	CGAffineTransform flipVertical = CGAffineTransformMake(1, 0, 0, -1, 0, neededSize.height);
 	CGContextConcatCTM(context, flipVertical);
 	
-	
+	// render the bar code
 	[barCode renderInContext:context options:options];
-	
-	
-	// done drawing, so set the current context back to what it was
-	[NSGraphicsContext restoreGraphicsState];
 	
 	// create an NSImage and add the rep to it
 	NSImage *image = [[NSImage alloc] initWithSize:neededSize];

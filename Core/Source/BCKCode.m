@@ -34,6 +34,18 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 	{
 		NSError *encodeError = nil;
 		
+		if (![content length])
+		{
+			if (error)
+			{
+				NSString *message = [NSString stringWithFormat:@"Unable to encoded empty string in %@", NSStringFromClass([self class])];
+				*error = [NSError BCKCodeErrorWithMessage:message];
+			}
+			
+			return nil;
+		}
+		
+		
 		// query the sub-classes method to check if this can be encoded
 		if (![[self class] canEncodeContent:content error:&encodeError])
 		{

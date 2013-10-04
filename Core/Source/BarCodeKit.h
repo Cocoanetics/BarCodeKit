@@ -75,4 +75,6 @@
 
 #if TARGET_OS_IPHONE
 	#import "UIImage+BarcodeKit.h"
+#else
+	#import "NSImage+BarcodeKit.h"
 #endif

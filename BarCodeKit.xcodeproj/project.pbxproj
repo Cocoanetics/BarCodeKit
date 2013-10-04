@@ -105,6 +105,8 @@
 		A721D0AE17FEC63200A82189 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A721D0AB17FEC63200A82189 /* Default-568h@2x.png */; };
 		A721D0AF17FEC63200A82189 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A721D0AC17FEC63200A82189 /* Default.png */; };
 		A721D0B017FEC63200A82189 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A721D0AD17FEC63200A82189 /* Default@2x.png */; };
+		A721D0B617FED8FF00A82189 /* NSImage+BarCodeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A721D0B417FED8FF00A82189 /* NSImage+BarCodeKit.h */; };
+		A721D0B717FED8FF00A82189 /* NSImage+BarCodeKit.m in Sources */ = {isa = PBXBuildFile; fileRef = A721D0B517FED8FF00A82189 /* NSImage+BarCodeKit.m */; };
 		A7337C6617C1250F00BC2D2D /* BCKCode39Code.m in Sources */ = {isa = PBXBuildFile; fileRef = A7337C6517C1250F00BC2D2D /* BCKCode39Code.m */; };
 		A7337C6917C1276700BC2D2D /* BCKCode39CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A7337C6817C1276700BC2D2D /* BCKCode39CodeCharacter.m */; };
 		A7337C6C17C12C8800BC2D2D /* BCKCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A7337C6B17C12C8800BC2D2D /* BCKCodeCharacter.m */; };
@@ -400,6 +402,8 @@
 		A721D0AB17FEC63200A82189 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		A721D0AC17FEC63200A82189 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		A721D0AD17FEC63200A82189 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		A721D0B417FED8FF00A82189 /* NSImage+BarCodeKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+BarCodeKit.h"; sourceTree = "<group>"; };
+		A721D0B517FED8FF00A82189 /* NSImage+BarCodeKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+BarCodeKit.m"; sourceTree = "<group>"; };
 		A7337C6417C1250F00BC2D2D /* BCKCode39Code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode39Code.h; sourceTree = "<group>"; };
 		A7337C6517C1250F00BC2D2D /* BCKCode39Code.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode39Code.m; sourceTree = "<group>"; };
 		A7337C6717C1276700BC2D2D /* BCKCode39CodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode39CodeCharacter.h; sourceTree = "<group>"; };
@@ -808,6 +812,7 @@
 		A702E49A17FE902A00506B2B /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				A721D0B117FEC95D00A82189 /* Transformers */,
 				A702E49B17FE902A00506B2B /* AppDelegate.h */,
 				A702E49C17FE902A00506B2B /* AppDelegate.m */,
 				A702E49D17FE902A00506B2B /* DemoWindowController.h */,
@@ -815,6 +820,13 @@
 				A702E49F17FE902A00506B2B /* main.m */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		A721D0B117FEC95D00A82189 /* Transformers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Transformers;
 			sourceTree = "<group>";
 		};
 		A7378D8317C222E6008921C4 /* EAN/UPC */ = {
@@ -1030,6 +1042,8 @@
 				6C93DE7A17E1BF7A002F0BF5 /* NSError+BCKCode.m */,
 				A7343F4717BF599100EF9B83 /* UIImage+BarCodeKit.h */,
 				A7343F4817BF599100EF9B83 /* UIImage+BarCodeKit.m */,
+				A721D0B417FED8FF00A82189 /* NSImage+BarCodeKit.h */,
+				A721D0B517FED8FF00A82189 /* NSImage+BarCodeKit.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -1096,6 +1110,7 @@
 				6CC6BAAA17F191AB00F3ECCF /* BCKFacingIdentificationMarkCode.h in Headers */,
 				A7CFEF6417EE04E9006446C9 /* BCKCodeCharacter.h in Headers */,
 				6CB154A917F69462002C20F3 /* BCKISBNCode.h in Headers */,
+				A721D0B617FED8FF00A82189 /* NSImage+BarCodeKit.h in Headers */,
 				6C66048D17F5851D0016E17E /* BCKGTINSupplementDataCodeCharacter.h in Headers */,
 				A7CFEFB217EE0559006446C9 /* NSError+BCKCode.h in Headers */,
 				A7CFEFB017EE0559006446C9 /* BCKStandard2of5Code.h in Headers */,
@@ -1494,6 +1509,7 @@
 				A7CFEF7517EE04FB006446C9 /* BCKCode39CodeCharacter.m in Sources */,
 				6C66048F17F5851D0016E17E /* BCKGTINSupplementDataCodeCharacter.m in Sources */,
 				6CC6BAA717F1910200F3ECCF /* BCKFacingIdentificationMarkCodeCharacter.m in Sources */,
+				A721D0B717FED8FF00A82189 /* NSImage+BarCodeKit.m in Sources */,
 				A7CFEF7F17EE0506006446C9 /* BCKInterleaved2of5DigitPairCodeCharacter.m in Sources */,
 				A7CFEF8317EE050B006446C9 /* BCKCode128ContentCodeCharacter.m in Sources */,
 				A7CFEF8B17EE0514006446C9 /* BCKPharmaOneTrackContentCodeCharacter.m in Sources */,
