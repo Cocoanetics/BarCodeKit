@@ -107,6 +107,7 @@
 		A721D0B017FEC63200A82189 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A721D0AD17FEC63200A82189 /* Default@2x.png */; };
 		A721D0B617FED8FF00A82189 /* NSImage+BarCodeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A721D0B417FED8FF00A82189 /* NSImage+BarCodeKit.h */; };
 		A721D0B717FED8FF00A82189 /* NSImage+BarCodeKit.m in Sources */ = {isa = PBXBuildFile; fileRef = A721D0B517FED8FF00A82189 /* NSImage+BarCodeKit.m */; };
+		A721D0BC17FEE78200A82189 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = A721D0BB17FEE78200A82189 /* Defaults.plist */; };
 		A7337C6617C1250F00BC2D2D /* BCKCode39Code.m in Sources */ = {isa = PBXBuildFile; fileRef = A7337C6517C1250F00BC2D2D /* BCKCode39Code.m */; };
 		A7337C6917C1276700BC2D2D /* BCKCode39CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A7337C6817C1276700BC2D2D /* BCKCode39CodeCharacter.m */; };
 		A7337C6C17C12C8800BC2D2D /* BCKCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A7337C6B17C12C8800BC2D2D /* BCKCodeCharacter.m */; };
@@ -404,6 +405,7 @@
 		A721D0AD17FEC63200A82189 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		A721D0B417FED8FF00A82189 /* NSImage+BarCodeKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+BarCodeKit.h"; sourceTree = "<group>"; };
 		A721D0B517FED8FF00A82189 /* NSImage+BarCodeKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+BarCodeKit.m"; sourceTree = "<group>"; };
+		A721D0BB17FEE78200A82189 /* Defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Defaults.plist; sourceTree = "<group>"; };
 		A7337C6417C1250F00BC2D2D /* BCKCode39Code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode39Code.h; sourceTree = "<group>"; };
 		A7337C6517C1250F00BC2D2D /* BCKCode39Code.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode39Code.m; sourceTree = "<group>"; };
 		A7337C6717C1276700BC2D2D /* BCKCode39CodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode39CodeCharacter.h; sourceTree = "<group>"; };
@@ -801,6 +803,7 @@
 		A702E49117FE902A00506B2B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A721D0BB17FEE78200A82189 /* Defaults.plist */,
 				A702E49217FE902A00506B2B /* MainMenu.xib */,
 				A702E49417FE902A00506B2B /* DemoWindow.xib */,
 				A702E49517FE902A00506B2B /* Credits.rtf */,
@@ -1334,6 +1337,7 @@
 			files = (
 				A7E0B5BC17FEBDD20037B70C /* Images.xcassets in Resources */,
 				A7E0B5BF17FEBDED0037B70C /* Credits.rtf in Resources */,
+				A721D0BC17FEE78200A82189 /* Defaults.plist in Resources */,
 				A7E0B5BE17FEBDEA0037B70C /* DemoWindow.xib in Resources */,
 				A7E0B5BD17FEBDE70037B70C /* MainMenu.xib in Resources */,
 			);

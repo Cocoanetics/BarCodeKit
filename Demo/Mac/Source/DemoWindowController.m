@@ -44,6 +44,9 @@
 	_barcodeSamples = [NSDictionary dictionaryWithContentsOfFile:plistPath];
 	
 	self.selectedIndex = 0;
+	
+	// setup defaults
+	self.showCaption = [[NSUserDefaults standardUserDefaults] boolForKey:@"BCKDemoShowCaption"];
 }
 
 #pragma mark - Utilities

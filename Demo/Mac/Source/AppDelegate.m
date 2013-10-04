@@ -15,6 +15,13 @@
 	DemoWindowController *_windowController;
 }
 
++ (void)initialize
+{
+	NSString *defaultsPath = [[NSBundle mainBundle] pathForResource:@"Defaults" ofType:@"plist"];
+	NSDictionary *defaultsDict = [NSDictionary dictionaryWithContentsOfFile:defaultsPath];
+	
+	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultsDict];
+}
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {

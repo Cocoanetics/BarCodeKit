@@ -112,14 +112,14 @@
                         </constraints>
                         <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="1" maxValue="10" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="xBu-Vp-eXj"/>
                         <connections>
-                            <binding destination="-2" name="hidden" keyPath="self.errorMessage" id="ku2-4m-FWg">
-                                <dictionary key="options">
-                                    <string key="NSValueTransformerName">NSIsNotNil</string>
-                                </dictionary>
-                            </binding>
                             <binding destination="-2" name="value" keyPath="self.barScale" id="e7x-P8-ckj">
                                 <dictionary key="options">
                                     <bool key="NSValidatesImmediately" value="YES"/>
+                                </dictionary>
+                            </binding>
+                            <binding destination="-2" name="hidden" keyPath="self.errorMessage" id="ku2-4m-FWg">
+                                <dictionary key="options">
+                                    <string key="NSValueTransformerName">NSIsNotNil</string>
                                 </dictionary>
                             </binding>
                         </connections>
