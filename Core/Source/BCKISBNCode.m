@@ -58,7 +58,7 @@ typedef NS_ENUM(char, BCKISBNCodeRegularExpressionType) {
         }
         default:
         {
-            return [NSString stringWithFormat:@"%d", checkDigit];
+            return [NSString stringWithFormat:@"%d", (int)checkDigit];
             break;
         }
     }
