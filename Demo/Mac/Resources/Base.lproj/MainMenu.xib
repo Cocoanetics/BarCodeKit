@@ -17,17 +17,7 @@
                 <menuItem title="BarCodeKitMac" id="56">
                     <menu key="submenu" title="BarCodeKitMac" systemMenu="apple" id="57">
                         <items>
-                            <menuItem title="About BarCodeKitMac" id="58">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="orderFrontStandardAboutPanel:" target="-2" id="142"/>
-                                </connections>
-                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="236">
-                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                            </menuItem>
-                            <menuItem title="Preferences…" keyEquivalent="," id="129"/>
-                            <menuItem isSeparatorItem="YES" id="143">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
                             <menuItem title="Services" id="131">
@@ -36,7 +26,7 @@
                             <menuItem isSeparatorItem="YES" id="144">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Hide BarCodeKitMac" keyEquivalent="h" id="134">
+                            <menuItem title="Hide BarCodeKit" keyEquivalent="h" id="134">
                                 <connections>
                                     <action selector="hide:" target="-1" id="367"/>
                                 </connections>
@@ -55,7 +45,7 @@
                             <menuItem isSeparatorItem="YES" id="149">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Quit BarCodeKitMac" keyEquivalent="q" id="136">
+                            <menuItem title="Quit BarCodeKit" keyEquivalent="q" id="136">
                                 <connections>
                                     <action selector="terminate:" target="-3" id="449"/>
                                 </connections>

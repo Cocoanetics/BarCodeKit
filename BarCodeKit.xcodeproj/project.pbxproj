@@ -233,10 +233,8 @@
 		A7CFEFC617EE090B006446C9 /* BCKStandard2of5CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF2308D17E9BA560065E50C /* BCKStandard2of5CodeTest.m */; };
 		A7E0B58D17FEBD4F0037B70C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7CFEF3B17EE04C8006446C9 /* Cocoa.framework */; };
 		A7E0B5BB17FEBDB30037B70C /* BarCodeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7CFEF3A17EE04C8006446C9 /* BarCodeKit.framework */; };
-		A7E0B5BC17FEBDD20037B70C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A702E49917FE902A00506B2B /* Images.xcassets */; };
 		A7E0B5BD17FEBDE70037B70C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A702E49217FE902A00506B2B /* MainMenu.xib */; };
 		A7E0B5BE17FEBDEA0037B70C /* DemoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = A702E49417FE902A00506B2B /* DemoWindow.xib */; };
-		A7E0B5BF17FEBDED0037B70C /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A702E49517FE902A00506B2B /* Credits.rtf */; };
 		A7E0B5C017FEBDF40037B70C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A702E49C17FE902A00506B2B /* AppDelegate.m */; };
 		A7E0B5C117FEBDF60037B70C /* DemoWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = A702E49E17FE902A00506B2B /* DemoWindowController.m */; };
 		A7E0B5C217FEBDF80037B70C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A702E49F17FE902A00506B2B /* main.m */; };
@@ -379,8 +377,6 @@
 		A702E49017FE902A00506B2B /* BarCodeKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BarCodeKit-Prefix.pch"; sourceTree = "<group>"; };
 		A702E49317FE902A00506B2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		A702E49417FE902A00506B2B /* DemoWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DemoWindow.xib; sourceTree = "<group>"; };
-		A702E49617FE902A00506B2B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		A702E49917FE902A00506B2B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A702E49B17FE902A00506B2B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A702E49C17FE902A00506B2B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		A702E49D17FE902A00506B2B /* DemoWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoWindowController.h; sourceTree = "<group>"; };
@@ -806,8 +802,6 @@
 				A721D0BB17FEE78200A82189 /* Defaults.plist */,
 				A702E49217FE902A00506B2B /* MainMenu.xib */,
 				A702E49417FE902A00506B2B /* DemoWindow.xib */,
-				A702E49517FE902A00506B2B /* Credits.rtf */,
-				A702E49917FE902A00506B2B /* Images.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1335,8 +1329,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7E0B5BC17FEBDD20037B70C /* Images.xcassets in Resources */,
-				A7E0B5BF17FEBDED0037B70C /* Credits.rtf in Resources */,
 				A721D0BC17FEE78200A82189 /* Defaults.plist in Resources */,
 				A7E0B5BE17FEBDEA0037B70C /* DemoWindow.xib in Resources */,
 				A7E0B5BD17FEBDE70037B70C /* MainMenu.xib in Resources */,
@@ -1586,14 +1578,6 @@
 				A702E49317FE902A00506B2B /* Base */,
 			);
 			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-		A702E49517FE902A00506B2B /* Credits.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A702E49617FE902A00506B2B /* en */,
-			);
-			name = Credits.rtf;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

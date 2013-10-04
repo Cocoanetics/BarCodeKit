@@ -29,7 +29,7 @@
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="221" id="qNg-eb-pYP"/>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="221" id="ufz-Kv-WMQ"/>
                         </constraints>
-                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="groove" id="IKF-lu-6t9"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageFrameStyle="groove" id="IKF-lu-6t9"/>
                         <connections>
                             <binding destination="-2" name="value" keyPath="self.barcodeImage" id="Eq2-xq-g1Y"/>
                         </connections>
@@ -112,14 +112,14 @@
                         </constraints>
                         <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="1" maxValue="10" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="xBu-Vp-eXj"/>
                         <connections>
+                            <binding destination="-2" name="hidden" keyPath="self.errorMessage" id="JNu-EM-OVd">
+                                <dictionary key="options">
+                                    <string key="NSValueTransformerName">NSIsNotNil</string>
+                                </dictionary>
+                            </binding>
                             <binding destination="-2" name="value" keyPath="self.barScale" id="e7x-P8-ckj">
                                 <dictionary key="options">
                                     <bool key="NSValidatesImmediately" value="YES"/>
-                                </dictionary>
-                            </binding>
-                            <binding destination="-2" name="hidden" keyPath="self.errorMessage" id="ku2-4m-FWg">
-                                <dictionary key="options">
-                                    <string key="NSValueTransformerName">NSIsNotNil</string>
                                 </dictionary>
                             </binding>
                         </connections>
@@ -152,7 +152,8 @@
                         </constraints>
                         <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" tickMarkPosition="above" sliderType="linear" id="e6w-zg-9QN"/>
                         <connections>
-                            <binding destination="-2" name="hidden" keyPath="self.canOverlapCaption" id="s4I-q1-0HB">
+                            <binding destination="-2" name="enabled" keyPath="self.canOverlapCaption" id="Lgj-eq-E5D"/>
+                            <binding destination="-2" name="hidden" keyPath="self.canOverlapCaption" previousBinding="Lgj-eq-E5D" id="GKL-LX-FZN">
                                 <dictionary key="options">
                                     <string key="NSValueTransformerName">NSNegateBoolean</string>
                                 </dictionary>
@@ -172,9 +173,10 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <binding destination="-2" name="hidden" keyPath="self.canShowDebug" id="ev7-wm-q1F">
+                            <binding destination="-2" name="enabled" keyPath="self.canShowDebug" id="4nY-lH-0te"/>
+                            <binding destination="-2" name="hidden" keyPath="self.errorMessage" previousBinding="4nY-lH-0te" id="dnT-wl-txY">
                                 <dictionary key="options">
-                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                    <string key="NSValueTransformerName">NSIsNotNil</string>
                                 </dictionary>
                             </binding>
                             <binding destination="-2" name="value" keyPath="self.showDebug" id="aFp-vR-iLf"/>
@@ -191,9 +193,10 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <binding destination="-2" name="hidden" keyPath="self.canShowCaption" id="Pbt-dg-9gw">
+                            <binding destination="-2" name="enabled" keyPath="self.canShowCaption" id="qMS-LD-qTN"/>
+                            <binding destination="-2" name="hidden" keyPath="self.errorMessage" previousBinding="qMS-LD-qTN" id="xEA-Th-S4l">
                                 <dictionary key="options">
-                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                    <string key="NSValueTransformerName">NSIsNotNil</string>
                                 </dictionary>
                             </binding>
                             <binding destination="-2" name="value" keyPath="self.showCaption" id="kNU-ra-YKd"/>
@@ -210,9 +213,10 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <binding destination="-2" name="hidden" keyPath="self.canShowCheckDigits" id="Y77-r8-GW2">
+                            <binding destination="-2" name="enabled" keyPath="self.canShowCheckDigits" id="iCV-Ax-cBF"/>
+                            <binding destination="-2" name="hidden" keyPath="self.errorMessage" previousBinding="iCV-Ax-cBF" id="wHq-O9-P23">
                                 <dictionary key="options">
-                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                    <string key="NSValueTransformerName">NSIsNotNil</string>
                                 </dictionary>
                             </binding>
                             <binding destination="-2" name="value" keyPath="self.showCheckDigits" id="vCv-hR-Qxh"/>
@@ -229,9 +233,10 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <binding destination="-2" name="hidden" keyPath="self.canFillQuietZones" id="KKZ-HE-1jZ">
+                            <binding destination="-2" name="enabled" keyPath="self.canFillQuietZones" id="jG4-pw-gz0"/>
+                            <binding destination="-2" name="hidden" keyPath="self.errorMessage" previousBinding="jG4-pw-gz0" id="sl6-Sz-pPQ">
                                 <dictionary key="options">
-                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                    <string key="NSValueTransformerName">NSIsNotNil</string>
                                 </dictionary>
                             </binding>
                             <binding destination="-2" name="value" keyPath="self.fillQuietZones" id="ggr-jz-2jy"/>

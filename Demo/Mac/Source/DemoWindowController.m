@@ -128,7 +128,6 @@
 		self.canShowDebug = _canShowCaption;
 		self.canOverlapCaption = [_barcodeObject markerBarsCanOverlapBottomCaption];
 		self.canShowCheckDigits = [_barcodeObject showCheckDigitsInCaption];
-		
 		self.errorMessage = nil;
 	}
 	else
@@ -162,6 +161,31 @@
 	return [NSSet setWithObject:@"selectedIndex"];
 }
 
++ (NSSet *)keyPathsForValuesAffectingFillQuietZones
+{
+	return [NSSet setWithObject:@"canFillQuietZones"];
+}
+
++ (NSSet *)keyPathsForValuesAffectingShowCheckDigits
+{
+	return [NSSet setWithObject:@"canShowCheckDigits"];
+}
+
++ (NSSet *)keyPathsForValuesAffectingBarcodeImage
+{
+	return [NSSet setWithArray:@[@"barScale", @"selectedIndex", @"showDebug", @"contentText", @"fillQuietZones", @"showCheckDigits", @"showCaption", @"captionOverlap"]];
+}
+
++ (NSSet *)keyPathsForValuesAffectingShowCaption
+{
+	return [NSSet setWithObject:@"canShowCaption"];
+}
+
++ (NSSet *)keyPathsForValuesAffectingShowDebug
+{
+	return [NSSet setWithObject:@"canShowDebug"];
+}
+
 #pragma mark - Properties
 
 - (NSImage *)barcodeImage
@@ -185,10 +209,7 @@
 	return [NSImage imageWithBarCode:_barcodeObject options:options];
 }
 
-+ (NSSet *)keyPathsForValuesAffectingBarcodeImage
-{
-	return [NSSet setWithArray:@[@"barScale", @"selectedIndex", @"showDebug", @"contentText", @"fillQuietZones", @"showCheckDigits", @"showCaption", @"captionOverlap"]];
-}
+
 
 - (void)setSelectedIndex:(NSUInteger)selectedIndex
 {
@@ -224,6 +245,51 @@
 	
 	[self _updateWithOptions];
 }
+
+- (BOOL)showDebug
+{
+	if (_canShowDebug)
+	{
+		return _showDebug;
+	}
+	
+	return NO;
+}
+
+- (BOOL)showCaption
+{
+	if (_canShowCaption)
+	{
+		return _showCaption;
+	}
+	
+	return NO;
+}
+
+
+
+- (BOOL)showCheckDigits
+{
+	if (_canShowCheckDigits)
+	{
+		return _showCheckDigits;
+	}
+	
+	return NO;
+}
+
+
+
+- (BOOL)fillQuietZones
+{
+	if (_canFillQuietZones)
+	{
+		return _fillQuietZones;
+	}
+	
+	return NO;
+}
+
 
 @synthesize barcodeTypes = _barcodeTypes;
 @synthesize barcodeArrayController = _barcodeArrayController;
