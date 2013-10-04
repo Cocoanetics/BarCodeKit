@@ -33,15 +33,15 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-    
+   
 	// Load the array of available BCKCode subclasses
-	_barcodeTypes = [self _allSubclassesForClass:[BCKCode class]];
+	self.barcodeTypes = [self _allSubclassesForClass:[BCKCode class]];
 	
 	// Load the sample barcodes from the property list
 	NSString * plistPath = [[NSBundle mainBundle] pathForResource:@"SampleBarcodes" ofType:@"plist"];
 	_barcodeSamples = [NSDictionary dictionaryWithContentsOfFile:plistPath];
 	
-	self.barcodeArrayController.content = _barcodeTypes;
+	self.selectedIndex = 0;
 }
 
 
@@ -52,7 +52,7 @@
 // Returns an array of NSString objects of theClass' subclasses (direct subclasses only)
 - (NSArray *)_allSubclassesForClass:(Class)theClass
 {
-	NSMutableArray *mySubclasses = [NSMutableArray array];
+	NSMutableArray *tmpArray = [NSMutableArray array];
 	unsigned int numOfClasses;
 	
 	Class *classes = objc_copyClassList(&numOfClasses);
@@ -77,15 +77,120 @@
 				continue;
 			}
 			
-			// change to (superClass) to find all descendants, not just the direct ones
-			[mySubclasses addObject: NSStringFromClass(barcodeClass)];
+			NSDictionary *codeDict = @{@"Description": [barcodeClass barcodeDescription],
+												@"Standard": [barcodeClass barcodeStandard],
+												@"ClassName": NSStringFromClass(barcodeClass),
+												@"Class": barcodeClass};
+			[tmpArray addObject:codeDict];
 		}
 	}
 	
 	free(classes);
 	
-	// Sort alphabetically and return the array
-	return [mySubclasses sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+	NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"Description" ascending:YES];
+	return [tmpArray sortedArrayUsingDescriptors:@[sort]];
+}
+
+- (void)_updateSampleContent
+{
+	NSDictionary *selectedDict = _barcodeTypes[_selectedIndex];
+	NSString *className = selectedDict[@"ClassName"];
+	NSString *sampleContent = _barcodeSamples[className];
+	
+	if (!sampleContent)
+	{
+		sampleContent = _barcodeSamples[@"default"];
+	}
+	
+	if ([sampleContent length])
+	{
+		self.contentText = sampleContent;
+	}
+}
+
+- (void)_updateWithOptions
+{
+	NSDictionary *selectedDict = _barcodeTypes[_selectedIndex];
+	Class class = selectedDict[@"Class"];
+
+	NSDictionary *options = @{BCKCodeDrawingBarScaleOption: @(_barScale),
+									  BCKCodeDrawingFillEmptyQuietZonesOption: @(_fillQuietZones),
+									  BCKCodeDrawingDebugOption: @(_showDebug),
+									  BCKCodeDrawingPrintCaptionOption: @(_showCaption),
+									  BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption: @(_captionOverlap),
+									  BCKCodeDrawingShowCheckDigitsOption: @(_showCheckDigits)};
+	
+	// Initialise barcode contents using the text in the textfield
+	NSError *error;
+	_barcodeObject = [[class alloc] initWithContent:_contentText error:&error];
+
+	
+	// Draw the barcode. If the barcode doesn't support the content clear the image and show the error message, disable all controls except the text field
+	if (_barcodeObject)
+	{
+		self.canFillQuietZones = [_barcodeObject allowsFillingOfEmptyQuietZones];
+		self.canShowCaption = [_barcodeObject respondsToSelector:@selector(captionTextForZone:withRenderOptions:)];
+		self.canOverlapCaption = [_barcodeObject markerBarsCanOverlapBottomCaption];
+		self.canShowCheckDigits = [_barcodeObject showCheckDigitsInCaption];
+		
+//		self.barcodeImageView.image = [UIImage imageWithBarCode:_barcodeObject options:options];
+		self.errorMessage = nil;
+	}
+	else
+	{
+		self.canFillQuietZones = NO;
+		self.canShowCaption = NO;
+		self.canOverlapCaption = NO;
+		self.canShowCheckDigits = NO;
+
+//		self.errorMessage.hidden = NO;
+//		self.barcodeImageView.image = nil;
+		self.errorMessage = [NSString stringWithFormat:@"Encoding error: %@\n\nPlease try a different contents.", [error localizedDescription]];
+	}
+}
+
+#pragma mark - Data Binding
+
+- (NSString *)barcodeStandard
+{
+	NSDictionary *selectedDict = _barcodeTypes[_selectedIndex];
+	return selectedDict[@"Standard"];
+}
+
++ (NSSet *)keyPathsForValuesAffectingBarcodeStandard
+{
+	return [NSSet setWithObject:@"selectedIndex"];
+}
+
++ (NSSet *)keyPathsForValuesAffectingBarcodeObject
+{
+	return [NSSet setWithObject:@"selectedIndex"];
+}
+
+#pragma mark - Properties
+
+- (void)setSelectedIndex:(NSUInteger)selectedIndex
+{
+	[self willChangeValueForKey:@"selectedIndex"];
+	
+	_selectedIndex = selectedIndex;
+	
+	[self didChangeValueForKey:@"selectedIndex"];
+	
+	[self _updateSampleContent];
+	
+	[self _updateWithOptions];
+}
+
+- (void)setContentText:(NSString *)contentText
+{
+	[self willChangeValueForKey:@"contentText"];
+	
+	_contentText = contentText;
+	
+	[self didChangeValueForKey:@"contentText"];
+	
+	[self _updateWithOptions];
 }
 
 @synthesize barcodeTypes = _barcodeTypes;
