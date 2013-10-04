@@ -380,7 +380,7 @@
 		A702E49D17FE902A00506B2B /* DemoWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoWindowController.h; sourceTree = "<group>"; };
 		A702E49E17FE902A00506B2B /* DemoWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoWindowController.m; sourceTree = "<group>"; };
 		A702E49F17FE902A00506B2B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		A702E4B017FE916F00506B2B /* Demo (iOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Demo (iOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A702E4B017FE916F00506B2B /* BarCodeKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarCodeKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A702E4DA17FEA74500506B2B /* BCKBarcodeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKBarcodeListViewController.m; sourceTree = "<group>"; };
 		A702E4DB17FEA74500506B2B /* BCKBarcodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKBarcodeViewController.h; sourceTree = "<group>"; };
 		A702E4DC17FEA74500506B2B /* BCKBarcodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKBarcodeViewController.m; sourceTree = "<group>"; };
@@ -980,7 +980,7 @@
 				A7378D9317C2584E008921C4 /* Unit Tests (iOS).octest */,
 				A7CFEF2417EE040F006446C9 /* Unit Tests (Mac).octest */,
 				A7CFEF3A17EE04C8006446C9 /* BarCodeKit.framework */,
-				A702E4B017FE916F00506B2B /* Demo (iOS).app */,
+				A702E4B017FE916F00506B2B /* BarCodeKit.app */,
 				A7E0B58C17FEBD4F0037B70C /* BarCodeKit.app */,
 			);
 			name = Products;
@@ -1135,7 +1135,7 @@
 			);
 			name = "Demo (iOS)";
 			productName = BarCodeKit;
-			productReference = A702E4B017FE916F00506B2B /* Demo (iOS).app */;
+			productReference = A702E4B017FE916F00506B2B /* BarCodeKit.app */;
 			productType = "com.apple.product-type.application";
 		};
 		A7378D9217C2584E008921C4 /* Unit Tests (iOS) */ = {
@@ -1579,7 +1579,7 @@
 				INFOPLIST_FILE = "Demo/iOS/BarCodeKit-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = BarCodeKit;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1595,7 +1595,7 @@
 				INFOPLIST_FILE = "Demo/iOS/BarCodeKit-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = BarCodeKit;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1856,7 +1856,7 @@
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				INFOPLIST_FILE = "Demo/Mac/BarCodeKit-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = BarCodeKit;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
@@ -1878,7 +1878,7 @@
 				GCC_PREFIX_HEADER = "Demo/Mac/BarCodeKit-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				INFOPLIST_FILE = "Demo/Mac/BarCodeKit-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = BarCodeKit;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
