@@ -523,6 +523,7 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 	NSColor *nsColor = (NSColor *)backgroundColor;
 	CGContextSetFillColorWithColor(context, [nsColor CGColor]);
 #endif
+	
 	CGContextFillRect(context, bounds);
 	
 	CGContextRestoreGState(context);
