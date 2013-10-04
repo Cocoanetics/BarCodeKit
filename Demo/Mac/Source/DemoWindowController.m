@@ -24,8 +24,10 @@
 - (id)initWithWindow:(NSWindow *)window
 {
     self = [super initWithWindow:window];
-    if (self) {
-        // Initialization code here.
+    if (self)
+	 {
+		 _barScale = 1.0;
+		 _captionOverlap = 0;
     }
     return self;
 }
@@ -43,9 +45,6 @@
 	
 	self.selectedIndex = 0;
 }
-
-
-
 
 #pragma mark - Utilities
 
@@ -113,13 +112,6 @@
 	NSDictionary *selectedDict = _barcodeTypes[_selectedIndex];
 	Class class = selectedDict[@"Class"];
 
-	NSDictionary *options = @{BCKCodeDrawingBarScaleOption: @(_barScale),
-									  BCKCodeDrawingFillEmptyQuietZonesOption: @(_fillQuietZones),
-									  BCKCodeDrawingDebugOption: @(_showDebug),
-									  BCKCodeDrawingPrintCaptionOption: @(_showCaption),
-									  BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption: @(_captionOverlap),
-									  BCKCodeDrawingShowCheckDigitsOption: @(_showCheckDigits)};
-	
 	// Initialise barcode contents using the text in the textfield
 	NSError *error;
 	_barcodeObject = [[class alloc] initWithContent:_contentText error:&error];
@@ -133,7 +125,6 @@
 		self.canOverlapCaption = [_barcodeObject markerBarsCanOverlapBottomCaption];
 		self.canShowCheckDigits = [_barcodeObject showCheckDigitsInCaption];
 		
-//		self.barcodeImageView.image = [UIImage imageWithBarCode:_barcodeObject options:options];
 		self.errorMessage = nil;
 	}
 	else
@@ -143,8 +134,7 @@
 		self.canOverlapCaption = NO;
 		self.canShowCheckDigits = NO;
 
-//		self.errorMessage.hidden = NO;
-//		self.barcodeImageView.image = nil;
+		self.barcodeImage = nil;
 		self.errorMessage = [NSString stringWithFormat:@"Encoding error: %@\n\nPlease try a different contents.", [error localizedDescription]];
 	}
 }
@@ -169,6 +159,31 @@
 
 #pragma mark - Properties
 
+- (NSImage *)barcodeImage
+{
+	if (!_barcodeObject)
+	{
+		return nil;
+	}
+	
+	// round bar scale to half points
+	CGFloat barScale = roundf(_barScale);
+	
+	NSDictionary *options = @{BCKCodeDrawingBarScaleOption: @(barScale),
+									  BCKCodeDrawingFillEmptyQuietZonesOption: @(_fillQuietZones),
+									  BCKCodeDrawingDebugOption: @(_showDebug),
+									  BCKCodeDrawingPrintCaptionOption: @(_showCaption),
+									  BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption: @(_captionOverlap),
+									  BCKCodeDrawingShowCheckDigitsOption: @(_showCheckDigits)};
+
+	return [NSImage imageWithBarCode:_barcodeObject options:options];
+}
+
++ (NSSet *)keyPathsForValuesAffectingBarcodeImage
+{
+	return [NSSet setWithArray:@[@"barScale", @"selectedIndex", @"showDebug", @"contentText", @"fillQuietZones", @"showCheckDigits", @"showCaption", @"captionOverlap"]];
+}
+
 - (void)setSelectedIndex:(NSUInteger)selectedIndex
 {
 	[self willChangeValueForKey:@"selectedIndex"];
@@ -189,6 +204,17 @@
 	_contentText = contentText;
 	
 	[self didChangeValueForKey:@"contentText"];
+	
+	[self _updateWithOptions];
+}
+
+- (void)setBarScale:(CGFloat)barScale
+{
+	[self willChangeValueForKey:@"barScale"];
+	
+	_barScale = barScale;
+	
+	[self didChangeValueForKey:@"barScale"];
 	
 	[self _updateWithOptions];
 }

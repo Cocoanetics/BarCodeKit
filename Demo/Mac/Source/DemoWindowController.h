@@ -44,5 +44,6 @@
 @property (nonatomic, strong) BCKCode *barcodeObject;
 
 @property (nonatomic, strong) NSString *errorMessage;
+@property (nonatomic, strong) NSImage *barcodeImage;
 
 @end
