@@ -21,9 +21,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		6C20911917D20DD000869F6E /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C20911817D20DD000869F6E /* Main_iPhone.storyboard */; };
-		6C20911E17D20DDF00869F6E /* BCKBarcodeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20911B17D20DDF00869F6E /* BCKBarcodeListViewController.m */; };
-		6C20911F17D20DDF00869F6E /* BCKBarcodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C20911D17D20DDF00869F6E /* BCKBarcodeViewController.m */; };
 		6C2AF51017D5EE3F00175AE0 /* BCKCode39FullASCII.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2AF50F17D5EE3F00175AE0 /* BCKCode39FullASCII.m */; };
 		6C2AF51217D5EEAD00175AE0 /* BCKCode39FullASCIITest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2AF51117D5EEAD00175AE0 /* BCKCode39FullASCIITest.m */; };
 		6C4D158417DDDD0B00854E31 /* BCKCode11Code.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4D158317DDDD0B00854E31 /* BCKCode11Code.m */; };
@@ -78,7 +75,6 @@
 		6CCD744717F43AAD00D293EE /* BCKEAN5SupplementCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD744617F43AAD00D293EE /* BCKEAN5SupplementCodeTest.m */; };
 		6CCD744817F43AAD00D293EE /* BCKEAN5SupplementCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD744617F43AAD00D293EE /* BCKEAN5SupplementCodeTest.m */; };
 		6CD088E117E1CA5B00B817B4 /* BCKPharmacodeOneTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD088E017E1CA5B00B817B4 /* BCKPharmacodeOneTrack.m */; };
-		6CD0EDA317DC156600A549D4 /* SampleBarcodes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CD0EDA217DC156600A549D4 /* SampleBarcodes.plist */; };
 		6CE3E69917DF1D5400BFD408 /* BCKMSICodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CE3E69817DF1D5400BFD408 /* BCKMSICodeCharacter.m */; };
 		6CE3E69C17DF1D7D00BFD408 /* BCKMSIContentCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CE3E69B17DF1D7D00BFD408 /* BCKMSIContentCodeCharacter.m */; };
 		6CE3E69F17DF1F4800BFD408 /* BCKMSICode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CE3E69E17DF1F4800BFD408 /* BCKMSICode.m */; };
@@ -93,6 +89,25 @@
 		A13B58E517C6A10200454150 /* BCKInterleaved2of5Code.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B58E417C6A10200454150 /* BCKInterleaved2of5Code.m */; };
 		A13B58E817C6A1C700454150 /* BCKInterleaved2of5CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B58E717C6A1C700454150 /* BCKInterleaved2of5CodeCharacter.m */; };
 		A13B58EB17C6A1E500454150 /* BCKInterleaved2of5DigitPairCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B58EA17C6A1E500454150 /* BCKInterleaved2of5DigitPairCodeCharacter.m */; };
+		A702E4B117FE916F00506B2B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A764059A17B50F9100D45F51 /* Foundation.framework */; };
+		A702E4B217FE916F00506B2B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A764059C17B50F9100D45F51 /* CoreGraphics.framework */; };
+		A702E4B317FE916F00506B2B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A764059E17B50F9100D45F51 /* UIKit.framework */; };
+		A702E4EE17FEBAC800506B2B /* BCKBarcodeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A702E4DA17FEA74500506B2B /* BCKBarcodeListViewController.m */; };
+		A702E4EF17FEBAC800506B2B /* BCKBarcodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A702E4DC17FEA74500506B2B /* BCKBarcodeViewController.m */; };
+		A702E4F017FEBAC800506B2B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A702E4DF17FEA74500506B2B /* main.m */; };
+		A702E4F217FEBAC800506B2B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A702E4E117FEA74500506B2B /* AppDelegate.m */; };
+		A702E4F317FEBAD300506B2B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A702E4E817FEA77200506B2B /* Images.xcassets */; };
+		A702E4F417FEBADC00506B2B /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A702E4E717FEA77200506B2B /* Main_iPhone.storyboard */; };
+		A702E4F717FEBB9F00506B2B /* libBarCodeKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A76405EB17B52E9700D45F51 /* libBarCodeKit.a */; };
+		A702E4F917FEBBB000506B2B /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A702E4F817FEBBB000506B2B /* CoreText.framework */; };
+		A702E4FA17FEBC1700506B2B /* SampleBarcodes.plist in Resources */ = {isa = PBXBuildFile; fileRef = A702E48A17FE902A00506B2B /* SampleBarcodes.plist */; };
+		A702E4FB17FEBC1A00506B2B /* OCRB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A702E48917FE902A00506B2B /* OCRB.ttf */; };
+		A721D0AE17FEC63200A82189 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A721D0AB17FEC63200A82189 /* Default-568h@2x.png */; };
+		A721D0AF17FEC63200A82189 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A721D0AC17FEC63200A82189 /* Default.png */; };
+		A721D0B017FEC63200A82189 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A721D0AD17FEC63200A82189 /* Default@2x.png */; };
+		A721D0B617FED8FF00A82189 /* NSImage+BarCodeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A721D0B417FED8FF00A82189 /* NSImage+BarCodeKit.h */; };
+		A721D0B717FED8FF00A82189 /* NSImage+BarCodeKit.m in Sources */ = {isa = PBXBuildFile; fileRef = A721D0B517FED8FF00A82189 /* NSImage+BarCodeKit.m */; };
+		A721D0BC17FEE78200A82189 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = A721D0BB17FEE78200A82189 /* Defaults.plist */; };
 		A7337C6617C1250F00BC2D2D /* BCKCode39Code.m in Sources */ = {isa = PBXBuildFile; fileRef = A7337C6517C1250F00BC2D2D /* BCKCode39Code.m */; };
 		A7337C6917C1276700BC2D2D /* BCKCode39CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A7337C6817C1276700BC2D2D /* BCKCode39CodeCharacter.m */; };
 		A7337C6C17C12C8800BC2D2D /* BCKCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A7337C6B17C12C8800BC2D2D /* BCKCodeCharacter.m */; };
@@ -109,9 +124,6 @@
 		A7378E0A17C25DF3008921C4 /* BCKEAN13CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A7378E0917C25DF3008921C4 /* BCKEAN13CodeTest.m */; };
 		A7378E0C17C261D8008921C4 /* BCKEAN8CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A7378E0B17C261D8008921C4 /* BCKEAN8CodeTest.m */; };
 		A7378E0E17C263C7008921C4 /* BCKUPCECodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A7378E0D17C263C7008921C4 /* BCKUPCECodeTest.m */; };
-		A764059B17B50F9100D45F51 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A764059A17B50F9100D45F51 /* Foundation.framework */; };
-		A764059D17B50F9100D45F51 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A764059C17B50F9100D45F51 /* CoreGraphics.framework */; };
-		A764059F17B50F9100D45F51 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A764059E17B50F9100D45F51 /* UIKit.framework */; };
 		A76405EC17B52E9700D45F51 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A764059A17B50F9100D45F51 /* Foundation.framework */; };
 		A764060D17B52EC600D45F51 /* BCKCode.m in Sources */ = {isa = PBXBuildFile; fileRef = A76405E217B52E7700D45F51 /* BCKCode.m */; };
 		A764060E17B52EC600D45F51 /* BCKEAN13Code.m in Sources */ = {isa = PBXBuildFile; fileRef = A76405E417B52E7700D45F51 /* BCKEAN13Code.m */; };
@@ -119,9 +131,6 @@
 		A764061C17B53AE700D45F51 /* BCKEANCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A764061B17B53AE700D45F51 /* BCKEANCodeCharacter.m */; };
 		A764062517B53B7B00D45F51 /* BCKEANDigitCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A764062417B53B7B00D45F51 /* BCKEANDigitCodeCharacter.m */; };
 		A7781E1817B6B301005B9604 /* BCKUPCECode.m in Sources */ = {isa = PBXBuildFile; fileRef = A7781E1717B6B301005B9604 /* BCKUPCECode.m */; };
-		A7A6B54717B62CA4007FF7DB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A7A6B54217B62CA4007FF7DB /* AppDelegate.m */; };
-		A7A6B54817B62CA4007FF7DB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A7A6B54517B62CA4007FF7DB /* main.m */; };
-		A7A6B54E17B62CB2007FF7DB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7A6B54C17B62CB2007FF7DB /* Images.xcassets */; };
 		A7CFEF2517EE040F006446C9 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7378D9417C2584E008921C4 /* SenTestingKit.framework */; };
 		A7CFEF3C17EE04C8006446C9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7CFEF3B17EE04C8006446C9 /* Cocoa.framework */; };
 		A7CFEF6317EE04E9006446C9 /* BarCodeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A7E1C97417B606AA007DB13A /* BarCodeKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -222,8 +231,13 @@
 		A7CFEFC417EE090B006446C9 /* BCKPharmacodeOneTrackTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFB2D5E17E1D30100017C55 /* BCKPharmacodeOneTrackTest.m */; };
 		A7CFEFC517EE090B006446C9 /* BCKUPCACodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD33EA417E81BD200CE0608 /* BCKUPCACodeTest.m */; };
 		A7CFEFC617EE090B006446C9 /* BCKStandard2of5CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF2308D17E9BA560065E50C /* BCKStandard2of5CodeTest.m */; };
-		A7E1C97317B6067B007DB13A /* libBarCodeKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A76405EB17B52E9700D45F51 /* libBarCodeKit.a */; };
-		A7FB2BB617B6206300712C1C /* OCRB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7FB2BB417B6206300712C1C /* OCRB.ttf */; };
+		A7E0B58D17FEBD4F0037B70C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7CFEF3B17EE04C8006446C9 /* Cocoa.framework */; };
+		A7E0B5BB17FEBDB30037B70C /* BarCodeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7CFEF3A17EE04C8006446C9 /* BarCodeKit.framework */; };
+		A7E0B5BD17FEBDE70037B70C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A702E49217FE902A00506B2B /* MainMenu.xib */; };
+		A7E0B5BE17FEBDEA0037B70C /* DemoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = A702E49417FE902A00506B2B /* DemoWindow.xib */; };
+		A7E0B5C017FEBDF40037B70C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A702E49C17FE902A00506B2B /* AppDelegate.m */; };
+		A7E0B5C117FEBDF60037B70C /* DemoWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = A702E49E17FE902A00506B2B /* DemoWindowController.m */; };
+		A7E0B5C217FEBDF80037B70C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A702E49F17FE902A00506B2B /* main.m */; };
 		EA0EF7DF17D3ACB500015F7B /* NSString+BCKCode128Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0EF7DE17D3ACB500015F7B /* NSString+BCKCode128Helpers.m */; };
 		EA6CF87917CA4FAE009C8994 /* BCKCode128Code.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6CF87817CA4FAE009C8994 /* BCKCode128Code.m */; };
 		EA6CF87C17CA500A009C8994 /* BCKCode128CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6CF87B17CA500A009C8994 /* BCKCode128CodeCharacter.m */; };
@@ -235,6 +249,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		A702E4F517FEBB9A00506B2B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A764058F17B50F9100D45F51 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A76405EA17B52E9700D45F51;
+			remoteInfo = "BarCodeKit (iOS)";
+		};
 		A7378E0717C25C43008921C4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A764058F17B50F9100D45F51 /* Project object */;
@@ -249,12 +270,12 @@
 			remoteGlobalIDString = A7CFEF3917EE04C8006446C9;
 			remoteInfo = BarCodeKit;
 		};
-		A7E1C97117B60676007DB13A /* PBXContainerItemProxy */ = {
+		A7E0B5B917FEBDAE0037B70C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A764058F17B50F9100D45F51 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = A76405EA17B52E9700D45F51;
-			remoteInfo = "BarCodeKit (iOS)";
+			remoteGlobalIDString = A7CFEF3917EE04C8006446C9;
+			remoteInfo = "BarCodeKit (Mac)";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -271,11 +292,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		6C20911817D20DD000869F6E /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
-		6C20911A17D20DDF00869F6E /* BCKBarcodeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKBarcodeListViewController.h; sourceTree = "<group>"; };
-		6C20911B17D20DDF00869F6E /* BCKBarcodeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKBarcodeListViewController.m; sourceTree = "<group>"; };
-		6C20911C17D20DDF00869F6E /* BCKBarcodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKBarcodeViewController.h; sourceTree = "<group>"; };
-		6C20911D17D20DDF00869F6E /* BCKBarcodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKBarcodeViewController.m; sourceTree = "<group>"; };
 		6C2AF50E17D5EE3F00175AE0 /* BCKCode39FullASCII.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode39FullASCII.h; sourceTree = "<group>"; };
 		6C2AF50F17D5EE3F00175AE0 /* BCKCode39FullASCII.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode39FullASCII.m; sourceTree = "<group>"; };
 		6C2AF51117D5EEAD00175AE0 /* BCKCode39FullASCIITest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode39FullASCIITest.m; sourceTree = "<group>"; };
@@ -331,7 +347,6 @@
 		6CCD744617F43AAD00D293EE /* BCKEAN5SupplementCodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKEAN5SupplementCodeTest.m; sourceTree = "<group>"; };
 		6CD088DF17E1CA5B00B817B4 /* BCKPharmacodeOneTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKPharmacodeOneTrack.h; sourceTree = "<group>"; };
 		6CD088E017E1CA5B00B817B4 /* BCKPharmacodeOneTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKPharmacodeOneTrack.m; sourceTree = "<group>"; };
-		6CD0EDA217DC156600A549D4 /* SampleBarcodes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SampleBarcodes.plist; sourceTree = "<group>"; };
 		6CE3E69717DF1D5400BFD408 /* BCKMSICodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKMSICodeCharacter.h; sourceTree = "<group>"; };
 		6CE3E69817DF1D5400BFD408 /* BCKMSICodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKMSICodeCharacter.m; sourceTree = "<group>"; };
 		6CE3E69A17DF1D7D00BFD408 /* BCKMSIContentCodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKMSIContentCodeCharacter.h; sourceTree = "<group>"; };
@@ -356,7 +371,37 @@
 		A13B58E717C6A1C700454150 /* BCKInterleaved2of5CodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKInterleaved2of5CodeCharacter.m; sourceTree = "<group>"; };
 		A13B58E917C6A1E500454150 /* BCKInterleaved2of5DigitPairCodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKInterleaved2of5DigitPairCodeCharacter.h; sourceTree = "<group>"; };
 		A13B58EA17C6A1E500454150 /* BCKInterleaved2of5DigitPairCodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKInterleaved2of5DigitPairCodeCharacter.m; sourceTree = "<group>"; };
+		A702E48917FE902A00506B2B /* OCRB.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OCRB.ttf; sourceTree = "<group>"; };
+		A702E48A17FE902A00506B2B /* SampleBarcodes.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SampleBarcodes.plist; sourceTree = "<group>"; };
+		A702E48F17FE902A00506B2B /* BarCodeKit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BarCodeKit-Info.plist"; sourceTree = "<group>"; };
+		A702E49017FE902A00506B2B /* BarCodeKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BarCodeKit-Prefix.pch"; sourceTree = "<group>"; };
+		A702E49317FE902A00506B2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		A702E49417FE902A00506B2B /* DemoWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DemoWindow.xib; sourceTree = "<group>"; };
+		A702E49B17FE902A00506B2B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A702E49C17FE902A00506B2B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A702E49D17FE902A00506B2B /* DemoWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoWindowController.h; sourceTree = "<group>"; };
+		A702E49E17FE902A00506B2B /* DemoWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoWindowController.m; sourceTree = "<group>"; };
+		A702E49F17FE902A00506B2B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A702E4B017FE916F00506B2B /* BarCodeKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarCodeKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A702E4DA17FEA74500506B2B /* BCKBarcodeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKBarcodeListViewController.m; sourceTree = "<group>"; };
+		A702E4DB17FEA74500506B2B /* BCKBarcodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKBarcodeViewController.h; sourceTree = "<group>"; };
+		A702E4DC17FEA74500506B2B /* BCKBarcodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKBarcodeViewController.m; sourceTree = "<group>"; };
+		A702E4DD17FEA74500506B2B /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A702E4DE17FEA74500506B2B /* BCKBarcodeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKBarcodeListViewController.h; sourceTree = "<group>"; };
+		A702E4DF17FEA74500506B2B /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A702E4E117FEA74500506B2B /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A702E4E717FEA77200506B2B /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
+		A702E4E817FEA77200506B2B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A702E4EB17FEA7A700506B2B /* BarCodeKit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BarCodeKit-Info.plist"; sourceTree = "<group>"; };
+		A702E4EC17FEA7A700506B2B /* BarCodeKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BarCodeKit-Prefix.pch"; sourceTree = "<group>"; };
+		A702E4F817FEBBB000506B2B /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		A716E43C17DE1A5C00DB6F9C /* AppledocSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppledocSettings.plist; sourceTree = "<group>"; };
+		A721D0AB17FEC63200A82189 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		A721D0AC17FEC63200A82189 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		A721D0AD17FEC63200A82189 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		A721D0B417FED8FF00A82189 /* NSImage+BarCodeKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+BarCodeKit.h"; sourceTree = "<group>"; };
+		A721D0B517FED8FF00A82189 /* NSImage+BarCodeKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+BarCodeKit.m"; sourceTree = "<group>"; };
+		A721D0BB17FEE78200A82189 /* Defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Defaults.plist; sourceTree = "<group>"; };
 		A7337C6417C1250F00BC2D2D /* BCKCode39Code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode39Code.h; sourceTree = "<group>"; };
 		A7337C6517C1250F00BC2D2D /* BCKCode39Code.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode39Code.m; sourceTree = "<group>"; };
 		A7337C6717C1276700BC2D2D /* BCKCode39CodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode39CodeCharacter.h; sourceTree = "<group>"; };
@@ -380,7 +425,6 @@
 		A7378E0D17C263C7008921C4 /* BCKUPCECodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKUPCECodeTest.m; sourceTree = "<group>"; };
 		A73B88CD17C77DE300A75680 /* Readme.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme.markdown; sourceTree = SOURCE_ROOT; };
 		A73B88CE17C77F4B00A75680 /* Change Log-template.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Change Log-template.markdown"; sourceTree = "<group>"; };
-		A764059717B50F9100D45F51 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A764059A17B50F9100D45F51 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A764059C17B50F9100D45F51 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		A764059E17B50F9100D45F51 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -399,12 +443,6 @@
 		A764062417B53B7B00D45F51 /* BCKEANDigitCodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKEANDigitCodeCharacter.m; sourceTree = "<group>"; };
 		A7781E1617B6B301005B9604 /* BCKUPCECode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKUPCECode.h; sourceTree = "<group>"; };
 		A7781E1717B6B301005B9604 /* BCKUPCECode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKUPCECode.m; sourceTree = "<group>"; };
-		A7A6B54217B62CA4007FF7DB /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		A7A6B54417B62CA4007FF7DB /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		A7A6B54517B62CA4007FF7DB /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		A7A6B54C17B62CB2007FF7DB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		A7A6B58317B62D27007FF7DB /* DemoApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DemoApp-Info.plist"; sourceTree = "<group>"; };
-		A7A6B58417B62D28007FF7DB /* DemoApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DemoApp-Prefix.pch"; sourceTree = "<group>"; };
 		A7CFEF2417EE040F006446C9 /* Unit Tests (Mac).octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit Tests (Mac).octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7CFEF3A17EE04C8006446C9 /* BarCodeKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BarCodeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7CFEF3B17EE04C8006446C9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
@@ -412,8 +450,8 @@
 		A7CFEF3F17EE04C8006446C9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A7CFEF4017EE04C8006446C9 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		A7CFEFC717EE0A42006446C9 /* BarCodeKit-Framework-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BarCodeKit-Framework-Info.plist"; sourceTree = "<group>"; };
+		A7E0B58C17FEBD4F0037B70C /* BarCodeKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarCodeKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7E1C97417B606AA007DB13A /* BarCodeKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BarCodeKit.h; sourceTree = "<group>"; };
-		A7FB2BB417B6206300712C1C /* OCRB.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OCRB.ttf; sourceTree = "<group>"; };
 		EA0EF7DD17D3ACB500015F7B /* NSString+BCKCode128Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+BCKCode128Helpers.h"; sourceTree = "<group>"; };
 		EA0EF7DE17D3ACB500015F7B /* NSString+BCKCode128Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+BCKCode128Helpers.m"; sourceTree = "<group>"; };
 		EA6CF87717CA4FAE009C8994 /* BCKCode128Code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode128Code.h; sourceTree = "<group>"; };
@@ -431,6 +469,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A702E4AD17FE916E00506B2B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A702E4F917FEBBB000506B2B /* CoreText.framework in Frameworks */,
+				A702E4F717FEBB9F00506B2B /* libBarCodeKit.a in Frameworks */,
+				A702E4B217FE916F00506B2B /* CoreGraphics.framework in Frameworks */,
+				A702E4B317FE916F00506B2B /* UIKit.framework in Frameworks */,
+				A702E4B117FE916F00506B2B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A7378D9017C2584E008921C4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -439,17 +489,6 @@
 				A7378D9517C2584E008921C4 /* SenTestingKit.framework in Frameworks */,
 				A7378D9717C2584E008921C4 /* UIKit.framework in Frameworks */,
 				A7378D9617C2584E008921C4 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A764059417B50F9100D45F51 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A7E1C97317B6067B007DB13A /* libBarCodeKit.a in Frameworks */,
-				A764059D17B50F9100D45F51 /* CoreGraphics.framework in Frameworks */,
-				A764059F17B50F9100D45F51 /* UIKit.framework in Frameworks */,
-				A764059B17B50F9100D45F51 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,6 +514,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7CFEF3C17EE04C8006446C9 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7E0B58917FEBD4F0037B70C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7E0B5BB17FEBDB30037B70C /* BarCodeKit.framework in Frameworks */,
+				A7E0B58D17FEBD4F0037B70C /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -673,6 +721,111 @@
 			name = "Interleaved 2 of 5";
 			sourceTree = "<group>";
 		};
+		A702E48417FE902A00506B2B /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				A702E48717FE902A00506B2B /* Common */,
+				A702E48B17FE902A00506B2B /* iOS */,
+				A702E48E17FE902A00506B2B /* Mac */,
+			);
+			path = Demo;
+			sourceTree = "<group>";
+		};
+		A702E48717FE902A00506B2B /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				A702E48817FE902A00506B2B /* Resources */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		A702E48817FE902A00506B2B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A702E48917FE902A00506B2B /* OCRB.ttf */,
+				A702E48A17FE902A00506B2B /* SampleBarcodes.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A702E48B17FE902A00506B2B /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				A702E4EB17FEA7A700506B2B /* BarCodeKit-Info.plist */,
+				A702E4EC17FEA7A700506B2B /* BarCodeKit-Prefix.pch */,
+				A702E48C17FE902A00506B2B /* Resources */,
+				A702E48D17FE902A00506B2B /* Source */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		A702E48C17FE902A00506B2B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A721D0AB17FEC63200A82189 /* Default-568h@2x.png */,
+				A721D0AC17FEC63200A82189 /* Default.png */,
+				A721D0AD17FEC63200A82189 /* Default@2x.png */,
+				A702E4E717FEA77200506B2B /* Main_iPhone.storyboard */,
+				A702E4E817FEA77200506B2B /* Images.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A702E48D17FE902A00506B2B /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				A702E4DD17FEA74500506B2B /* AppDelegate.h */,
+				A702E4E117FEA74500506B2B /* AppDelegate.m */,
+				A702E4DE17FEA74500506B2B /* BCKBarcodeListViewController.h */,
+				A702E4DA17FEA74500506B2B /* BCKBarcodeListViewController.m */,
+				A702E4DB17FEA74500506B2B /* BCKBarcodeViewController.h */,
+				A702E4DC17FEA74500506B2B /* BCKBarcodeViewController.m */,
+				A702E4DF17FEA74500506B2B /* main.m */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		A702E48E17FE902A00506B2B /* Mac */ = {
+			isa = PBXGroup;
+			children = (
+				A702E48F17FE902A00506B2B /* BarCodeKit-Info.plist */,
+				A702E49017FE902A00506B2B /* BarCodeKit-Prefix.pch */,
+				A702E49117FE902A00506B2B /* Resources */,
+				A702E49A17FE902A00506B2B /* Source */,
+			);
+			path = Mac;
+			sourceTree = "<group>";
+		};
+		A702E49117FE902A00506B2B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A721D0BB17FEE78200A82189 /* Defaults.plist */,
+				A702E49217FE902A00506B2B /* MainMenu.xib */,
+				A702E49417FE902A00506B2B /* DemoWindow.xib */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A702E49A17FE902A00506B2B /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				A721D0B117FEC95D00A82189 /* Transformers */,
+				A702E49B17FE902A00506B2B /* AppDelegate.h */,
+				A702E49C17FE902A00506B2B /* AppDelegate.m */,
+				A702E49D17FE902A00506B2B /* DemoWindowController.h */,
+				A702E49E17FE902A00506B2B /* DemoWindowController.m */,
+				A702E49F17FE902A00506B2B /* main.m */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		A721D0B117FEC95D00A82189 /* Transformers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Transformers;
+			sourceTree = "<group>";
+		};
 		A7378D8317C222E6008921C4 /* EAN/UPC */ = {
 			isa = PBXGroup;
 			children = (
@@ -831,7 +984,7 @@
 			children = (
 				A7378D8D17C253FE008921C4 /* Documentation */,
 				A76405DF17B52E5200D45F51 /* Core */,
-				A7FB2BB217B6206300712C1C /* Demo */,
+				A702E48417FE902A00506B2B /* Demo */,
 				A7378DFB17C25892008921C4 /* Test */,
 				A764059917B50F9100D45F51 /* Frameworks */,
 				A764059817B50F9100D45F51 /* Products */,
@@ -841,11 +994,12 @@
 		A764059817B50F9100D45F51 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A764059717B50F9100D45F51 /* Demo.app */,
 				A76405EB17B52E9700D45F51 /* libBarCodeKit.a */,
 				A7378D9317C2584E008921C4 /* Unit Tests (iOS).octest */,
 				A7CFEF2417EE040F006446C9 /* Unit Tests (Mac).octest */,
 				A7CFEF3A17EE04C8006446C9 /* BarCodeKit.framework */,
+				A702E4B017FE916F00506B2B /* BarCodeKit.app */,
+				A7E0B58C17FEBD4F0037B70C /* BarCodeKit.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -853,6 +1007,7 @@
 		A764059917B50F9100D45F51 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A702E4F817FEBBB000506B2B /* CoreText.framework */,
 				A764059A17B50F9100D45F51 /* Foundation.framework */,
 				A764059C17B50F9100D45F51 /* CoreGraphics.framework */,
 				A764059E17B50F9100D45F51 /* UIKit.framework */,
@@ -884,6 +1039,8 @@
 				6C93DE7A17E1BF7A002F0BF5 /* NSError+BCKCode.m */,
 				A7343F4717BF599100EF9B83 /* UIImage+BarCodeKit.h */,
 				A7343F4817BF599100EF9B83 /* UIImage+BarCodeKit.m */,
+				A721D0B417FED8FF00A82189 /* NSImage+BarCodeKit.h */,
+				A721D0B517FED8FF00A82189 /* NSImage+BarCodeKit.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -896,42 +1053,6 @@
 				A7CFEF4017EE04C8006446C9 /* AppKit.framework */,
 			);
 			name = "Other Frameworks";
-			sourceTree = "<group>";
-		};
-		A7FB2BB217B6206300712C1C /* Demo */ = {
-			isa = PBXGroup;
-			children = (
-				A7A6B58317B62D27007FF7DB /* DemoApp-Info.plist */,
-				A7A6B58417B62D28007FF7DB /* DemoApp-Prefix.pch */,
-				A7FB2BB317B6206300712C1C /* Resources */,
-				A7FB2BB517B6206300712C1C /* Source */,
-			);
-			path = Demo;
-			sourceTree = "<group>";
-		};
-		A7FB2BB317B6206300712C1C /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				6C20911817D20DD000869F6E /* Main_iPhone.storyboard */,
-				A7A6B54C17B62CB2007FF7DB /* Images.xcassets */,
-				A7FB2BB417B6206300712C1C /* OCRB.ttf */,
-				6CD0EDA217DC156600A549D4 /* SampleBarcodes.plist */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		A7FB2BB517B6206300712C1C /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				6C20911A17D20DDF00869F6E /* BCKBarcodeListViewController.h */,
-				6C20911B17D20DDF00869F6E /* BCKBarcodeListViewController.m */,
-				6C20911C17D20DDF00869F6E /* BCKBarcodeViewController.h */,
-				6C20911D17D20DDF00869F6E /* BCKBarcodeViewController.m */,
-				A7A6B54417B62CA4007FF7DB /* AppDelegate.h */,
-				A7A6B54217B62CA4007FF7DB /* AppDelegate.m */,
-				A7A6B54517B62CA4007FF7DB /* main.m */,
-			);
-			path = Source;
 			sourceTree = "<group>";
 		};
 		EA6CF87517CA4EBE009C8994 /* Code128 */ = {
@@ -986,6 +1107,7 @@
 				6CC6BAAA17F191AB00F3ECCF /* BCKFacingIdentificationMarkCode.h in Headers */,
 				A7CFEF6417EE04E9006446C9 /* BCKCodeCharacter.h in Headers */,
 				6CB154A917F69462002C20F3 /* BCKISBNCode.h in Headers */,
+				A721D0B617FED8FF00A82189 /* NSImage+BarCodeKit.h in Headers */,
 				6C66048D17F5851D0016E17E /* BCKGTINSupplementDataCodeCharacter.h in Headers */,
 				A7CFEFB217EE0559006446C9 /* NSError+BCKCode.h in Headers */,
 				A7CFEFB017EE0559006446C9 /* BCKStandard2of5Code.h in Headers */,
@@ -1019,6 +1141,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		A702E4AF17FE916E00506B2B /* Demo (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A702E4D417FE916F00506B2B /* Build configuration list for PBXNativeTarget "Demo (iOS)" */;
+			buildPhases = (
+				A702E4AC17FE916E00506B2B /* Sources */,
+				A702E4AD17FE916E00506B2B /* Frameworks */,
+				A702E4AE17FE916E00506B2B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A702E4F617FEBB9A00506B2B /* PBXTargetDependency */,
+			);
+			name = "Demo (iOS)";
+			productName = BarCodeKit;
+			productReference = A702E4B017FE916F00506B2B /* BarCodeKit.app */;
+			productType = "com.apple.product-type.application";
+		};
 		A7378D9217C2584E008921C4 /* Unit Tests (iOS) */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A7378DA117C2584E008921C4 /* Build configuration list for PBXNativeTarget "Unit Tests (iOS)" */;
@@ -1036,24 +1176,6 @@
 			productName = "BarCodeKit Tests";
 			productReference = A7378D9317C2584E008921C4 /* Unit Tests (iOS).octest */;
 			productType = "com.apple.product-type.bundle";
-		};
-		A764059617B50F9100D45F51 /* Demo */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A76405C917B50F9100D45F51 /* Build configuration list for PBXNativeTarget "Demo" */;
-			buildPhases = (
-				A764059317B50F9100D45F51 /* Sources */,
-				A764059417B50F9100D45F51 /* Frameworks */,
-				A764059517B50F9100D45F51 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A7E1C97217B60676007DB13A /* PBXTargetDependency */,
-			);
-			name = Demo;
-			productName = BarCodeKit;
-			productReference = A764059717B50F9100D45F51 /* Demo.app */;
-			productType = "com.apple.product-type.application";
 		};
 		A76405EA17B52E9700D45F51 /* BarCodeKit (iOS) */ = {
 			isa = PBXNativeTarget;
@@ -1108,6 +1230,24 @@
 			productReference = A7CFEF3A17EE04C8006446C9 /* BarCodeKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		A7E0B58B17FEBD4F0037B70C /* Demo (Mac) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A7E0B5B317FEBD500037B70C /* Build configuration list for PBXNativeTarget "Demo (Mac)" */;
+			buildPhases = (
+				A7E0B58817FEBD4F0037B70C /* Sources */,
+				A7E0B58917FEBD4F0037B70C /* Frameworks */,
+				A7E0B58A17FEBD4F0037B70C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A7E0B5BA17FEBDAE0037B70C /* PBXTargetDependency */,
+			);
+			name = "Demo (Mac)";
+			productName = "Demo (Mac)";
+			productReference = A7E0B58C17FEBD4F0037B70C /* BarCodeKit.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1117,6 +1257,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Oliver Drobnik";
 				TargetAttributes = {
+					A702E4AF17FE916E00506B2B = {
+						DevelopmentTeam = Z7L2YCUH45;
+					};
 					A7CFEF2317EE040F006446C9 = {
 						TestTargetID = A764059617B50F9100D45F51;
 					};
@@ -1135,7 +1278,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A764059617B50F9100D45F51 /* Demo */,
+				A702E4AF17FE916E00506B2B /* Demo (iOS) */,
+				A7E0B58B17FEBD4F0037B70C /* Demo (Mac) */,
 				A76405EA17B52E9700D45F51 /* BarCodeKit (iOS) */,
 				A7CFEF3917EE04C8006446C9 /* BarCodeKit (Mac) */,
 				A7378D9217C2584E008921C4 /* Unit Tests (iOS) */,
@@ -1146,21 +1290,24 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		A702E4AE17FE916E00506B2B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A702E4F417FEBADC00506B2B /* Main_iPhone.storyboard in Resources */,
+				A721D0AF17FEC63200A82189 /* Default.png in Resources */,
+				A702E4F317FEBAD300506B2B /* Images.xcassets in Resources */,
+				A702E4FB17FEBC1A00506B2B /* OCRB.ttf in Resources */,
+				A721D0AE17FEC63200A82189 /* Default-568h@2x.png in Resources */,
+				A721D0B017FEC63200A82189 /* Default@2x.png in Resources */,
+				A702E4FA17FEBC1700506B2B /* SampleBarcodes.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A7378D9117C2584E008921C4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A764059517B50F9100D45F51 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6C20911917D20DD000869F6E /* Main_iPhone.storyboard in Resources */,
-				A7A6B54E17B62CB2007FF7DB /* Images.xcassets in Resources */,
-				A7FB2BB617B6206300712C1C /* OCRB.ttf in Resources */,
-				6CD0EDA317DC156600A549D4 /* SampleBarcodes.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1175,6 +1322,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7E0B58A17FEBD4F0037B70C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A721D0BC17FEE78200A82189 /* Defaults.plist in Resources */,
+				A7E0B5BE17FEBDEA0037B70C /* DemoWindow.xib in Resources */,
+				A7E0B5BD17FEBDE70037B70C /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1198,6 +1355,17 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A702E4AC17FE916E00506B2B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A702E4EF17FEBAC800506B2B /* BCKBarcodeViewController.m in Sources */,
+				A702E4F017FEBAC800506B2B /* main.m in Sources */,
+				A702E4EE17FEBAC800506B2B /* BCKBarcodeListViewController.m in Sources */,
+				A702E4F217FEBAC800506B2B /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A7378D8F17C2584E008921C4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1223,17 +1391,6 @@
 				6CAA398F17E863F700C2D422 /* BCKCode39CodeClassClusterTest.m in Sources */,
 				6CE3E6A117DF202900BFD408 /* BCKMSICodeTest.m in Sources */,
 				6CB154AD17F6AB95002C20F3 /* BCKISBNCodeTest.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A764059317B50F9100D45F51 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6C20911E17D20DDF00869F6E /* BCKBarcodeListViewController.m in Sources */,
-				6C20911F17D20DDF00869F6E /* BCKBarcodeViewController.m in Sources */,
-				A7A6B54817B62CA4007FF7DB /* main.m in Sources */,
-				A7A6B54717B62CA4007FF7DB /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1348,6 +1505,7 @@
 				A7CFEF7517EE04FB006446C9 /* BCKCode39CodeCharacter.m in Sources */,
 				6C66048F17F5851D0016E17E /* BCKGTINSupplementDataCodeCharacter.m in Sources */,
 				6CC6BAA717F1910200F3ECCF /* BCKFacingIdentificationMarkCodeCharacter.m in Sources */,
+				A721D0B717FED8FF00A82189 /* NSImage+BarCodeKit.m in Sources */,
 				A7CFEF7F17EE0506006446C9 /* BCKInterleaved2of5DigitPairCodeCharacter.m in Sources */,
 				A7CFEF8317EE050B006446C9 /* BCKCode128ContentCodeCharacter.m in Sources */,
 				A7CFEF8B17EE0514006446C9 /* BCKPharmaOneTrackContentCodeCharacter.m in Sources */,
@@ -1378,9 +1536,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A7E0B58817FEBD4F0037B70C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7E0B5C217FEBDF80037B70C /* main.m in Sources */,
+				A7E0B5C117FEBDF60037B70C /* DemoWindowController.m in Sources */,
+				A7E0B5C017FEBDF40037B70C /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		A702E4F617FEBB9A00506B2B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A76405EA17B52E9700D45F51 /* BarCodeKit (iOS) */;
+			targetProxy = A702E4F517FEBB9A00506B2B /* PBXContainerItemProxy */;
+		};
 		A7378E0817C25C43008921C4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A76405EA17B52E9700D45F51 /* BarCodeKit (iOS) */;
@@ -1391,14 +1564,63 @@
 			target = A7CFEF3917EE04C8006446C9 /* BarCodeKit (Mac) */;
 			targetProxy = A7CFEFB517EE058B006446C9 /* PBXContainerItemProxy */;
 		};
-		A7E1C97217B60676007DB13A /* PBXTargetDependency */ = {
+		A7E0B5BA17FEBDAE0037B70C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A76405EA17B52E9700D45F51 /* BarCodeKit (iOS) */;
-			targetProxy = A7E1C97117B60676007DB13A /* PBXContainerItemProxy */;
+			target = A7CFEF3917EE04C8006446C9 /* BarCodeKit (Mac) */;
+			targetProxy = A7E0B5B917FEBDAE0037B70C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		A702E49217FE902A00506B2B /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A702E49317FE902A00506B2B /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		A702E4D517FE916F00506B2B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Demo/iOS/BarCodeKit-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "Demo/iOS/BarCodeKit-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = BarCodeKit;
+				PROVISIONING_PROFILE = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		A702E4D617FE916F00506B2B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Demo/iOS/BarCodeKit-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "Demo/iOS/BarCodeKit-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = BarCodeKit;
+				PROVISIONING_PROFILE = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		A7378D8A17C2519C008921C4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1519,36 +1741,6 @@
 			};
 			name = Release;
 		};
-		A76405CA17B50F9100D45F51 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Demo/DemoApp-Prefix.pch";
-				INFOPLIST_FILE = "Demo/DemoApp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		A76405CB17B50F9100D45F51 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Demo/DemoApp-Prefix.pch";
-				INFOPLIST_FILE = "Demo/DemoApp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
 		A764060817B52E9800D45F51 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1559,7 +1751,6 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = BarCodeKit;
 				SKIP_INSTALL = YES;
 			};
@@ -1571,7 +1762,6 @@
 				DSTROOT = /tmp/BarCodeKit__iOS_.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/BarCodeKit-Prefix.pch";
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = BarCodeKit;
 				SKIP_INSTALL = YES;
 			};
@@ -1593,6 +1783,7 @@
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				INFOPLIST_FILE = "Test/UnitTests-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = octest;
@@ -1612,6 +1803,7 @@
 				GCC_PREFIX_HEADER = "Test/UnitTests-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				INFOPLIST_FILE = "Test/UnitTests-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = octest;
@@ -1667,9 +1859,65 @@
 			};
 			name = Release;
 		};
+		A7E0B5B417FEBD500037B70C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Demo/Mac/BarCodeKit-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "Demo/Mac/BarCodeKit-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = BarCodeKit;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		A7E0B5B517FEBD500037B70C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Demo/Mac/BarCodeKit-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "Demo/Mac/BarCodeKit-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = BarCodeKit;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A702E4D417FE916F00506B2B /* Build configuration list for PBXNativeTarget "Demo (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A702E4D517FE916F00506B2B /* Debug */,
+				A702E4D617FE916F00506B2B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		A7378D8917C2519C008921C4 /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1697,15 +1945,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A76405C917B50F9100D45F51 /* Build configuration list for PBXNativeTarget "Demo" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A76405CA17B50F9100D45F51 /* Debug */,
-				A76405CB17B50F9100D45F51 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		A764060717B52E9800D45F51 /* Build configuration list for PBXNativeTarget "BarCodeKit (iOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1729,6 +1968,15 @@
 			buildConfigurations = (
 				A7CFEF5E17EE04C8006446C9 /* Debug */,
 				A7CFEF5F17EE04C8006446C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A7E0B5B317FEBD500037B70C /* Build configuration list for PBXNativeTarget "Demo (Mac)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A7E0B5B417FEBD500037B70C /* Debug */,
+				A7E0B5B517FEBD500037B70C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

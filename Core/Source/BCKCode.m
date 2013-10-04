@@ -20,6 +20,7 @@ NSString * const BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption = @"BCKCode
 NSString * const BCKCodeDrawingFillEmptyQuietZonesOption = @"BCKCodeDrawingFillEmptyQuietZones";
 NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheckDigits";
+NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroundColor";
 
 #define ENCODE_ERROR_MESSAGE @"BCKCode is an abstract class that cannot encode anything"
 
@@ -33,6 +34,18 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 	if (self)
 	{
 		NSError *encodeError = nil;
+		
+		if (![content length])
+		{
+			if (error)
+			{
+				NSString *message = [NSString stringWithFormat:@"Unable to encoded empty string in %@", NSStringFromClass([self class])];
+				*error = [NSError BCKCodeErrorWithMessage:message];
+			}
+			
+			return nil;
+		}
+		
 		
 		// query the sub-classes method to check if this can be encoded
 		if (![[self class] canEncodeContent:content error:&encodeError])
@@ -492,6 +505,30 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 
 #pragma mark - Drawing
 
+- (void)_drawBackgroundColorInContext:(CGContextRef)context bounds:(CGRect)bounds options:(NSDictionary *)options
+{
+	id backgroundColor = [options objectForKey:BCKCodeDrawingBackgroundColorOption];
+	
+	if (!backgroundColor)
+	{
+		return;
+	}
+	
+	CGContextSaveGState(context);
+	
+#if TARGET_OS_IPHONE
+	UIColor *uiColor = (UIColor *)backgroundColor;
+	CGContextSetFillColorWithColor(context, [uiColor CGColor]);
+#else
+	NSColor *nsColor = (NSColor *)backgroundColor;
+	CGContextSetFillColorWithColor(context, [nsColor CGColor]);
+#endif
+	
+	CGContextFillRect(context, bounds);
+	
+	CGContextRestoreGState(context);
+}
+
 - (void)_drawCaptionText:(NSString *)text fontName:fontName fontSize:(CGFloat)fontSize inRect:(CGRect)rect context:(CGContextRef)context
 {
 	if (![text length])
@@ -575,6 +612,9 @@ NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheck
 	
 	CGFloat barScale = [self _barScaleFromOptions:options];
 	CGSize size = [self sizeWithRenderOptions:options];
+	CGRect bounds = (CGRect){CGPointZero, size};
+	
+	[self _drawBackgroundColorInContext:context bounds:bounds options:options];
 	
 	CGFloat captionHeight = 0;
 	CGFloat optimalCaptionFontSize = 0;

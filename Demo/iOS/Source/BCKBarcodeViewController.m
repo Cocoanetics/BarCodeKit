@@ -85,7 +85,8 @@
 									  BCKCodeDrawingDebugOption: @(_debugOption),
 									  BCKCodeDrawingPrintCaptionOption: @(_captionOption),
 									  BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption: @(_captionOverlap),
-                                        BCKCodeDrawingShowCheckDigitsOption: @(_checkDigitsInCaptionOption)};
+									  BCKCodeDrawingShowCheckDigitsOption: @(_checkDigitsInCaptionOption),
+									  BCKCodeDrawingBackgroundColorOption: [UIColor whiteColor]};
 	
 	// Initialise barcode contents using the text in the textfield
 	NSError *error;

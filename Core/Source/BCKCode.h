@@ -14,6 +14,7 @@ extern NSString * const BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption;
 extern NSString * const BCKCodeDrawingFillEmptyQuietZonesOption;
 extern NSString * const BCKCodeDrawingDebugOption;
 extern NSString * const BCKCodeDrawingShowCheckDigitsOption;
+extern NSString * const BCKCodeDrawingBackgroundColorOption;
 
 /**
  Caption Zones
@@ -183,6 +184,8 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
  - **BCKCodeDrawingFillEmptyQuietZonesOption** - Whether quiet zones should be filled with angle brackets (default: `NO`)
  - **BCKCodeDrawingDebugOption** - Whether caption areas should be tinted for debugging (default: `NO`)
  - **BCKCodeDrawingShowCheckDigitsOption** - Whether check digits are to be included in the printed caption (default: `NO`)
+ - **BCKCodeDrawingBackgroundColorOption** - The background color to fill the drawing canvas with (default: none)
+ 
  */
 @interface BCKCode : NSObject <BCKCoding>
 {

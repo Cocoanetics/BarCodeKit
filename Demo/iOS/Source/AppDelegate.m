@@ -10,6 +10,14 @@
 
 @implementation AppDelegate
 
++ (void)initialize
+{
+	NSString *defaultsPath = [[NSBundle mainBundle] pathForResource:@"Defaults" ofType:@"plist"];
+	NSDictionary *defaultsDict = [NSDictionary dictionaryWithContentsOfFile:defaultsPath];
+	
+	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultsDict];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
