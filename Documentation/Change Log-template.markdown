@@ -7,6 +7,7 @@ Version 1.2.0
 
 - ADDED: Mac Compatibility
 - ADDED: Demo App for Mac
+- ADDED: Option to specify barcode image background color
 - ADDED: Facing Identification Mark Code
 - ADDED: EAN-2 and EAN-5 Supplements
 - ADDED: Standard 2 of 5 Code
