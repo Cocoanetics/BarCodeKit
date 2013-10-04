@@ -18,7 +18,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-	_windowController = [[DemoWindowController alloc] initWithWindowNibName:@"DemoWindow" owner:self];
+	_windowController = [[DemoWindowController alloc] initWithWindowNibName:@"DemoWindow"];
 	[_windowController.window makeKeyAndOrderFront:nil];
 }
 

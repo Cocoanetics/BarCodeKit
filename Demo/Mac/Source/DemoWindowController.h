@@ -10,4 +10,8 @@
 
 @interface DemoWindowController : NSWindowController
 
+@property (nonatomic, strong) IBOutlet NSArrayController *barcodeArrayController;
+
+@property (nonatomic, strong) NSArray *barcodeTypes;
+
 @end
