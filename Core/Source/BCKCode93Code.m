@@ -9,6 +9,7 @@
 #import "BCKCode93Code.h"
 #import "BCKCode93CodeCharacter.h"
 #import "BCKCode93ContentCodeCharacter.h"
+#import "NSError+BCKCode.h"
 
 @implementation BCKCode93Code
 
@@ -201,7 +202,29 @@ NSString * const BCKCode93Modulo47CheckCharacterSecondOption = @"BCKCode93Modulo
 	return [[BCKCode93ContentCodeCharacter alloc] initWithValue:(weightedSum % 47)];
 }
 
-#pragma mark - Subclass Methods
+#pragma mark - BCKCoding Methods
+
++ (BOOL)canEncodeContent:(NSString *)content error:(NSError *__autoreleasing *)error
+{
+	for (NSUInteger index=0; index<[content length]; index++)
+	{
+		NSString *character = [content substringWithRange:NSMakeRange(index, 1)];
+		
+        // Check the encoding dictionary to ensure all characters are encodable
+		if (![BCKCode93Code _fullASCIIEncoding:character])
+		{
+			if (error)
+			{
+				NSString *message = [NSString stringWithFormat:@"Character at index %d '%@' cannot be encoded in %@", (int)index, character, NSStringFromClass([self class])];
+				*error = [NSError BCKCodeErrorWithMessage:message];
+			}
+			
+			return NO;
+		}
+	}
+	
+	return YES;
+}
 
 + (NSString *)barcodeStandard
 {
@@ -281,7 +304,7 @@ NSString * const BCKCode93Modulo47CheckCharacterSecondOption = @"BCKCode93Modulo
 
 - (CGFloat)aspectRatio
 {
-	return 2.1;
+	return 3;
 }
 
 // The bar height should be at least 15% of the symbol (barcode) lenght, or 6.35mm (34 bars), whichever is greater. Returning a fixed height of 34 for now.
@@ -295,7 +318,7 @@ NSString * const BCKCode93Modulo47CheckCharacterSecondOption = @"BCKCode93Modulo
 	return 10;
 }
 
-- (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone
+- (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone withRenderOptions:(NSDictionary *)options
 {
 	if (captionZone == BCKCodeDrawingCaptionTextZone)
 	{
@@ -303,13 +326,6 @@ NSString * const BCKCode93Modulo47CheckCharacterSecondOption = @"BCKCode93Modulo
 	}
 	
 	return nil;
-}
-
-- (UIFont *)_captionFontWithSize:(CGFloat)fontSize
-{
-	UIFont *font = [UIFont boldSystemFontOfSize:fontSize];
-	
-	return font;
 }
 
 @end

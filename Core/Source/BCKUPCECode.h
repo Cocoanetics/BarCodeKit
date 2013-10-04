@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
-#import "BCKCode.h"
+#import "BCKGTINCode.h"
 
 /**
- Specialized subclass of BCKCode to represent an UPC-E code
+ Specialized subclass of BCKCode to represent an UPC-E barcode.
  */
-@interface BCKUPCECode : BCKCode
+@interface BCKUPCECode : BCKGTINCode <BCKCoding>
 
 @end

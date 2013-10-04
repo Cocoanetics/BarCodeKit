@@ -8,55 +8,11 @@
 
 #import "BCKEAN8Code.h"
 #import "BCKEANCodeCharacter.h"
-
+#import "NSError+BCKCode.h"
 
 @implementation BCKEAN8Code
 
-- (instancetype)initWithContent:(NSString *)content
-{
-	self = [super initWithContent:content];
-	
-	if (self)
-	{
-		if (![self _isValidContent:_content])
-		{
-			return nil;
-		}
-	}
-	
-	return self;
-}
-
 #pragma mark - Helper Methods
-
-- (BOOL)_isValidContent:(NSString *)content
-{
-	NSUInteger length = [content length];
-	
-	if (length != 8)
-	{
-		return NO;
-	}
-	
-	for (NSUInteger index=0; index<[content length]; index++)
-	{
-		NSString *character = [content substringWithRange:NSMakeRange(index, 1)];
-		char c = [character UTF8String][0];
-		
-		if (!(c>='0' && c<='9'))
-		{
-			return NO;
-		}
-	}
-	
-	return YES;
-}
-
-- (NSUInteger)_digitAtIndex:(NSUInteger)index
-{
-	NSString *digitStr = [self.content substringWithRange:NSMakeRange(index, 1)];
-	return [digitStr integerValue];
-}
 
 - (NSUInteger)_codeVariantIndexForDigitAtIndex:(NSUInteger)index withVariantPattern:(char *)variantPattern
 {
@@ -77,21 +33,46 @@
 	return variantIndex;
 }
 
-#pragma mark - Subclassing Methods
+#pragma mark - BCKCoding Methods
 
-+ (NSString *)barcodeStandard
++ (BOOL)canEncodeContent:(NSString *)content error:(NSError *__autoreleasing *)error
 {
-	return @"International standard ISO/IEC 15420";
+	NSUInteger length = [content length];
+	
+	if (length != 8)
+	{
+		if (error)
+		{
+			NSString *message = [NSString stringWithFormat:@"%@ requires content to be 8 digits", NSStringFromClass([self class])];
+			*error = [NSError BCKCodeErrorWithMessage:message];
+		}
+		
+		return NO;
+	}
+	
+	for (NSUInteger index=0; index<[content length]; index++)
+	{
+		NSString *character = [content substringWithRange:NSMakeRange(index, 1)];
+		char c = [character UTF8String][0];
+		
+		if (!(c>='0' && c<='9'))
+		{
+			if (error)
+			{
+				NSString *message = [NSString stringWithFormat:@"%@ cannot encode '%@' at index %d", NSStringFromClass([self class]), character, (int)index];
+				*error = [NSError BCKCodeErrorWithMessage:message];
+			}
+			
+			return NO;
+		}
+	}
+	
+	return YES;
 }
 
 + (NSString *)barcodeDescription
 {
 	return @"EAN-8";
-}
-
-- (NSUInteger)horizontalQuietZoneWidth
-{
-	return 7;
 }
 
 // generate the code characters from the content
@@ -113,7 +94,7 @@
 	
 	for (NSUInteger index = 0; index < 8; index ++)
 	{
-		NSUInteger digit = [self _digitAtIndex:index];
+		NSUInteger digit = [self digitAtIndex:index];
 		BCKEANCodeCharacterEncoding encoding = [self _codeVariantIndexForDigitAtIndex:index withVariantPattern:variant_pattern];
 		
 		[tmpArray addObject:[BCKEANCodeCharacter codeCharacterForDigit:digit encoding:encoding]];
@@ -132,19 +113,9 @@
 	return _codeCharacters;
 }
 
-- (NSString *)defaultCaptionFontName
-{
-	return @"OCRB";
-}
-
 - (CGFloat)aspectRatio
 {
 	return 26.73 / 21.31;
-}
-
-- (BOOL)markerBarsCanOverlapBottomCaption
-{
-	return YES;
 }
 
 - (BOOL)allowsFillingOfEmptyQuietZones

@@ -7,38 +7,75 @@
 //
 
 #import "BCKCode39Code.h"
-
+#import "BCKCode39CodeModulo43.h"
+#import "BCKCode39FullASCII.h"
+#import "BCKCode39FullASCIIModulo43.h"
 #import "BCKCode39CodeCharacter.h"
 #import "BCKCode39ContentCodeCharacter.h"
+#import "NSError+BCKCode.h"
 
 @implementation BCKCode39Code
 
-+ (NSString *)barcodeStandard
+#pragma mark - Initialiser class methods
+
++ (instancetype)code93WithContent:(NSString *)content error:(NSError *__autoreleasing *)error
 {
-	return @"International standard ISO/IEC 16388";
+    return [self code93WithContent:content withModulo43:NO error:error];
 }
 
-+ (NSString *)barcodeDescription
++ (instancetype)code93WithContent:(NSString *)content withModulo43:(BOOL)withModulo34 error:(NSError *__autoreleasing *)error
 {
-	return @"Code 39";
+    BOOL isFullASCII = NO;
+    BOOL isNonFullASCII = NO;
+
+    // Check if content can be encoded with a regular BCKCode93Code class, i.e. content does not include full ASCII characters
+    isNonFullASCII = [BCKCode39Code canEncodeContent:content error:nil];
+    if (!isNonFullASCII)
+    {
+        // Content contains characters that cannot be encoded using the BCKCode93Code class, now check if it contains full ASCII characters
+        isFullASCII = [BCKCode39FullASCII canEncodeContent:content error:nil];
+    }
+    
+    // If both BOOLs are NO the content cannot be encoded by any of the BCKCode93Code classes, return nil
+    if(!isNonFullASCII && !isFullASCII)
+    {
+        if (error)
+        {
+            NSString *message = [NSString stringWithFormat:@"Content contains characters that cannot be encoded by Code39"];
+            *error = [NSError BCKCodeErrorWithMessage:message];
+            return nil;
+        }
+    }
+
+    // Return an instance of the correct subclass
+    switch (isFullASCII)
+    {
+        case YES:
+            if (withModulo34)
+            {
+                return [[BCKCode39FullASCIIModulo43 alloc] initWithContent:content error:error];
+            }
+            else
+            {
+                return [[BCKCode39FullASCII alloc] initWithContent:content error:error];
+            }
+            break;
+        case NO:
+            if (withModulo34)
+            {
+                return [[BCKCode39CodeModulo43 alloc] initWithContent:content error:error];
+            }
+            else
+            {
+                return [[BCKCode39Code alloc] initWithContent:content error:error];
+            }
+            break;
+    }
+    
+    return nil;
 }
 
-- (instancetype)initWithContent:(NSString *)content
-{
-	self = [super init];
-	
-	if (self)
-	{
-		if (![self _isValidContent:content])
-		{
-			return nil;
-		}
-		
-		_content = [content copy];
-	}
-	
-	return self;
-}
+#pragma mark - Modulo 43 check
 
 - (BCKCode39ContentCodeCharacter *)generateModulo43ForContentCodeCharacter:(NSArray *)contentCodeCharacters
 {
@@ -54,16 +91,23 @@
 	return [[BCKCode39ContentCodeCharacter alloc] initWithValue:(weightedSum % 43)];
 }
 
-#pragma mark - Helper Methods
+#pragma mark - BCKCoding Methods
 
-- (BOOL)_isValidContent:(NSString *)content
++ (BOOL)canEncodeContent:(NSString *)content error:(NSError *__autoreleasing *)error
 {
 	for (NSUInteger index=0; index<[content length]; index++)
 	{
 		NSString *character = [content substringWithRange:NSMakeRange(index, 1)];
 		BCKCode39CodeCharacter *codeCharacter = [[BCKCode39ContentCodeCharacter alloc] initWithCharacter:character];
+		
 		if (!codeCharacter)
 		{
+			if (error)
+			{
+				NSString *message = [NSString stringWithFormat:@"Character at index %d '%@' cannot be encoded in %@", (int)index, character, NSStringFromClass([self class])];
+				*error = [NSError BCKCodeErrorWithMessage:message];
+			}
+			
 			return NO;
 		}
 	}
@@ -71,7 +115,15 @@
 	return YES;
 }
 
-#pragma mark - Subclass Methods
++ (NSString *)barcodeStandard
+{
+	return @"International standard ISO/IEC 16388";
+}
+
++ (NSString *)barcodeDescription
+{
+	return @"Code 39";
+}
 
 - (NSArray *)codeCharacters
 {
@@ -126,7 +178,7 @@
 	return 10;
 }
 
-- (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone
+- (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone withRenderOptions:(NSDictionary *)options
 {
 	if (captionZone == BCKCodeDrawingCaptionTextZone)
 	{
@@ -134,13 +186,6 @@
 	}
 	
 	return nil;
-}
-
-- (UIFont *)_captionFontWithSize:(CGFloat)fontSize
-{
-	UIFont *font = [UIFont boldSystemFontOfSize:fontSize];
-	
-	return font;
 }
 
 @end

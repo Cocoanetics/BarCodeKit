@@ -8,6 +8,7 @@
 
 #import "BCKCode.h"
 #import "BarCodeKit.h"
+#import "NSError+BCKCode.h"
 
 #import <CoreText/CoreText.h>
 
@@ -18,26 +19,65 @@ NSString * const BCKCodeDrawingCaptionFontNameOption = @"BCKCodeDrawingCaptionFo
 NSString * const BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption = @"BCKCodeDrawingMarkerBarsOverlapCaptionPercent";
 NSString * const BCKCodeDrawingFillEmptyQuietZonesOption = @"BCKCodeDrawingFillEmptyQuietZones";
 NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
+NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheckDigits";
+NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroundColor";
+
+#define ENCODE_ERROR_MESSAGE @"BCKCode is an abstract class that cannot encode anything"
 
 @implementation BCKCode
 
-- (instancetype)initWithContent:(NSString *)content
+// The NSError object is ignored in BCKCode's initWithContent method. BCKCode subclasses are required to initialise it in case of errors, for example if canEncodeContent: returns NO
+- (instancetype)initWithContent:(NSString *)content error:(NSError**)error
 {
 	self = [super init];
 	
 	if (self)
 	{
+		NSError *encodeError = nil;
+		
+		if (![content length])
+		{
+			if (error)
+			{
+				NSString *message = [NSString stringWithFormat:@"Unable to encoded empty string in %@", NSStringFromClass([self class])];
+				*error = [NSError BCKCodeErrorWithMessage:message];
+			}
+			
+			return nil;
+		}
+		
+		
+		// query the sub-classes method to check if this can be encoded
+		if (![[self class] canEncodeContent:content error:&encodeError])
+		{
+			if (error)
+			{
+				*error = encodeError;
+			}
+			else
+			{
+				NSLog(@"%s %@", __PRETTY_FUNCTION__, [encodeError localizedDescription]);
+			}
+			
+			return nil;
+		}
+		
 		_content = [content copy];
 	}
 	
 	return self;
 }
 
+- (instancetype)initWithContent:(NSString *)content
+{
+	return [self initWithContent:content error:NULL];
+}
+
 - (NSString *)bitString
 {
 	NSMutableString *tmpString = [NSMutableString string];
 	
-	for (BCKEANCodeCharacter *oneCharacter in [self codeCharacters])
+	for (BCKCodeCharacter *oneCharacter in [self codeCharacters])
 	{
 		[tmpString appendString:[oneCharacter bitString]];
 	}
@@ -50,22 +90,12 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	return [NSString stringWithFormat:@"<%@ content='%@'>", NSStringFromClass([self class]), [self bitString]];
 }
 
-+ (NSString *)barcodeStandard
-{
-	return nil;
-}
-
-+ (NSString *)barcodeDescription
-{
-	return nil;
-}
-
 #pragma mark - Options Helper Methods
 
 // returns the actually displayed left quiet zone text based on the options
 - (NSString *)_leftQuietZoneDisplayTextWithOptions:(NSDictionary *)options
 {
-	NSString *leftQuietZoneText = [self captionTextForZone:BCKCodeDrawingCaptionLeftQuietZone];
+	NSString *leftQuietZoneText = [self captionTextForZone:BCKCodeDrawingCaptionLeftQuietZone withRenderOptions:options];
 	
 	if (self.allowsFillingOfEmptyQuietZones && [[options objectForKey:BCKCodeDrawingFillEmptyQuietZonesOption] boolValue])
 	{
@@ -81,7 +111,7 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 // returns the actually displayed right quiet zone text based on the options
 - (NSString *)_rightQuietZoneDisplayTextWithOptions:(NSDictionary *)options
 {
-	NSString *rightQuietZoneText = [self captionTextForZone:BCKCodeDrawingCaptionRightQuietZone];
+	NSString *rightQuietZoneText = [self captionTextForZone:BCKCodeDrawingCaptionRightQuietZone withRenderOptions:options];
 	
 	if (self.allowsFillingOfEmptyQuietZones && [[options objectForKey:BCKCodeDrawingFillEmptyQuietZonesOption] boolValue])
 	{
@@ -103,35 +133,10 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 		return nil;
 	}
 	
-	NSMutableString *tmpString = [NSMutableString string];
-	__block BOOL metContent = NO;
-	
-	// aggregate digits before marker
-	[[self codeCharacters] enumerateObjectsUsingBlock:^(BCKEANCodeCharacter *character, NSUInteger charIndex, BOOL *stop) {
-		
-		if ([character isMarker])
-		{
-			if (metContent)
-			{
-				*stop = YES;
-				return;
-			}
-		}
-		else
-		{
-			if ([character isKindOfClass:[BCKEANDigitCodeCharacter class]])
-			{
-				BCKEANDigitCodeCharacter *digitChar = (BCKEANDigitCodeCharacter *)character;
-				[tmpString appendFormat:@"%d", [digitChar digit]];
-			}
-			
-			metContent = YES;
-		}
-	}];
-	
-	if ([tmpString length])
+	NSString *leftCaptionString = [self captionTextForZone:BCKCodeDrawingCaptionLeftNumberZone withRenderOptions:options];
+	if ([leftCaptionString length])
 	{
-		return [tmpString copy];
+		return [leftCaptionString copy];
 	}
 	
 	return nil;
@@ -146,38 +151,10 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 		return nil;
 	}
 	
-	NSMutableString *tmpString = [NSMutableString string];
-	
-	__block BOOL metMiddleMarker = NO;
-	__block BOOL metContent = NO;
-	
-	// aggregate digits after marker
-	[[self codeCharacters] enumerateObjectsUsingBlock:^(BCKEANCodeCharacter *character, NSUInteger charIndex, BOOL *stop) {
-		
-		if ([character isMarker])
-		{
-			if (metContent && !metMiddleMarker)
-			{
-				metMiddleMarker = YES;
-			}
-			
-		}
-		else
-		{
-			if (metMiddleMarker)
-			{
-				BCKEANDigitCodeCharacter *digitChar = (BCKEANDigitCodeCharacter *)character;
-				[tmpString appendFormat:@"%d", [digitChar digit]];
-			}
-			
-			metContent = YES;
-		}
-		
-	}];
-	
-	if ([tmpString length])
+	NSString *rightCaptionString = [self captionTextForZone:BCKCodeDrawingCaptionRightNumberZone withRenderOptions:options];
+	if ([rightCaptionString length])
 	{
-		return [tmpString copy];
+		return [rightCaptionString copy];
 	}
 	
 	return nil;
@@ -194,7 +171,7 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	__block BOOL metContent = NO;
 	
 	// aggregate digits before marker
-	[[self codeCharacters] enumerateObjectsUsingBlock:^(BCKEANCodeCharacter *character, NSUInteger charIndex, BOOL *stop) {
+	[[self codeCharacters] enumerateObjectsUsingBlock:^(BCKCodeCharacter *character, NSUInteger charIndex, BOOL *stop) {
 		
 		if ([character isMarker])
 		{
@@ -226,7 +203,7 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	__block BOOL metContent = NO;
 	
 	// aggregate digits before marker
-	[[self codeCharacters] enumerateObjectsUsingBlock:^(BCKEANCodeCharacter *character, NSUInteger charIndex, BOOL *stop) {
+	[[self codeCharacters] enumerateObjectsUsingBlock:^(BCKCodeCharacter *character, NSUInteger charIndex, BOOL *stop) {
 		
 		if ([character isMarker])
 		{
@@ -254,12 +231,15 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	return bitsAfterMiddle * [self _barScaleFromOptions:options];
 }
 
-
-
 - (CGFloat)_captionFontSizeWithOptions:(NSDictionary *)options
 {
-	NSString *leftQuietZoneText = [self _leftQuietZoneDisplayTextWithOptions:options];
-	NSString *rightQuietZoneText = [self _rightQuietZoneDisplayTextWithOptions:options];
+	// for sizing the caption we always assume that quiet zones are filled and check digits are shown
+	NSMutableDictionary *tmpOptions = [[NSMutableDictionary alloc] initWithDictionary:options];
+	tmpOptions[BCKCodeDrawingFillEmptyQuietZonesOption] = @(YES);
+	tmpOptions[BCKCodeDrawingShowCheckDigitsOption] = @(YES);
+	
+	NSString *leftQuietZoneText = [self _leftQuietZoneDisplayTextWithOptions:tmpOptions];
+	NSString *rightQuietZoneText = [self _rightQuietZoneDisplayTextWithOptions:tmpOptions];
 	
 	NSString *leftDigits = [self _leftCaptionZoneDisplayTextWithOptions:options];
 	NSString *rightDigits = [self _rightCaptionZoneDisplayTextWithOptions:options];
@@ -291,8 +271,27 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	return optimalCaptionFontSize;
 }
 
+- (BOOL)_shouldShowCheckDigitsFromOptions:(NSDictionary *)options
+{
+	NSNumber *num = [options objectForKey:BCKCodeDrawingShowCheckDigitsOption];
+	
+	if (num)
+	{
+		return [num boolValue];
+	}
+	else
+	{
+		return 0;  // default
+	}
+}
+
 - (BOOL)_shouldDrawCaptionFromOptions:(NSDictionary *)options
 {
+	if (![self respondsToSelector:@selector(captionTextForZone:withRenderOptions:)])
+	{
+		return NO;
+	}
+	
 	NSNumber *num = [options objectForKey:BCKCodeDrawingPrintCaptionOption];
 	
 	if (num)
@@ -346,15 +345,11 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 		font = CTFontCreateWithName(CFSTR("Helvetica"), fontSize, NULL);
 	}
 	
-	UIColor *textColor = [UIColor blackColor];
-	
 	NSDictionary *attributes = @{(id)kCTParagraphStyleAttributeName: CFBridgingRelease(paragraphStyle),
-										  (id)kCTFontAttributeName: CFBridgingRelease(font),
-										  (id)kCTForegroundColorAttributeName: (id)textColor.CGColor};
+								 (id)kCTFontAttributeName: CFBridgingRelease(font)};
 	
 	return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
-
 
 - (CTFrameRef)_frameWithCaptionText:(NSString *)text fontName:(NSString *)fontName fontSize:(CGFloat)fontSize constraintedToWidth:(CGFloat)constraintWidth
 {
@@ -405,14 +400,11 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 
 - (CGFloat)_optimalFontSizeToFitText:(NSString *)text fontName:(NSString *)fontName insideWidth:(CGFloat)width
 {
-	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-	paragraphStyle.alignment = NSTextAlignmentCenter;
-	
 	CGFloat fontSize = 1;
 	
 	do
 	{
-		CTFrameRef frame = [self _frameWithCaptionText:text fontName:fontName fontSize:fontSize constraintedToWidth:width];
+		CTFrameRef frame = [self _frameWithCaptionText:text fontName:fontName fontSize:fontSize constraintedToWidth:CGFLOAT_MAX];
 		
 		if (!frame)
 		{
@@ -449,7 +441,27 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	}
 }
 
-#pragma mark - Subclassing Methods
+#pragma mark - BCKCoding Methods
+
++ (NSString *)barcodeStandard
+{
+	return nil;
+}
+
++ (NSString *)barcodeDescription
+{
+	return nil;
+}
+
++ (BOOL)canEncodeContent:(NSString *)content error:(NSError **)error
+{
+	if (error)
+	{
+		*error = [NSError BCKCodeErrorWithMessage:ENCODE_ERROR_MESSAGE];
+	}
+	
+	return NO;
+}
 
 - (NSUInteger)horizontalQuietZoneWidth
 {
@@ -457,11 +469,6 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 }
 
 - (NSArray *)codeCharacters
-{
-	return nil;
-}
-
-- (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone
 {
 	return nil;
 }
@@ -486,12 +493,41 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	return NO;
 }
 
+- (BOOL)showCheckDigitsInCaption
+{
+	return NO;
+}
+
 - (NSString *)defaultCaptionFontName
 {
 	return @"Helvetica";
 }
 
 #pragma mark - Drawing
+
+- (void)_drawBackgroundColorInContext:(CGContextRef)context bounds:(CGRect)bounds options:(NSDictionary *)options
+{
+	id backgroundColor = [options objectForKey:BCKCodeDrawingBackgroundColorOption];
+	
+	if (!backgroundColor)
+	{
+		return;
+	}
+	
+	CGContextSaveGState(context);
+	
+#if TARGET_OS_IPHONE
+	UIColor *uiColor = (UIColor *)backgroundColor;
+	CGContextSetFillColorWithColor(context, [uiColor CGColor]);
+#else
+	NSColor *nsColor = (NSColor *)backgroundColor;
+	CGContextSetFillColorWithColor(context, [nsColor CGColor]);
+#endif
+	
+	CGContextFillRect(context, bounds);
+	
+	CGContextRestoreGState(context);
+}
 
 - (void)_drawCaptionText:(NSString *)text fontName:fontName fontSize:(CGFloat)fontSize inRect:(CGRect)rect context:(CGContextRef)context
 {
@@ -576,19 +612,27 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	
 	CGFloat barScale = [self _barScaleFromOptions:options];
 	CGSize size = [self sizeWithRenderOptions:options];
+	CGRect bounds = (CGRect){CGPointZero, size};
 	
-	NSString *leftQuietZoneText = [self _leftQuietZoneDisplayTextWithOptions:options];
-	NSString *leftDigits = [self _leftCaptionZoneDisplayTextWithOptions:options];
-	NSString *rightDigits = [self _rightCaptionZoneDisplayTextWithOptions:options];
-	NSString *rightQuietZoneText = [self _rightQuietZoneDisplayTextWithOptions:options];
+	[self _drawBackgroundColorInContext:context bounds:bounds options:options];
 	
 	CGFloat captionHeight = 0;
 	CGFloat optimalCaptionFontSize = 0;
 	CGRect bottomCaptionRegion = CGRectMake(0, size.height, size.width, 0);
 	
+	NSString *leftQuietZoneText = nil;
+	NSString *leftDigits = nil;
+	NSString *rightDigits = nil;
+	NSString *rightQuietZoneText = nil;
+	
 	// determine height of caption if needed
 	if ([self _shouldDrawCaptionFromOptions:options])
 	{
+		leftQuietZoneText = [self _leftQuietZoneDisplayTextWithOptions:options];
+		leftDigits = [self _leftCaptionZoneDisplayTextWithOptions:options];
+		rightDigits = [self _rightCaptionZoneDisplayTextWithOptions:options];
+		rightQuietZoneText = [self _rightQuietZoneDisplayTextWithOptions:options];
+		
 		optimalCaptionFontSize = [self _captionFontSizeWithOptions:options];
 		NSString *fontName = [self _captionFontNameFromOptions:options];
 		
@@ -610,7 +654,7 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	
 	__block NSUInteger drawnBitIndex = 0;
 	__block BOOL metMiddleMarker = NO;
-	__block CGRect leftQuietZoneNumberFrame = CGRectZero;
+	__block CGRect leftQuietZoneNumberFrame = CGRectNull;
 	__block CGRect leftNumberFrame = CGRectNull;
 	__block CGRect rightNumberFrame = CGRectNull;
 	__block CGRect frameBetweenEndMarkers = CGRectNull;
@@ -624,7 +668,7 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	NSArray *codeCharacters = [self codeCharacters];
 	
 	// enumerate the code characters
-	[codeCharacters enumerateObjectsUsingBlock:^(BCKEANCodeCharacter *character, NSUInteger charIndex, BOOL *stop) {
+	[codeCharacters enumerateObjectsUsingBlock:^(BCKCodeCharacter *character, NSUInteger charIndex, BOOL *stop) {
 		
 		// bar length is different for markers and digits
 		CGFloat barLength = digitBarLength;
@@ -673,7 +717,10 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 			else
 			{
 				// left outer marker
-				leftQuietZoneNumberFrame = CGRectMake(0, 0, characterRect.origin.x, size.height);
+				if (CGRectIsNull(leftQuietZoneNumberFrame))
+				{
+					leftQuietZoneNumberFrame = CGRectMake(0, 0, characterRect.origin.x, size.height);
+				}
 			}
 			
 			// right outer marker
@@ -696,7 +743,8 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 	}];
 	
 	// paint all bars
-	[[UIColor blackColor] setFill];
+	
+	CGContextSetGrayFillColor(context, 0, 1);
 	CGContextFillPath(context);
 	
 	if ([self _shouldDrawCaptionFromOptions:options])
@@ -757,19 +805,29 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 			// DEBUG Option
 			if ([[options objectForKey:BCKCodeDrawingDebugOption] boolValue])
 			{
-				[[UIColor colorWithRed:1 green:0 blue:0 alpha:0.6] set];
+				CGContextSetRGBFillColor(context, 1, 0, 0, 0.6);
 				CGContextFillRect(context, leftNumberFrame);
-				[[UIColor colorWithRed:0 green:1 blue:0 alpha:0.6] set];
+				
+				CGContextSetRGBFillColor(context, 0, 1, 0, 0.6);
 				CGContextFillRect(context, rightNumberFrame);
-				[[UIColor colorWithRed:0 green:0 blue:1 alpha:0.6] set];
+				
+				CGContextSetRGBFillColor(context, 0, 0, 1, 0.6);
 				CGContextFillRect(context, leftQuietZoneNumberFrame);
-				[[UIColor colorWithRed:0 green:0 blue:1 alpha:0.6] set];
+				
+				CGContextSetRGBFillColor(context, 0, 0, 1, 0.6);
 				CGContextFillRect(context, rightQuietZoneNumberFrame);
 			}
 			
 			// Draw Captions
-			[self _drawCaptionText:leftDigits fontName:fontName fontSize:optimalCaptionFontSize inRect:leftNumberFrame context:context];
-			[self _drawCaptionText:rightDigits fontName:fontName fontSize:optimalCaptionFontSize inRect:rightNumberFrame context:context];
+			if (leftDigits)
+			{
+				[self _drawCaptionText:leftDigits fontName:fontName fontSize:optimalCaptionFontSize inRect:leftNumberFrame context:context];
+			}
+			
+			if (rightDigits)
+			{
+				[self _drawCaptionText:rightDigits fontName:fontName fontSize:optimalCaptionFontSize inRect:rightNumberFrame context:context];
+			}
 			
 			if (leftQuietZoneText)
 			{
@@ -820,16 +878,22 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 			// DEBUG Option
 			if ([[options objectForKey:BCKCodeDrawingDebugOption] boolValue])
 			{
-				[[UIColor colorWithRed:1 green:0 blue:0 alpha:0.6] set];
+				CGContextSetRGBFillColor(context, 1, 0, 0, 0.6);
 				CGContextFillRect(context, frameBetweenEndMarkers);
-				[[UIColor colorWithRed:0 green:0 blue:1 alpha:0.6] set];
+				
+				CGContextSetRGBFillColor(context, 0, 0, 1, 0.6);
 				CGContextFillRect(context, leftQuietZoneNumberFrame);
-				[[UIColor colorWithRed:0 green:0 blue:1 alpha:0.6] set];
+				
+				CGContextSetRGBFillColor(context, 0, 0, 1, 0.6);
 				CGContextFillRect(context, rightQuietZoneNumberFrame);
 			}
 			
-			NSString *text = [self captionTextForZone:BCKCodeDrawingCaptionTextZone];
-			[self _drawCaptionText:text fontName:fontName fontSize:[self _captionFontSizeWithOptions:options] inRect:frameBetweenEndMarkers context:context];
+			NSString *text = [self captionTextForZone:BCKCodeDrawingCaptionTextZone withRenderOptions:options];
+			
+			if (text)
+			{
+				[self _drawCaptionText:text fontName:fontName fontSize:[self _captionFontSizeWithOptions:options] inRect:frameBetweenEndMarkers context:context];
+			}
 			
 			if (leftQuietZoneText)
 			{

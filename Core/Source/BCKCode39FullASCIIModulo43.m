@@ -8,22 +8,11 @@
 
 #import "BCKCode39FullASCIIModulo43.h"
 #import "BCKCode39CodeCharacter.h"
+#import "NSError+BCKCode.h"
 
 @implementation BCKCode39FullASCIIModulo43
 
-- (instancetype)initWithContent:(NSString *)content
-{
-	self = [super init];
-	
-	if (self)
-	{
-		_content = [content copy];
-	}
-	
-	return self;
-}
-
-#pragma mark - Subclass Methods
+#pragma mark - BCKCoding Methods
 
 + (NSString *)barcodeDescription
 {

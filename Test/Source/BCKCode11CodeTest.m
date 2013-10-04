@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
 #import "BCKCode11Code.h"
 
 @interface BCKCode11Code () // private
@@ -35,7 +34,10 @@
 
 - (void)testEncode
 {
-	BCKCode11Code *code = [[BCKCode11Code alloc] initWithContent:@"123-45"];
+	NSError *error;
+	BCKCode11Code *code = [[BCKCode11Code alloc] initWithContent:@"123-45" error:&error];
+	STAssertNotNil(code, [error localizedDescription]);
+	
 	NSString *expected = @"1011001011010110100101101100101010110101011011011011010110110101011001";
 	NSString *actual = [code bitString];
 	BOOL isEqual = [expected isEqualToString:actual];
@@ -45,12 +47,30 @@
 
 - (void)testEncodeLong
 {
-	BCKCode11Code *code = [[BCKCode11Code alloc] initWithContent:@"01234528987"];
+	NSError *error;
+	BCKCode11Code *code = [[BCKCode11Code alloc] initWithContent:@"01234528987" error:NULL];
+	STAssertNotNil(code, [error localizedDescription]);
+	
 	NSString *expected = @"101100101010110110101101001011011001010101101101101101010010110110100101101010110100101010011010110110110100101011001";
 	NSString *actual = [code bitString];
 	BOOL isEqual = [expected isEqualToString:actual];
 
 	STAssertTrue(isEqual, @"Result from encoding long contents incorrect");
+}
+
+// tests encoding a barcode containing characters not included in full ASCII
+- (void)testEncodeInvalid
+{
+    NSError *error = nil;
+    BOOL isEqual;
+    
+	BCKCode11Code *codeFullASCII = [[BCKCode11Code alloc] initWithContent:@"123ö45" error:&error];
+	STAssertNil(codeFullASCII, @"Should not be able to encode invalid characters in BCKCode11Code");
+    
+    isEqual = [[error localizedDescription] isEqualToString:@"Character at index 3 'ö' cannot be encoded in BCKCode11Code"];
+    
+    STAssertNotNil(error, @"Error object should not be nil");
+    STAssertTrue(isEqual, @"Error message should indicate invalid content");
 }
 
 @end

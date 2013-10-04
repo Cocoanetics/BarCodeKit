@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>default</key>
+	<string>12345670</string>
+	<key>BCKCode93Code</key>
+	<string>BaRcOdEkIt!</string>
+	<key>BCKCode39Code</key>
+	<string>BARCODEKIT</string>
+	<key>BCKCode39CodeModulo43</key>
+	<string>BARCODEKIT</string>
+	<key>BCKCode39FullASCII</key>
+	<string>BaRcOdEkIt!</string>
+	<key>BCKCode39FullASCIIModulo43</key>
+	<string>BaRcOdEkIt!</string>
+	<key>BCKInterleaved2of5Code</key>
+	<string>1234567895</string>
+	<key>BCKEAN13Code</key>
+	<string>5901234123457</string>
+	<key>BCKEAN8Code</key>
+	<string>96385074</string>
+	<key>BCKCode128Code</key>
+	<string>BaRcOdEkIt!</string>
+	<key>BCKUPCECode</key>
+	<string>04252614</string>
+	<key>BCKCode11Code</key>
+	<string>123456789-</string>
+	<key>BCKMSICode</key>
+	<string>1234567</string>
+	<key>BCKPharmacodeOneTrack</key>
+	<string>542</string>
+	<key>BCKCodabarCode</key>
+	<string>A4-0$1:5/6.7+B</string>
+	<key>BCKUPCACode</key>
+	<string>018200001680</string>
+	<key>BCKStandard2of5Code</key>
+	<string>1234</string>
+	<key>BCKFacingIdentificationMarkCode</key>
+	<string>A</string>
+	<key>BCKEAN2SupplementCode</key>
+	<string>53</string>
+	<key>BCKEAN5SupplementCode</key>
+	<string>54495</string>
+	<key>BCKISBNCode</key>
+	<string>81-7525-766-0</string>
+	<key>BCKISSNCode</key>
+	<string>0317-8471</string>
+</dict>
+</plist>

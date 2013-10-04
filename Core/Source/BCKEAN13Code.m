@@ -8,6 +8,7 @@
 
 #import "BCKEAN13Code.h"
 #import "BCKEANCodeCharacter.h"
+#import "NSError+BCKCode.h"
 
 // the variant pattern to use based on the first digit
 static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
@@ -24,50 +25,36 @@ static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
 
 @implementation BCKEAN13Code
 
-- (instancetype)initWithContent:(NSString *)content
-{
-	self = [super initWithContent:content];
-	
-	if (self)
-	{
-		if (![self _isValidContent:_content])
-		{
-			return nil;
-		}
-	}
-	
-	return self;
-}
-
 #pragma mark - Helper Methods
 
-- (BOOL)_isValidContent:(NSString *)content
+// Returns the check digit for a 12-character string.
+- (NSString *)generateEAN13CheckDigit:(NSString *)characterString
 {
-	NSUInteger length = [content length];
-	
-	if (length != 13)
+    NSUInteger weightedSum = 0;
+    NSUInteger checkDigit;
+    
+    for (NSUInteger index=0; index<([characterString length]); index++)
 	{
-		return NO;
-	}
-	
-	for (NSUInteger index=0; index<[content length]; index++)
-	{
-		NSString *character = [content substringWithRange:NSMakeRange(index, 1)];
-		char c = [character UTF8String][0];
-		
-		if (!(c>='0' && c<='9'))
-		{
-			return NO;
-		}
-	}
-	
-	return YES;
-}
-
-- (NSUInteger)_digitAtIndex:(NSUInteger)index
-{
-	NSString *digitStr = [self.content substringWithRange:NSMakeRange(index, 1)];
-	return [digitStr integerValue];
+		NSString *character = [characterString substringWithRange:NSMakeRange(index, 1)];
+        
+        if (index % 2 == 0)
+        {
+            weightedSum += [character integerValue] * 1;
+        }
+        else
+        {
+            weightedSum += [character integerValue] * 3;
+        }
+    }
+    
+    checkDigit = 10 - weightedSum % 10;
+    
+    if (checkDigit == 10)
+    {
+        checkDigit = 0;
+    }
+    
+    return [NSString stringWithFormat:@"%lu", (unsigned long)checkDigit];
 }
 
 - (NSUInteger)_codeVariantIndexForDigitAtIndex:(NSUInteger)index withVariantPattern:(char *)variantPattern
@@ -89,21 +76,46 @@ static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
 	return variantIndex;
 }
 
-#pragma mark - Subclassing Methods
+#pragma mark - BCKCoding Methods
 
-+ (NSString *)barcodeStandard
++ (BOOL)canEncodeContent:(NSString *)content error:(NSError *__autoreleasing *)error
 {
-	return @"International standard ISO/IEC 15420";
+	NSUInteger length = [content length];
+	
+	if (length != 13)
+	{
+		if (error)
+		{
+			NSString *message = [NSString stringWithFormat:@"%@ requires content to be 13 digits", NSStringFromClass([self class])];
+			*error = [NSError BCKCodeErrorWithMessage:message];
+		}
+		
+		return NO;
+	}
+	
+	for (NSUInteger index=0; index<[content length]; index++)
+	{
+		NSString *character = [content substringWithRange:NSMakeRange(index, 1)];
+		char c = [character UTF8String][0];
+		
+		if (!(c>='0' && c<='9'))
+		{
+			if (error)
+			{
+				NSString *message = [NSString stringWithFormat:@"%@ cannot encode '%@' at index %d", NSStringFromClass([self class]), character, (int)index];
+				*error = [NSError BCKCodeErrorWithMessage:message];
+			}
+			
+			return NO;
+		}
+	}
+	
+	return YES;
 }
 
 + (NSString *)barcodeDescription
 {
-	return @"EAN-13 and UPC-A";
-}
-
-- (NSUInteger)horizontalQuietZoneWidth
-{
-	return 7;
+	return @"EAN-13";
 }
 
 - (NSArray *)codeCharacters
@@ -117,7 +129,7 @@ static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
 	NSMutableArray *tmpArray = [NSMutableArray array];
 	
 	// variant pattern derives from first digit
-	NSUInteger firstDigit = [self _digitAtIndex:0];
+	NSUInteger firstDigit = [self digitAtIndex:0];
 	char *variant_pattern = variant_patterns[firstDigit];
 	
 	// start marker
@@ -125,7 +137,7 @@ static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
 	
 	for (NSUInteger index = 1; index < 13; index ++)
 	{
-		NSUInteger digit = [self _digitAtIndex:index];
+		NSUInteger digit = [self digitAtIndex:index];
 		BCKEANCodeCharacterEncoding encoding = [self _codeVariantIndexForDigitAtIndex:index withVariantPattern:variant_pattern];
 		
 		[tmpArray addObject:[BCKEANCodeCharacter codeCharacterForDigit:digit encoding:encoding]];
@@ -144,29 +156,20 @@ static char *variant_patterns[10] = {"LLLLLLRRRRRR",  // 0
 	return _codeCharacters;
 }
 
-- (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone
+- (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone withRenderOptions:(NSDictionary *)options
 {
 	if (captionZone == BCKCodeDrawingCaptionLeftQuietZone)
 	{
 		return [self.content substringToIndex:1];
 	}
 	
-	return nil;
-}
-
-- (NSString *)defaultCaptionFontName
-{
-	return @"OCRB";
+	// get digit zones from code characters
+	return [super captionTextForZone:captionZone withRenderOptions:options];
 }
 
 - (CGFloat)aspectRatio
 {
 	return 39.29 / 25.91;
-}
-
-- (BOOL)markerBarsCanOverlapBottomCaption
-{
-	return YES;
 }
 
 - (BOOL)allowsFillingOfEmptyQuietZones

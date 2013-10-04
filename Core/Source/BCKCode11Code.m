@@ -7,21 +7,43 @@
 //
 
 #import "BCKCode11Code.h"
-
 #import "BCKCode11CodeCharacter.h"
 #import "BCKCode11ContentCodeCharacter.h"
+#import "NSError+BCKCode.h"
+
 
 @implementation BCKCode11Code
 
 #define FIRSTMODULO11MAXWEIGHT 10       // the weight ranges from 1 to 10 for the first modulo-11 check
 #define SECONDMODULO11MAXWEIGHT 9       // the weight ranges from 1 to 9 for the second modulo-11 check
 
-
 // Pass the appropriate option to generate the first or second modulo-11 check character
 NSString * const BCKCode11Modulo11CheckCharacterFirstOption = @"BCKCode11Modulo11CheckCharacterFirst";
 NSString * const BCKCode11Modulo11CheckCharacterSecondOption = @"BCKCode11Modulo11CheckCharacterSecond";
 
-#pragma mark - Subclass Methods
+#pragma mark - BCKCoding Methods
+
++ (BOOL)canEncodeContent:(NSString *)content error:(NSError *__autoreleasing *)error
+{
+	for (NSUInteger index=0; index<[content length]; index++)
+	{
+		NSString *character = [content substringWithRange:NSMakeRange(index, 1)];
+		BCKCode11CodeCharacter *codeCharacter = [[BCKCode11ContentCodeCharacter alloc] initWithCharacter:character];
+		
+		if (!codeCharacter)
+		{
+			if (error)
+			{
+				NSString *message = [NSString stringWithFormat:@"Character at index %d '%@' cannot be encoded in %@", (int)index, character, NSStringFromClass([self class])];
+				*error = [NSError BCKCodeErrorWithMessage:message];
+			}
+			
+			return NO;
+		}
+	}
+	
+	return YES;
+}
 
 + (NSString *)barcodeStandard
 {
@@ -150,7 +172,7 @@ NSString * const BCKCode11Modulo11CheckCharacterSecondOption = @"BCKCode11Modulo
 	return 10;
 }
 
-- (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone
+- (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone withRenderOptions:(NSDictionary *)options
 {
 	if (captionZone == BCKCodeDrawingCaptionTextZone)
 	{
@@ -158,13 +180,6 @@ NSString * const BCKCode11Modulo11CheckCharacterSecondOption = @"BCKCode11Modulo
 	}
 	
 	return nil;
-}
-
-- (UIFont *)_captionFontWithSize:(CGFloat)fontSize
-{
-	UIFont *font = [UIFont boldSystemFontOfSize:fontSize];
-	
-	return font;
 }
 
 @end

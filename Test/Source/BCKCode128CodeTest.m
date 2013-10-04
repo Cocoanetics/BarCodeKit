@@ -22,8 +22,11 @@
 
 - (void)testEncodingOneCharacter
 {
-    BCKCode128Code *code = [[BCKCode128Code alloc] initWithContent:@"J"];
-    NSString *expected = @"11010000100 10110111000 10110111000 1100011101011";
+	NSError *error;
+    BCKCode128Code *code = [[BCKCode128Code alloc] initWithContent:@"J" error:&error];
+ 	STAssertNotNil(code, [error localizedDescription]);
+
+	NSString *expected = @"11010000100 10110111000 10110111000 1100011101011";
     expected = [expected stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSString *actual = [code bitString];
     BOOL isEqual = [expected isEqualToString:actual];
@@ -32,7 +35,8 @@
 
 - (void)testEncodingWikipedia
 {
-    BCKCode128Code *code = [[BCKCode128Code alloc] initWithContent:@"Wikipedia"];
+	NSError *error;
+    BCKCode128Code *code = [[BCKCode128Code alloc] initWithContent:@"Wikipedia" error:&error];
     NSString *expected = @"11010010000111010001101000011010011000010010100001101001010011110010110010000100001001101000011010010010110000111100100101100011101011";
     NSString *actual = [code bitString];
     BOOL isEqual = [expected isEqualToString:actual];
@@ -42,7 +46,10 @@
 
 - (void)testAppleStoreCodeEncoding
 {
-    BCKCode128Code *code = [[BCKCode128Code alloc] initWithContent:@"CAM395A"];
+	NSError *error;
+    BCKCode128Code *code = [[BCKCode128Code alloc] initWithContent:@"CAM395A" error:&error];
+	STAssertNotNil(code, [error localizedDescription]);
+
     NSString *expected = @"1101000010010001000110101000110001011101100011001011100111001011001101110010010100011000100001101001100011101011";
     NSString *actual = [code bitString];
     BOOL isEqual = [expected isEqualToString:actual];
@@ -52,7 +59,10 @@
 
 - (void)testSymbolsEncoding
 {
-    BCKCode128Code *code = [[BCKCode128Code alloc] initWithContent:@"'&%$#\"! ~_|}"];
+	NSError *error;
+    BCKCode128Code *code = [[BCKCode128Code alloc] initWithContent:@"'&%$#\"! ~_|}" error:&error];
+	STAssertNotNil(code, [error localizedDescription]);
+
     NSString *expected = @"11010010000100110001001001100100010001001100100100011001001001100011001100110110011011001101100110010001011110101001100001010111100010100011110100111101001100011101011";
     NSString *actual = [code bitString];
     BOOL isEqual = [expected isEqualToString:actual];
@@ -62,7 +72,10 @@
 
 - (void)testOnlyNumberPairsCodeWillBeEncodedUsing128C
 {
-    BCKCode128Code *code = [[BCKCode128Code alloc] initWithContent:@"12345678"];
+	NSError *error;
+    BCKCode128Code *code = [[BCKCode128Code alloc] initWithContent:@"12345678" error:&error];
+	STAssertNotNil(code, [error localizedDescription]);
+
     NSString *expected = @"1101001110010110011100100010110001110001011011000010100100011101101100011101011";
     NSString *actual = [code bitString];
     BOOL isEqual = [expected isEqualToString:actual];
@@ -72,7 +85,10 @@
 
 - (void)testEncodingUnevenCountOfNumbersUsing128C
 {
-    BCKCode128Code *code = [[BCKCode128Code alloc] initWithContent:@"123456789"];
+	NSError *error;
+    BCKCode128Code *code = [[BCKCode128Code alloc] initWithContent:@"123456789" error:&error];
+	STAssertNotNil(code, [error localizedDescription]);
+
     NSString *expected = @"11010011100101100111001000101100011100010110110000101001110101111011100101100100111101001100011101011";
     NSString *actual = [code bitString];
     BOOL isEqual = [expected isEqualToString:actual];
@@ -82,7 +98,10 @@
 
 - (void)testLengthOptimizationNumbersAtEnd
 {
-    BCKCode128Code *code = [[BCKCode128Code alloc] initWithContent:@"HI345678"];
+	NSError *error;
+    BCKCode128Code *code = [[BCKCode128Code alloc] initWithContent:@"HI345678" error:&error];
+	STAssertNotNil(code, [error localizedDescription]);
+
     NSString *expected = @"11010000100 11000101000 11000100010 10111011110 10001011000 11100010110 11000010100 10000101100 1100011101011";
     expected = [expected stringByReplacingOccurrencesOfString:@" " withString:@""];
 
@@ -94,7 +113,10 @@
 
 - (void)testLengthOptimizationNumbersAtBeginning
 {
-    BCKCode128Code *code = [[BCKCode128Code alloc] initWithContent:@"345678HI"];
+	NSError *error;
+    BCKCode128Code *code = [[BCKCode128Code alloc] initWithContent:@"345678HI" error:&error];
+	STAssertNotNil(code, [error localizedDescription]);
+
     NSString *expected = @"1101000010010111011110100010110001110001011011000010100111010111101100010100011000100010110110001101100011101011";
 
     NSString *actual = [code bitString];
@@ -105,7 +127,10 @@
 
 - (void)testSwitchToCode128DoneWith6NumbersInMiddle
 {
-    BCKCode128Code *code = [[BCKCode128Code alloc] initWithContent:@"TE123456ST"];
+	NSError *error;
+    BCKCode128Code *code = [[BCKCode128Code alloc] initWithContent:@"TE123456ST" error:&error];
+	STAssertNotNil(code, [error localizedDescription]);
+
     NSString *expected = @"11010000100 11011100010 10001101000 10111011110 10110011100 10001011000 11100010110 11101011110 11011101000 11011100010 11110010010 1100011101011";
     expected = [expected stringByReplacingOccurrencesOfString:@" " withString:@""];
 
@@ -117,7 +142,10 @@
 
 - (void)testSwitchToCode128NotDoneWith4NumbersInMiddle
 {
-    BCKCode128Code *code = [[BCKCode128Code alloc] initWithContent:@"TE1234ST"];
+	NSError *error;
+    BCKCode128Code *code = [[BCKCode128Code alloc] initWithContent:@"TE1234ST" error:&error];
+	STAssertNotNil(code, [error localizedDescription]);
+
     NSString *expected = @"11010000100 11011100010 10001101000 10011100110 11001110010 11001011100 11001001110 11011101000 11011100010 11001101100 1100011101011";
     expected = [expected stringByReplacingOccurrencesOfString:@" " withString:@""];
 
@@ -125,6 +153,15 @@
     BOOL isEqual = [expected isEqualToString:actual];
 
     STAssertTrue(isEqual, @"Result from encoding incorrect");
+}
+
+- (void)testUnsupportedCharacterGivesMeaningfulError
+{
+	NSError *error;
+	BCKCode128Code *code = [[BCKCode128Code alloc] initWithContent:@"Ö" error:&error];
+
+	STAssertNil(code, @"Should have not created code with unsupported character");
+	STAssertNotNil(error, @"Should have assigned error");
 }
 
 @end

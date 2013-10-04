@@ -15,6 +15,33 @@
 	BCKCode128Version _barcodeVersion;
 }
 
+
+- (BCKCode *)initWithContent:(NSString *)content error:(NSError *__autoreleasing *)error
+{
+	self = [super initWithContent:content error:error];
+	
+	if (self)
+	{
+		_barcodeVersion = [BCKCode128ContentCodeCharacter code128VersionNeeded:content error:NULL ];
+	}
+	
+	return self;
+}
+
+#pragma mark - BCKCoding Methods
+
++ (BOOL)canEncodeContent:(NSString *)content error:(NSError *__autoreleasing *)error
+{
+	BCKCode128Version barcodeVersion = [BCKCode128ContentCodeCharacter code128VersionNeeded:content error:error];
+	
+	if (barcodeVersion == Code128Unsupported)
+	{
+		return NO;
+	}
+	
+	return YES;
+}
+
 + (NSString *)barcodeStandard
 {
 	return @"International standard ISO/IEC 15417";
@@ -24,28 +51,6 @@
 {
 	return @"Code 128";
 }
-
-- (BCKCode *)initWithContent:(NSString *)content
-{
-	self = [super initWithContent:content];
-	
-	if (self)
-	{
-		BCKCode128Version versionUsed = [BCKCode128ContentCodeCharacter code128VersionNeeded:content];
-		if (versionUsed == Code128Unsupported)
-		{
-			NSLog(@"String '%@' cannot be encoded in Code128", content);
-			return nil;
-		}
-		
-		_barcodeVersion = versionUsed;
-		_content = [content copy];
-	}
-	
-	return self;
-}
-
-#pragma mark - Subclass Methods
 
 - (NSArray *)codeCharacters
 {
@@ -133,7 +138,7 @@
 	return 10;
 }
 
-- (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone
+- (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone withRenderOptions:(NSDictionary *)options
 {
 	if (captionZone == BCKCodeDrawingCaptionTextZone)
 	{
@@ -141,13 +146,6 @@
 	}
 	
 	return nil;
-}
-
-- (UIFont *)_captionFontWithSize:(CGFloat)fontSize
-{
-	UIFont *font = [UIFont boldSystemFontOfSize:fontSize];
-	
-	return font;
 }
 
 - (NSString *)_nextCharacterToEncode:(NSString *)content writeVersion:(BCKCode128Version)writeVersion
@@ -188,7 +186,7 @@
 	
 	if (currentWriteVersion == Code128C && ![remainingContent firstTwoCharactersAreNumbers])
 	{
-		return [BCKCode128ContentCodeCharacter code128VersionNeeded:remainingContent];
+		return [BCKCode128ContentCodeCharacter code128VersionNeeded:remainingContent error:NULL];
 	}
 	
 	return currentWriteVersion;

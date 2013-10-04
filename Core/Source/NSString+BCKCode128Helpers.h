@@ -7,7 +7,7 @@
 //
 
 /**
- Helper methods for determining next next characters that should be encoded.
+ Helper methods for determining Code128 version used to encode next characters.
  */
 @interface NSString (BCKCode128Helpers)
 

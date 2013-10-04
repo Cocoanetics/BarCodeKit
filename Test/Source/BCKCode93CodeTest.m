@@ -31,9 +31,9 @@
 {
 	[super setUp];
 	
-	self.code = [[BCKCode93Code alloc] initWithContent:@"TEST93"];
-	self.codeFullASCII = [[BCKCode93Code alloc] initWithContent:@"Test93!"];
-	self.codeSimple = [[BCKCode93Code alloc] initWithContent:@"T"];
+	self.code = [[BCKCode93Code alloc] initWithContent:@"TEST93" error:NULL];
+	self.codeFullASCII = [[BCKCode93Code alloc] initWithContent:@"Test93!" error:NULL];
+	self.codeSimple = [[BCKCode93Code alloc] initWithContent:@"T" error:NULL];
 }
 
 - (void)tearDown
@@ -144,7 +144,10 @@
 // tests encoding a barcode containing full ASCII characters \ and "
 - (void)testEncodeFullASCIIWithSlashesAndQuotes
 {
-	BCKCode93Code *fullASCIICode = [[BCKCode93Code alloc] initWithContent:@":\";<\\>"];     // content=:";<\>
+	NSError *error;
+	BCKCode93Code *fullASCIICode = [[BCKCode93Code alloc] initWithContent:@":\";<\\>" error:&error];     // content=:";<\>
+	STAssertNotNil(fullASCIICode, [error localizedDescription]);
+
 	NSString *expected = @"1010111101110101101001110101110101101101001001110110101100010101110110101011010001110110101010110001110110101011000101001110101101001101010111101";
 	NSString *actual = [fullASCIICode bitString];
 	BOOL isEqual = [expected isEqualToString:actual];
@@ -155,7 +158,10 @@
 // tests encoding a barcode containing control characters STX and ENQ
 - (void)testEncodeControlCharacters
 {
-	BCKCode93Code *fullASCIICode = [[BCKCode93Code alloc] initWithContent:@"␂␅"];     // content=␂␅
+	NSError *error;
+	BCKCode93Code *fullASCIICode = [[BCKCode93Code alloc] initWithContent:@"␂␅" error:&error];     // content=␂␅
+	STAssertNotNil(fullASCIICode, [error localizedDescription]);
+
 	NSString *expected = @"1010111101001001101101001001001001101100100101010001101011010001010111101";
 	NSString *actual = [fullASCIICode bitString];
 	BOOL isEqual = [expected isEqualToString:actual];
@@ -174,12 +180,30 @@
 	
 	[testBarcodes enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *obj, BOOL *stop) {
 		NSString *expected = obj;
-		longBarcode = [[BCKCode93Code alloc] initWithContent:key];
+		NSError *error;
+		longBarcode = [[BCKCode93Code alloc] initWithContent:key error:&error];
+		STAssertNotNil(longBarcode, [error localizedDescription]);
+
 		NSString *actual = [longBarcode bitString];
 		isEqual = [expected isEqualToString:actual];
 		
 		STAssertTrue(isEqual, @"Result from encoding a long barcode is incorrect");
 	}];
+}
+
+// tests encoding a barcode containing characters not included in full ASCII
+- (void)testEncodeNonFullASCII
+{
+    NSError *error = nil;
+    BOOL isEqual;
+    
+	BCKCode93Code *codeFullASCII = [[BCKCode93Code alloc] initWithContent:@"abcdö123" error:&error];
+	STAssertNil(codeFullASCII, @"Should not be able to encode non full ASCII characters in BCKCode93Code");
+    
+    isEqual = [[error localizedDescription] isEqualToString:@"Character at index 4 'ö' cannot be encoded in BCKCode93Code"];
+    
+    STAssertNotNil(error, @"Error object should not be nil");
+    STAssertTrue(isEqual, @"Error message should indicate invalid content");
 }
 
 @end

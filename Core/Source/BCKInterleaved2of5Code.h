@@ -9,8 +9,8 @@
 #import "BCKCode.h"
 
 /**
- Specialized subclass of BCKCode to represent a Interleaved 2 of 5 code
+ Specialized subclass of BCKCode to represent a Interleaved 2 of 5 barcode.
  */
-@interface BCKInterleaved2of5Code : BCKCode
+@interface BCKInterleaved2of5Code : BCKCode <BCKCoding>
 
 @end

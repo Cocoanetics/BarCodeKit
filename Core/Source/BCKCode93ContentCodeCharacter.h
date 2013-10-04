@@ -18,22 +18,22 @@
  */
 
 /**
- Initialise a content code character using one of the 43 regular characters or 4 special characters
- @param character The character to encode
- @returns the content code character
+ Initialise a content code character using one of the 43 regular characters or 4 special characters.
+ @param character The character to encode.
+ @returns the content code character for the character.
  */
 - (instancetype)initWithCharacter:(NSString *)character;
 
 /**
- Initialise a content code character using its character value. Only supports the 43 regular characters and 4 special characters
- @param characterValue The character value to encode
- @returns the content code character
+ Initialise a content code character using its character value. Only supports the 43 regular characters and 4 control characters.
+ @param characterValue The character value to encode.
+ @returns the content code character for the character value.
  */
 - (instancetype)initWithValue:(NSUInteger)characterValue;
 
 /**
- Return a content code character's value. Only supports the 43 regular characters and 4 special characters
- @returns the content code character's value
+ Return a content code character's value. Only supports the 43 regular characters and 4 control characters.
+ @returns the content code character's value.
  */
 - (NSUInteger)characterValue;
 

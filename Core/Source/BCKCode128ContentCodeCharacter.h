@@ -25,8 +25,9 @@
 /**
  Returns Code128 version needed to encode given string
  @param content The string that should be encoded using Code128
+ @param error If there is a problem determining Code128 version required for encoding, upon return contains an instance of NSError that describes the problem
  @returns the version needed to encode content string
  */
-+ (BCKCode128Version)code128VersionNeeded:(NSString *)content;
++ (BCKCode128Version)code128VersionNeeded:(NSString *)content error:(NSError **)error;
 
 @end

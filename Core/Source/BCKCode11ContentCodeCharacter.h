@@ -9,27 +9,27 @@
 #import "BCKCode11CodeCharacter.h"
 
 /**
- Specialized class of BCKCode11CodeCharacter used for generating Code11 codes and representing content characters
+ Specialized class of BCKCode11CodeCharacter used for generating Code11 codes and representing content characters.
  */
 @interface BCKCode11ContentCodeCharacter : BCKCode11CodeCharacter
 
 /**
- Initialise a content code character using a character. Only supports numeric characters and the dash character
- @param character The character
- @returns the content code character
+ Initialise a content code character using a character. Only supports the 10 numeric characters and the dash character.
+ @param character The character.
+@returns the content code character for the character.
  */
 - (instancetype)initWithCharacter:(NSString *)character;
 
 /**
- Initialise a content code character using its character value. Only supports numeric characters and the dash character
- @param characterValue The character value
- @returns the content code character
+ Initialise a Code11 content code character using its character value. Only supports the 10 numeric characters and the dash character.
+ @param characterValue The character value.
+@returns the content code character for the character value.
  */
 - (instancetype)initWithCharacterValue:(NSUInteger)characterValue;
 
 /**
- Return a content code character's value. Only supports numeric characters and the dash character
- @returns the content code character's value
+ Return a content code character's value. Only supports the 10 numeric characters and the dash character.
+ @returns the content code character's value.
  */
 - (NSUInteger)characterValue;
 
