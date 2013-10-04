@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
-#import <BarCodeKit/BarCodeKit.h>
+#import "BarCodeKit.h"
 
 /**
  Specialized subclass of BCKEAN13Code to represent ISSN barcodes.

@@ -7,7 +7,7 @@
 //
 
 #import "UIImage+BarCodeKit.h"
-#import "BarCodeKit.h"
+#import "BCKCode.h"
 
 @implementation UIImage (BarCodeKit)
 
