@@ -172,9 +172,9 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <binding destination="-2" name="hidden" keyPath="self.errorMessage" id="7jA-hk-l3o">
+                            <binding destination="-2" name="hidden" keyPath="self.canShowDebug" id="ev7-wm-q1F">
                                 <dictionary key="options">
-                                    <string key="NSValueTransformerName">NSIsNotNil</string>
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
                                 </dictionary>
                             </binding>
                             <binding destination="-2" name="value" keyPath="self.showDebug" id="aFp-vR-iLf"/>

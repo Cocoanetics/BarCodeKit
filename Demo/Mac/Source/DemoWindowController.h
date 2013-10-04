@@ -31,6 +31,7 @@
 @property (nonatomic, assign) BOOL canOverlapCaption;
 
 @property (nonatomic, assign) BOOL showDebug;
+@property (nonatomic, assign) BOOL canShowDebug;
 
 @property (nonatomic, assign) BOOL showCheckDigits;
 @property (nonatomic, assign) BOOL canShowCheckDigits;

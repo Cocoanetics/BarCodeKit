@@ -125,6 +125,7 @@
 	{
 		self.canFillQuietZones = [_barcodeObject allowsFillingOfEmptyQuietZones];
 		self.canShowCaption = [_barcodeObject respondsToSelector:@selector(captionTextForZone:withRenderOptions:)];
+		self.canShowDebug = _canShowCaption;
 		self.canOverlapCaption = [_barcodeObject markerBarsCanOverlapBottomCaption];
 		self.canShowCheckDigits = [_barcodeObject showCheckDigitsInCaption];
 		
@@ -136,6 +137,7 @@
 		self.canShowCaption = NO;
 		self.canOverlapCaption = NO;
 		self.canShowCheckDigits = NO;
+		self.canShowDebug = NO;
 
 		self.barcodeImage = nil;
 		self.errorMessage = [NSString stringWithFormat:@"Encoding error: %@\n\nPlease try a different contents.", [error localizedDescription]];
@@ -177,7 +179,8 @@
 									  BCKCodeDrawingDebugOption: @(_showDebug),
 									  BCKCodeDrawingPrintCaptionOption: @(_showCaption),
 									  BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption: @(_captionOverlap),
-									  BCKCodeDrawingShowCheckDigitsOption: @(_showCheckDigits)};
+									  BCKCodeDrawingShowCheckDigitsOption: @(_showCheckDigits),
+									  BCKCodeDrawingBackgroundColorOption: [NSColor whiteColor]};
 
 	return [NSImage imageWithBarCode:_barcodeObject options:options];
 }
