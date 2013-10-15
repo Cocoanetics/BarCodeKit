@@ -173,7 +173,8 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
  - BCKEAN2SupplementCode - no international standard
  - BCKEAN5SupplementCode - no international standard
  - BCKISBNCode - ISBN (10 and 13 characters) - International standard ISO 2108
- - BCKISSNCode - ISSN = International standard ISO 3297
+ - BCKISSNCode - ISSN - International standard ISO 3297
+ - BCKPOSTNET - POSTNET - no international standard
  
  For rendering codes several options can be combined in an options dictionary:
  

@@ -15,6 +15,7 @@
 #import "BCKCode128Code.h"
 #import "BCKMSICode.h"
 #import "BCKPharmacodeOneTrack.h"
+#import "BCKPOSTNETCode.h"
 #import "BCKStandard2of5Code.h"
 #import "BCKISBNCode.h"
 #import "BCKISSNCode.h"
@@ -63,6 +64,10 @@
 
 // code character for Pharmacode
 #import "BCKPharmaOneTrackContentCodeCharacter.h"
+
+// code character for POSTNET
+#import "BCKPOSTNETCodeCharacter.h"
+#import "BCKPOSTNETContentCodeCharacter.h"
 
 // code character for Standard 2 of 5
 #import "BCKStandard2of5CodeCharacter.h"
