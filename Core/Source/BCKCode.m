@@ -666,7 +666,7 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 	__block CGRect middleMarkerFrame = CGRectNull;
 	
 	NSArray *codeCharacters = [self codeCharacters];
-	
+
 	// enumerate the code characters
 	[codeCharacters enumerateObjectsUsingBlock:^(BCKCodeCharacter *character, NSUInteger charIndex, BOOL *stop) {
 		
@@ -679,13 +679,47 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 		}
 		
 		__block CGRect characterRect = CGRectNull;
-		
+
 		// walk through the bits of the character
-		[character enumerateBitsUsingBlock:^(BOOL isBar, NSUInteger idx, BOOL *stop) {
-			
+        [character enumerateBitsUsingBlock:^(BCKBarType barType, BOOL isBar, NSUInteger idx, BOOL *stop) {
 			CGFloat x = (drawnBitIndex + horizontalQuietZoneWidth) * barScale;
-			CGRect barRect = CGRectMake(x, 0, barScale, barLength);
-			
+            CGRect barRect;
+
+            switch (barType)
+            {
+                case BCKBarTypeFull:
+                case BCKBarTypeSpace:
+                {
+                    barRect = CGRectMake(x, 0, barScale, barLength);
+                    break;
+                }
+                case BCKBarTypeBottomHalf:
+                {
+                    barRect = CGRectMake(x, 0 + barLength / 2, barScale, barLength / 2);
+                    break;
+                }
+                case BCKBarTypeBottomTwoThirds:
+                {
+                    barRect = CGRectMake(x, 0 + barLength * 1 / 3, barScale, barLength / 3 * 2);
+                    break;
+                }
+                case BCKBarTypeCentreOneThird:
+                {
+                    barRect = CGRectMake(x, 0 + barLength * 1 / 3, barScale, barLength / 3);
+                    break;
+                }
+                case BCKBarTypeTopHalf:
+                {
+                    barRect = CGRectMake(x, 0, barScale, barLength / 2);
+                    break;
+                }
+                case BCKBarTypeTopTwoThirds:
+                {
+                    barRect = CGRectMake(x, 0, barScale, barLength / 3 * 2);
+                    break;
+                }
+            }
+
 			if (CGRectIsNull(characterRect))
 			{
 				characterRect = barRect;
@@ -699,7 +733,7 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 			{
 				CGContextAddRect(context, barRect);
 			}
-			
+
 			drawnBitIndex++;
 		}];
 		

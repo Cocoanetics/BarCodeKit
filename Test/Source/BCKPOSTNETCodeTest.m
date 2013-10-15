@@ -44,4 +44,10 @@
 	STAssertTrue(isEqual, @"Result from encoding simple barcode is incorrect");
 }
 
+- (void)testValidFormats
+{
+    STAssertFalse(YES, @"add type check for the four barcode formats - A-code, B-code, C-code, DPBC-code");
+}
+
+
 @end
