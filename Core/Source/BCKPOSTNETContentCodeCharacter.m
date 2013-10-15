@@ -65,21 +65,7 @@ static char *char_encodings[NUMBER_OF_POSTNET_CHARACTERS][2] = {
 	return NULL;
 }
 
-- (NSString *)_bitsForEncoding:(char *)encoding
-{
-	NSMutableString *tmpString = [NSMutableString string];
-	
-	for (NSUInteger index=0; index<strlen(encoding); index++)
-	{
-		char c = encoding[index];
-		
-        [tmpString appendString:[NSString stringWithFormat:@"%c", c]];
-	}
-	
-	return tmpString;
-}
-
-- (NSString *)bitString
+- (NSArray*)barArray
 {
 	char *encoding = [self _encodingForCharacter:_character];
 	
@@ -87,8 +73,14 @@ static char *char_encodings[NUMBER_OF_POSTNET_CHARACTERS][2] = {
 	{
 		return nil;
 	}
+
+    NSMutableArray *tmpBarArray = [[NSMutableArray alloc] initWithCapacity:strlen(encoding)];
+    for (NSUInteger index=0; index<strlen(encoding); index++)
+	{
+        [tmpBarArray addObject:[NSNumber numberWithChar:encoding[index]]];
+    }
     
-	return [[self _bitsForEncoding:encoding] copy];
+	return [tmpBarArray copy];
 }
 
 @end

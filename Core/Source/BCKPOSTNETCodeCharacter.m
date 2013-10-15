@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
+#import "BCKCodeCharacter.h"
 #import "BCKPOSTNETCodeCharacter.h"
 #import "BCKPOSTNETContentCodeCharacter.h"
 
@@ -13,12 +14,12 @@
 
 + (BCKPOSTNETCodeCharacter *)frameBarCodeCharacter
 {
-	return [[BCKPOSTNETCodeCharacter alloc] initWithBitString:@"1" isMarker:NO];
+    return [[BCKPOSTNETCodeCharacter alloc] initWithBars:@[[NSNumber numberWithInt:[BCKCodeCharacter fullBar]]] isMarker:NO];
 }
 
 + (BCKPOSTNETCodeCharacter *)spacingCodeCharacter
 {
-	return [[BCKPOSTNETCodeCharacter alloc] initWithBitString:@"0" isMarker:NO];
+    return [[BCKPOSTNETCodeCharacter alloc] initWithBars:@[[NSNumber numberWithInt:[BCKCodeCharacter spaceBar]]] isMarker:NO];
 }
 
 + (BCKPOSTNETContentCodeCharacter *)codeCharacterForCharacter:(NSString *)character

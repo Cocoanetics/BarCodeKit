@@ -73,21 +73,42 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 	return [self initWithContent:content error:NULL];
 }
 
-- (NSString *)bitString
+- (NSString *)barcodeBitString
 {
 	NSMutableString *tmpString = [NSMutableString string];
-	
+    NSArray *tmpBarArray;
+
 	for (BCKCodeCharacter *oneCharacter in [self codeCharacters])
 	{
-		[tmpString appendString:[oneCharacter bitString]];
+        if ([oneCharacter bitString])
+        {
+            NSMutableArray *tmpBarString = [[NSMutableArray alloc] initWithCapacity:[oneCharacter.bitString length]];
+            for (int i=0; i < [oneCharacter.bitString length]; i++)
+            {
+                NSString *ichar  = [NSString stringWithFormat:@"%c", [oneCharacter.bitString characterAtIndex:i]];
+                [tmpBarString addObject:ichar];
+            }
+
+            tmpBarArray = [NSArray arrayWithArray:tmpBarString];
+            [tmpString appendString:[tmpBarArray componentsJoinedByString:@""]];
+        }
+        else
+        {
+            [[oneCharacter barArray] enumerateObjectsUsingBlock:^(NSNumber *obj, NSUInteger idx, BOOL *stop) {
+    
+                [tmpString appendString:[NSString stringWithFormat:@"%c", [obj unsignedCharValue]]];
+            }];
+            
+        }
+
 	}
-	
+
 	return tmpString;
 }
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"<%@ content='%@'>", NSStringFromClass([self class]), [self bitString]];
+	return [NSString stringWithFormat:@"<%@ content='%@'>", NSStringFromClass([self class]), [self barcodeBitString]];
 }
 
 #pragma mark - Options Helper Methods
@@ -183,7 +204,14 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 		}
 		else
 		{
-			bitsBeforeMiddle += [[character bitString] length];
+            if (character.bitString)
+            {
+                bitsBeforeMiddle += [character.bitString length];
+            }
+            else
+            {
+                bitsBeforeMiddle += [character.barArray count];
+            }
 			metContent = YES;
 		}
 	}];
@@ -216,7 +244,14 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 		{
 			if (metMiddleMarker)
 			{
-				bitsAfterMiddle += [[character bitString] length];
+                if (character.bitString)
+                {
+                    bitsAfterMiddle += [character.bitString length];
+                }
+                else
+                {
+                    bitsAfterMiddle += [character.barArray count];
+                }
 			}
 			
 			metContent = YES;
@@ -585,10 +620,9 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 	
 	NSUInteger horizontalQuietZoneWidth = [self horizontalQuietZoneWidth];
 	
-	NSString *bitString = [self bitString];
+	NSString *bitString = [self barcodeBitString];
 	NSUInteger length = [bitString length];
-	
-	
+
 	CGSize size = CGSizeZero;
 	size.width = (length + 2.0f * horizontalQuietZoneWidth) * barScale;
 	
@@ -604,6 +638,48 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 	}
 	
 	return size;
+}
+
+- (CGRect)_calculateBarRectForType:(BCKBarType)barType andXOffset:(CGFloat)x andBarScale:(CGFloat)barScale andBarLength:(CGFloat)barLength
+{
+    CGRect barRect;
+    
+    switch (barType)
+    {
+        case BCKBarTypeFull:
+        case BCKBarTypeSpace:
+        {
+            barRect = CGRectMake(x, 0, barScale, barLength);
+            break;
+        }
+        case BCKBarTypeBottomHalf:
+        {
+            barRect = CGRectMake(x, 0 + barLength / 2, barScale, barLength / 2);
+            break;
+        }
+        case BCKBarTypeBottomTwoThirds:
+        {
+            barRect = CGRectMake(x, 0 + barLength * 1 / 3, barScale, barLength / 3 * 2);
+            break;
+        }
+        case BCKBarTypeCentreOneThird:
+        {
+            barRect = CGRectMake(x, 0 + barLength * 1 / 3, barScale, barLength / 3);
+            break;
+        }
+        case BCKBarTypeTopHalf:
+        {
+            barRect = CGRectMake(x, 0, barScale, barLength / 2);
+            break;
+        }
+        case BCKBarTypeTopTwoThirds:
+        {
+            barRect = CGRectMake(x, 0, barScale, barLength / 3 * 2);
+            break;
+        }
+    }
+    
+    return barRect;
 }
 
 - (void)renderInContext:(CGContextRef)context options:(NSDictionary *)options
@@ -680,45 +756,15 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 		
 		__block CGRect characterRect = CGRectNull;
 
-		// walk through the bits of the character
+        if(character.bitString)
+        {
+        
+		// walk through the bits of the character - remove once all BCKCode subclasses are refactored to use barArray
         [character enumerateBitsUsingBlock:^(BCKBarType barType, BOOL isBar, NSUInteger idx, BOOL *stop) {
 			CGFloat x = (drawnBitIndex + horizontalQuietZoneWidth) * barScale;
+            
             CGRect barRect;
-
-            switch (barType)
-            {
-                case BCKBarTypeFull:
-                case BCKBarTypeSpace:
-                {
-                    barRect = CGRectMake(x, 0, barScale, barLength);
-                    break;
-                }
-                case BCKBarTypeBottomHalf:
-                {
-                    barRect = CGRectMake(x, 0 + barLength / 2, barScale, barLength / 2);
-                    break;
-                }
-                case BCKBarTypeBottomTwoThirds:
-                {
-                    barRect = CGRectMake(x, 0 + barLength * 1 / 3, barScale, barLength / 3 * 2);
-                    break;
-                }
-                case BCKBarTypeCentreOneThird:
-                {
-                    barRect = CGRectMake(x, 0 + barLength * 1 / 3, barScale, barLength / 3);
-                    break;
-                }
-                case BCKBarTypeTopHalf:
-                {
-                    barRect = CGRectMake(x, 0, barScale, barLength / 2);
-                    break;
-                }
-                case BCKBarTypeTopTwoThirds:
-                {
-                    barRect = CGRectMake(x, 0, barScale, barLength / 3 * 2);
-                    break;
-                }
-            }
+            barRect = [self _calculateBarRectForType:barType andXOffset:x andBarScale:barScale andBarLength:barLength];
 
 			if (CGRectIsNull(characterRect))
 			{
@@ -736,7 +782,34 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 
 			drawnBitIndex++;
 		}];
-		
+        }
+        else
+        {
+            // walk through the bars of the character
+            [character enumerateBarsUsingBlock:^(BCKBarType barType, BOOL isBar, NSUInteger idx, BOOL *stop) {
+                CGFloat x = (drawnBitIndex + horizontalQuietZoneWidth) * barScale;
+                
+                CGRect barRect;
+                barRect = [self _calculateBarRectForType:barType andXOffset:x andBarScale:barScale andBarLength:barLength];
+                
+                if (CGRectIsNull(characterRect))
+                {
+                    characterRect = barRect;
+                }
+                else
+                {
+                    characterRect = CGRectUnion(characterRect, barRect);
+                }
+                
+                if (isBar)
+                {
+                    CGContextAddRect(context, barRect);
+                }
+                
+                drawnBitIndex++;
+            }];
+        }
+        
 		if ([character isMarker])
 		{
 			if (metContent)

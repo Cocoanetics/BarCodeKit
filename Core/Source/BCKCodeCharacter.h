@@ -58,10 +58,30 @@ typedef NS_ENUM(NSUInteger, BCKBarType) {
 
 /**
  Creates a new character with a given bit string and whether it is a marker character.
+ @warning This method is deprecated, use - [BCKCodeCharacter initWithBars:isMarker:] instead.
  @param bitString The bit string containing ones and zeroes as `NSString` that encode the character.
  @param isMarker Whether the character acts as a marker or a regular character.
 */
 - (instancetype)initWithBitString:(NSString *)bitString isMarker:(BOOL)isMarker;
+
+/**
+ Creates a new character with an array of given bars and whether it is a marker character.
+ @param barArray The array containing bar types.
+ @param isMarker Whether the character acts as a marker or a regular character.
+ */
+- (instancetype)initWithBars:(NSArray *)barArray isMarker:(BOOL)isMarker;
+
+/**
+ @name Creating Bars
+ */
+
++ (BCKBarType)bottomHalfBar;
++ (BCKBarType)spaceBar;
++ (BCKBarType)fullBar;
++ (BCKBarType)topTwoThirdsBar;
++ (BCKBarType)centreOneThirdBar;
++ (BCKBarType)bottomTwoThirdsBar;
++ (BCKBarType)topHalfBar;
 
 /**
  @name Enumerating Bits
@@ -69,9 +89,16 @@ typedef NS_ENUM(NSUInteger, BCKBarType) {
 
 /**
  Enumerates the bits of the character's bit string from left to right.
+ @warning This method is deprecated, use - [BCKCodeCharacter enumerateBitsUsingBlock:] instead.
  @param block The enumeration block that gets executed for each bit
  */
 - (void)enumerateBitsUsingBlock:(void (^)(BCKBarType barType, BOOL isBar, NSUInteger idx, BOOL *stop))block;
+
+/**
+ Enumerates the bars of the character's bar string from left to right.
+ @param block The enumeration block that gets executed for each bar
+ */
+- (void)enumerateBarsUsingBlock:(void (^)(BCKBarType barType, BOOL isBar, NSUInteger idx, BOOL *stop))block;
 
 /**
  @name Getting Information about Code Characters
@@ -84,7 +111,13 @@ typedef NS_ENUM(NSUInteger, BCKBarType) {
 
 /**
  The bit string representing the character.
+ @warning This property is deprecated, use barArray instead.
  */
 @property (nonatomic, readonly) NSString *bitString;
+
+/**
+ The array of bars representing the character.
+ */
+@property (nonatomic, readonly) NSArray *barArray;
 
 @end
