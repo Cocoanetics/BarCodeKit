@@ -6,45 +6,7 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
-/**
- The seven supported bar types represented by their ASCII values
- */
-typedef NS_ENUM(NSUInteger, BCKBarType) {
-	/**
-	 Bottom Half
-	 */
-    BCKBarTypeBottomHalf = 44,
-
-	/**
-	 A space
-	 */
-    BCKBarTypeSpace = 48,
-	
-	/**
-	 Full bar
-	 */
-    BCKBarTypeFull = 49,
-
-	/**
-	 Top Two Thirds
-	 */
-    BCKBarTypeTopTwoThirds = 60,
-
-    /**
-	 Centre One Third
-	 */
-    BCKBarTypeCentreOneThird = 61,
-    
-	/**
-	 Bottom Two Thirds
-	 */
-    BCKBarTypeBottomTwoThirds = 62,
-    
-	/**
-	 Top Half
-	 */
-    BCKBarTypeTopHalf = 96
-};
+#import "BCKBarString.h"
 
 /**
  Root class representing a code character. Can be marker, spacing, start/stop, check digits or characters.
@@ -69,19 +31,7 @@ typedef NS_ENUM(NSUInteger, BCKBarType) {
  @param barArray The array containing bar types.
  @param isMarker Whether the character acts as a marker or a regular character.
  */
-- (instancetype)initWithBars:(NSArray *)barArray isMarker:(BOOL)isMarker;
-
-/**
- @name Creating Bars
- */
-
-+ (BCKBarType)bottomHalfBar;
-+ (BCKBarType)spaceBar;
-+ (BCKBarType)fullBar;
-+ (BCKBarType)topTwoThirdsBar;
-+ (BCKBarType)centreOneThirdBar;
-+ (BCKBarType)bottomTwoThirdsBar;
-+ (BCKBarType)topHalfBar;
+- (instancetype)initWithBars:(BCKBarString *)barString isMarker:(BOOL)isMarker;
 
 /**
  @name Enumerating Bits
@@ -111,13 +61,13 @@ typedef NS_ENUM(NSUInteger, BCKBarType) {
 
 /**
  The bit string representing the character.
- @warning This property is deprecated, use barArray instead.
+ @warning This property is deprecated, use barString instead.
  */
 @property (nonatomic, readonly) NSString *bitString;
 
 /**
  The array of bars representing the character.
  */
-@property (nonatomic, readonly) NSArray *barArray;
+@property (nonatomic, readonly) BCKBarString *barString;
 
 @end

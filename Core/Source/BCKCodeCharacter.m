@@ -10,76 +10,45 @@
 
 @implementation BCKCodeCharacter
 {
-    NSArray *_barArray;
+    BCKBarString *_barString;
 	BOOL _marker;
-}
-
-#pragma mark Bar Creation Methods
-
-+ (BCKBarType)bottomHalfBar
-{
-    return BCKBarTypeBottomHalf;
-}
-
-+ (BCKBarType)spaceBar
-{
-    return BCKBarTypeSpace;
-}
-
-+ (BCKBarType)fullBar
-{
-    return BCKBarTypeFull;
-}
-
-+ (BCKBarType)topTwoThirdsBar
-{
-    return BCKBarTypeTopTwoThirds;
-}
-
-+ (BCKBarType)bottomTwoThirdsBar
-{
-    return BCKBarTypeBottomTwoThirds;
-}
-
-+ (BCKBarType)centreOneThirdBar
-{
-    return BCKBarTypeCentreOneThird;
-}
-
-+ (BCKBarType)topHalfBar
-{
-    return BCKBarTypeTopHalf;
 }
 
 #pragma mark Init Methods
 
+// TO-DO: remove method after removing support for bitString and replacing it with BCKBarString
 - (instancetype)initWithBitString:(NSString *)bitString isMarker:(BOOL)isMarker
 {
+    NSError *error = nil;
+    
 	self = [super init];
 	
 	if (self)
 	{
 		_marker = isMarker;
 
-        NSMutableArray *tmpBarArray = [[NSMutableArray alloc] initWithCapacity:[bitString length]];
+        _barString = [[BCKBarString alloc] init];
         for (int i=0; i < [bitString length]; i++)
         {
-            [tmpBarArray addObject:[NSNumber numberWithChar:[bitString characterAtIndex:i]]];
+            [_barString appendBar:[bitString characterAtIndex:i] error:&error];
+            
+            if(error)
+            {
+                return nil;
+            }
         }
-        
-        _barArray = [NSArray arrayWithArray:tmpBarArray];
     }
 	
 	return self;
 }
 
-- (instancetype)initWithBars:(NSArray *)barArray isMarker:(BOOL)isMarker
+- (instancetype)initWithBars:(BCKBarString *)barString isMarker:(BOOL)isMarker
 {
 	self = [super init];
 	
 	if (self)
 	{
-		_barArray = [barArray copy];
+		_barString = [barString copy];
 		_marker = isMarker;
 	}
 	
@@ -90,16 +59,18 @@
 
 - (NSString *)description
 {
+    // TO-DO: remove the if statement below and maintain only the else statement after removing support for bitString and replacing it with BCKBarString
     if (self.bitString)
     {
         return [NSString stringWithFormat:@"<%@ bits='%@'", NSStringFromClass([self class]), [self bitString]];
     }
     else
     {
-        return [NSString stringWithFormat:@"<%@ bits='%@'", NSStringFromClass([self class]), [self.barArray componentsJoinedByString:@""]];
+        return [NSString stringWithFormat:@"<%@ bits='%@'", NSStringFromClass([self class]), [self.barString description]];
     }
 }
 
+// TO-DO: remove the method after removing support for bitString and replacing it with BCKBarString
 - (void)enumerateBitsUsingBlock:(void (^)(BCKBarType barType, BOOL isBar, NSUInteger idx, BOOL *stop))block
 {
 	NSParameterAssert(block);
@@ -129,9 +100,8 @@
 {
 	NSParameterAssert(block);
 
-    [self.barArray enumerateObjectsUsingBlock:^(NSNumber *bit, NSUInteger idx, BOOL *stop) {
+    [self.barString enumerateObjectsUsingBlock:^(BCKBarType barType, NSUInteger idx, BOOL *stop) {
         // Every bar type is considered a bar except BCKBarTypeNone (i.e. a space)
-        BCKBarType barType = [bit integerValue];
 		BOOL isBar = (barType != BCKBarTypeSpace);
         BOOL shouldStop = NO;
 
@@ -144,7 +114,7 @@
     }];
 }
 
-@synthesize barArray = _barArray;
+@synthesize barString = _barString;
 @synthesize marker = _marker;
 
 @end

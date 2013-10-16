@@ -65,8 +65,9 @@ static char *char_encodings[NUMBER_OF_POSTNET_CHARACTERS][2] = {
 	return NULL;
 }
 
-- (NSArray*)barArray
+- (BCKBarString*)barString
 {
+    NSError *error = nil;
 	char *encoding = [self _encodingForCharacter:_character];
 	
 	if (!encoding)
@@ -74,13 +75,19 @@ static char *char_encodings[NUMBER_OF_POSTNET_CHARACTERS][2] = {
 		return nil;
 	}
 
-    NSMutableArray *tmpBarArray = [[NSMutableArray alloc] initWithCapacity:strlen(encoding)];
+    // Convert the individual bits to a BCKBarString
+    BCKBarString *tmpBarString = [[BCKBarString alloc] init];
     for (NSUInteger index=0; index<strlen(encoding); index++)
 	{
-        [tmpBarArray addObject:[NSNumber numberWithChar:encoding[index]]];
+        [tmpBarString appendBar:encoding[index] error:&error];
+        
+        if(error)
+        {
+            return nil;
+        }
     }
-    
-	return [tmpBarArray copy];
+
+	return [tmpBarString copy];
 }
 
 @end

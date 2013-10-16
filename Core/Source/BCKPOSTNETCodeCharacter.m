@@ -14,12 +14,18 @@
 
 + (BCKPOSTNETCodeCharacter *)frameBarCodeCharacter
 {
-    return [[BCKPOSTNETCodeCharacter alloc] initWithBars:@[[NSNumber numberWithInt:[BCKCodeCharacter fullBar]]] isMarker:NO];
+    BCKBarString *tmpBarString = [[BCKBarString alloc] init];
+    [tmpBarString appendBar:BCKBarTypeFull error:nil];
+
+    return [[BCKPOSTNETCodeCharacter alloc] initWithBars:tmpBarString isMarker:NO];
 }
 
 + (BCKPOSTNETCodeCharacter *)spacingCodeCharacter
 {
-    return [[BCKPOSTNETCodeCharacter alloc] initWithBars:@[[NSNumber numberWithInt:[BCKCodeCharacter spaceBar]]] isMarker:NO];
+    BCKBarString *tmpBarString = [[BCKBarString alloc] init];
+    [tmpBarString appendBar:BCKBarTypeSpace error:nil];
+    
+    return [[BCKPOSTNETCodeCharacter alloc] initWithBars:tmpBarString isMarker:NO];
 }
 
 + (BCKPOSTNETContentCodeCharacter *)codeCharacterForCharacter:(NSString *)character

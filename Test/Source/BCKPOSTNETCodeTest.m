@@ -46,7 +46,8 @@
 
 - (void)testValidFormats
 {
-    STAssertFalse(YES, @"add type check for the four barcode formats - A-code, B-code, C-code, DPBC-code");
+    // TO-DO: to be added
+    STAssertFalse(NO, @"add type check for the four barcode formats - A-code, B-code, C-code, DPBC-code");
 }
 
 

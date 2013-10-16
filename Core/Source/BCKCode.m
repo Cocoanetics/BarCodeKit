@@ -80,6 +80,7 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 
 	for (BCKCodeCharacter *oneCharacter in [self codeCharacters])
 	{
+        // TO-DO: remove the if statement below and maintain only the else statement after removing support for bitString and replacing it with BCKBarString
         if ([oneCharacter bitString])
         {
             NSMutableArray *tmpBarString = [[NSMutableArray alloc] initWithCapacity:[oneCharacter.bitString length]];
@@ -94,13 +95,12 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
         }
         else
         {
-            [[oneCharacter barArray] enumerateObjectsUsingBlock:^(NSNumber *obj, NSUInteger idx, BOOL *stop) {
-    
-                [tmpString appendString:[NSString stringWithFormat:@"%c", [obj unsignedCharValue]]];
+            [[oneCharacter barString] enumerateObjectsUsingBlock:^(BCKBarType bit, NSUInteger idx, BOOL *stop)
+            {
+                [tmpString appendString:[NSString stringWithFormat:@"%c", (int)bit]];
             }];
             
         }
-
 	}
 
 	return tmpString;
@@ -145,7 +145,6 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 	return rightQuietZoneText;
 }
 
-
 // returns the actually displayed left caption zone text based on the options
 - (NSString *)_leftCaptionZoneDisplayTextWithOptions:(NSDictionary *)options
 {
@@ -162,7 +161,6 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 	
 	return nil;
 }
-
 
 // returns the actually displayed left caption zone text based on the options
 - (NSString *)_rightCaptionZoneDisplayTextWithOptions:(NSDictionary *)options
@@ -210,7 +208,7 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
             }
             else
             {
-                bitsBeforeMiddle += [character.barArray count];
+                bitsBeforeMiddle += [character.barString count];
             }
 			metContent = YES;
 		}
@@ -250,7 +248,7 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
                 }
                 else
                 {
-                    bitsAfterMiddle += [character.barArray count];
+                    bitsAfterMiddle += [character.barString count];
                 }
 			}
 			
@@ -756,32 +754,32 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 		
 		__block CGRect characterRect = CGRectNull;
 
+        // TO-DO: remove the if statement below and maintain only the else statement after removing support for bitString and replacing it with BCKBarString
         if(character.bitString)
         {
-        
-		// walk through the bits of the character - remove once all BCKCode subclasses are refactored to use barArray
-        [character enumerateBitsUsingBlock:^(BCKBarType barType, BOOL isBar, NSUInteger idx, BOOL *stop) {
-			CGFloat x = (drawnBitIndex + horizontalQuietZoneWidth) * barScale;
-            
-            CGRect barRect;
-            barRect = [self _calculateBarRectForType:barType andXOffset:x andBarScale:barScale andBarLength:barLength];
-
-			if (CGRectIsNull(characterRect))
-			{
-				characterRect = barRect;
-			}
-			else
-			{
-				characterRect = CGRectUnion(characterRect, barRect);
-			}
-			
-			if (isBar)
-			{
-				CGContextAddRect(context, barRect);
-			}
-
-			drawnBitIndex++;
-		}];
+            // walk through the bits of the character - remove once all BCKCode subclasses are refactored to use barArray
+            [character enumerateBitsUsingBlock:^(BCKBarType barType, BOOL isBar, NSUInteger idx, BOOL *stop) {
+                CGFloat x = (drawnBitIndex + horizontalQuietZoneWidth) * barScale;
+                
+                CGRect barRect;
+                barRect = [self _calculateBarRectForType:barType andXOffset:x andBarScale:barScale andBarLength:barLength];
+                
+                if (CGRectIsNull(characterRect))
+                {
+                    characterRect = barRect;
+                }
+                else
+                {
+                    characterRect = CGRectUnion(characterRect, barRect);
+                }
+                
+                if (isBar)
+                {
+                    CGContextAddRect(context, barRect);
+                }
+                
+                drawnBitIndex++;
+            }];
         }
         else
         {

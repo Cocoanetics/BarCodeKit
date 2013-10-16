@@ -90,6 +90,9 @@
 		6CE3E69C17DF1D7D00BFD408 /* BCKMSIContentCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CE3E69B17DF1D7D00BFD408 /* BCKMSIContentCodeCharacter.m */; };
 		6CE3E69F17DF1F4800BFD408 /* BCKMSICode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CE3E69E17DF1F4800BFD408 /* BCKMSICode.m */; };
 		6CE3E6A117DF202900BFD408 /* BCKMSICodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CE3E6A017DF202900BFD408 /* BCKMSICodeTest.m */; };
+		6CEE64AC180E97FB00D40D1D /* BCKBarString.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CEE64AA180E97FB00D40D1D /* BCKBarString.h */; };
+		6CEE64AD180E97FB00D40D1D /* BCKBarString.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CEE64AB180E97FB00D40D1D /* BCKBarString.m */; };
+		6CEE64AE180E97FB00D40D1D /* BCKBarString.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CEE64AB180E97FB00D40D1D /* BCKBarString.m */; };
 		6CF2308617E9B2030065E50C /* BCKStandard2of5CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF2308517E9B2030065E50C /* BCKStandard2of5CodeCharacter.m */; };
 		6CF2308917E9B2A80065E50C /* BCKStandard2of5ContentCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF2308817E9B2A80065E50C /* BCKStandard2of5ContentCodeCharacter.m */; };
 		6CF2308C17E9B4790065E50C /* BCKStandard2of5Code.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF2308B17E9B4790065E50C /* BCKStandard2of5Code.m */; };
@@ -371,6 +374,8 @@
 		6CE3E69D17DF1F4800BFD408 /* BCKMSICode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKMSICode.h; sourceTree = "<group>"; };
 		6CE3E69E17DF1F4800BFD408 /* BCKMSICode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKMSICode.m; sourceTree = "<group>"; };
 		6CE3E6A017DF202900BFD408 /* BCKMSICodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKMSICodeTest.m; sourceTree = "<group>"; };
+		6CEE64AA180E97FB00D40D1D /* BCKBarString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKBarString.h; sourceTree = "<group>"; };
+		6CEE64AB180E97FB00D40D1D /* BCKBarString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKBarString.m; sourceTree = "<group>"; };
 		6CF2308417E9B2030065E50C /* BCKStandard2of5CodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKStandard2of5CodeCharacter.h; sourceTree = "<group>"; };
 		6CF2308517E9B2030065E50C /* BCKStandard2of5CodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKStandard2of5CodeCharacter.m; sourceTree = "<group>"; };
 		6CF2308717E9B2A80065E50C /* BCKStandard2of5ContentCodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKStandard2of5ContentCodeCharacter.h; sourceTree = "<group>"; };
@@ -1019,6 +1024,8 @@
 		A75BABD117BF7AB900A5A5A5 /* Code Characters */ = {
 			isa = PBXGroup;
 			children = (
+				6CEE64AA180E97FB00D40D1D /* BCKBarString.h */,
+				6CEE64AB180E97FB00D40D1D /* BCKBarString.m */,
 				A7337C6A17C12C8800BC2D2D /* BCKCodeCharacter.h */,
 				A7337C6B17C12C8800BC2D2D /* BCKCodeCharacter.m */,
 				A7378D8317C222E6008921C4 /* EAN/UPC */,
@@ -1156,6 +1163,7 @@
 				A7CFEF8817EE0510006446C9 /* BCKMSIContentCodeCharacter.h in Headers */,
 				A7CFEF8C17EE0519006446C9 /* BCKStandard2of5CodeCharacter.h in Headers */,
 				A7CFEF8617EE0510006446C9 /* BCKMSICodeCharacter.h in Headers */,
+				6CEE64AC180E97FB00D40D1D /* BCKBarString.h in Headers */,
 				6C638D1E17F3040E00CD3F1B /* BCKEAN2SupplementCode.h in Headers */,
 				A7CFEF6817EE04EE006446C9 /* BCKEANDigitCodeCharacter.h in Headers */,
 				A7CFEF7017EE04F7006446C9 /* BCKCode11CodeCharacter.h in Headers */,
@@ -1480,6 +1488,7 @@
 				6C4D158A17DDDDF000854E31 /* BCKCode11CodeCharacter.m in Sources */,
 				6CF2308C17E9B4790065E50C /* BCKStandard2of5Code.m in Sources */,
 				6C638D1F17F3040E00CD3F1B /* BCKEAN2SupplementCode.m in Sources */,
+				6CEE64AD180E97FB00D40D1D /* BCKBarString.m in Sources */,
 				6C818CB517CCAC0400AEE26F /* BCKCode93ContentCodeCharacter.m in Sources */,
 				6C4D158417DDDD0B00854E31 /* BCKCode11Code.m in Sources */,
 				6CF2308917E9B2A80065E50C /* BCKStandard2of5ContentCodeCharacter.m in Sources */,
@@ -1569,6 +1578,7 @@
 				A7CFEF7B17EE0501006446C9 /* BCKCode93ContentCodeCharacter.m in Sources */,
 				A7CFEF7517EE04FB006446C9 /* BCKCode39CodeCharacter.m in Sources */,
 				6C66048F17F5851D0016E17E /* BCKGTINSupplementDataCodeCharacter.m in Sources */,
+				6CEE64AE180E97FB00D40D1D /* BCKBarString.m in Sources */,
 				6CC6BAA717F1910200F3ECCF /* BCKFacingIdentificationMarkCodeCharacter.m in Sources */,
 				A721D0C417FEFBE200A82189 /* NSImage+BarCodeKit.m in Sources */,
 				A7CFEF7F17EE0506006446C9 /* BCKInterleaved2of5DigitPairCodeCharacter.m in Sources */,
