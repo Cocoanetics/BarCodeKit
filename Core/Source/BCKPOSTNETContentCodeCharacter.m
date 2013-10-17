@@ -81,7 +81,7 @@ static char *char_encodings[NUMBER_OF_POSTNET_CHARACTERS][2] = {
 	{
         [tmpBarString appendBar:encoding[index] error:&error];
         
-        if(error)
+        if (error)
         {
             return nil;
         }

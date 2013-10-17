@@ -19,13 +19,13 @@
 
 /**
  Generates a POSTNET frame bar code character.
- @returns the frame bar code character.
+ @returns The frame bar code character.
  */
 + (BCKPOSTNETCodeCharacter *)frameBarCodeCharacter;
 
 /**
  Generates a POSTNET spacing code character. Does not count as a marker.
- @returns the spacing marker code character.
+ @returns The spacing marker code character.
  */
 + (BCKPOSTNETCodeCharacter *)spacingCodeCharacter;
 

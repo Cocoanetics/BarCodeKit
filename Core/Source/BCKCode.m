@@ -26,6 +26,16 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 
 @implementation BCKCode
 
+#pragma mark Deprecated Methods
+
+// DEPRECATED: remove the method after removing support for bitString and replacing it with BCKBarString. This method is required by unit tests that have not yet been refactored to use BCKBarString
+- (NSString *)bitString __attribute((deprecated))
+{
+    return [self barcodeBitString];
+}
+
+#pragma mark Helper Methods
+
 // The NSError object is ignored in BCKCode's initWithContent method. BCKCode subclasses are required to initialise it in case of errors, for example if canEncodeContent: returns NO
 - (instancetype)initWithContent:(NSString *)content error:(NSError**)error
 {
@@ -80,8 +90,15 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 
 	for (BCKCodeCharacter *oneCharacter in [self codeCharacters])
 	{
-        // TO-DO: remove the if statement below and maintain only the else statement after removing support for bitString and replacing it with BCKBarString
-        if ([oneCharacter bitString])
+        // DEPRECATED: remove the else statement below and maintain only the if part after dropping support for bitString
+        if ([oneCharacter barString])
+        {
+            [[oneCharacter barString] enumerateBarsUsingBlock:^(BCKBarType bit, NSUInteger idx, BOOL *stop)
+             {
+                 [tmpString appendString:[NSString stringWithFormat:@"%c", (int)bit]];
+             }];
+        }
+        else
         {
             NSMutableArray *tmpBarString = [[NSMutableArray alloc] initWithCapacity:[oneCharacter.bitString length]];
             for (int i=0; i < [oneCharacter.bitString length]; i++)
@@ -89,17 +106,9 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
                 NSString *ichar  = [NSString stringWithFormat:@"%c", [oneCharacter.bitString characterAtIndex:i]];
                 [tmpBarString addObject:ichar];
             }
-
+            
             tmpBarArray = [NSArray arrayWithArray:tmpBarString];
             [tmpString appendString:[tmpBarArray componentsJoinedByString:@""]];
-        }
-        else
-        {
-            [[oneCharacter barString] enumerateObjectsUsingBlock:^(BCKBarType bit, NSUInteger idx, BOOL *stop)
-            {
-                [tmpString appendString:[NSString stringWithFormat:@"%c", (int)bit]];
-            }];
-            
         }
 	}
 
@@ -754,11 +763,11 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 		
 		__block CGRect characterRect = CGRectNull;
 
-        // TO-DO: remove the if statement below and maintain only the else statement after removing support for bitString and replacing it with BCKBarString
-        if(character.bitString)
+        // DEPRECATED: remove the else statement below and maintain only the if part after dropping support for bitString
+        if (character.barString)
         {
-            // walk through the bits of the character - remove once all BCKCode subclasses are refactored to use barArray
-            [character enumerateBitsUsingBlock:^(BCKBarType barType, BOOL isBar, NSUInteger idx, BOOL *stop) {
+            // walk through the bars of the character
+            [character enumerateBarsUsingBlock:^(BCKBarType barType, BOOL isBar, NSUInteger idx, BOOL *stop) {
                 CGFloat x = (drawnBitIndex + horizontalQuietZoneWidth) * barScale;
                 
                 CGRect barRect;
@@ -783,8 +792,8 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
         }
         else
         {
-            // walk through the bars of the character
-            [character enumerateBarsUsingBlock:^(BCKBarType barType, BOOL isBar, NSUInteger idx, BOOL *stop) {
+            // walk through the bits of the character - remove once all BCKCode subclasses are refactored to use barArray
+            [character enumerateBitsUsingBlock:^(BCKBarType barType, BOOL isBar, NSUInteger idx, BOOL *stop) {
                 CGFloat x = (drawnBitIndex + horizontalQuietZoneWidth) * barScale;
                 
                 CGRect barRect;

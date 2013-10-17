@@ -24,7 +24,7 @@
  @param bitString The bit string containing ones and zeroes as `NSString` that encode the character.
  @param isMarker Whether the character acts as a marker or a regular character.
 */
-- (instancetype)initWithBitString:(NSString *)bitString isMarker:(BOOL)isMarker;
+- (instancetype)initWithBitString:(NSString *)bitString isMarker:(BOOL)isMarker __attribute((deprecated("use initWithBars:isMarker: instead")));
 
 /**
  Creates a new character with an array of given bars and whether it is a marker character.
@@ -42,7 +42,7 @@
  @warning This method is deprecated, use - [BCKCodeCharacter enumerateBitsUsingBlock:] instead.
  @param block The enumeration block that gets executed for each bit
  */
-- (void)enumerateBitsUsingBlock:(void (^)(BCKBarType barType, BOOL isBar, NSUInteger idx, BOOL *stop))block;
+- (void)enumerateBitsUsingBlock:(void (^)(BCKBarType barType, BOOL isBar, NSUInteger idx, BOOL *stop))block __attribute((deprecated("use enumerateBarUsingBlock: instead")));
 
 /**
  Enumerates the bars of the character's bar string from left to right.
@@ -63,7 +63,7 @@
  The bit string representing the character.
  @warning This property is deprecated, use barString instead.
  */
-@property (nonatomic, readonly) NSString *bitString;
+@property (nonatomic, readonly) NSString *bitString __attribute((deprecated("use barString instead")));
 
 /**
  The array of bars representing the character.

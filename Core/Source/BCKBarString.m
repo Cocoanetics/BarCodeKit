@@ -19,6 +19,28 @@
 
 #pragma mark Helper Methods
 
+- (instancetype)initWithString:(NSString *)barString
+{
+    NSError *error;
+    
+    self = [super init];
+    
+    if (self) {
+
+        for (int i=0; i < [barString length]; i++)
+        {
+            [self appendBar:[barString characterAtIndex:i] error:&error];
+
+            if (error)
+            {
+                return nil;
+            }
+        }
+    }
+
+    return self;
+}
+
 - (NSString *)description
 {
     return [_barArray componentsJoinedByString:@""];
@@ -36,31 +58,30 @@
     }
 }
 
-- (BOOL)appendBar:(BCKBarType)barType error:(NSError *__autoreleasing *)error
+- (BOOL)appendBar:(BCKBarType)bar error:(NSError *__autoreleasing *)error
 {
     if (!_barArray)
     {
         _barArray = [[NSMutableArray alloc] init];
     }
 
-    // TO-DO: return an error if the barType is not supported
-    if (NO)
+    if (![[BCKBarString _supportedBarTypes] member:@(bar)])
     {
         if (error)
         {
-            NSString *message = [NSString stringWithFormat:@"Bar type %c not supported by %@", (int)barType, NSStringFromClass([self class])];
+            NSString *message = [NSString stringWithFormat:@"Bar type %c not supported by %@", (int)bar, NSStringFromClass([self class])];
             *error = [NSError BCKCodeErrorWithMessage:message];
         }
         
         return NO;
     }
 
-    [_barArray addObject:@(barType)];
+    [_barArray addObject:@(bar)];
 
     return YES;
 }
 
-- (void)enumerateObjectsUsingBlock:(void (^)(BCKBarType bit, NSUInteger idx, BOOL *stop))block
+- (void)enumerateBarsUsingBlock:(void (^)(BCKBarType bit, NSUInteger idx, BOOL *stop))block
 {
 	NSParameterAssert(block);
 
@@ -76,6 +97,18 @@
 			*stop = YES;
 		}
     }];
+}
+
++ (NSSet*)_supportedBarTypes
+{
+    return [NSSet setWithObjects:@(BCKBarTypeBottomHalf),
+            @(BCKBarTypeBottomTwoThirds),
+            @(BCKBarTypeCentreOneThird),
+            @(BCKBarTypeFull),
+            @(BCKBarTypeSpace),
+            @(BCKBarTypeTopHalf),
+            @(BCKBarTypeTopTwoThirds),
+            nil];
 }
 
 - (id)copyWithZone:(NSZone *)zone

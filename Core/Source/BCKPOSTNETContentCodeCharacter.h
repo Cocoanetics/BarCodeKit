@@ -16,7 +16,7 @@
 /**
  Initialise a content code character using a character. Only supports the 10 numeric characters
  @param character The character.
- @returns the content code character for the character.
+ @returns The content code character for the character.
  */
 - (instancetype)initWithCharacter:(NSString *)character;
 

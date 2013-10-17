@@ -7,6 +7,7 @@
 //
 
 #import "BCKCode.h"
+#import "BCKBarString.h"
 
 @interface BCKCodeTest : SenTestCase
 
@@ -31,6 +32,29 @@
     NSError *error = nil;
     
     STAssertFalse([BCKCode canEncodeContent:@"12345" error:&error], @"BCKCode should always return NO for canEncodeContent:");
+}
+
+- (void)testInvalidBarString
+{
+    NSError *error;
+    BCKBarString *barString = [[BCKBarString alloc] init];
+    
+    [barString appendBar:33 error:&error];
+    
+    STAssertNotNil(error, @"Error object should not be nil");
+    STAssertTrue([barString.barArray count] == 0, @"Bar string should be empty");
+    
+    barString = [[BCKBarString alloc] initWithString:@"01,`<>=A"];
+    STAssertNil(barString, @"Bar string should be nil");
+}
+
+- (void)testValidBarString
+{
+    NSError *error;
+    BCKBarString *barString = [[BCKBarString alloc] initWithString:@"01,`<>="];
+
+    STAssertNil(error, @"Error object should be nil");
+    STAssertTrue([barString.barArray count] == 7, @"Bar string should contain 7 characters");
 }
 
 @end
