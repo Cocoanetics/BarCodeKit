@@ -7,6 +7,7 @@
 //
 
 #import "BCKBarString.h"
+#import "BCKMutableBarString.h"
 
 /**
  Root class representing a code character. Can be marker, spacing, start/stop, check digits or characters.

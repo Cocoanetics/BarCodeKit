@@ -14,16 +14,16 @@
 
 + (BCKPOSTNETCodeCharacter *)frameBarCodeCharacter
 {
-    BCKBarString *tmpBarString = [[BCKBarString alloc] init];
-    [tmpBarString appendBar:BCKBarTypeFull error:nil];
+    BCKMutableBarString *tmpBarString = [BCKMutableBarString string];
+    [tmpBarString appendBarWithType:BCKBarTypeFull];
 
     return [[BCKPOSTNETCodeCharacter alloc] initWithBars:tmpBarString isMarker:NO];
 }
 
 + (BCKPOSTNETCodeCharacter *)spacingCodeCharacter
 {
-    BCKBarString *tmpBarString = [[BCKBarString alloc] init];
-    [tmpBarString appendBar:BCKBarTypeSpace error:nil];
+    BCKMutableBarString *tmpBarString = [BCKMutableBarString string];
+    [tmpBarString appendBarWithType:BCKBarTypeSpace];
     
     return [[BCKPOSTNETCodeCharacter alloc] initWithBars:tmpBarString isMarker:NO];
 }

@@ -7,87 +7,61 @@
 //
 
 #import "BCKBarString.h"
+#import "BCKMutableBarString.h"
 #import "NSError+BCKCode.h"
 
 @interface BCKBarString ()
 
-@property (nonatomic, readwrite) NSMutableArray *barArray;
+@property (nonatomic, copy) NSArray *bars;
 
 @end
 
+
 @implementation BCKBarString
 
-#pragma mark Helper Methods
+#pragma mark - Initializing a Bar String
 
-- (instancetype)initWithString:(NSString *)barString
+// this is a BCKBarString or BCKMutableBarString
++ (instancetype)string
 {
-    NSError *error;
-    
-    self = [super init];
-    
-    if (self) {
-
-        for (int i=0; i < [barString length]; i++)
-        {
-            [self appendBar:[barString characterAtIndex:i] error:&error];
-
-            if (error)
-            {
-                return nil;
-            }
-        }
-    }
-
-    return self;
+	return [[self alloc] init];
 }
+
+// internal method for transferring a bar array to a new instance
+- (instancetype)initWithBars:(NSArray *)bars
+{
+	self = [super init];
+	
+	if (self)
+	{
+		// here this is a normal copy, in the mutable subclass this is a mutableCopy
+		self.bars = bars;
+	}
+	
+	return self;
+}
+
+#pragma mark - Getting Information about Bar Strings
 
 - (NSString *)description
 {
-    return [_barArray componentsJoinedByString:@""];
+	NSString *contents = [_bars componentsJoinedByString:@""];
+
+	return [NSString stringWithFormat:@"<%@ bars='%@'>", NSStringFromClass([self class]), contents];
 }
 
-- (NSUInteger)count
+- (NSUInteger)length
 {
-    if (_barArray)
-    {
-        return [_barArray count];
-    }
-    else
-    {
-        return 0;
-    }
+	return [self.bars count];
 }
 
-- (BOOL)appendBar:(BCKBarType)bar error:(NSError *__autoreleasing *)error
-{
-    if (!_barArray)
-    {
-        _barArray = [[NSMutableArray alloc] init];
-    }
-
-    if (![[BCKBarString _supportedBarTypes] member:@(bar)])
-    {
-        if (error)
-        {
-            NSString *message = [NSString stringWithFormat:@"Bar type %c not supported by %@", (int)bar, NSStringFromClass([self class])];
-            *error = [NSError BCKCodeErrorWithMessage:message];
-        }
-        
-        return NO;
-    }
-
-    [_barArray addObject:@(bar)];
-
-    return YES;
-}
-
-- (void)enumerateBarsUsingBlock:(void (^)(BCKBarType bit, NSUInteger idx, BOOL *stop))block
+- (void)enumerateBarsUsingBlock:(void (^)(BCKBarType bar, NSUInteger idx, BOOL *stop))block
 {
 	NSParameterAssert(block);
 
-    [_barArray enumerateObjectsUsingBlock:^(NSNumber *bar, NSUInteger idx, BOOL *stop)
+    [self.bars enumerateObjectsUsingBlock:^(NSNumber *barNum, NSUInteger idx, BOOL *stop)
     {
-        BCKBarType barType = [bar integerValue];
+        BCKBarType barType = [barNum integerValue];
         BOOL shouldStop = NO;
         
 		block(barType, idx, &shouldStop);
@@ -99,29 +73,27 @@
     }];
 }
 
-+ (NSSet*)_supportedBarTypes
+- (BOOL)isEqual:(BCKBarString *)otherString
 {
-    return [NSSet setWithObjects:@(BCKBarTypeBottomHalf),
-            @(BCKBarTypeBottomTwoThirds),
-            @(BCKBarTypeCentreOneThird),
-            @(BCKBarTypeFull),
-            @(BCKBarTypeSpace),
-            @(BCKBarTypeTopHalf),
-            @(BCKBarTypeTopTwoThirds),
-            nil];
+	return [self.bars isEqualToArray:otherString.bars];
 }
+
+#pragma mark - NSMutableCopying Protocol
 
 - (id)copyWithZone:(NSZone *)zone
 {
-    id copy = [[[self class] alloc] init];
-    
-    if (copy) {
-        [copy setBarArray:[_barArray copy]];
-    }
-    
-    return copy;
+   return [[BCKBarString allocWithZone:zone] initWithBars:_bars];
 }
 
-@synthesize barArray = _barArray;
+#pragma mark - NSMutableCopying Protocol
+
+- (id)mutableCopyWithZone:(NSZone *)zone
+{
+	return [[BCKMutableBarString allocWithZone:zone] initWithBars:_bars];
+}
+
+#pragma mark - Properties
+
+@synthesize  bars = _bars;
 
 @end

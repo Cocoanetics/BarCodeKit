@@ -7,6 +7,7 @@
 //
 
 #import "BCKCodeCharacter.h"
+#import "BCKMutableBarString.h"
 
 @implementation BCKCodeCharacter
 {
@@ -65,16 +66,18 @@
 	{
 		_marker = isMarker;
         
-        _barString = [[BCKBarString alloc] init];
+        BCKMutableBarString *tmpString = [BCKMutableBarString string];
         for (int i=0; i < [bitString length]; i++)
         {
-            [_barString appendBar:[bitString characterAtIndex:i] error:&error];
+            [tmpString appendBarWithType:[bitString characterAtIndex:i]];
             
             if (error)
             {
                 return nil;
             }
         }
+		
+		_barString = [tmpString copy];
     }
 	
 	return self;

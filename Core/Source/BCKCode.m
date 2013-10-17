@@ -217,7 +217,7 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
             }
             else
             {
-                bitsBeforeMiddle += [character.barString count];
+                bitsBeforeMiddle += [character.barString length];
             }
 			metContent = YES;
 		}
@@ -257,7 +257,7 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
                 }
                 else
                 {
-                    bitsAfterMiddle += [character.barString count];
+                    bitsAfterMiddle += [character.barString length];
                 }
 			}
 			

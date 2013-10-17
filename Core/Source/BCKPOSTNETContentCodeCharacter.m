@@ -7,6 +7,7 @@
 //
 
 #import "BCKPOSTNETContentCodeCharacter.h"
+#import "BCKMutableBarString.h"
 
 #define NUMBER_OF_POSTNET_CHARACTERS 10
 #define CHARACTER_DIMENSION 0
@@ -65,10 +66,9 @@ static char *char_encodings[NUMBER_OF_POSTNET_CHARACTERS][2] = {
 	return NULL;
 }
 
-- (BCKBarString*)barString
+- (BCKBarString *)barString
 {
-    NSError *error = nil;
-	char *encoding = [self _encodingForCharacter:_character];
+ 	char *encoding = [self _encodingForCharacter:_character];
 	
 	if (!encoding)
 	{
@@ -76,15 +76,11 @@ static char *char_encodings[NUMBER_OF_POSTNET_CHARACTERS][2] = {
 	}
 
     // Convert the individual bits to a BCKBarString
-    BCKBarString *tmpBarString = [[BCKBarString alloc] init];
+    BCKMutableBarString *tmpBarString = [BCKMutableBarString string];
+	
     for (NSUInteger index=0; index<strlen(encoding); index++)
 	{
-        [tmpBarString appendBar:encoding[index] error:&error];
-        
-        if (error)
-        {
-            return nil;
-        }
+        [tmpBarString appendBarWithType:encoding[index]];
     }
 
 	return [tmpBarString copy];
