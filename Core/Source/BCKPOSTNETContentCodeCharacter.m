@@ -80,7 +80,7 @@ static char *char_encodings[NUMBER_OF_POSTNET_CHARACTERS][2] = {
 	
     for (NSUInteger index=0; index<strlen(encoding); index++)
 	{
-        [tmpBarString appendBarWithType:encoding[index]];
+        [tmpBarString appendBar:encoding[index]];
     }
 
 	return [tmpBarString copy];

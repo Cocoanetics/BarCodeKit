@@ -15,7 +15,7 @@
 + (BCKPOSTNETCodeCharacter *)frameBarCodeCharacter
 {
     BCKMutableBarString *tmpBarString = [BCKMutableBarString string];
-    [tmpBarString appendBarWithType:BCKBarTypeFull];
+    [tmpBarString appendBar:BCKBarTypeFull];
 
     return [[BCKPOSTNETCodeCharacter alloc] initWithBars:tmpBarString isMarker:NO];
 }
@@ -23,7 +23,7 @@
 + (BCKPOSTNETCodeCharacter *)spacingCodeCharacter
 {
     BCKMutableBarString *tmpBarString = [BCKMutableBarString string];
-    [tmpBarString appendBarWithType:BCKBarTypeSpace];
+    [tmpBarString appendBar:BCKBarTypeSpace];
     
     return [[BCKPOSTNETCodeCharacter alloc] initWithBars:tmpBarString isMarker:NO];
 }

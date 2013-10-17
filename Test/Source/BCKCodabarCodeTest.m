@@ -12,7 +12,7 @@
 
 @interface BCKCodabarCode () // private
 
-- (NSString *)bitString;
+- (BCKBarString *)barString;
 
 @end
 
@@ -47,8 +47,8 @@
 	BCKCodabarCode *code = [[BCKCodabarCode alloc] initWithContent:@"A40156B" error:&error];
 	STAssertNotNil(code, [error localizedDescription]);
 	
-	NSString *expected = @"10110010010101101001010101001101010110010110101001010010101101001001011";
-	NSString *actual = [code bitString];
+	BCKBarString *expected = BCKBarStringFromNSString(@"10110010010101101001010101001101010110010110101001010010101101001001011");
+	BCKBarString *actual = [code barString];
 	BOOL isEqual = [expected isEqualToString:actual];
 	
 	STAssertTrue(isEqual, @"Result from encoding incorrect");
@@ -60,8 +60,8 @@
 	BCKCodabarCode *code = [[BCKCodabarCode alloc] initWithContent:@"A4-0$1:5/6.7+B" error:&error];
 	STAssertNotNil(code, [error localizedDescription]);
 	
-	NSString *expected = @"1011001001010110100101010011010101010011010110010101010110010110101101101101010010110110101101001010110110110110101001011010101101101101001001011";
-	NSString *actual = [code bitString];
+	BCKBarString *expected = BCKBarStringFromNSString(@"1011001001010110100101010011010101010011010110010101010110010110101101101101010010110110101101001010110110110110101001011010101101101101001001011");
+	BCKBarString *actual = [code barString];
 	BOOL isEqual = [expected isEqualToString:actual];
 	
 	STAssertTrue(isEqual, @"Result from encoding alpha numeric characters is incorrect");

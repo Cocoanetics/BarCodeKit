@@ -142,6 +142,9 @@
 		A7606820181011D200BF00E8 /* BCKMutableBarString.m in Sources */ = {isa = PBXBuildFile; fileRef = A760681D181011D200BF00E8 /* BCKMutableBarString.m */; };
 		A760682418101FD900BF00E8 /* BCKBarStringTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A760682318101FD900BF00E8 /* BCKBarStringTest.m */; };
 		A760682518101FD900BF00E8 /* BCKBarStringTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A760682318101FD900BF00E8 /* BCKBarStringTest.m */; };
+		A76068281810308F00BF00E8 /* BCKBarStringFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = A76068261810308F00BF00E8 /* BCKBarStringFunctions.h */; };
+		A76068291810308F00BF00E8 /* BCKBarStringFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = A76068271810308F00BF00E8 /* BCKBarStringFunctions.m */; };
+		A760682A1810308F00BF00E8 /* BCKBarStringFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = A76068271810308F00BF00E8 /* BCKBarStringFunctions.m */; };
 		A76405EC17B52E9700D45F51 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A764059A17B50F9100D45F51 /* Foundation.framework */; };
 		A764060D17B52EC600D45F51 /* BCKCode.m in Sources */ = {isa = PBXBuildFile; fileRef = A76405E217B52E7700D45F51 /* BCKCode.m */; };
 		A764060E17B52EC600D45F51 /* BCKEAN13Code.m in Sources */ = {isa = PBXBuildFile; fileRef = A76405E417B52E7700D45F51 /* BCKEAN13Code.m */; };
@@ -455,6 +458,8 @@
 		A760681C181011D200BF00E8 /* BCKMutableBarString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKMutableBarString.h; sourceTree = "<group>"; };
 		A760681D181011D200BF00E8 /* BCKMutableBarString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKMutableBarString.m; sourceTree = "<group>"; };
 		A760682318101FD900BF00E8 /* BCKBarStringTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKBarStringTest.m; sourceTree = "<group>"; };
+		A76068261810308F00BF00E8 /* BCKBarStringFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKBarStringFunctions.h; sourceTree = "<group>"; };
+		A76068271810308F00BF00E8 /* BCKBarStringFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKBarStringFunctions.m; sourceTree = "<group>"; };
 		A764059A17B50F9100D45F51 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A764059C17B50F9100D45F51 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		A764059E17B50F9100D45F51 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -1056,6 +1061,8 @@
 			children = (
 				6CEE64AA180E97FB00D40D1D /* BCKBarString.h */,
 				6CEE64AB180E97FB00D40D1D /* BCKBarString.m */,
+				A76068261810308F00BF00E8 /* BCKBarStringFunctions.h */,
+				A76068271810308F00BF00E8 /* BCKBarStringFunctions.m */,
 				A760681C181011D200BF00E8 /* BCKMutableBarString.h */,
 				A760681D181011D200BF00E8 /* BCKMutableBarString.m */,
 			);
@@ -1168,6 +1175,7 @@
 			files = (
 				6C66048817F5850A0016E17E /* BCKGTINSupplementCodeCharacter.h in Headers */,
 				A7CFEF8E17EE0519006446C9 /* BCKStandard2of5ContentCodeCharacter.h in Headers */,
+				A76068281810308F00BF00E8 /* BCKBarStringFunctions.h in Headers */,
 				A7CFEF7217EE04F7006446C9 /* BCKCode11ContentCodeCharacter.h in Headers */,
 				A7CFEF9E17EE0548006446C9 /* BCKCode39Code.h in Headers */,
 				A7CFEF9017EE051E006446C9 /* BCKCode.h in Headers */,
@@ -1541,6 +1549,7 @@
 				6C9302C617D7376400867E2E /* BCKCode39FullASCIIModulo43.m in Sources */,
 				A7337C6617C1250F00BC2D2D /* BCKCode39Code.m in Sources */,
 				6C818CAF17CB703300AEE26F /* BCKCode93Code.m in Sources */,
+				A76068291810308F00BF00E8 /* BCKBarStringFunctions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1633,6 +1642,7 @@
 				A7CFEFA717EE054B006446C9 /* BCKCode93Code.m in Sources */,
 				A7CFEFB317EE0559006446C9 /* NSError+BCKCode.m in Sources */,
 				6CB154AB17F69462002C20F3 /* BCKISBNCode.m in Sources */,
+				A760682A1810308F00BF00E8 /* BCKBarStringFunctions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

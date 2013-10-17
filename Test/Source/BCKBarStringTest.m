@@ -8,6 +8,14 @@
 
 #import "BCKBarString.h"
 #import "BCKMutableBarString.h"
+#import "BCKBarStringFunctions.h"
+
+@interface BCKBarString ()
+
+- (NSArray *)bars;
+
+@end
+
 
 @interface BCKBarStringTest : SenTestCase
 
@@ -36,7 +44,7 @@
 	NSUInteger length = [mutableString length];
 	STAssertEquals(length, (NSUInteger)0, @"Length should be 0");
 	
-	[mutableString appendBarWithType:BCKBarTypeFull];
+	[mutableString appendBar:BCKBarTypeFull];
 	length = [mutableString length];
 	STAssertEquals(length, (NSUInteger)1, @"Length should be 1 after appending");
 	
@@ -56,16 +64,30 @@
 - (void)testEquality
 {
 	BCKMutableBarString *mutableString1 = [BCKMutableBarString string];
-	[mutableString1 appendBarWithType:BCKBarTypeSpace];
+	[mutableString1 appendBar:BCKBarTypeSpace];
 
 	BCKMutableBarString *mutableString2 = [BCKMutableBarString string];
-	[mutableString2 appendBarWithType:BCKBarTypeFull];
+	[mutableString2 appendBar:BCKBarTypeFull];
 
 	BCKMutableBarString *mutableString3 = [BCKMutableBarString string];
-	[mutableString3 appendBarWithType:BCKBarTypeFull];
+	[mutableString3 appendBar:BCKBarTypeFull];
 
 	STAssertFalse([mutableString1 isEqual:mutableString2], @"should be not equal");
 	STAssertTrue([mutableString2 isEqual:mutableString3], @"should be equal");
+}
+
+- (void)testStringConversion
+{
+	BCKBarString *string = BCKBarStringFromNSString(@"1 0");
+	NSArray *bars = [string bars];
+	
+	STAssertTrue([bars count], @"There should be 2 bars");
+	
+	if ([bars count]==2)
+	{
+		STAssertTrue([string barAtIndex:0] == BCKBarTypeFull, @"There should be a full bar at index 0");
+		STAssertTrue([string barAtIndex:1] == BCKBarTypeSpace, @"There should be a full bar at index 0");
+	}
 }
 
 @end

@@ -13,12 +13,12 @@
 
 + (BCKGTINSupplementCodeCharacter *)startCodeCharacter
 {
-	return [[BCKGTINSupplementCodeCharacter alloc] initWithBitString:@"01011" isMarker:NO];
+	return [[BCKGTINSupplementCodeCharacter alloc] initWithBars:BCKBarStringFromNSString(@"01011") isMarker:NO];
 }
 
 + (BCKGTINSupplementCodeCharacter *)separatorCodeCharacter
 {
-	return [[BCKGTINSupplementCodeCharacter alloc] initWithBitString:@"01" isMarker:NO];
+	return [[BCKGTINSupplementCodeCharacter alloc] initWithBars:BCKBarStringFromNSString(@"01") isMarker:NO];
 }
 
 + (BCKGTINSupplementCodeCharacter *)codeCharacterForDigit:(NSUInteger)digit encoding:(BCKGTINSupplementCodeCharacterEncoding)encoding

@@ -7,10 +7,11 @@
 //
 
 #import "BCKPOSTNETCode.h"
+#import "BCKPOSTNETCodeCharacter.h"
 
 @interface BCKPOSTNETCode () // private
 
-- (NSString *)barcodeBitString;
+- (BCKBarString *)barString;
 
 @end
 
@@ -33,13 +34,13 @@
 {
     NSError *error = nil;
     BCKPOSTNETCode *code;
-    NSString *expected;
-    NSString *actual;
+    BCKBarString *expected;
+    BCKBarString *actual;
     BOOL isEqual;
     
     code = [[BCKPOSTNETCode alloc] initWithContent:@"555551237" error:&error];
-	expected = @"10,010,010,0,010,010,0,010,010,0,010,010,0,010,010,0,0,0,01010,0,010,010,0,01010,010,0,0,010,0,010,0101";
-	actual = [code barcodeBitString];
+	expected = BCKBarStringFromNSString(@"10,010,010,0,010,010,0,010,010,0,010,010,0,010,010,0,0,0,01010,0,010,010,0,01010,010,0,0,010,0,010,0101");
+	actual = [code barString];
     isEqual = [expected isEqualToString:actual];
 	STAssertTrue(isEqual, @"Result from encoding simple barcode is incorrect");
 }
@@ -83,38 +84,38 @@
 {
     NSError *error = nil;
     BCKPOSTNETCode *code;
-    NSString *expected;
-    NSString *actual;
+    BCKBarString *expected;
+    BCKBarString *actual;
     BOOL isEqual;
 
     code = [[BCKPOSTNETCode alloc] initWithZIP:@"55555" error:&error];
     STAssertNil(error, @"Error must be nil");
-    expected = @"10,010,010,0,010,010,0,010,010,0,010,010,0,010,010,0,010,010,01";
-	actual = [code barcodeBitString];
+    expected = BCKBarStringFromNSString(@"10,010,010,0,010,010,0,010,010,0,010,010,0,010,010,0,010,010,01");
+	actual = [code barString];
     isEqual = [expected isEqualToString:actual];
 	STAssertTrue(isEqual, @"Result from encoding ZIP is incorrect");
     
     error = nil;
     code = [[BCKPOSTNETCode alloc] initWithZIP:@"55555" andZipPlus4:@"1237" error:&error];
     STAssertNil(error, @"Error must be nil");
-    expected = @"10,010,010,0,010,010,0,010,010,0,010,010,0,010,010,0,0,0,01010,0,010,010,0,01010,010,0,0,010,0,010,0101";
-	actual = [code barcodeBitString];
+    expected = BCKBarStringFromNSString(@"10,010,010,0,010,010,0,010,010,0,010,010,0,010,010,0,0,0,01010,0,010,010,0,01010,010,0,0,010,0,010,0101");
+	actual = [code barString];
     isEqual = [expected isEqualToString:actual];
 	STAssertTrue(isEqual, @"Result from encoding ZIP and ZIP+4 is incorrect");
 
     error = nil;
     code = [[BCKPOSTNETCode alloc] initWithZIP:@"80122" andZipPlus4:@"1905" error:&error];
     STAssertNil(error, @"Error must be nil");
-    expected = @"1010,0,010,01010,0,0,0,0,0,01010,0,010,010,0,010,010,0,0,0101010,010,0,01010,0,0,0,010,010,0,0,010,0101";
-	actual = [code barcodeBitString];
+    expected = BCKBarStringFromNSString(@"1010,0,010,01010,0,0,0,0,0,01010,0,010,010,0,010,010,0,0,0101010,010,0,01010,0,0,0,010,010,0,0,010,0101");
+	actual = [code barString];
     isEqual = [expected isEqualToString:actual];
 	STAssertTrue(isEqual, @"Result from encoding ZIP and ZIP+4 is incorrect");
     
     error = nil;
     code = [[BCKPOSTNETCode alloc] initWithZIP:@"80122" andZipPlus4:@"1905" andDeliveryPointCode:@"22" error:&error];
     STAssertNil(error, @"Error must be nil");
-    expected = @"1010,0,010,01010,0,0,0,0,0,01010,0,010,010,0,010,010,0,0,0101010,010,0,01010,0,0,0,010,010,0,0,010,010,0,010,01010,0,010,01";
-	actual = [code barcodeBitString];
+    expected = BCKBarStringFromNSString(@"1010,0,010,01010,0,0,0,0,0,01010,0,010,010,0,010,010,0,0,0101010,010,0,01010,0,0,0,010,010,0,0,010,010,0,010,01010,0,010,01");
+	actual = [code barString];
     isEqual = [expected isEqualToString:actual];
     STAssertTrue(isEqual, @"Result from encoding ZIP and ZIP+4 and delivery point code is incorrect");
 }

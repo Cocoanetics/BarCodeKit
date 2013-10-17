@@ -7,10 +7,11 @@
 //
 
 #import "BCKStandard2of5Code.h"
+#import "BCKStandard2of5CodeCharacter.h"
 
 @interface BCKStandard2of5Code () // private
 
-- (NSString *)bitString;
+- (BCKBarString *)barString;
 
 @end
 
@@ -33,20 +34,20 @@
 {
     NSError *error = nil;
     BCKStandard2of5Code *code;
-    NSString *expected;
-    NSString *actual;
+    BCKBarString *expected;
+    BCKBarString *actual;
     BOOL isEqual;
 
     code = [[BCKStandard2of5Code alloc] initWithContent:@"1234" withModulo10:YES error:&error];
-	expected = @"1101101011101010101110101110101011101110111010101010101110101110111010101110101101011";
-	actual = [code bitString];
+	expected = BCKBarStringFromNSString(@"1101101011101010101110101110101011101110111010101010101110101110111010101110101101011");
+	actual = [code barString];
     isEqual = [expected isEqualToString:actual];
 	STAssertTrue(isEqual, @"Result from encoding simple barcode is incorrect");
     
     error = nil;
     code = [[BCKStandard2of5Code alloc] initWithContent:@"1234" error:&error];
-	expected = @"11011010111010101011101011101010111011101110101010101011101011101101011";
-	actual = [code bitString];
+	expected = BCKBarStringFromNSString(@"11011010111010101011101011101010111011101110101010101011101011101101011");
+	actual = [code barString];
     isEqual = [expected isEqualToString:actual];
 	STAssertTrue(isEqual, @"Result from encoding simple barcode is incorrect");
 }

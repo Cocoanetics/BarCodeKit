@@ -15,12 +15,12 @@
 
 + (BCKMSICodeCharacter *)startMarkerCodeCharacter
 {
-	return [[BCKMSICodeCharacter alloc] initWithBitString:@"110" isMarker:YES];
+	return [[BCKMSICodeCharacter alloc] initWithBars:BCKBarStringFromNSString(@"110") isMarker:YES];
 }
 
 + (BCKMSICodeCharacter *)stopMarkerCodeCharacter
 {
-	return [[BCKMSICodeCharacter alloc] initWithBitString:@"1001" isMarker:YES];
+	return [[BCKMSICodeCharacter alloc] initWithBars:BCKBarStringFromNSString(@"1001") isMarker:YES];
 }
 
 + (BCKMSICodeCharacter *)codeCharacterForCharacter:(NSString *)character

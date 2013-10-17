@@ -25,6 +25,9 @@ typedef NS_ENUM(NSUInteger, BCKGTINSupplementCodeCharacterEncoding)
     
 };
 
+/**
+ BCKCodeCharacter subclass used for GTIN Supplements
+ */
 @interface BCKGTINSupplementCodeCharacter : BCKCodeCharacter
 
 /**

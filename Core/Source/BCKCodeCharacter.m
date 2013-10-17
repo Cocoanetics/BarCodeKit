@@ -15,74 +15,6 @@
 	BOOL _marker;
 }
 
-#pragma mark Deprecated Methods
-
-// DEPRECATED: remove the method after removing support for bitString and replacing it with BCKBarString. This method is required by unit tests that have not yet been refactored to use barString.
-- (NSString *)bitString __attribute((deprecated))
-{
-    NSMutableString *tmpBitString = [[NSMutableString alloc] init];
-    
-    [_barString enumerateBarsUsingBlock:^(BCKBarType bar, NSUInteger idx, BOOL *stop) {
-        [tmpBitString stringByAppendingFormat:@"%c", (int)bar];
-    }];
-    
-    return tmpBitString;
-}
-
-// DEPRECATED: remove the method after removing support for bitString and replacing it with BCKBarString
-- (void)enumerateBitsUsingBlock:(void (^)(BCKBarType barType, BOOL isBar, NSUInteger idx, BOOL *stop))block __attribute((deprecated("use enumerateBarsUsingBlock: instead")))
-{
-	NSParameterAssert(block);
-    
-	NSString *bitString = [self bitString];
-	NSUInteger length = [bitString length];
-    
-	for (NSUInteger i=0; i<length; i++)
-	{
-		NSString *bit = [bitString substringWithRange:NSMakeRange(i, 1)];
-		
-        // Every bar type is considered a bar except BCKBarTypeNone (i.e. a space)
-		BOOL isBar = ([bit characterAtIndex:0] != BCKBarTypeSpace);
-        BOOL shouldStop = NO;
-        BCKBarType barType = [bit characterAtIndex:0];
-        
-		block(barType, isBar, i, &shouldStop);
-        
-		if (shouldStop)
-		{
-			break;
-		}
-	}
-}
-
-// DEPRECATED: remove method after removing support for bitString and replacing it with BCKBarString
-- (instancetype)initWithBitString:(NSString *)bitString isMarker:(BOOL)isMarker __attribute((deprecated("use initWithBars:isMarker: instead")))
-{
-    NSError *error = nil;
-    
-	self = [super init];
-	
-	if (self)
-	{
-		_marker = isMarker;
-        
-        BCKMutableBarString *tmpString = [BCKMutableBarString string];
-        for (int i=0; i < [bitString length]; i++)
-        {
-            [tmpString appendBarWithType:[bitString characterAtIndex:i]];
-            
-            if (error)
-            {
-                return nil;
-            }
-        }
-		
-		_barString = [tmpString copy];
-    }
-	
-	return self;
-}
-
 #pragma mark Init Methods
 
 - (instancetype)initWithBars:(BCKBarString *)barString isMarker:(BOOL)isMarker
@@ -102,15 +34,7 @@
 
 - (NSString *)description
 {
-    // DEPRECATED: remove the else statement below and maintain only the if part after dropping support for bitString
-    if (self.barString)
-    {
-        return [NSString stringWithFormat:@"<%@ bits='%@'", NSStringFromClass([self class]), [self.barString description]];
-    }
-    else
-    {
-        return [NSString stringWithFormat:@"<%@ bits='%@'", NSStringFromClass([self class]), [self bitString]];
-    }
+	return [NSString stringWithFormat:@"<%@ bars='%@'", NSStringFromClass([self class]), BCKBarStringToNSString(self.barString)];
 }
 
 - (void)enumerateBarsUsingBlock:(void (^)(BCKBarType barType, BOOL isBar, NSUInteger idx, BOOL *stop))block

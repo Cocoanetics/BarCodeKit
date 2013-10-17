@@ -8,10 +8,11 @@
 
 
 #import "BCKInterleaved2of5Code.h"
+#import "BCKInterleaved2of5CodeCharacter.h"
 
 @interface BCKInterleaved2of5Code () // private
 
-- (NSString *)bitString;
+- (BCKBarString *)barString;
 
 @end
 
@@ -29,8 +30,8 @@
 	BCKInterleaved2of5Code *code = [[BCKInterleaved2of5Code alloc] initWithContent:@"1234567890" error:&error];
 	STAssertNotNil(code, [error localizedDescription]);
 
-	NSString *expected = @"101011010010101100110110100101001101001100101010010101100110101101001100101101";
-	NSString *actual = [code bitString];
+	BCKBarString *expected = BCKBarStringFromNSString(@"101011010010101100110110100101001101001100101010010101100110101101001100101101");
+	BCKBarString *actual = [code barString];
 	BOOL isEqual = [expected isEqualToString:actual];
 	
 	STAssertTrue(isEqual, @"Result from encoding incorrect");

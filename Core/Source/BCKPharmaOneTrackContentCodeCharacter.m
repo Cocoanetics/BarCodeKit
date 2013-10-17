@@ -25,29 +25,38 @@
 	return self;
 }
 
-- (NSString *)bitString
+- (BCKBarString *)barString
 {
-    NSMutableString *tmpString = [NSMutableString string];
+    BCKMutableBarString *tmpString = [BCKMutableBarString string];
     NSInteger integerValue = _integerValue;
     
     while (integerValue > 0)
     {
-        if((integerValue % 2) == 0)
+        if ((integerValue % 2) == 0)
         {
             // Add wide bar
-            [tmpString insertString:@"1111" atIndex:0];
+			[tmpString insertBar:BCKBarTypeFull atIndex:0];
+			[tmpString insertBar:BCKBarTypeFull atIndex:0];
+			[tmpString insertBar:BCKBarTypeFull atIndex:0];
+			[tmpString insertBar:BCKBarTypeFull atIndex:0];
+			
             integerValue = (integerValue - 2) / 2;
         }
         else
         {
             // Add narrow bar
-            [tmpString insertString:@"11" atIndex:0];
+			[tmpString insertBar:BCKBarTypeFull atIndex:0];
+			[tmpString insertBar:BCKBarTypeFull atIndex:0];
+			
             integerValue = (integerValue - 1) / 2;
         }
 
         // Enter a space between bars
-        if(integerValue > 0)
-            [tmpString insertString:@"00" atIndex:0];
+        if (integerValue > 0)
+		{
+			[tmpString insertBar:BCKBarTypeSpace atIndex:0];
+			[tmpString insertBar:BCKBarTypeSpace atIndex:0];
+		}
     }
     
 	return tmpString;

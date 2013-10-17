@@ -8,6 +8,7 @@
 
 #import "BCKBarString.h"
 #import "BCKMutableBarString.h"
+#import "BCKBarStringFunctions.h"
 #import "NSError+BCKCode.h"
 
 @interface BCKBarString ()
@@ -25,6 +26,11 @@
 + (instancetype)string
 {
 	return [[self alloc] init];
+}
+
++ (instancetype)stringWithBar:(BCKBarType)bar
+{
+	return [[self alloc]initWithBars:@[@(bar)]];
 }
 
 // internal method for transferring a bar array to a new instance
@@ -45,9 +51,7 @@
 
 - (NSString *)description
 {
-	NSString *contents = [_bars componentsJoinedByString:@""];
-
-	return [NSString stringWithFormat:@"<%@ bars='%@'>", NSStringFromClass([self class]), contents];
+	return [NSString stringWithFormat:@"<%@ bars='%@'>", NSStringFromClass([self class]), BCKBarStringToNSString(self)];
 }
 
 - (NSUInteger)length
@@ -76,6 +80,55 @@
 - (BOOL)isEqual:(BCKBarString *)otherString
 {
 	return [self.bars isEqualToArray:otherString.bars];
+}
+
+- (BOOL)isEqualToString:(BCKBarString *)otherString
+{
+	if (!otherString)
+	{
+		return NO;
+	}
+	
+	if (self == otherString)
+	{
+		return YES;
+	}
+
+	if (![otherString isKindOfClass:[BCKBarString class]])
+	{
+		return NO;
+	}
+	
+	return [self isEqual:otherString];
+}
+
+- (BOOL)endsWithBar:(BCKBarType)bar
+{
+	if (!_bars)
+	{
+		return NO;
+	}
+	
+	BCKBarType lastBar = [[_bars lastObject] integerValue];
+	
+	return (bar == lastBar);
+}
+
+- (BOOL)beginsWithBar:(BCKBarType)bar
+{
+	if (!_bars)
+	{
+		return NO;
+	}
+	
+	BCKBarType firstBar = [_bars[0] integerValue];
+	
+	return (bar == firstBar);
+}
+
+- (BCKBarType)barAtIndex:(NSUInteger)index
+{
+	return [self.bars[index] integerValue];
 }
 
 #pragma mark - NSMutableCopying Protocol

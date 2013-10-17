@@ -151,7 +151,7 @@ static NSArray *__charactersMap;
     return self;
 }
 
-- (NSString *)bitString
+- (BCKBarString *)barString
 {
     for (NSUInteger i=0; i< CODE_128_CHARACTERS_TABLE_SIZE; i++)
     {
@@ -159,21 +159,21 @@ static NSArray *__charactersMap;
 
         if ([testChar isEqualToString:_character])
         {
-            return [__charactersMap[i][CODE_128_BINARY_INDEX] copy];
+            return BCKBarStringFromNSString(__charactersMap[i][CODE_128_BINARY_INDEX]);
         }
     }
 
     return NULL;
 }
 
-+ (NSString *)binaryStringAtPosition:(NSUInteger)position
++ (BCKBarString *)binaryStringAtPosition:(NSUInteger)position
 {
     if (position >= CODE_128_CHARACTERS_TABLE_SIZE)
     {
         return NULL;
     }
 
-    return [__charactersMap[position][CODE_128_BINARY_INDEX] copy];
+    return BCKBarStringFromNSString(__charactersMap[position][CODE_128_BINARY_INDEX]);
 }
 
 + (BCKCode128Version)code128VersionNeeded:(NSString *)content error:(NSError **)error {

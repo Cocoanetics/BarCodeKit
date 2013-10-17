@@ -12,7 +12,7 @@
 
 - (id)initMarkerWithEanCharacter:(BCKEANCodeCharacter *)character
 {
-	self = [super initWithBitString:[character bitString] isMarker:YES];
+	self = [super initWithBars:[character barString] isMarker:YES];
 	if (self)
 	{
 

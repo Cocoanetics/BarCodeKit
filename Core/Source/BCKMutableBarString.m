@@ -11,7 +11,7 @@
 
 @interface BCKBarString ()
 
-@property (nonatomic, copy) NSMutableArray *barArray;
+@property (nonatomic, copy) NSMutableArray *bars;
 
 @end
 
@@ -19,7 +19,7 @@
 
 #pragma mark - Modifying a Bar String
 
-- (void)appendBarWithType:(BCKBarType)barType
+- (void)appendBar:(BCKBarType)barType
 {
 	if (!_bars)
 	{
@@ -31,6 +31,28 @@
 	[_bars addObject:@(barType)];
 }
 
+- (void)appendBarString:(BCKBarString *)string
+{
+	if (!_bars)
+	{
+		_bars = [NSMutableArray array];
+	}
+
+	NSAssert([_bars isKindOfClass:[NSMutableArray class]], @"_bars needs to be mutable");
+
+	[_bars addObjectsFromArray:string.bars];
+}
+
+- (void)insertBar:(BCKBarType)bar atIndex:(NSUInteger)index
+{
+	if (!_bars)
+	{
+		_bars = [NSMutableArray array];
+	}
+	
+	[_bars insertObject:@(bar) atIndex:index];
+}
+
 #pragma mark - Properties
 
 - (NSMutableArray *)barArray
@@ -38,9 +60,9 @@
 	return _bars;
 }
 
-- (void)setBarArray:(NSMutableArray *)barArray
+- (void)setBars:(NSMutableArray *)bars
 {
-	_bars = [barArray mutableCopy];
+	_bars = [bars mutableCopy];
 }
 
 @end

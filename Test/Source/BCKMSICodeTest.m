@@ -11,7 +11,7 @@
 
 @interface BCKMSICode () // private
 
-- (NSString *)bitString;
+- (BCKBarString *)barString;
 
 @end
 
@@ -40,8 +40,8 @@
     NSError *error = nil;
     
     BCKMSICode *code = [[BCKMSICode alloc] initWithContent:@"1234567" error:&error];
-	NSString *expected = @"1101001001001101001001101001001001101101001101001001001101001101001101101001001101101101001101001001001";
-	NSString *actual = [code bitString];
+	BCKBarString *expected = BCKBarStringFromNSString(@"1101001001001101001001101001001001101101001101001001001101001101001101101001001101101101001101001001001");
+	BCKBarString *actual = [code barString];
 	BOOL isEqual = [expected isEqualToString:actual];
 	
 	STAssertTrue(isEqual, @"Result from encoding using default check digit scheme is incorrect");

@@ -7,10 +7,11 @@
 //
 
 #import "BCKEAN2SupplementCode.h"
+#import "BCKGTINSupplementCodeCharacter.h"
 
 @interface BCKEAN2SupplementCode () // private
 
-- (NSString *)bitString;
+- (BCKBarString *)barString;
 
 @end
 
@@ -24,16 +25,16 @@
 {
     NSError *error = nil;
     BCKEAN2SupplementCode *code = [[BCKEAN2SupplementCode alloc] initWithContent:@"53" error:&error];
-    NSString *actual = [code bitString];
-    NSString *expected = @"010110110001010100001";
+    BCKBarString *actual = [code barString];
+    BCKBarString *expected = BCKBarStringFromNSString(@"010110110001010100001");
     
     BOOL isEqual = [expected isEqualToString:actual];
 	STAssertTrue(isEqual, @"Result from encoding simple barcode is incorrect");
     
     error = nil;
     code = [[BCKEAN2SupplementCode alloc] initWithContent:@"03" error:&error];
-    actual = [code bitString];
-    expected = @"010110100111010100001";
+    actual = [code barString];
+    expected = BCKBarStringFromNSString(@"010110100111010100001");
     
     isEqual = [expected isEqualToString:actual];
     STAssertTrue(isEqual, @"Result from encoding simple barcode is incorrect");

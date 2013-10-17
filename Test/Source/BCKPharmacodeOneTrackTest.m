@@ -7,10 +7,11 @@
 //
 
 #import "BCKPharmacodeOneTrack.h"
+#import "BCKCodeCharacter.h"
 
 @interface BCKPharmacodeOneTrack () // private
 
-- (NSString *)bitString;
+- (BCKBarString *)barString;
 
 @end
 
@@ -56,8 +57,8 @@
     NSError *error = nil;
     
     BCKPharmacodeOneTrack *code = [[BCKPharmacodeOneTrack alloc] initWithContent:@"542" error:&error];
-	NSString *expected = @"11001100110011001111001111001111001111001111";
-	NSString *actual = [code bitString];
+	BCKBarString *expected = BCKBarStringFromNSString(@"11001100110011001111001111001111001111001111");
+	BCKBarString *actual = [code barString];
 	BOOL isEqual = [expected isEqualToString:actual];
     
 	STAssertTrue(isEqual, @"Result from encoding should be correct");

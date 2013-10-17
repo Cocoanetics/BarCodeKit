@@ -12,9 +12,9 @@
     NSUInteger _position;
 }
 
-- (instancetype)initWithBitString:(NSString *)bitString position:(NSUInteger)position isMarker:(BOOL)isMarker
+- (instancetype)initWithBars:(BCKBarString *)bars position:(NSUInteger)position isMarker:(BOOL)isMarker
 {
-    self = [super initWithBitString:bitString isMarker:isMarker];
+    self = [super initWithBars:bars isMarker:isMarker];
 
     if (self)
     {
@@ -31,11 +31,11 @@
     switch (codeVersion)
     {
         case Code128A:
-            return [[BCKCode128CodeCharacter alloc] initWithBitString:@"11010000100" position:103 isMarker:YES];
+            return [[BCKCode128CodeCharacter alloc] initWithBars:BCKBarStringFromNSString(@"11010000100") position:103 isMarker:YES];
         case Code128B:
-            return [[BCKCode128CodeCharacter alloc] initWithBitString:@"11010010000" position:104 isMarker:YES];
+            return [[BCKCode128CodeCharacter alloc] initWithBars:BCKBarStringFromNSString(@"11010010000") position:104 isMarker:YES];
         case Code128C:
-            return [[BCKCode128CodeCharacter alloc] initWithBitString:@"11010011100" position:105 isMarker:YES];
+            return [[BCKCode128CodeCharacter alloc] initWithBars:BCKBarStringFromNSString(@"11010011100") position:105 isMarker:YES];
         default:
             return nil;
     }
@@ -43,7 +43,7 @@
 
 + (BCKCode128CodeCharacter *)stopCharacter
 {
-    return [[BCKCode128CodeCharacter alloc] initWithBitString:@"1100011101011" isMarker:YES];
+    return [[BCKCode128CodeCharacter alloc] initWithBars:BCKBarStringFromNSString(@"1100011101011") isMarker:YES];
 }
 
 + (instancetype)codeCharacterForCharacter:(NSString *)character codeVersion:(BCKCode128Version)codeVersion
@@ -53,8 +53,8 @@
 
 + (BCKCode128CodeCharacter *)characterAtPosition:(NSUInteger)position
 {
-    NSString *positionCharacter = [BCKCode128ContentCodeCharacter binaryStringAtPosition:position];
-    return [[BCKCode128CodeCharacter alloc] initWithBitString:positionCharacter position:position isMarker:NO];
+    BCKBarString *positionCharacter = [BCKCode128ContentCodeCharacter binaryStringAtPosition:position];
+    return [[BCKCode128CodeCharacter alloc] initWithBars:positionCharacter position:position isMarker:NO];
 }
 
 + (BCKCode128CodeCharacter *)switchCodeToVersion:(BCKCode128Version)targetVersion

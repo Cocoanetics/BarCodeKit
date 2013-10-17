@@ -20,7 +20,7 @@
  @param position The position in Code 128 table to return
  @returns the binary string of character at given position
  */
-+ (NSString *)binaryStringAtPosition:(NSUInteger)position;
++ (BCKBarString *)binaryStringAtPosition:(NSUInteger)position;
 
 /**
  Returns Code128 version needed to encode given string

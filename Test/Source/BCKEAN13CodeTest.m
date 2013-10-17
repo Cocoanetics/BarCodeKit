@@ -7,10 +7,11 @@
 //
 
 #import "BCKEAN13Code.h"
+#import "BCKBarStringFunctions.h"
 
 @interface BCKEAN13Code () // private
 
-- (NSString *)bitString;
+- (BCKBarString *)barString;
 - (CGFloat)_captionFontSizeWithOptions:(NSDictionary *)options;
 
 @end
@@ -29,8 +30,8 @@
 	BCKEAN13Code *code = [[BCKEAN13Code alloc] initWithContent:@"9780596516178" error:&error];
 	STAssertNotNil(code, [error localizedDescription]);
 	
-	NSString *expected = @"10101110110001001010011101100010010111010111101010100111011001101010000110011010001001001000101";
-	NSString *actual = [code bitString];
+	BCKBarString *expected = BCKBarStringFromNSString(@"10101110110001001010011101100010010111010111101010100111011001101010000110011010001001001000101");
+	BCKBarString *actual = [code barString];
 	BOOL isEqual = [expected isEqualToString:actual];
 	
 	STAssertTrue(isEqual, @"Result from encoding incorrect");

@@ -7,44 +7,44 @@
 //
 
 /**
- Supported bar types represented by their ASCII values.
+ Supported bar types represented by their ASCII values. Note: The characters used for the internal representation are an implementation detail subject to change. Always use values from this enumeration in your code.
  */
-typedef NS_ENUM(NSUInteger, BCKBarType)
+typedef NS_ENUM(char, BCKBarType)
 {
 	/**
 	 Bottom Half
 	 */
-    BCKBarTypeBottomHalf = 44,
+    BCKBarTypeBottomHalf = ',',
     
 	/**
 	 A space
 	 */
-    BCKBarTypeSpace = 48,
+    BCKBarTypeSpace = '0',
 	
 	/**
 	 Full bar
 	 */
-    BCKBarTypeFull = 49,
+    BCKBarTypeFull = '1',
     
 	/**
 	 Top Two Thirds
 	 */
-    BCKBarTypeTopTwoThirds = 60,
+    BCKBarTypeTopTwoThirds = '<',
     
     /**
 	 Centre One Third
 	 */
-    BCKBarTypeCentreOneThird = 61,
+    BCKBarTypeCentreOneThird = '=',
     
 	/**
 	 Bottom Two Thirds
 	 */
-    BCKBarTypeBottomTwoThirds = 62,
+    BCKBarTypeBottomTwoThirds = '>',
     
 	/**
 	 Top Half
 	 */
-    BCKBarTypeTopHalf = 96
+    BCKBarTypeTopHalf = '`'
 };
 
 /**
@@ -65,6 +65,11 @@ typedef NS_ENUM(NSUInteger, BCKBarType)
  */
 + (instancetype)string;
 
+/**
+ Creates a bar string with a single bar
+ @param bar The BCKBarType to initialize the bar string with
+ */
++ (instancetype)stringWithBar:(BCKBarType)bar;
 
 /**
  @name Getting Information about Bar Strings
@@ -78,7 +83,36 @@ typedef NS_ENUM(NSUInteger, BCKBarType)
 
 /**
  Enumerate all bars in the bar string.
+ @param block The block to execute for each bar
  */
 - (void)enumerateBarsUsingBlock:(void (^)(BCKBarType bar, NSUInteger idx, BOOL *stop))block;
+
+/**
+ Determines the last bar
+ @param bar The BCKBarType to look for
+ @returns `YES` if the reciver ends with this bar type
+ */
+- (BOOL)endsWithBar:(BCKBarType)bar;
+
+/**
+ Determines the first bar
+ @param bar The BCKBarType to look for
+ @returns `YES` if the reciver begins with this bar type
+ */
+- (BOOL)beginsWithBar:(BCKBarType)bar;
+
+/**
+ Determines the bar at a given index
+ @param index The index
+ @returns The BCKBarType for the bar at the index
+ */
+- (BCKBarType)barAtIndex:(NSUInteger)index;
+
+/**
+ Comparing Bar Strings
+ @param otherString The other string to compare with
+ @returns `YES` if the bar strings are of equal value
+ */
+- (BOOL)isEqualToString:(BCKBarString *)otherString;
 
 @end

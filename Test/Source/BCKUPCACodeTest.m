@@ -7,10 +7,11 @@
 //
 
 #import "BCKUPCACode.h"
+#import "BCKEANCodeCharacter.h"
 
 @interface BCKUPCACode ()
 
-- (NSString *)bitString;
+- (BCKBarString *)barString;
 
 @end
 
@@ -26,8 +27,8 @@
 	BCKUPCACode *code = [[BCKUPCACode alloc] initWithContent:@"088345100517" error:&error];
 	STAssertNotNil(code, [error localizedDescription]);
 
-	NSString *expected = @"10100011010110111011011101111010100011011000101010110011011100101110010100111011001101000100101";
-	NSString *actual = [code bitString];
+	BCKBarString *expected = BCKBarStringFromNSString(@"10100011010110111011011101111010100011011000101010110011011100101110010100111011001101000100101");
+	BCKBarString *actual = [code barString];
 	BOOL isEqual = [expected isEqualToString:actual];
 
 	STAssertTrue(isEqual, @"Result from encoding incorrect");

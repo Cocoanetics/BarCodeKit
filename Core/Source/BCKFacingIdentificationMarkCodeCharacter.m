@@ -14,19 +14,19 @@
 {
     switch (fimType) {
         case BCKFIMTypeA:
-            return [[BCKFacingIdentificationMarkCodeCharacter alloc] initWithBitString:@"101000001000001010" isMarker:NO];
+            return [[BCKFacingIdentificationMarkCodeCharacter alloc] initWithBars:BCKBarStringFromNSString(@"101000001000001010") isMarker:NO];
             break;
         case BCKFIMTypeB:
-            return [[BCKFacingIdentificationMarkCodeCharacter alloc] initWithBitString:@"100010100010100010" isMarker:NO];
+            return [[BCKFacingIdentificationMarkCodeCharacter alloc] initWithBars:BCKBarStringFromNSString(@"100010100010100010") isMarker:NO];
             break;
         case BCKFIMTypeC:
-            return [[BCKFacingIdentificationMarkCodeCharacter alloc] initWithBitString:@"101000100010001010" isMarker:NO];
+            return [[BCKFacingIdentificationMarkCodeCharacter alloc] initWithBars:BCKBarStringFromNSString(@"101000100010001010") isMarker:NO];
             break;
         case BCKFIMTypeD:
-            return [[BCKFacingIdentificationMarkCodeCharacter alloc] initWithBitString:@"101010001000101010" isMarker:NO];
+            return [[BCKFacingIdentificationMarkCodeCharacter alloc] initWithBars:BCKBarStringFromNSString(@"101010001000101010") isMarker:NO];
             break;
         case BCKFIMTypeE:
-            return [[BCKFacingIdentificationMarkCodeCharacter alloc] initWithBitString:@"100010000000100010" isMarker:NO];
+            return [[BCKFacingIdentificationMarkCodeCharacter alloc] initWithBars:BCKBarStringFromNSString(@"100010000000100010") isMarker:NO];
             break;
     }
     

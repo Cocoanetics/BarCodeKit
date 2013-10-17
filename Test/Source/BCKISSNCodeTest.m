@@ -11,7 +11,7 @@
 
 @interface BCKISSNCode () // private
 
-- (NSString *)bitString;
+- (BCKBarString *)barString;
 - (NSString *)titleText;
 
 @end

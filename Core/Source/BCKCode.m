@@ -26,14 +26,6 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 
 @implementation BCKCode
 
-#pragma mark Deprecated Methods
-
-// DEPRECATED: remove the method after removing support for bitString and replacing it with BCKBarString. This method is required by unit tests that have not yet been refactored to use BCKBarString
-- (NSString *)bitString __attribute((deprecated))
-{
-    return [self barcodeBitString];
-}
-
 #pragma mark Helper Methods
 
 // The NSError object is ignored in BCKCode's initWithContent method. BCKCode subclasses are required to initialise it in case of errors, for example if canEncodeContent: returns NO
@@ -83,41 +75,21 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 	return [self initWithContent:content error:NULL];
 }
 
-- (NSString *)barcodeBitString
+- (BCKBarString *)barString
 {
-	NSMutableString *tmpString = [NSMutableString string];
-    NSArray *tmpBarArray;
-
+	BCKMutableBarString	*tmpString = [BCKMutableBarString string];
+	
 	for (BCKCodeCharacter *oneCharacter in [self codeCharacters])
 	{
-        // DEPRECATED: remove the else statement below and maintain only the if part after dropping support for bitString
-        if ([oneCharacter barString])
-        {
-            [[oneCharacter barString] enumerateBarsUsingBlock:^(BCKBarType bit, NSUInteger idx, BOOL *stop)
-             {
-                 [tmpString appendString:[NSString stringWithFormat:@"%c", (int)bit]];
-             }];
-        }
-        else
-        {
-            NSMutableArray *tmpBarString = [[NSMutableArray alloc] initWithCapacity:[oneCharacter.bitString length]];
-            for (int i=0; i < [oneCharacter.bitString length]; i++)
-            {
-                NSString *ichar  = [NSString stringWithFormat:@"%c", [oneCharacter.bitString characterAtIndex:i]];
-                [tmpBarString addObject:ichar];
-            }
-            
-            tmpBarArray = [NSArray arrayWithArray:tmpBarString];
-            [tmpString appendString:[tmpBarArray componentsJoinedByString:@""]];
-        }
+		[tmpString appendBarString:[oneCharacter barString]];
 	}
-
+	
 	return tmpString;
 }
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"<%@ content='%@'>", NSStringFromClass([self class]), [self barcodeBitString]];
+	return [NSString stringWithFormat:@"<%@ content='%@'>", NSStringFromClass([self class]), BCKBarStringToNSString([self barString])];
 }
 
 #pragma mark - Options Helper Methods
@@ -211,14 +183,7 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 		}
 		else
 		{
-            if (character.bitString)
-            {
-                bitsBeforeMiddle += [character.bitString length];
-            }
-            else
-            {
-                bitsBeforeMiddle += [character.barString length];
-            }
+			bitsBeforeMiddle += [character.barString length];
 			metContent = YES;
 		}
 	}];
@@ -251,14 +216,7 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 		{
 			if (metMiddleMarker)
 			{
-                if (character.bitString)
-                {
-                    bitsAfterMiddle += [character.bitString length];
-                }
-                else
-                {
-                    bitsAfterMiddle += [character.barString length];
-                }
+				bitsAfterMiddle += [character.barString length];
 			}
 			
 			metContent = YES;
@@ -624,11 +582,8 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 - (CGSize)sizeWithRenderOptions:(NSDictionary *)options
 {
 	CGFloat barScale = [self _barScaleFromOptions:options];
-	
 	NSUInteger horizontalQuietZoneWidth = [self horizontalQuietZoneWidth];
-	
-	NSString *bitString = [self barcodeBitString];
-	NSUInteger length = [bitString length];
+	NSUInteger length = [[self barString] length];
 
 	CGSize size = CGSizeZero;
 	size.width = (length + 2.0f * horizontalQuietZoneWidth) * barScale;
@@ -763,59 +718,29 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 		
 		__block CGRect characterRect = CGRectNull;
 
-        // DEPRECATED: remove the else statement below and maintain only the if part after dropping support for bitString
-        if (character.barString)
-        {
-            // walk through the bars of the character
-            [character enumerateBarsUsingBlock:^(BCKBarType barType, BOOL isBar, NSUInteger idx, BOOL *stop) {
-                CGFloat x = (drawnBitIndex + horizontalQuietZoneWidth) * barScale;
-                
-                CGRect barRect;
-                barRect = [self _calculateBarRectForType:barType andXOffset:x andBarScale:barScale andBarLength:barLength];
-                
-                if (CGRectIsNull(characterRect))
-                {
-                    characterRect = barRect;
-                }
-                else
-                {
-                    characterRect = CGRectUnion(characterRect, barRect);
-                }
-                
-                if (isBar)
-                {
-                    CGContextAddRect(context, barRect);
-                }
-                
-                drawnBitIndex++;
-            }];
-        }
-        else
-        {
-            // walk through the bits of the character - remove once all BCKCode subclasses are refactored to use barArray
-            [character enumerateBitsUsingBlock:^(BCKBarType barType, BOOL isBar, NSUInteger idx, BOOL *stop) {
-                CGFloat x = (drawnBitIndex + horizontalQuietZoneWidth) * barScale;
-                
-                CGRect barRect;
-                barRect = [self _calculateBarRectForType:barType andXOffset:x andBarScale:barScale andBarLength:barLength];
-                
-                if (CGRectIsNull(characterRect))
-                {
-                    characterRect = barRect;
-                }
-                else
-                {
-                    characterRect = CGRectUnion(characterRect, barRect);
-                }
-                
-                if (isBar)
-                {
-                    CGContextAddRect(context, barRect);
-                }
-                
-                drawnBitIndex++;
-            }];
-        }
+		// walk through the bars of the character
+		[character enumerateBarsUsingBlock:^(BCKBarType bar, BOOL isBar, NSUInteger idx, BOOL *stop) {
+			CGFloat x = (drawnBitIndex + horizontalQuietZoneWidth) * barScale;
+			
+			CGRect barRect;
+			barRect = [self _calculateBarRectForType:bar andXOffset:x andBarScale:barScale andBarLength:barLength];
+			
+			if (CGRectIsNull(characterRect))
+			{
+				characterRect = barRect;
+			}
+			else
+			{
+				characterRect = CGRectUnion(characterRect, barRect);
+			}
+			
+			if (isBar)
+			{
+				CGContextAddRect(context, barRect);
+			}
+			
+			drawnBitIndex++;
+		}];
         
 		if ([character isMarker])
 		{
@@ -965,7 +890,7 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 			// indent by 1 bar width if left marker ends with a bar
 			BCKCodeCharacter *leftOuterMarker = codeCharacters[0];
 			
-			if ([[leftOuterMarker bitString] hasSuffix:@"1"])
+			if ([[leftOuterMarker barString] endsWithBar:BCKBarTypeFull])
 			{
 				frameBetweenEndMarkers.origin.x += barScale;
 				frameBetweenEndMarkers.size.width -= barScale;
@@ -974,7 +899,7 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 			// indent by 1 bar width if right marker begins with a bar
 			BCKCodeCharacter *rightOuterMarker = [codeCharacters lastObject];
 			
-			if ([[rightOuterMarker bitString] hasPrefix:@"1"])
+			if ([[rightOuterMarker barString] endsWithBar:BCKBarTypeFull])
 			{
 				frameBetweenEndMarkers.size.width -= barScale;
 			}

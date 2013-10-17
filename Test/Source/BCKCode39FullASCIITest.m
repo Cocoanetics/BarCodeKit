@@ -8,10 +8,11 @@
 
 #import "BCKCode39FullASCII.h"
 #import "BCKCode39FullASCIIModulo43.h"
+#import "BCKCode39CodeCharacter.h"
 
 @interface BCKCode39FullASCII () // private
 
-- (NSString *)bitString;
+- (BCKBarString *)barString;
 
 @end
 
@@ -29,8 +30,8 @@
 	BCKCode39FullASCII *code = [[BCKCode39FullASCII alloc] initWithContent:@"OLIVER" error:&error];
 	STAssertNotNil(code, [error localizedDescription]);
 	
-	NSString *expected = @"1001011011010110101101001010110101001101011010011010100110101011011010110010101101010110010100101101101";
-	NSString *actual = [code bitString];
+	BCKBarString *expected = BCKBarStringFromNSString(@"1001011011010110101101001010110101001101011010011010100110101011011010110010101101010110010100101101101");
+	BCKBarString *actual = [code barString];
 	BOOL isEqual = [expected isEqualToString:actual];
 	
 	STAssertTrue(isEqual, @"Result from encoding incorrect");
@@ -43,8 +44,8 @@
 	BCKCode39FullASCII *codeFullASCII = [[BCKCode39FullASCII alloc] initWithContent:@"a" error:&error];
 	STAssertNotNil(codeFullASCII, [error localizedDescription]);
 
-	NSString *expected = @"100101101101010010100100101101010010110100101101101";
-	NSString *actual = [codeFullASCII bitString];
+	BCKBarString *expected = BCKBarStringFromNSString(@"100101101101010010100100101101010010110100101101101");
+	BCKBarString *actual = [codeFullASCII barString];
 	BOOL isEqual = [expected isEqualToString:actual];
    
 	STAssertTrue(isEqual, @"Result from encoding a full ASCII incorrect");
@@ -72,8 +73,8 @@
 	BCKCode39FullASCIIModulo43 *codeFullASCIIModulo43 = [[BCKCode39FullASCIIModulo43 alloc] initWithContent:@"a" error:&error];
 	STAssertNotNil(codeFullASCIIModulo43, [error localizedDescription]);
 	
-	NSString *expected = @"1001011011010100101001001011010100101101101001011010100101101101";
-	NSString *actual = [codeFullASCIIModulo43 bitString];
+	BCKBarString *expected = BCKBarStringFromNSString(@"1001011011010100101001001011010100101101101001011010100101101101");
+	BCKBarString *actual = [codeFullASCIIModulo43 barString];
 	BOOL isEqual = [expected isEqualToString:actual];
 	
 	STAssertTrue(isEqual, @"Result from encoding a full ASCII with Module-43 check character incorrect");
