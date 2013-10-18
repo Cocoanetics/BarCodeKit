@@ -69,6 +69,11 @@
 		6CB154AB17F69462002C20F3 /* BCKISBNCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB154A817F69462002C20F3 /* BCKISBNCode.m */; };
 		6CB154AD17F6AB95002C20F3 /* BCKISBNCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB154AC17F6AB95002C20F3 /* BCKISBNCodeTest.m */; };
 		6CB154AE17F6AB95002C20F3 /* BCKISBNCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB154AC17F6AB95002C20F3 /* BCKISBNCodeTest.m */; };
+		6CB166FE18113E16000029A0 /* BCKISMNCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CB166FC18113E16000029A0 /* BCKISMNCode.h */; };
+		6CB166FF18113E16000029A0 /* BCKISMNCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB166FD18113E16000029A0 /* BCKISMNCode.m */; };
+		6CB1670018113E16000029A0 /* BCKISMNCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB166FD18113E16000029A0 /* BCKISMNCode.m */; };
+		6CB1670218114468000029A0 /* BCKISMNCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB1670118114468000029A0 /* BCKISMNCodeTest.m */; };
+		6CB1670318114468000029A0 /* BCKISMNCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB1670118114468000029A0 /* BCKISMNCodeTest.m */; };
 		6CBCAD6317FAD30300C3EFB0 /* BCKISSNCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CBCAD6117FAD30300C3EFB0 /* BCKISSNCode.h */; };
 		6CBCAD6417FAD30300C3EFB0 /* BCKISSNCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBCAD6217FAD30300C3EFB0 /* BCKISSNCode.m */; };
 		6CBCAD6517FAD30300C3EFB0 /* BCKISSNCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBCAD6217FAD30300C3EFB0 /* BCKISSNCode.m */; };
@@ -363,6 +368,9 @@
 		6CB154A717F69462002C20F3 /* BCKISBNCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKISBNCode.h; sourceTree = "<group>"; };
 		6CB154A817F69462002C20F3 /* BCKISBNCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKISBNCode.m; sourceTree = "<group>"; };
 		6CB154AC17F6AB95002C20F3 /* BCKISBNCodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKISBNCodeTest.m; sourceTree = "<group>"; };
+		6CB166FC18113E16000029A0 /* BCKISMNCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKISMNCode.h; sourceTree = "<group>"; };
+		6CB166FD18113E16000029A0 /* BCKISMNCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKISMNCode.m; sourceTree = "<group>"; };
+		6CB1670118114468000029A0 /* BCKISMNCodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKISMNCodeTest.m; sourceTree = "<group>"; };
 		6CBCAD6117FAD30300C3EFB0 /* BCKISSNCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKISSNCode.h; sourceTree = "<group>"; };
 		6CBCAD6217FAD30300C3EFB0 /* BCKISSNCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKISSNCode.m; sourceTree = "<group>"; };
 		6CC6BAA317F1910200F3ECCF /* BCKFacingIdentificationMarkCodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKFacingIdentificationMarkCodeCharacter.h; sourceTree = "<group>"; };
@@ -660,6 +668,15 @@
 				6CB154A817F69462002C20F3 /* BCKISBNCode.m */,
 			);
 			name = ISBN;
+			sourceTree = "<group>";
+		};
+		6CB166FB18113DF3000029A0 /* ISMN */ = {
+			isa = PBXGroup;
+			children = (
+				6CB166FC18113E16000029A0 /* BCKISMNCode.h */,
+				6CB166FD18113E16000029A0 /* BCKISMNCode.m */,
+			);
+			name = ISMN;
 			sourceTree = "<group>";
 		};
 		6CBCAD6017FAD2E100C3EFB0 /* ISSN */ = {
@@ -1001,6 +1018,7 @@
 				A13B58E117C6A03A00454150 /* BCKInterleaved2of5CodeTest.m */,
 				6CB154AC17F6AB95002C20F3 /* BCKISBNCodeTest.m */,
 				6C8B609C17FADC4E00C3C118 /* BCKISSNCodeTest.m */,
+				6CB1670118114468000029A0 /* BCKISMNCodeTest.m */,
 				6CE3E6A017DF202900BFD408 /* BCKMSICodeTest.m */,
 				6CFB2D5E17E1D30100017C55 /* BCKPharmacodeOneTrackTest.m */,
 				6CAD9704180D4684002DFADB /* BCKPOSTNETCodeTest.m */,
@@ -1024,6 +1042,7 @@
 				A7378D8517C23AC3008921C4 /* Code39 */,
 				6C818CA917CB64A300AEE26F /* Code93 */,
 				6CB154A617F69443002C20F3 /* ISBN */,
+				6CB166FB18113DF3000029A0 /* ISMN */,
 				6CBCAD6017FAD2E100C3EFB0 /* ISSN */,
 				6CC6BAA217F190BF00F3ECCF /* FIM */,
 				A13B58DF17C6961600454150 /* Interleaved 2 of 5 */,
@@ -1214,6 +1233,7 @@
 				A7CFEFAC17EE0559006446C9 /* BCKMSICode.h in Headers */,
 				6CC6BAA517F1910200F3ECCF /* BCKFacingIdentificationMarkCodeCharacter.h in Headers */,
 				A7CFEFA017EE0548006446C9 /* BCKCode39CodeModulo43.h in Headers */,
+				6CB166FE18113E16000029A0 /* BCKISMNCode.h in Headers */,
 				A7CFEF7A17EE0501006446C9 /* BCKCode93ContentCodeCharacter.h in Headers */,
 				A7CFEF7E17EE0506006446C9 /* BCKInterleaved2of5DigitPairCodeCharacter.h in Headers */,
 				6CCD744317F436BF00D293EE /* BCKEAN5SupplementCode.h in Headers */,
@@ -1478,6 +1498,7 @@
 				6C818CAC17CB6BF300AEE26F /* BCKCode93CodeTest.m in Sources */,
 				EAD33EA517E81BD200CE0608 /* BCKUPCACodeTest.m in Sources */,
 				A7378E0C17C261D8008921C4 /* BCKEAN8CodeTest.m in Sources */,
+				6CB1670218114468000029A0 /* BCKISMNCodeTest.m in Sources */,
 				6CC6BAAE17F1A3C000F3ECCF /* BCKFacingIdentificationMarkCodeTest.m in Sources */,
 				A13B58E217C6A03A00454150 /* BCKInterleaved2of5CodeTest.m in Sources */,
 				EA6CF87E17CA513E009C8994 /* BCKCode128CodeTest.m in Sources */,
@@ -1517,6 +1538,7 @@
 				6C4D158A17DDDDF000854E31 /* BCKCode11CodeCharacter.m in Sources */,
 				6CF2308C17E9B4790065E50C /* BCKStandard2of5Code.m in Sources */,
 				6C638D1F17F3040E00CD3F1B /* BCKEAN2SupplementCode.m in Sources */,
+				6CB166FF18113E16000029A0 /* BCKISMNCode.m in Sources */,
 				6CEE64AD180E97FB00D40D1D /* BCKBarString.m in Sources */,
 				6C818CB517CCAC0400AEE26F /* BCKCode93ContentCodeCharacter.m in Sources */,
 				6C4D158417DDDD0B00854E31 /* BCKCode11Code.m in Sources */,
@@ -1571,6 +1593,7 @@
 				A7CFEFBF17EE090B006446C9 /* BCKInterleaved2of5CodeTest.m in Sources */,
 				A7CFEFB717EE090B006446C9 /* BCKCodabarCodeTest.m in Sources */,
 				A7CFEFC017EE090B006446C9 /* BCKUPCECodeTest.m in Sources */,
+				6CB1670318114468000029A0 /* BCKISMNCodeTest.m in Sources */,
 				6CC6BAAF17F1A3C000F3ECCF /* BCKFacingIdentificationMarkCodeTest.m in Sources */,
 				A7CFEFC317EE090B006446C9 /* BCKCodeTest.m in Sources */,
 				A7CFEFBC17EE090B006446C9 /* BCKCode93CodeTest.m in Sources */,
@@ -1610,6 +1633,7 @@
 				A7CFEF7B17EE0501006446C9 /* BCKCode93ContentCodeCharacter.m in Sources */,
 				A7CFEF7517EE04FB006446C9 /* BCKCode39CodeCharacter.m in Sources */,
 				6C66048F17F5851D0016E17E /* BCKGTINSupplementDataCodeCharacter.m in Sources */,
+				6CB1670018113E16000029A0 /* BCKISMNCode.m in Sources */,
 				6CEE64AE180E97FB00D40D1D /* BCKBarString.m in Sources */,
 				6CC6BAA717F1910200F3ECCF /* BCKFacingIdentificationMarkCodeCharacter.m in Sources */,
 				A721D0C417FEFBE200A82189 /* NSImage+BarCodeKit.m in Sources */,

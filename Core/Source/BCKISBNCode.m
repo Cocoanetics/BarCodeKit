@@ -102,7 +102,7 @@ typedef NS_ENUM(char, BCKISBNCodeRegularExpressionType) {
 
     NSError *regError = nil;
     BOOL isISBN13 = NO;
-    NSRegularExpression *regexISBN;
+    NSRegularExpression *regexISBN;`
     
     // Try to match ISBN13
     regexISBN = [[self class] _createISBNRegularExpressionForType:BCKISBNCodeRegularExpressionTypeISBN13 error:&regError];
