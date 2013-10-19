@@ -8,6 +8,8 @@
 
 #import "BCKISSNCode.h"
 
+// source: http://www.issn.org/2-22642--ISSN-and-barcoding.php
+
 #define VARIANT_DEFAULT     @"0"
 #define PUBLICATION_TYPE    @"977"
 

@@ -8,7 +8,10 @@
 
 #import "BCKISBNCode.h"
 
+// source: http://isbn-international.org/pages/media/Usermanuals/ISBN%20Manual%202012%20-corr.pdf
+
 #define BOOKLAND_COUNTRY_CODE @"978"
+#define ISMN_PREFIX @"979"
 
 typedef NS_ENUM(char, BCKISBNCodeRegularExpressionType) {
 
@@ -102,7 +105,7 @@ typedef NS_ENUM(char, BCKISBNCodeRegularExpressionType) {
 
     NSError *regError = nil;
     BOOL isISBN13 = NO;
-    NSRegularExpression *regexISBN;`
+    NSRegularExpression *regexISBN;
     
     // Try to match ISBN13
     regexISBN = [[self class] _createISBNRegularExpressionForType:BCKISBNCodeRegularExpressionTypeISBN13 error:&regError];
@@ -300,6 +303,22 @@ typedef NS_ENUM(char, BCKISBNCodeRegularExpressionType) {
     return [self initWithPrefix:prefix andRegistrationGroup:registrationGroup andRegistrant:registrant andPublication:publication andCheckDigit:isbnCheckDigit error:error];
 }
 
+- (BOOL)_checkValidRangeFor:(NSUInteger)value fromValue:(NSUInteger)fromValue toValue:(NSUInteger)toValue elementName:(NSString *)elementName error:(NSError *__autoreleasing *)error
+{
+    if (!NSLocationInRange(value, NSMakeRange(fromValue, toValue)))
+    {
+        if (error)
+        {
+            NSString *message = [NSString stringWithFormat:@"%@ '%lu' is invalid, must be between %lu and %lu", elementName, (unsigned long)value, (unsigned long)fromValue, (unsigned long)toValue];
+            *error = [NSError BCKCodeErrorWithMessage:message];
+        }
+        
+        return NO;
+    }
+    
+    return YES;
+}
+
 // Designated initialiser. Note that the EAN13 check digit may be different than the ISBN check digit.
 - (instancetype)initWithPrefix:(NSString *)prefix
           andRegistrationGroup:(NSString *)registrationGroup
@@ -309,6 +328,136 @@ typedef NS_ENUM(char, BCKISBNCodeRegularExpressionType) {
                          error:(NSError *__autoreleasing *)error
 {
     NSString *tmpISBNString;
+    NSUInteger validateConditions;
+    
+    // Validate that the registrationGroup has a valid length
+    if ([registrationGroup length] > 7 || [registrationGroup length] < 1)
+    {
+        if (error)
+        {
+            NSString *message = [NSString stringWithFormat:@"Registrant Group '%@' is invalid, must be between 1 and 5 digits in length", registrationGroup];
+            *error = [NSError BCKCodeErrorWithMessage:message];
+        }
+        
+        return nil;
+    }
+    
+    if ([prefix isEqualToString:BOOKLAND_COUNTRY_CODE])
+    {
+        validateConditions = 0;
+        
+        // Validate that the registrationGroup is within one of the valid 978 ranges
+        if ([self _checkValidRangeFor:[registrationGroup integerValue] fromValue:0 toValue:5 elementName:@"Registration Group" error:error])
+        {
+            validateConditions++;
+        }
+        
+        if ([self _checkValidRangeFor:[registrationGroup integerValue] fromValue:600 toValue:649 elementName:@"Registration Group" error:error])
+        {
+            validateConditions++;
+        }
+        
+        if ([self _checkValidRangeFor:[registrationGroup integerValue] fromValue:7 toValue:7 elementName:@"Registration Group" error:error])
+        {
+            validateConditions++;
+        }
+        
+        if ([self _checkValidRangeFor:[registrationGroup integerValue] fromValue:80 toValue:94 elementName:@"Registration Group" error:error])
+        {
+            validateConditions++;
+        }
+        
+        if ([self _checkValidRangeFor:[registrationGroup integerValue] fromValue:950 toValue:989 elementName:@"Registration Group" error:error])
+        {
+            validateConditions++;
+        }
+        
+        if ([self _checkValidRangeFor:[registrationGroup integerValue] fromValue:9900 toValue:9989 elementName:@"Registration Group" error:error])
+        {
+            validateConditions++;
+        }
+        
+        if ([self _checkValidRangeFor:[registrationGroup integerValue] fromValue:99900 toValue:99999 elementName:@"Registration Group" error:error])
+        {
+            validateConditions++;
+        }
+        
+        if (validateConditions == 0)
+        {
+            return nil;
+        }
+    }
+
+    *error = nil;
+    if ([prefix isEqualToString:ISMN_PREFIX])
+    {
+        // Validate that the registrationGroup is within the valid 979 range
+        if (![self _checkValidRangeFor:[registrationGroup integerValue] fromValue:10 toValue:11 elementName:@"Registration Group" error:error])
+        {
+            return nil;
+        }
+    }
+
+    // Validate that the registrant has a valid length
+    if ([registrant length] > 7 || [registrant length] < 1)
+    {
+        if (error)
+        {
+            NSString *message = [NSString stringWithFormat:@"Registrant '%@' is invalid, must be between 1 and 7 digits in length", registrant];
+            *error = [NSError BCKCodeErrorWithMessage:message];
+        }
+        
+        return nil;
+    }
+    
+    // Validate that the registrant is valid for 978-0 barcodes
+    if ([prefix isEqualToString:BOOKLAND_COUNTRY_CODE] && [registrationGroup integerValue] == 0)
+    {
+        validateConditions = 0;
+        
+        if ([self _checkValidRangeFor:[registrant integerValue] fromValue:0 toValue:1 elementName:@"Registrant" error:error])
+        {
+            validateConditions++;
+        }
+
+        if ([self _checkValidRangeFor:[registrant integerValue] fromValue:20 toValue:54 elementName:@"Registrant" error:error])
+        {
+            validateConditions++;
+        }
+
+        if ([self _checkValidRangeFor:[registrant integerValue] fromValue:550 toValue:889 elementName:@"Registrant" error:error])
+        {
+            validateConditions++;
+        }
+
+        if ([self _checkValidRangeFor:[registrant integerValue] fromValue:8900 toValue:9499 elementName:@"Registrant" error:error])
+        {
+            validateConditions++;
+        }
+
+        if ([self _checkValidRangeFor:[registrant integerValue] fromValue:95000 toValue:99999 elementName:@"Registrant" error:error])
+        {
+            validateConditions++;
+        }
+
+        if (validateConditions == 0)
+        {
+            return nil;
+        }
+
+    }
+    // Validate that the publication is valid
+    *error = nil;
+    if ([publication length] > 6 || [publication length] < 1)
+    {
+        if (error)
+        {
+            NSString *message = [NSString stringWithFormat:@"Publication '%@' is invalid, must be between 1 and 6 digits in length", publication];
+            *error = [NSError BCKCodeErrorWithMessage:message];
+        }
+        
+        return nil;
+    }
     
     if (prefix == nil)
     {
