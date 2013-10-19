@@ -140,4 +140,73 @@
     STAssertNil(code, @"Should not be able to include 'x' in ISBN13 string");
 }
 
+- (void)testEncodeUsingInvalidRegistrant
+{
+    BCKISBNCode *code;
+    NSError *error;
+    
+    error = nil;
+    code = [[BCKISBNCode alloc] initWithPrefix:@"978" andRegistrationGroup:@"951" andRegistrant:@"" andPublication:@"148410" andCheckDigit:@"X" error:&error];
+    STAssertNil(code, @"Should not be able to encode invalid Registation Group: too short");
+    
+    error = nil;
+    code = [[BCKISBNCode alloc] initWithPrefix:@"978" andRegistrationGroup:@"951" andRegistrant:@"12345678" andPublication:@"148410" andCheckDigit:@"X" error:&error];
+    STAssertNil(code, @"Should not be able to encode invalid Registation Group: too long");
+
+    error = nil;
+    code = [[BCKISBNCode alloc] initWithPrefix:@"978" andRegistrationGroup:@"951" andRegistrant:@"2" andPublication:@"148410" andCheckDigit:@"X" error:&error];
+    STAssertNil(code, @"Should not be able to encode invalid Registation Group: 2");
+
+    error = nil;
+    code = [[BCKISBNCode alloc] initWithPrefix:@"978" andRegistrationGroup:@"951" andRegistrant:@"55" andPublication:@"148410" andCheckDigit:@"X" error:&error];
+    STAssertNil(code, @"Should not be able to encode invalid Registation Group: 55");
+
+    error = nil;
+    code = [[BCKISBNCode alloc] initWithPrefix:@"978" andRegistrationGroup:@"951" andRegistrant:@"890" andPublication:@"148410" andCheckDigit:@"X" error:&error];
+    STAssertNil(code, @"Should not be able to encode invalid Registation Group: 890");
+
+    error = nil;
+    code = [[BCKISBNCode alloc] initWithPrefix:@"978" andRegistrationGroup:@"951" andRegistrant:@"9500" andPublication:@"148410" andCheckDigit:@"X" error:&error];
+    STAssertNil(code, @"Should not be able to encode invalid Registation Group: 9500");
+
+}
+
+- (void)testEncodeUsingInvalidRegistrationGroup
+{
+    BCKISBNCode *code;
+    NSError *error;
+
+    error = nil;
+    code = [[BCKISBNCode alloc] initWithPrefix:@"978" andRegistrationGroup:@"" andRegistrant:@"16" andPublication:@"148410" andCheckDigit:@"X" error:&error];
+    STAssertNil(code, @"Should not be able to encode invalid Registation Group: too short");
+
+    error = nil;
+    code = [[BCKISBNCode alloc] initWithPrefix:@"978" andRegistrationGroup:@"123456" andRegistrant:@"16" andPublication:@"148410" andCheckDigit:@"X" error:&error];
+    STAssertNil(code, @"Should not be able to encode invalid Registation Group: too long");
+
+    error = nil;
+    code = [[BCKISBNCode alloc] initWithPrefix:@"978" andRegistrationGroup:@"6" andRegistrant:@"16" andPublication:@"148410" andCheckDigit:@"X" error:&error];
+    STAssertNil(code, @"Should not be able to encode invalid Registation Group: 6");
+
+    error = nil;
+    code = [[BCKISBNCode alloc] initWithPrefix:@"978" andRegistrationGroup:@"95" andRegistrant:@"16" andPublication:@"148410" andCheckDigit:@"X" error:&error];
+    STAssertNil(code, @"Should not be able to encode invalid Registation Group: 95");
+
+    error = nil;
+    code = [[BCKISBNCode alloc] initWithPrefix:@"978" andRegistrationGroup:@"990" andRegistrant:@"16" andPublication:@"148410" andCheckDigit:@"X" error:&error];
+    STAssertNil(code, @"Should not be able to encode invalid Registation Group: 990");
+
+    error = nil;
+    code = [[BCKISBNCode alloc] initWithPrefix:@"978" andRegistrationGroup:@"9999" andRegistrant:@"16" andPublication:@"148410" andCheckDigit:@"X" error:&error];
+    STAssertNil(code, @"Should not be able to encode invalid Registation Group: 9999");
+
+    error = nil;
+    code = [[BCKISBNCode alloc] initWithPrefix:@"979" andRegistrationGroup:@"9" andRegistrant:@"16" andPublication:@"148410" andCheckDigit:@"X" error:&error];
+    STAssertNil(code, @"Should not be able to encode invalid Registation Group: 9");
+
+    error = nil;
+    code = [[BCKISBNCode alloc] initWithPrefix:@"979" andRegistrationGroup:@"12" andRegistrant:@"16" andPublication:@"148410" andCheckDigit:@"X" error:&error];
+    STAssertNil(code, @"Should not be able to encode invalid Registation Group: 12");
+}
+
 @end

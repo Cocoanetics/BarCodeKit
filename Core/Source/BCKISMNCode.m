@@ -8,7 +8,10 @@
 
 #import "BarCodeKit.h"
 
-#define ISMN_PREFIX @"9790"
+// source: http://www.ismn-international.org/download/Web_ISMN_Users_Manual_2008-5.pdf
+
+#define ISMN_PREFIX @"979"
+#define ISMN_PREFIXM @"0"
 
 @interface BCKISMNCode ()
 
@@ -103,7 +106,20 @@
              }
          }
      }];
-    
+
+    return [self initWithPublisherID:publisherID andItemID:itemID andCheckDigit:checkDigit error:error];
+}
+
+// Designated initialiser. Note that the EAN13 check digit may be different than the ISMN check digit.
+- (instancetype)initWithPublisherID:(NSString *)publisherID
+                          andItemID:(NSString *)itemID
+                      andCheckDigit:(NSString *)checkDigit
+                              error:(NSError *__autoreleasing *)error
+{
+    NSString *tmpISMNString;
+    NSUInteger tmpPublisherID = [publisherID integerValue];
+
+    // The number of publisher digits and item digits combined must always be 8
     if (([publisherID length] + [itemID length]) != 8)
     {
         if (error)
@@ -115,25 +131,32 @@
         return nil;
     }
 
+    // Validate that the publisherID is valid
+    if (([publisherID length] > 7) || !(tmpPublisherID <= 99 || tmpPublisherID >= 1000))
+    {
+        if (error)
+        {
+            NSString *message = [NSString stringWithFormat:@"Publisher ID '%@' is invalid, must be <= 099 and >= 1000 and between 3 and 8 digits in length", publisherID];
+            *error = [NSError BCKCodeErrorWithMessage:message];
+        }
+        
+        return nil;
+    }
     
-    return [self initWithPrefix:prefix andPrefixM:prefixM andPublisherID:publisherID andItemID:itemID andCheckDigit:checkDigit error:error];
-    
-    return nil;
-}
+    // Validate that the itemID is valid
+    if (([itemID length] > 6) || ([itemID length] < 2))
+    {
+        if (error)
+        {
+            NSString *message = [NSString stringWithFormat:@"Item ID '%@' is invalid, must be between 2 and 6 digits in length", itemID];
+            *error = [NSError BCKCodeErrorWithMessage:message];
+        }
+        
+        return nil;
+    }
 
-// Designated initialiser. Note that the EAN13 check digit may be different than the ISMN check digit.
-- (instancetype)initWithPrefix:(NSString *)prefix
-                    andPrefixM:(NSString *)prefixM
-                andPublisherID:(NSString *)publisherID
-                     andItemID:(NSString *)itemID
-                 andCheckDigit:(NSString *)checkDigit
-                         error:(NSError *__autoreleasing *)error
-{
-    NSString *tmpISMNString;
-    
-    tmpISMNString = [NSString stringWithFormat:@"%@%@%@%@", prefix, prefixM, publisherID, itemID];
-    
     // Validate that the ISMN check digit provided is correct for the temporary ISMN string
+    tmpISMNString = [NSString stringWithFormat:@"%@%@%@%@", ISMN_PREFIX, ISMN_PREFIXM, publisherID, itemID];
     if (![checkDigit isEqualToString:[self generateEAN13CheckDigit:tmpISMNString]])
     {
         if (error)
@@ -144,21 +167,16 @@
         
         return nil;
     }
-    
-    // Calculate the EAN-13 check digit for the temporary ISMN string
-    NSString *ean13CheckDigit = [self generateEAN13CheckDigit:tmpISMNString];
-    
-    // Construct the EAN-13 content string with the EAN13 check digit (NOT the ISMN check digit)
-    tmpISMNString = [NSString stringWithFormat:@"%@%@%@%@%@", prefix, prefixM, publisherID, itemID, ean13CheckDigit];
-    
-    
+
+    // Construct the EAN-13 content string
+    tmpISMNString = [NSString stringWithFormat:@"%@%@%@%@%@", ISMN_PREFIX, ISMN_PREFIXM, publisherID, itemID, checkDigit];
+
     self = [super initWithContent:tmpISMNString error:error];
     
     if (self)
     {
-        // Construct the ISBN10/13 title text string with the ISBN check digit, NOT the EAN13 check digit, and the "ISBN" prefix
-        // ISBN13
-        _titleText = [NSString stringWithFormat:@"ISMN %@-%@-%@-%@-%@", prefix, prefixM, publisherID, itemID, checkDigit];
+        // Construct the ISMN title text string with the ISMN check digit, NOT the EAN13 check digit, and the "ISMN" prefix
+        _titleText = [NSString stringWithFormat:@"ISMN %@-%@-%@-%@-%@", ISMN_PREFIX, ISMN_PREFIXM, publisherID, itemID, checkDigit];
     }
     
     return self;
