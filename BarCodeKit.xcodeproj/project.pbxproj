@@ -27,6 +27,7 @@
 		6C4D158617DDDD2800854E31 /* BCKCode11CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4D158517DDDD2800854E31 /* BCKCode11CodeTest.m */; };
 		6C4D158A17DDDDF000854E31 /* BCKCode11CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4D158917DDDDF000854E31 /* BCKCode11CodeCharacter.m */; };
 		6C4D158D17DDDE0800854E31 /* BCKCode11ContentCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4D158C17DDDE0800854E31 /* BCKCode11ContentCodeCharacter.m */; };
+		6C5487D7181A9686001E6FDA /* SampleBarcodes.plist in Resources */ = {isa = PBXBuildFile; fileRef = A702E48A17FE902A00506B2B /* SampleBarcodes.plist */; };
 		6C638D0E17F303C700CD3F1B /* BCKEAN2SupplementCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C638D0D17F303C600CD3F1B /* BCKEAN2SupplementCodeTest.m */; };
 		6C638D0F17F303C700CD3F1B /* BCKEAN2SupplementCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C638D0D17F303C600CD3F1B /* BCKEAN2SupplementCodeTest.m */; };
 		6C638D1E17F3040E00CD3F1B /* BCKEAN2SupplementCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C638D1C17F3040E00CD3F1B /* BCKEAN2SupplementCode.h */; };
@@ -1443,6 +1444,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C5487D7181A9686001E6FDA /* SampleBarcodes.plist in Resources */,
 				A721D0BC17FEE78200A82189 /* Defaults.plist in Resources */,
 				A7E0B5BE17FEBDEA0037B70C /* DemoWindow.xib in Resources */,
 				A7E0B5BD17FEBDE70037B70C /* MainMenu.xib in Resources */,
