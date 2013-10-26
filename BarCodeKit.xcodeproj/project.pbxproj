@@ -422,9 +422,6 @@
 		A13B58E917C6A1E500454150 /* BCKInterleaved2of5DigitPairCodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKInterleaved2of5DigitPairCodeCharacter.h; sourceTree = "<group>"; };
 		A13B58EA17C6A1E500454150 /* BCKInterleaved2of5DigitPairCodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKInterleaved2of5DigitPairCodeCharacter.m; sourceTree = "<group>"; };
 		A7015F13181BA804006EB671 /* BundleLoaderDummy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BundleLoaderDummy.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A7015F31181BA805006EB671 /* BundleLoaderDummyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BundleLoaderDummyTests-Info.plist"; sourceTree = "<group>"; };
-		A7015F33181BA805006EB671 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		A7015F35181BA805006EB671 /* BundleLoaderDummyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BundleLoaderDummyTests.m; sourceTree = "<group>"; };
 		A7015F40181BA83B006EB671 /* BundleLoaderDummy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BundleLoaderDummy-Info.plist"; sourceTree = "<group>"; };
 		A7015F45181BA83B006EB671 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A702E48917FE902A00506B2B /* OCRB.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OCRB.ttf; sourceTree = "<group>"; };
@@ -821,24 +818,6 @@
 			name = "Interleaved 2 of 5";
 			sourceTree = "<group>";
 		};
-		A7015F2F181BA805006EB671 /* BundleLoaderDummyTests */ = {
-			isa = PBXGroup;
-			children = (
-				A7015F35181BA805006EB671 /* BundleLoaderDummyTests.m */,
-				A7015F30181BA805006EB671 /* Supporting Files */,
-			);
-			path = BundleLoaderDummyTests;
-			sourceTree = "<group>";
-		};
-		A7015F30181BA805006EB671 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				A7015F31181BA805006EB671 /* BundleLoaderDummyTests-Info.plist */,
-				A7015F32181BA805006EB671 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		A7015F3D181BA83B006EB671 /* BundleLoaderDummy */ = {
 			isa = PBXGroup;
 			children = (
@@ -1151,7 +1130,6 @@
 				A76405DF17B52E5200D45F51 /* Core */,
 				A702E48417FE902A00506B2B /* Demo */,
 				A7378DFB17C25892008921C4 /* Test */,
-				A7015F2F181BA805006EB671 /* BundleLoaderDummyTests */,
 				A764059917B50F9100D45F51 /* Frameworks */,
 				A764059817B50F9100D45F51 /* Products */,
 			);
@@ -1804,14 +1782,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		A7015F32181BA805006EB671 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A7015F33181BA805006EB671 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		A702E49217FE902A00506B2B /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
