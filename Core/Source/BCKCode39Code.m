@@ -20,59 +20,58 @@
 
 + (instancetype)code93WithContent:(NSString *)content error:(NSError *__autoreleasing *)error
 {
-    return [self code93WithContent:content withModulo43:NO error:error];
+	return [self code93WithContent:content withModulo43:NO error:error];
 }
 
 + (instancetype)code93WithContent:(NSString *)content withModulo43:(BOOL)withModulo34 error:(NSError *__autoreleasing *)error
 {
-    BOOL isFullASCII = NO;
-    BOOL isNonFullASCII = NO;
-
-    // Check if content can be encoded with a regular BCKCode93Code class, i.e. content does not include full ASCII characters
-    isNonFullASCII = [BCKCode39Code canEncodeContent:content error:nil];
-    if (!isNonFullASCII)
-    {
-        // Content contains characters that cannot be encoded using the BCKCode93Code class, now check if it contains full ASCII characters
-        isFullASCII = [BCKCode39FullASCII canEncodeContent:content error:nil];
-    }
-    
-    // If both BOOLs are NO the content cannot be encoded by any of the BCKCode93Code classes, return nil
-    if(!isNonFullASCII && !isFullASCII)
-    {
-        if (error)
-        {
-            NSString *message = [NSString stringWithFormat:@"Content contains characters that cannot be encoded by Code39"];
-            *error = [NSError BCKCodeErrorWithMessage:message];
-            return nil;
-        }
-    }
-
-    // Return an instance of the correct subclass
-    switch (isFullASCII)
-    {
-        case YES:
-            if (withModulo34)
-            {
-                return [[BCKCode39FullASCIIModulo43 alloc] initWithContent:content error:error];
-            }
-            else
-            {
-                return [[BCKCode39FullASCII alloc] initWithContent:content error:error];
-            }
-            break;
-        case NO:
-            if (withModulo34)
-            {
-                return [[BCKCode39CodeModulo43 alloc] initWithContent:content error:error];
-            }
-            else
-            {
-                return [[BCKCode39Code alloc] initWithContent:content error:error];
-            }
-            break;
-    }
-    
-    return nil;
+	BOOL isFullASCII = NO;
+	BOOL isNonFullASCII = NO;
+	
+	// Check if content can be encoded with a regular BCKCode93Code class, i.e. content does not include full ASCII characters
+	isNonFullASCII = [BCKCode39Code canEncodeContent:content error:nil];
+	if (!isNonFullASCII)
+	{
+		// Content contains characters that cannot be encoded using the BCKCode93Code class, now check if it contains full ASCII characters
+		isFullASCII = [BCKCode39FullASCII canEncodeContent:content error:nil];
+	}
+	
+	// If both BOOLs are NO the content cannot be encoded by any of the BCKCode93Code classes, return nil
+	if(!isNonFullASCII && !isFullASCII)
+	{
+		if (error)
+		{
+			NSString *message = [NSString stringWithFormat:@"Content contains characters that cannot be encoded by Code39"];
+			*error = [NSError BCKCodeErrorWithMessage:message];
+			return nil;
+		}
+	}
+	
+	// Return an instance of the correct subclass
+	if (isFullASCII)
+	{
+		if (withModulo34)
+		{
+			return [[BCKCode39FullASCIIModulo43 alloc] initWithContent:content error:error];
+		}
+		else
+		{
+			return [[BCKCode39FullASCII alloc] initWithContent:content error:error];
+		}
+	}
+	else
+	{
+		if (withModulo34)
+		{
+			return [[BCKCode39CodeModulo43 alloc] initWithContent:content error:error];
+		}
+		else
+		{
+			return [[BCKCode39Code alloc] initWithContent:content error:error];
+		}
+	}
+	
+	return nil;
 }
 
 #pragma mark - Modulo 43 check
