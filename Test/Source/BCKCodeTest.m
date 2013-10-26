@@ -16,20 +16,6 @@
 
 @implementation BCKCodeTest
 
-- (void)setUp
-{
-    [super setUp];
-    // Put setup code here; it will be run once, before the first test case.
-}
-
-- (void)tearDown
-{
-	[NSThread sleepForTimeInterval:1.0];
-	
-    // Put teardown code here; it will be run once, after the last test case.
-    [super tearDown];
-}
-
 - (void)testCanEncodeTestForBCKCode
 {
     NSError *error = nil;
