@@ -24,6 +24,8 @@
 
 - (void)tearDown
 {
+	[NSThread sleepForTimeInterval:1.0];
+	
     // Put teardown code here; it will be run once, after the last test case.
     [super tearDown];
 }
