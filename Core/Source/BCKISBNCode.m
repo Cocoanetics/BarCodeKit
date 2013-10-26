@@ -388,7 +388,11 @@ typedef NS_ENUM(char, BCKISBNCodeRegularExpressionType) {
         }
     }
 
-    *error = nil;
+    if (error)
+    {
+        *error = nil;
+    }
+
     if ([prefix isEqualToString:ISMN_PREFIX])
     {
         // Validate that the registrationGroup is within the valid 979 range
@@ -446,8 +450,13 @@ typedef NS_ENUM(char, BCKISBNCodeRegularExpressionType) {
         }
 
     }
+    
     // Validate that the publication is valid
-    *error = nil;
+    if (error)
+    {
+        *error = nil;
+    }
+    
     if ([publication length] > 6 || [publication length] < 1)
     {
         if (error)
