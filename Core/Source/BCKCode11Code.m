@@ -167,11 +167,6 @@ NSString * const BCKCode11Modulo11CheckCharacterSecondOption = @"BCKCode11Modulo
 	return 34;
 }
 
-- (CGFloat)_captionFontSizeWithOptions:(NSDictionary *)options
-{
-	return 10;
-}
-
 - (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone withRenderOptions:(NSDictionary *)options
 {
 	if (captionZone == BCKCodeDrawingCaptionTextZone)
