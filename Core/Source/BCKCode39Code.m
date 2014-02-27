@@ -172,11 +172,6 @@
 	return 30;
 }
 
-- (CGFloat)_captionFontSizeWithOptions:(NSDictionary *)options
-{
-	return 10;
-}
-
 - (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone withRenderOptions:(NSDictionary *)options
 {
 	if (captionZone == BCKCodeDrawingCaptionTextZone)

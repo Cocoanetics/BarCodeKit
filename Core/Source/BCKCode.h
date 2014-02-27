@@ -10,6 +10,7 @@
 extern NSString * const BCKCodeDrawingBarScaleOption;
 extern NSString * const BCKCodeDrawingPrintCaptionOption;
 extern NSString * const BCKCodeDrawingCaptionFontNameOption;
+extern NSString * const BCKCodeDrawingCaptionFontPointSizeOption;
 extern NSString * const BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption;
 extern NSString * const BCKCodeDrawingFillEmptyQuietZonesOption;
 extern NSString * const BCKCodeDrawingDebugOption;
@@ -182,6 +183,7 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
  - **BCKCodeDrawingBarScaleOption** - Multiplier for the bar width (default: 1)
  - **BCKCodeDrawingPrintCaptionOption** - Whether the code caption should be printed (default: `YES`)
  - **BCKCodeDrawingCaptionFontNameOption** - Which font face name to use for the caption (default: 'OCRB' for EAN/UPC and 'Helvetica' otherwise)
+ - **BCKCodeDrawingCaptionFontPointSizeOption** - Specifies a fixed value for the caption point size. Is usually calculated
  - **BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption** - Percentage of the caption height covered by elongated marker bars (default: 1.0)
  - **BCKCodeDrawingFillEmptyQuietZonesOption** - Whether quiet zones should be filled with angle brackets (default: `NO`)
  - **BCKCodeDrawingDebugOption** - Whether caption areas should be tinted for debugging (default: `NO`)

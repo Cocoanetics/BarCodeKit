@@ -16,6 +16,7 @@
 NSString * const BCKCodeDrawingBarScaleOption = @"BCKCodeDrawingBarScale";
 NSString * const BCKCodeDrawingPrintCaptionOption = @"BCKCodeDrawingPrintCaption";
 NSString * const BCKCodeDrawingCaptionFontNameOption = @"BCKCodeDrawingCaptionFontName";
+NSString * const BCKCodeDrawingCaptionFontPointSizeOption = @"BCKCodeDrawingCaptionFontPointSize";
 NSString * const BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption = @"BCKCodeDrawingMarkerBarsOverlapCaptionPercent";
 NSString * const BCKCodeDrawingFillEmptyQuietZonesOption = @"BCKCodeDrawingFillEmptyQuietZones";
 NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
@@ -267,6 +268,22 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 	{
 		optimalCaptionFontSize = MIN(optimalCaptionFontSize, [self _optimalFontSizeToFitText:rightQuietZoneText fontName:fontName insideWidth:[self _horizontalQuietZoneWidthWithOptions:options]]);
 	}
+   
+   if (optimalCaptionFontSize == CGFLOAT_MAX)
+   {
+      // have no caption font size calculated yet
+      NSNumber *number = options[BCKCodeDrawingCaptionFontPointSizeOption];
+      
+      // check if there is a fixed point size
+      if (number)
+      {
+         return [number floatValue];
+      }
+      
+      // at this point we need to come up with a sensible caption size ourselves
+      CGSize size = [self sizeWithRenderOptions:options];
+      optimalCaptionFontSize = roundf(size.height / 5.0);
+   }
 	
 	return optimalCaptionFontSize;
 }

@@ -140,11 +140,6 @@
 	return 34;
 }
 
-- (CGFloat)_captionFontSizeWithOptions:(NSDictionary *)options
-{
-	return 10;
-}
-
 - (BOOL)_shouldShowCheckDigitsFromOptions:(NSDictionary *)options
 {
 	NSNumber *num = [options objectForKey:BCKCodeDrawingShowCheckDigitsOption];
