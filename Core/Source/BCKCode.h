@@ -180,7 +180,7 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
  For rendering codes several options can be combined in an options dictionary:
  
  - **BCKCodeDrawingBarScaleOption** - Multiplier for the bar width (default: 1)
- - **BCKCodeDrawingPrintCaptionOption** - Whether the code caption should be printed (default: `NO`)
+ - **BCKCodeDrawingPrintCaptionOption** - Whether the code caption should be printed (default: `YES`)
  - **BCKCodeDrawingCaptionFontNameOption** - Which font face name to use for the caption (default: 'OCRB' for EAN/UPC and 'Helvetica' otherwise)
  - **BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption** - Percentage of the caption height covered by elongated marker bars (default: 1.0)
  - **BCKCodeDrawingFillEmptyQuietZonesOption** - Whether quiet zones should be filled with angle brackets (default: `NO`)
