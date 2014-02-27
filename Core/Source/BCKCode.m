@@ -41,7 +41,7 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 		{
 			if (error)
 			{
-				NSString *message = [NSString stringWithFormat:@"Unable to encoded empty string in %@", NSStringFromClass([self class])];
+				NSString *message = [NSString stringWithFormat:@"Unable to encode empty string in %@", NSStringFromClass([self class])];
 				*error = [NSError BCKCodeErrorWithMessage:message];
 			}
 			
