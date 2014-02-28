@@ -78,6 +78,7 @@
 #import "NSError+BCKCode.h"
 
 // barcode rendering
+#import "BCKCodeFunctions.h"
 
 #if TARGET_OS_IPHONE
 	#import "UIImage+BarcodeKit.h"

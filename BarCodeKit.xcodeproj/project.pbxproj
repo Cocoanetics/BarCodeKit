@@ -132,6 +132,9 @@
 		A721D0BC17FEE78200A82189 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = A721D0BB17FEE78200A82189 /* Defaults.plist */; };
 		A721D0C317FEFBDD00A82189 /* UIImage+BarCodeKit.m in Sources */ = {isa = PBXBuildFile; fileRef = A721D0BF17FEFBD700A82189 /* UIImage+BarCodeKit.m */; };
 		A721D0C417FEFBE200A82189 /* NSImage+BarCodeKit.m in Sources */ = {isa = PBXBuildFile; fileRef = A721D0C217FEFBD700A82189 /* NSImage+BarCodeKit.m */; };
+		A730FFC618C09B4E00BABCDA /* BCKCodeFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = A730FFC418C09B4E00BABCDA /* BCKCodeFunctions.h */; };
+		A730FFC718C09B4E00BABCDA /* BCKCodeFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = A730FFC518C09B4E00BABCDA /* BCKCodeFunctions.m */; };
+		A730FFC818C09B4E00BABCDA /* BCKCodeFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = A730FFC518C09B4E00BABCDA /* BCKCodeFunctions.m */; };
 		A7337C6617C1250F00BC2D2D /* BCKCode39Code.m in Sources */ = {isa = PBXBuildFile; fileRef = A7337C6517C1250F00BC2D2D /* BCKCode39Code.m */; };
 		A7337C6917C1276700BC2D2D /* BCKCode39CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A7337C6817C1276700BC2D2D /* BCKCode39CodeCharacter.m */; };
 		A7337C6C17C12C8800BC2D2D /* BCKCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A7337C6B17C12C8800BC2D2D /* BCKCodeCharacter.m */; };
@@ -457,6 +460,8 @@
 		A721D0BF17FEFBD700A82189 /* UIImage+BarCodeKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BarCodeKit.m"; sourceTree = "<group>"; };
 		A721D0C117FEFBD700A82189 /* NSImage+BarCodeKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSImage+BarCodeKit.h"; sourceTree = "<group>"; };
 		A721D0C217FEFBD700A82189 /* NSImage+BarCodeKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSImage+BarCodeKit.m"; sourceTree = "<group>"; };
+		A730FFC418C09B4E00BABCDA /* BCKCodeFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCodeFunctions.h; sourceTree = "<group>"; };
+		A730FFC518C09B4E00BABCDA /* BCKCodeFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCodeFunctions.m; sourceTree = "<group>"; };
 		A7337C6417C1250F00BC2D2D /* BCKCode39Code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode39Code.h; sourceTree = "<group>"; };
 		A7337C6517C1250F00BC2D2D /* BCKCode39Code.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode39Code.m; sourceTree = "<group>"; };
 		A7337C6717C1276700BC2D2D /* BCKCode39CodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode39CodeCharacter.h; sourceTree = "<group>"; };
@@ -1185,6 +1190,8 @@
 				A721D0C017FEFBD700A82189 /* Mac */,
 				6C93DE7917E1BF7A002F0BF5 /* NSError+BCKCode.h */,
 				6C93DE7A17E1BF7A002F0BF5 /* NSError+BCKCode.m */,
+				A730FFC418C09B4E00BABCDA /* BCKCodeFunctions.h */,
+				A730FFC518C09B4E00BABCDA /* BCKCodeFunctions.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -1284,6 +1291,7 @@
 				6CAD96FC180C0D23002DFADB /* BCKPOSTNETContentCodeCharacter.h in Headers */,
 				A7CFEF8217EE050B006446C9 /* BCKCode128ContentCodeCharacter.h in Headers */,
 				A735482B17F465BF00C1F7EC /* BCKGTINCode.h in Headers */,
+				A730FFC618C09B4E00BABCDA /* BCKCodeFunctions.h in Headers */,
 				A7CFEF9617EE0541006446C9 /* BCKEAN8Code.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1625,6 +1633,7 @@
 				6C4D158D17DDDE0800854E31 /* BCKCode11ContentCodeCharacter.m in Sources */,
 				A764061917B5362D00D45F51 /* BCKEAN8Code.m in Sources */,
 				6CE3E69917DF1D5400BFD408 /* BCKMSICodeCharacter.m in Sources */,
+				A730FFC718C09B4E00BABCDA /* BCKCodeFunctions.m in Sources */,
 				A764062517B53B7B00D45F51 /* BCKEANDigitCodeCharacter.m in Sources */,
 				6CC6BAA617F1910200F3ECCF /* BCKFacingIdentificationMarkCodeCharacter.m in Sources */,
 				A7337C6917C1276700BC2D2D /* BCKCode39CodeCharacter.m in Sources */,
@@ -1720,6 +1729,7 @@
 				A7CFEF6D17EE04F2006446C9 /* BCKCodabarCodeCharacter.m in Sources */,
 				A7CFEF7D17EE0506006446C9 /* BCKInterleaved2of5CodeCharacter.m in Sources */,
 				A7CFEF8717EE0510006446C9 /* BCKMSICodeCharacter.m in Sources */,
+				A730FFC818C09B4E00BABCDA /* BCKCodeFunctions.m in Sources */,
 				A7CFEF7317EE04F7006446C9 /* BCKCode11ContentCodeCharacter.m in Sources */,
 				A7CFEF8517EE050B006446C9 /* NSString+BCKCode128Helpers.m in Sources */,
 				A7CFEFAD17EE0559006446C9 /* BCKMSICode.m in Sources */,

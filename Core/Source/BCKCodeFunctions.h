@@ -1,0 +1,17 @@
+//
+//  BCKCodeFunctions.h
+//  BarCodeKit
+//
+//  Created by Oliver Drobnik on 28.02.14.
+//  Copyright (c) 2014 Oliver Drobnik. All rights reserved.
+//
+
+#import "BCKCode.h"
+
+/**
+ Determins the maximum bar scale which produces a barcode image to fit in the given size
+ @param code The barcode to use
+ @param size The maximum size for the output
+ @returns A maximum bar scale integer. If the size is too small to even fit the smallest value then the mimimum of 1 is returned.
+ */
+NSUInteger BCKCodeMaxBarScaleThatFitsCodeInSize(BCKCode *code, CGSize size);
