@@ -553,9 +553,6 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 		return;
 	}
 	
-	CGRect bounds = CGContextGetClipBoundingBox(context);
-	NSAssert(CGPointEqualToPoint(bounds.origin, CGPointZero), @"%s requires {0,0} clip origin", __PRETTY_FUNCTION__);
-	
 	CTFrameRef frame = [self _frameWithCaptionText:text fontName:fontName fontSize:fontSize constraintedToWidth:rect.size.width];
 	
 	if (!frame)
@@ -579,17 +576,15 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 	
 	CGContextSaveGState(context);
 	
-	// Flip the coordinate system
-	CGContextSetTextMatrix(context, CGAffineTransformIdentity);
-	CGContextScaleCTM(context, 1.0, -1.0);
-	CGContextTranslateCTM(context, 0, -bounds.size.height);
-	
-	// CTLines need to be positioned via text position, {0,0} is bottom of context
+	// Flip the text matrix
+	CGContextSetTextMatrix(context, CGAffineTransformMakeScale(1, -1));
+   
+   // specify baseline origin relative to rect parameter
 	CGFloat x = CGRectGetMidX(rect) - width/2.0f;
-	CGFloat y = descent;
+	CGFloat y = CGRectGetMaxY(rect) - descent;
 	CGContextSetTextPosition(context, x, y);
 	
-	// draw the line
+	// draw the text line
 	CTLineDraw(line, context);
 	
 	CGContextRestoreGState(context);
