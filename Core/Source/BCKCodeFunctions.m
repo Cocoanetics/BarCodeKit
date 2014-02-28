@@ -8,14 +8,15 @@
 
 #import "BCKCodeFunctions.h"
 
-NSUInteger BCKCodeMaxBarScaleThatFitsCodeInSize(BCKCode *code, CGSize size)
+NSUInteger BCKCodeMaxBarScaleThatFitsCodeInSize(BCKCode *code, CGSize size, NSDictionary *options)
 {
    NSInteger retScale = 1;
+   NSMutableDictionary *mutableOptions = [NSMutableDictionary dictionaryWithDictionary:options];
    
    for (NSUInteger scale=1;;scale++)
    {
-      NSDictionary *options = @{BCKCodeDrawingBarScaleOption: @(scale)};
-      CGSize neededSize = [code sizeWithRenderOptions:options];
+      mutableOptions[BCKCodeDrawingBarScaleOption] = @(scale);
+      CGSize neededSize = [code sizeWithRenderOptions:mutableOptions];
       
       if (neededSize.width > size.width || neededSize.height > size.height) {
          return retScale;
