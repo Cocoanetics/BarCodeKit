@@ -8,6 +8,9 @@
 
 #import "BCKEANCodeCharacter.h"
 
+/**
+ Specialized class of BCKCodeCharacter used for generating UPC/EAN digit codes.
+ */
 @interface BCKEANDigitCodeCharacter : BCKEANCodeCharacter
 
 - (instancetype)initWithDigit:(NSUInteger)digit encoding:(BCKEANCodeCharacterEncoding)encoding;

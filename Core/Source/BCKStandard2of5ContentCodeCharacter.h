@@ -16,14 +16,14 @@
 /**
  Initialise a content code character using a character. Only supports numeric characters.
  @param character The character.
- @returns the content code character for the character.
+ @returns The content code character for the character.
  */
 - (instancetype)initWithCharacter:(NSString *)character;
 
 /**
  Initialise a content code character using its character value.
  @param characterValue The character value to encode.
- @returns the content code character for the character value.
+ @returns The content code character for the character value.
  */
 - (instancetype)initWithCharacterValue:(NSUInteger)characterValue;
 

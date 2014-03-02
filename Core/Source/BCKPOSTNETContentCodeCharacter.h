@@ -9,12 +9,12 @@
 #import "BCKPOSTNETCodeCharacter.h"
 
 /**
- Specialized class of BCKCodeCharacter used for generating POSTNET content codes
+ Specialized class of BCKCodeCharacter used for generating POSTNET content codes.
  */
 @interface BCKPOSTNETContentCodeCharacter : BCKPOSTNETCodeCharacter
 
 /**
- Initialise a content code character using a character. Only supports the 10 numeric characters
+ Initialise a content code character using a character. Only supports the 10 numeric characters.
  @param character The character.
  @returns The content code character for the character.
  */

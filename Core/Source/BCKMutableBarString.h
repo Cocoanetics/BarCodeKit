@@ -18,21 +18,21 @@
  */
 
 /**
- Append a single bar to the end of the existing bar string.
- @param barType The BCKBarType to be appended to the bar string
+ Append a single bar to the end of the existing Bar String.
+ @param barType The BCKBarType to be appended to the Bar String.
  */
 - (void)appendBar:(BCKBarType)barType;
 
 /**
- Appends a bar string to the receiver
- @param string The bar string to append
+ Appends a Bar String to the receiver.
+ @param string The Bar String to append.
  */
 - (void)appendBarString:(BCKBarString *)string;
 
 /**
- Inserts one bar at the given index
- @param bar The BCKBarType to insert
- @param index The index to insert at
+ Inserts one bar at the given index.
+ @param bar The BCKBarType to insert.
+ @param index The index to insert the bar at.
  */
 - (void)insertBar:(BCKBarType)bar atIndex:(NSUInteger)index;
 
