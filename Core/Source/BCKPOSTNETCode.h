@@ -9,7 +9,7 @@
 #import "BCKCode.h"
 
 /**
- Specialized subclass of BCKCode representing POSTNET codes. "A", "C" and "DPBC" variants are supported. When using initWithContent:error: instead, provide the string including any leading zeroes and without any hyphens.
+ Specialized subclass of BCKCode representing POSTNET codes. "A", "C" and "DPBC" variants are supported. When using initWithContent:error: instead of the three initialisers listed below ensure to pass it the string including any leading zeroes but without any hyphens.
  */
 @interface BCKPOSTNETCode : BCKCode
 

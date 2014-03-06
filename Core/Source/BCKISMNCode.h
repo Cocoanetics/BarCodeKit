@@ -13,8 +13,8 @@
  
  Initialise ISMN barcodes using:
  
+ - initWithPublisherID:andItemID:andCheckDigit:error: and pass it each of the ISMN code's elements, including the ISMN check digit.
  - initWithContent:error: and pass it an ISMN character string, including hyphen separators and check digit, but without the "ISMN " prefix
- - the initialiser accepting the ISMN code's elements, including the ISMN check digit.
  
  */
 @interface BCKISMNCode : BCKEAN13Code

@@ -19,19 +19,19 @@
 
 /**
  Generates a Standard/Industrial 2 of 5 start marker code character.
- @returns the start marker code character.
+ @returns The start marker code character.
  */
 + (BCKStandard2of5CodeCharacter *)startMarkerCodeCharacter;
 
 /**
- Generates a Standard/Industrial 2 of 5 spacing character. Does not count as a marker.
- @returns the spacing code character.
+ Generates a Standard/Industrial 2 of 5 spacing character. Spacing characters are not treated as a marker.
+ @returns The spacing code character.
  */
 + (BCKStandard2of5CodeCharacter *)spacingCodeCharacter;
 
 /**
  Generates a Standard/Industrial 2 of 5 stop marker code character.
- @returns the stop marker code character.
+ @returns The stop marker code character.
  */
 + (BCKStandard2of5CodeCharacter *)stopMarkerCodeCharacter;
 

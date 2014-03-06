@@ -12,9 +12,8 @@
 @interface NSString (BCKCode128Helpers)
 
 /**
- Check if given string contains only numbers (0-9).
-
- @returns does given string contain only numbers
+ Check whether the string contains numbers 0-9 only.
+ @returns `YES` if the string contain numbers only, `NO` if it doesn't.
  */
 - (BOOL)containsOnlyNumbers;
 

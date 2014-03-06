@@ -11,7 +11,7 @@
 #import "BCKBarStringFunctions.h"
 
 /**
- Root class representing a code character. Can be marker, spacing, start/stop, check digits or characters.
+ Root class representing a code character. Code characters can be markers, spacing, start/stop, check digits or regular (alpha-)numeric characters.
  */
 
 @interface BCKCodeCharacter : NSObject
@@ -21,9 +21,9 @@
  */
 
 /**
- Creates a new character with an array of given bars and whether it is a marker character
- @param barString The bar string
- @param isMarker Whether the character acts as a marker or a regular character
+ Creates a new character with an array of given bars and whether it is a marker character.
+ @param barString The Bar String.
+ @param isMarker Whether the character acts as a marker or a regular character.
  */
 - (instancetype)initWithBars:(BCKBarString *)barString isMarker:(BOOL)isMarker;
 
@@ -32,8 +32,8 @@
  */
 
 /**
- Enumerates the bars of the character's bar string from left to right
- @param block The enumeration block that gets executed for each bar
+ Enumerates the bars of the character's Bar String from left to right.
+ @param block The enumeration block that gets executed for each bar.
  */
 - (void)enumerateBarsUsingBlock:(void (^)(BCKBarType barType, BOOL isBar, NSUInteger idx, BOOL *stop))block;
 
@@ -42,7 +42,7 @@
  */
 
 /**
- Whether the receiver is a marker character (as opposed to being a digit or letter)
+ Whether the receiver is a marker character, as opposed to being a regular (alpha-)numeric character or check digit.
  */
 @property (nonatomic, readonly, getter = isMarker) BOOL marker;
 

@@ -10,14 +10,14 @@
 #import "BCKFacingIdentificationMarkCode.h"
 
 /**
- Specialized class of BCKCodeCharacter used for generating Facing Identification Mark barcodes
+ Specialized class of BCKCodeCharacter used for generating Facing Identification Mark barcodes.
  */
 @interface BCKFacingIdentificationMarkCodeCharacter : BCKCodeCharacter
 
 /**
  Creates an instance for the requested Facing Identification Mark code character.
- @param fimType The BCKFacingIdentificationMarkType
- @returns the code character.
+ @param fimType The BCKFacingIdentificationMarkType.
+ @returns The code character.
  */
 + (BCKFacingIdentificationMarkCodeCharacter *)facingIdentificationMarkCode:(BCKFacingIdentificationMarkType)fimType;
 

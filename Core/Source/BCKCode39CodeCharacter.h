@@ -19,13 +19,13 @@
 
 /**
  Generates a Code39 end marker code character.
- @returns the end marker code character.
+ @returns The end marker code character.
  */
 + (BCKCode39CodeCharacter *)endMarkerCodeCharacter;
 
 /**
- Generates a Code39 spacing character. Does not count as a marker.
- @returns the spacing code character.
+ Generates a Code39 spacing character. Code39 spacing characters are not treated as markers.
+ @returns The spacing code character.
  */
 + (BCKCode39CodeCharacter *)spacingCodeCharacter;
 
