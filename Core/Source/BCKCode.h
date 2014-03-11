@@ -16,6 +16,7 @@ extern NSString * const BCKCodeDrawingFillEmptyQuietZonesOption;
 extern NSString * const BCKCodeDrawingDebugOption;
 extern NSString * const BCKCodeDrawingShowCheckDigitsOption;
 extern NSString * const BCKCodeDrawingBackgroundColorOption;
+extern NSString * const BCKCodeDrawingReduceBleedOption;
 
 /**
  Caption Zones
@@ -189,6 +190,7 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
  - **BCKCodeDrawingDebugOption** - Whether caption areas should be tinted for debugging (default: `NO`)
  - **BCKCodeDrawingShowCheckDigitsOption** - Whether check digits are to be included in the printed caption (default: `NO`)
  - **BCKCodeDrawingBackgroundColorOption** - The background color to fill the drawing canvas with (default: none)
+ - **BCKCodeDrawingReduceBleedOption** - Bars are drawn less wide to counteract bleeding on thermo printers (default: `NO`)
  
  */
 @interface BCKCode : NSObject <BCKCoding>
