@@ -26,19 +26,19 @@ typedef NS_ENUM(NSUInteger, BCKGTINSupplementCodeCharacterEncoding)
 };
 
 /**
- BCKCodeCharacter subclass used for GTIN Supplements
+ BCKCodeCharacter subclass used for GTIN Supplements.
  */
 @interface BCKGTINSupplementCodeCharacter : BCKCodeCharacter
 
 /**
  Generates an EAN-2/5 Supplement start code character.
- @returns the start code character
+ @returns The start code character.
  */
 + (BCKGTINSupplementCodeCharacter *)startCodeCharacter;
 
 /**
  Generates an EAN-2/5 Supplement separator code character.
- @returns the separator code character
+ @returns The separator code character.
  */
 + (BCKGTINSupplementCodeCharacter *)separatorCodeCharacter;
 

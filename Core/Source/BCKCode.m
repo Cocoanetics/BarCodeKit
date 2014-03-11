@@ -22,6 +22,7 @@ NSString * const BCKCodeDrawingFillEmptyQuietZonesOption = @"BCKCodeDrawingFillE
 NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheckDigits";
 NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroundColor";
+NSString * const BCKCodeDrawingReduceBleedOption = @"BCKCodeDrawingReduceBleed";
 
 #define ENCODE_ERROR_MESSAGE @"BCKCode is an abstract class that cannot encode anything"
 
@@ -748,7 +749,16 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 			
 			if (isBar)
 			{
-				CGContextAddRect(context, barRect);
+            if ([options[BCKCodeDrawingReduceBleedOption] boolValue])
+            {
+               // decrease bar width slightly because on thermo printers they might become too wide otherwise
+               CGRect fillRect = CGRectInset(barRect, 0.13, 0);
+               CGContextAddRect(context, fillRect);
+            }
+            else
+            {
+               CGContextAddRect(context, barRect);
+            }
 			}
 			
 			drawnBitIndex++;
@@ -795,9 +805,12 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 	
 	// paint all bars
 	
+   //CGContextSaveGState(context);
 	CGContextSetGrayFillColor(context, 0, 1);
+   //CGContextSetShouldAntialias(context, NO);
 	CGContextFillPath(context);
-	
+	//CGContextRestoreGState(context);
+   
 	if ([self _shouldDrawCaptionFromOptions:options])
 	{
 		NSString *fontName = [self _captionFontNameFromOptions:options];

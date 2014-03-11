@@ -9,14 +9,14 @@
 #import "BCKCodabarCodeCharacter.h"
 
 /**
- Specialized class of BCKCodeCharacter used for generating Codabar codes
+ Specialized class of BCKCodeCharacter used for generating Codabar codes.
  */
 @interface BCKCodabarContentCodeCharacter : BCKCodabarCodeCharacter
 
 /**
-Initialise a content code character using a character. Only supports the 10 numeric characters and '-', '$', ':', '/', '.' and '+' (without the apostrophs)
+Initialise a content code character using a character. Only supports the 10 numeric characters and '-', '$', ':', '/', '.' and '+' (without the apostrophs).
 @param character The character.
-@returns the content code character for the character.
+@returns The content code character for the character.
 */
 - (instancetype)initWithCharacter:(NSString *)character;
 

@@ -19,10 +19,10 @@
  */
 
 /**
- Creates a bitmap rendering of a BCKCode with rendering options
- @param barCode A BCKCode
- @param options The rendering options
- @returns An `NSImage` with the bar code
+ Creates a bitmap rendering of a BCKCode with rendering options.
+ @param barCode A BCKCode.
+ @param options The rendering options.
+ @returns An `NSImage` with the bar code.
  */
 + (NSImage *)imageWithBarCode:(BCKCode *)barCode options:(NSDictionary *)options;
 

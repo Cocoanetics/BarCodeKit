@@ -14,9 +14,9 @@
 @interface BCKUPCCodeCharacter : BCKEANCodeCharacter
 
 /**
- Generates a marker character
- @param character EAN character that will be rendered as marker
- @returns UPC-A marker character
+ Generates a marker character.
+ @param character EAN character that will be rendered as marker.
+ @returns UPC-A marker character.
  */
 + (BCKUPCCodeCharacter *)markerCharacterWithEANCharacter:(BCKEANCodeCharacter *)character;
 

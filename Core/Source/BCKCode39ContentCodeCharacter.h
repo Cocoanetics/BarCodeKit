@@ -16,20 +16,20 @@
 /**
  Initialise a content code character using a character. Only supports the 43 regular characters and 7 special characters.
  @param character The character.
- @returns the content code character for the character.
+ @returns The content code character for the character.
  */
 - (instancetype)initWithCharacter:(NSString *)character;
 
 /**
  Initialise a content code character using its character value. Only supports the 43 regular characters and 7 special characters.
  @param characterValue The character value.
- @returns the content code character for the character value.
+ @returns The content code character for the character value.
  */
 - (instancetype)initWithValue:(NSUInteger)characterValue;
 
 /**
  Return a content code character's value. Only supports the 43 regular characters and 7 special characters.
- @returns the content code character's value.
+ @returns The content code character's value.
  */
 - (NSUInteger)characterValue;
 

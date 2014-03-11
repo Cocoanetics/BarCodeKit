@@ -16,6 +16,7 @@ extern NSString * const BCKCodeDrawingFillEmptyQuietZonesOption;
 extern NSString * const BCKCodeDrawingDebugOption;
 extern NSString * const BCKCodeDrawingShowCheckDigitsOption;
 extern NSString * const BCKCodeDrawingBackgroundColorOption;
+extern NSString * const BCKCodeDrawingReduceBleedOption;
 
 /**
  Caption Zones
@@ -122,7 +123,7 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
 - (CGFloat)fixedHeight;
 
 /**
- Whether the subclass allows for marker bars to reach into the bottom caption region. If `YES`, then the percentage of overlap can be specified with the BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption. Defaults to `NO`.
+ Whether the subclass allows for marker bars to extend into the bottom caption region. If `YES`, then the percentage of overlap can be specified with the BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption. Defaults to `NO`.
  */
 - (BOOL)markerBarsCanOverlapBottomCaption;
 
@@ -137,7 +138,7 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
 - (NSString *)defaultCaptionFontName;
 
 /**
- Whether the barcode includes check digits in the caption printed below the barcode. By default any check digits that are not markers are included in the caption text. Subclasses can indicate support for this excluding check digits from the caption by overriding this method and returning `YES`. Defaults to `NO`.
+ Whether the barcode includes check digits in the caption printed below the barcode. By default any check digits that are NOT markers ARE included in the caption text. Subclasses can indicate support for excluding check digits from the caption by overriding this method and returning `YES`. Defaults to `NO`.
  */
 - (BOOL)showCheckDigitsInCaption;
 
@@ -189,6 +190,7 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
  - **BCKCodeDrawingDebugOption** - Whether caption areas should be tinted for debugging (default: `NO`)
  - **BCKCodeDrawingShowCheckDigitsOption** - Whether check digits are to be included in the printed caption (default: `NO`)
  - **BCKCodeDrawingBackgroundColorOption** - The background color to fill the drawing canvas with (default: none)
+ - **BCKCodeDrawingReduceBleedOption** - Bars are drawn less wide to counteract bleeding on thermo printers (default: `NO`)
  
  */
 @interface BCKCode : NSObject <BCKCoding>

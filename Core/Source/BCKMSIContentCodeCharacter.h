@@ -16,7 +16,7 @@
 /**
  Initialise a content code character using a character. Only supports numeric characters.
  @param character The character.
- @returns the content code character for the character.
+ @returns The content code character for the character.
  */
 - (instancetype)initWithCharacter:(NSString *)character;
 
@@ -24,13 +24,13 @@
  Initialise a content code character using its character value.
  @param characterValue The character value to encode.
  @param isCheckDigit Whether the character is a check digit (`YES`) or a regular check digit (`NO`).
- @returns the content code character for the character value.
+ @returns The content code character for the character value.
  */
 - (instancetype)initWithCharacterValue:(NSUInteger)characterValue isCheckDigit:(BOOL)isCheckDigit;
 
 /**
  Return a content code character's value. Only supports numeric characters.
- @returns the content code character's value.
+ @returns The content code character's value.
  */
 - (NSUInteger)characterValue;
 

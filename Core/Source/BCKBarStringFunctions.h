@@ -8,9 +8,9 @@
 
 #import "BCKBarString.h"
 
-// method to convert an NSString into a BCKBarString
+// Method to convert an NSString into a BCKBarString
 BCKBarString *BCKBarStringFromNSString(NSString *string);
 
-// method to convert a BCKBarString to an NSString
+// Method to convert a BCKBarString to an NSString
 NSString *BCKBarStringToNSString(BCKBarString *string);
 

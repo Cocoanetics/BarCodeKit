@@ -61,13 +61,13 @@ typedef NS_ENUM(char, BCKBarType)
  */
 
 /**
- Creates an empty bar string
+ Creates an empty Bar String.
  */
 + (instancetype)string;
 
 /**
- Creates a bar string with a single bar
- @param bar The BCKBarType to initialize the bar string with
+ Creates a Bar String with a single bar.
+ @param bar The BCKBarType to initialize the Bar String with.
  */
 + (instancetype)stringWithBar:(BCKBarType)bar;
 
@@ -76,42 +76,42 @@ typedef NS_ENUM(char, BCKBarType)
  */
 
 /**
- Returns the number of bars in the bar string.
- @returns the length of the receiver
+ Returns the number of bars in the Bar String.
+ @returns the length of the receiver.
  */
 - (NSUInteger)length;
 
 /**
- Enumerate all bars in the bar string.
- @param block The block to execute for each bar
+ Enumerate all bars in the Bar String.
+ @param block The block to execute for each bar.
  */
 - (void)enumerateBarsUsingBlock:(void (^)(BCKBarType bar, NSUInteger idx, BOOL *stop))block;
 
 /**
- Determines the last bar
- @param bar The BCKBarType to look for
- @returns `YES` if the reciver ends with this bar type
+ Determines whether the last bar is of a particular bar type.
+ @param bar The BCKBarType to look for.
+ @returns `YES` if the receiver ends with this bar type.
  */
 - (BOOL)endsWithBar:(BCKBarType)bar;
 
 /**
- Determines the first bar
- @param bar The BCKBarType to look for
- @returns `YES` if the reciver begins with this bar type
+ Determines whether the first bar is of a particular bar type
+ @param bar The BCKBarType to look for.
+ @returns `YES` if the receiver begins with this bar type.
  */
 - (BOOL)beginsWithBar:(BCKBarType)bar;
 
 /**
- Determines the bar at a given index
- @param index The index
- @returns The BCKBarType for the bar at the index
+ Determines the bar at a given index.
+ @param index The index.
+ @returns The BCKBarType for the bar at the index.
  */
 - (BCKBarType)barAtIndex:(NSUInteger)index;
 
 /**
- Comparing Bar Strings
- @param otherString The other string to compare with
- @returns `YES` if the bar strings are of equal value
+ Compares two Bar Strings.
+ @param otherString The other Bar String to compare with.
+ @returns `YES` if the Bar Strings are of equal value.
  */
 - (BOOL)isEqualToString:(BCKBarString *)otherString;
 
