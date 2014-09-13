@@ -105,7 +105,7 @@
         [self enableAllControls:NO];
         self.errorMessage.hidden = NO;
 		self.barcodeImageView.image = nil;
-        self.errorMessage.text = [NSString stringWithFormat:@"Encoding error: %@\n\nPlease try a different contents.", [error localizedDescription]];
+        self.errorMessage.text = [NSString stringWithFormat:@"Encoding error: %@\n\nPlease try a different value.", [error localizedDescription]];
 	}
 }
 
