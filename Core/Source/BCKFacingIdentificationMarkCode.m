@@ -24,7 +24,7 @@
 	{
 		if (error)
 		{
-			NSString *message = [NSString stringWithFormat:@"'%@' is not a supported FIM type for %@", content, NSStringFromClass([self class])];
+			NSString *message = [NSString stringWithFormat:NSLocalizedStringFromTable(@"'%@' is not a supported FIM type for %@", @"BarCodeKit", @"The error message displayed when unable to generate a barcode."), content, [[self class] barcodeDescription]];
 			*error = [NSError BCKCodeErrorWithMessage:message];
 			
 			return nil;
@@ -70,7 +70,7 @@
 	
 	if (error)
 	{
-		NSString *message = [NSString stringWithFormat:@"%d is not a supported FIM type for %@", fimType, NSStringFromClass([self class])];
+		NSString *message = [NSString stringWithFormat:NSLocalizedStringFromTable(@"%d is not a supported FIM type for %@", @"BarCodeKit", @"The error message displayed when unable to generate a barcode."), fimType, [[self class] barcodeDescription]];
 		*error = [NSError BCKCodeErrorWithMessage:message];
 	}
 	
