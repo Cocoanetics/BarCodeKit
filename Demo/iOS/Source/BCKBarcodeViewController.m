@@ -22,9 +22,9 @@
 	Class _barcodeClass;
 	NSString *_sampleContent;
 	
-    BCKCode *_barcodeObject;
-    NSArray *_barcodeOptions;
-    
+	BCKCode *_barcodeObject;
+	NSArray *_barcodeOptions;
+	
 	// Options controls
 	UISwitch *_captionSwitch;
 	UISwitch *_debugSwitch;
@@ -38,7 +38,7 @@
 	BOOL _captionOption;
 	BOOL _debugOption;
 	BOOL _fillOption;
-    BOOL _checkDigitsInCaptionOption;
+	BOOL _checkDigitsInCaptionOption;
 	CGFloat _barScale;
 	CGFloat _captionOverlap;
 }
@@ -69,12 +69,12 @@
 
 - (void)enableAllControls:(BOOL)enabled
 {
-    _captionSwitch.enabled = enabled;
+	_captionSwitch.enabled = enabled;
 	_debugSwitch.enabled = enabled;
 	_fillQuietZonesSwitch.enabled = enabled;
 	_barScaleSlider.enabled = enabled;
 	_captionOverlapSlider.enabled = enabled;
-    _checkDigitsInCaptionSwitch.enabled = enabled;
+	_checkDigitsInCaptionSwitch.enabled = enabled;
 }
 
 // Create a new barcode when the options or the contents change
@@ -95,17 +95,17 @@
 	// Draw the barcode. If the barcode doesn't support the content clear the image and show the error message, disable all controls except the text field
 	if (_barcodeObject)
 	{
-        [self enableAllControls:YES];
-        self.errorMessage.hidden = YES;
+		[self enableAllControls:YES];
+		self.errorMessage.hidden = YES;
 		self.barcodeImageView.image = [UIImage imageWithBarCode:_barcodeObject options:options];
-        self.errorMessage.text = @"";
+		self.errorMessage.text = @"";
 	}
 	else
 	{
-        [self enableAllControls:NO];
-        self.errorMessage.hidden = NO;
+		[self enableAllControls:NO];
+		self.errorMessage.hidden = NO;
 		self.barcodeImageView.image = nil;
-        self.errorMessage.text = [NSString stringWithFormat:@"Encoding error: %@\n\nPlease try a different contents.", [error localizedDescription]];
+		self.errorMessage.text = [NSString stringWithFormat:@"Encoding error: %@\n\nPlease try a different contents.", [error localizedDescription]];
 	}
 }
 
@@ -161,10 +161,10 @@
 	_captionOption = YES;
 	_debugOption = NO;
 	_fillOption = YES;
-    _checkDigitsInCaptionOption = NO;
+	_checkDigitsInCaptionOption = NO;
 	_barScale = 1.0;
 	_captionOverlap = 1.0;
-
+	
 	// Setup the various controls
 	_captionSwitch = [[UISwitch alloc] init];
 	[_captionSwitch addTarget:self action:@selector(_captionOptionChange:) forControlEvents:UIControlEventValueChanged];
@@ -202,15 +202,15 @@
 	_contentsTextField.placeholder = @"Enter barcode";
 	[_contentsTextField addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
 	
-    _checkDigitsInCaptionSwitch = [[UISwitch alloc] init];
+	_checkDigitsInCaptionSwitch = [[UISwitch alloc] init];
 	[_checkDigitsInCaptionSwitch addTarget:self action:@selector(_checkDigitsInCaptionChange:) forControlEvents:UIControlEventValueChanged];
 	_checkDigitsInCaptionSwitch.on = _checkDigitsInCaptionOption;
-
+	
 	// Initialise the barcode contents with the sample barcode content passed to the view controller
 	_contentsTextField.text = _sampleContent;
-    
-    // Initially hide the error message UILabel
-    self.errorMessage.hidden = YES;
+	
+	// Initially hide the error message UILabel
+	self.errorMessage.hidden = YES;
 	
 	// Draw the barcode using the current options
 	[self _updateWithOptions];
@@ -219,21 +219,21 @@
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
-
+	
 	// Configure all controls
 	[self _configureView];
-
+	
 	// Determine which options to show by adding options to the array used as the tableview's model
 	NSMutableArray *tmpBarcodeOptions = [NSMutableArray arrayWithObjects:@[@"Contents", _contentsTextField],
-                                         @[@"Bar scale", _barScaleSlider],
-                                         nil];
-
-    if ([_barcodeObject respondsToSelector:@selector(captionTextForZone:withRenderOptions:)])
-    {
-        [tmpBarcodeOptions addObject:@[@"Debug", _debugSwitch]];
-        [tmpBarcodeOptions addObject:@[@"Caption", _captionSwitch]];
-    }
-    
+													 @[@"Bar scale", _barScaleSlider],
+													 nil];
+	
+	if ([_barcodeObject respondsToSelector:@selector(captionTextForZone:withRenderOptions:)])
+	{
+		[tmpBarcodeOptions addObject:@[@"Debug", _debugSwitch]];
+		[tmpBarcodeOptions addObject:@[@"Caption", _captionSwitch]];
+	}
+	
 	if ([_barcodeObject allowsFillingOfEmptyQuietZones])
 	{
 		[tmpBarcodeOptions addObject:@[@"Fill Quiet Zones", _fillQuietZonesSwitch]];
@@ -244,11 +244,11 @@
 		[tmpBarcodeOptions addObject:@[@"Caption overlap", _captionOverlapSlider]];
 	}
 	
-    if ([_barcodeObject showCheckDigitsInCaption])
+	if ([_barcodeObject showCheckDigitsInCaption])
 	{
 		[tmpBarcodeOptions addObject:@[@"Show check digits", _checkDigitsInCaptionSwitch]];
 	}
-    
+	
 	_barcodeOptions = [NSArray arrayWithArray:tmpBarcodeOptions];
 }
 
@@ -274,16 +274,33 @@
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		cell.accessoryType = UITableViewCellAccessoryNone;
 	}
-
+	
 	cell.textLabel.text = [_barcodeOptions[indexPath.row] objectAtIndex:0];
-    cell.accessoryView = [_barcodeOptions[indexPath.row] objectAtIndex:1];
-
+	cell.accessoryView = [_barcodeOptions[indexPath.row] objectAtIndex:1];
+	
 	return cell;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
 	return @"Barcode Options";
+}
+
+#pragma mark - Actions
+
+- (IBAction)share:(UIBarButtonItem *)sender
+{
+	if (!_barcodeObject)
+	{
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Barcode" message:@"The current options do not produce a valid barcode." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+		[alert show];
+		
+		return;
+	}
+	
+	// create large scale image version of barcode
+	
+	// create PDF version of barcode
 }
 
 - (void)textFieldChanged:(id)sender
