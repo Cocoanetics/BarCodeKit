@@ -294,7 +294,6 @@
 	
 	NSDictionary *options = @{BCKCodeDrawingBarScaleOption: @(_barScale),
 									  BCKCodeDrawingFillEmptyQuietZonesOption: @(_fillOption),
-									  BCKCodeDrawingDebugOption: @(_debugOption),
 									  BCKCodeDrawingPrintCaptionOption: @(_captionOption),
 									  BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption: @(_captionOverlap),
 									  BCKCodeDrawingShowCheckDigitsOption: @(_checkDigitsInCaptionOption),
