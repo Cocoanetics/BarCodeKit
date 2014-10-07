@@ -288,6 +288,47 @@
 
 #pragma mark - Actions
 
+- (NSURL *)_URLForSharedBarCodePDFName:(NSString *)name
+{
+	NSParameterAssert(name);
+	
+	NSDictionary *options = @{BCKCodeDrawingBarScaleOption: @(_barScale),
+									  BCKCodeDrawingFillEmptyQuietZonesOption: @(_fillOption),
+									  BCKCodeDrawingDebugOption: @(_debugOption),
+									  BCKCodeDrawingPrintCaptionOption: @(_captionOption),
+									  BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption: @(_captionOverlap),
+									  BCKCodeDrawingShowCheckDigitsOption: @(_checkDigitsInCaptionOption),
+									  BCKCodeDrawingBackgroundColorOption: [UIColor whiteColor]};
+	
+	CGSize neededSize = [_barcodeObject sizeWithRenderOptions:options];
+	
+	NSString *tmpPath = [[NSTemporaryDirectory() stringByAppendingPathComponent:name] stringByAppendingPathExtension:@"pdf"];
+	NSURL *fileURL = [NSURL fileURLWithPath:tmpPath];
+	
+	CGRect mediaBox = CGRectMake(0, 0, neededSize.width, neededSize.height);
+	CGContextRef pdfContxt = CGPDFContextCreateWithURL((__bridge CFURLRef)fileURL, &mediaBox, nil);
+	
+	CGContextBeginPage (pdfContxt, NULL);
+	CGContextSaveGState (pdfContxt);
+	
+	CGContextClipToRect (pdfContxt, mediaBox);
+	
+	// flip context so that caption is at bottom
+	CGAffineTransform flipVertical = CGAffineTransformMake(1, 0, 0, -1, 0, mediaBox.size.height);
+	CGContextConcatCTM(pdfContxt, flipVertical);
+	
+	// render into the PDF context
+	[_barcodeObject renderInContext:pdfContxt options:options];
+	
+	// cleanup
+	CGContextRestoreGState (pdfContxt);
+	CGContextEndPage (pdfContxt);
+	CGContextRelease (pdfContxt);
+	
+	return fileURL;
+}
+
+
 - (IBAction)share:(UIBarButtonItem *)sender
 {
 	if (!_barcodeObject)
@@ -297,10 +338,14 @@
 		
 		return;
 	}
-	
-	// create large scale image version of barcode
-	
+
 	// create PDF version of barcode
+	NSString *barcodeType = [[_barcodeObject class] barcodeDescription];
+	NSURL *pdfURL = [self _URLForSharedBarCodePDFName:barcodeType];
+	
+	// present activity view controller with this
+	UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[pdfURL] applicationActivities:nil];
+	[self presentViewController:activityVC animated:YES completion:nil];
 }
 
 - (void)textFieldChanged:(id)sender
