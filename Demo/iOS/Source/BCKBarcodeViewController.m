@@ -200,6 +200,7 @@
 	_contentsTextField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 	_contentsTextField.delegate = self;
 	_contentsTextField.placeholder = @"Enter barcode";
+	[_contentsTextField addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
 	
     _checkDigitsInCaptionSwitch = [[UISwitch alloc] init];
 	[_checkDigitsInCaptionSwitch addTarget:self action:@selector(_checkDigitsInCaptionChange:) forControlEvents:UIControlEventValueChanged];
@@ -283,6 +284,12 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
 	return @"Barcode Options";
+}
+
+- (void)textFieldChanged:(id)sender
+{
+	// update generated barcode for each typed character
+	[self _updateWithOptions];
 }
 
 @end
