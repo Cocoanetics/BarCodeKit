@@ -1351,7 +1351,7 @@
 			name = "Unit Tests (iOS)";
 			productName = "BarCodeKit Tests";
 			productReference = A7378D9317C2584E008921C4 /* Unit Tests (iOS).octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 		A76405EA17B52E9700D45F51 /* BarCodeKit (iOS) */ = {
 			isa = PBXNativeTarget;
@@ -1386,7 +1386,7 @@
 			name = "Unit Tests (Mac)";
 			productName = "Unit Tests (Mac)";
 			productReference = A7CFEF2417EE040F006446C9 /* Unit Tests (Mac).octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 		A7CFEF3917EE04C8006446C9 /* BarCodeKit (Mac) */ = {
 			isa = PBXNativeTarget;
@@ -1430,7 +1430,7 @@
 		A764058F17B50F9100D45F51 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Oliver Drobnik";
 				TargetAttributes = {
 					A702E4AF17FE916E00506B2B = {
@@ -1806,7 +1806,6 @@
 		A7015F37181BA805006EB671 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1825,7 +1824,6 @@
 		A7015F38181BA805006EB671 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1935,7 +1933,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1973,7 +1970,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
