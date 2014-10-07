@@ -130,7 +130,7 @@
 
 - (CGFloat)fixedHeight
 {
-	return 30;
+	return 34;
 }
 
 - (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone withRenderOptions:(NSDictionary *)options
