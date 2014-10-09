@@ -23,7 +23,7 @@
 	{
 		if (error)
 		{
-			NSString *message = [NSString stringWithFormat:@"%@ requires content to be 12 digits", NSStringFromClass([self class])];
+			NSString *message = [NSString stringWithFormat:NSLocalizedStringFromTable(@"%@ requires content to be 12 digits", @"BarCodeKit", @"The error message displayed when unable to generate a barcode."), [[self class] barcodeDescription]];
 			*error = [NSError BCKCodeErrorWithMessage:message];
 		}
 
@@ -41,7 +41,7 @@
 		{
 			if (error)
 			{
-				NSString *message = [NSString stringWithFormat:@"%@ cannot encode '%@' at index %d", NSStringFromClass([self class]), character, (int)index];
+				NSString *message = [NSString stringWithFormat:NSLocalizedStringFromTable(@"%@ cannot encode '%@' at index %d", @"BarCodeKit", @"The error message displayed when unable to generate a barcode."), [[self class] barcodeDescription], character, (int)index];
 				*error = [NSError BCKCodeErrorWithMessage:message];
 			}
 
@@ -68,7 +68,7 @@
 	if (calculatedCheck != inputCheckNumber) {
 		if (error)
 		{
-			NSString *message = @"Invalid barcode provided. Check number does not match";
+			NSString *message = NSLocalizedStringFromTable(@"Invalid barcode provided. Check number does not match", @"BarCodeKit", @"The error message displayed when unable to generate a barcode.");
 			*error = [NSError BCKCodeErrorWithMessage:message];
 		}
 

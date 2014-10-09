@@ -139,7 +139,7 @@
 		self.canShowDebug = NO;
 
 		self.barcodeImage = nil;
-		self.errorMessage = [NSString stringWithFormat:@"Encoding error: %@\n\nPlease try a different contents.", [error localizedDescription]];
+		self.errorMessage = [NSString stringWithFormat:@"Encoding error: %@\n\nPlease try a different value.", [error localizedDescription]];
 	}
 }
 

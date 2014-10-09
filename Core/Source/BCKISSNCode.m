@@ -91,7 +91,7 @@
         // Could not match a valid ISSN string
         if (error)
         {
-            NSString *message = [NSString stringWithFormat:@"The string is not a valid ISSN string supported by %@", NSStringFromClass([self class])];
+            NSString *message = [NSString stringWithFormat:NSLocalizedStringFromTable(@"The string is not a valid ISSN string supported by %@", @"BarCodeKit", @"The error message displayed when unable to generate a barcode."), [[self class] barcodeDescription]];
             *error = [NSError BCKCodeErrorWithMessage:message];
         }
         
@@ -142,7 +142,7 @@
     {
         if (error)
         {
-            NSString *message = [NSString stringWithFormat:@"%@ only supports 7 character ISSN strings, excluding the check digit",  NSStringFromClass([self class])];
+            NSString *message = [NSString stringWithFormat:NSLocalizedStringFromTable(@"%@ only supports 7 character ISSN strings, excluding the check digit", @"BarCodeKit", @"The error message displayed when unable to generate a barcode."),  [[self class] barcodeDescription]];
             *error = [NSError BCKCodeErrorWithMessage:message];
         }
         
@@ -155,7 +155,7 @@
 	{
         if (error)
         {
-            NSString *message = [NSString stringWithFormat:@"%@ does not support alpha-numeric characters",  NSStringFromClass([self class])];
+            NSString *message = [NSString stringWithFormat:NSLocalizedStringFromTable(@"%@ does not support alpha-numeric characters", @"BarCodeKit", @"The error message displayed when unable to generate a barcode."),  [[self class] barcodeDescription]];
             *error = [NSError BCKCodeErrorWithMessage:message];
         }
         
@@ -167,7 +167,7 @@
     {
         if (error)
         {
-            NSString *message = [NSString stringWithFormat:@"Check digit '%@' is not correct for this ISSN string", issnCheckDigit];
+            NSString *message = [NSString stringWithFormat:NSLocalizedStringFromTable(@"Check digit '%@' is not correct for this ISSN string", @"BarCodeKit", @"The error message displayed when unable to generate a barcode."), issnCheckDigit];
             *error = [NSError BCKCodeErrorWithMessage:message];
         }
         
@@ -183,7 +183,7 @@
     {
         if (error)
         {
-            NSString *message = [NSString stringWithFormat:@"Variant one must be identical to one numeric character"];
+            NSString *message = [NSString stringWithFormat:NSLocalizedStringFromTable(@"Variant one must be identical to one numeric character", @"BarCodeKit", @"The error message displayed when unable to generate a barcode.")];
             *error = [NSError BCKCodeErrorWithMessage:message];
         }
         
@@ -193,7 +193,7 @@
     {
         if (error)
         {
-            NSString *message = [NSString stringWithFormat:@"Variant one must be a numeric character"];
+            NSString *message = [NSString stringWithFormat:NSLocalizedStringFromTable(@"Variant one must be a numeric character", @"BarCodeKit", @"The error message displayed when unable to generate a barcode.")];
             *error = [NSError BCKCodeErrorWithMessage:message];
         }
         
@@ -208,7 +208,7 @@
     {
         if (error)
         {
-            NSString *message = [NSString stringWithFormat:@"Variant two must be identical to one alphanumeric character"];
+            NSString *message = [NSString stringWithFormat:NSLocalizedStringFromTable(@"Variant two must be identical to one alphanumeric character", @"BarCodeKit", @"The error message displayed when unable to generate a barcode.")];
             *error = [NSError BCKCodeErrorWithMessage:message];
         }
         
@@ -218,7 +218,7 @@
     {
         if (error)
         {
-            NSString *message = [NSString stringWithFormat:@"Variant two must be a numeric character"];
+            NSString *message = [NSString stringWithFormat:NSLocalizedStringFromTable(@"Variant two must be a numeric character", @"BarCodeKit", @"The error message displayed when unable to generate a barcode.")];
             *error = [NSError BCKCodeErrorWithMessage:message];
         }
 

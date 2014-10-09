@@ -41,7 +41,7 @@
 	{
 		if (error)
 		{
-			NSString *message = [NSString stringWithFormat:@"Content contains characters that cannot be encoded by Code39"];
+			NSString *message = [NSString stringWithFormat:NSLocalizedStringFromTable(@"Content contains characters that cannot be encoded by Code39", @"BarCodeKit", @"The error message displayed when unable to generate a barcode.")];
 			*error = [NSError BCKCodeErrorWithMessage:message];
 			return nil;
 		}

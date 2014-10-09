@@ -43,7 +43,7 @@ NSString * const BCKCodeDrawingReduceBleedOption = @"BCKCodeDrawingReduceBleed";
 		{
 			if (error)
 			{
-				NSString *message = [NSString stringWithFormat:@"Unable to encode empty string in %@", NSStringFromClass([self class])];
+				NSString *message = [NSString stringWithFormat:NSLocalizedStringFromTable(@"Unable to encoded empty string in %@", @"BarCodeKit", @"The error message displayed when unable to generate a barcode."), [[self class] barcodeDescription]];
 				*error = [NSError BCKCodeErrorWithMessage:message];
 			}
 			

@@ -41,7 +41,7 @@
 	{
 		if (error)
 		{
-			NSString *message = [NSString stringWithFormat:@"%@ requires content to be of even length", NSStringFromClass([self class])];
+			NSString *message = [NSString stringWithFormat:NSLocalizedStringFromTable(@"%@ requires content to be of even length", @"BarCodeKit", @"The error message displayed when unable to generate a barcode."), [[self class] barcodeDescription]];
 			*error = [NSError BCKCodeErrorWithMessage:message];
 		}
 		
@@ -61,7 +61,7 @@
 			if (error)
 			{
 				//NSLog();
-				NSString *message = [NSString stringWithFormat:@"Characters '%@' and '%@' cannot be encoded in %@", digit1, digit2, NSStringFromClass([self class])];
+				NSString *message = [NSString stringWithFormat:NSLocalizedStringFromTable(@"Characters '%@' and '%@' cannot be encoded in %@", @"BarCodeKit", @"The error message displayed when unable to generate a barcode."), digit1, digit2, [[self class] barcodeDescription]];
 				*error = [NSError BCKCodeErrorWithMessage:message];
 			}
 

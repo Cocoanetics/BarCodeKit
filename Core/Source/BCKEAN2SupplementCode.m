@@ -79,7 +79,7 @@
 	{
         if (error)
         {
-            NSString *message = [NSString stringWithFormat:@"%@ does not support alpha-numeric characters",  NSStringFromClass([self class])];
+            NSString *message = [NSString stringWithFormat:NSLocalizedStringFromTable(@"%@ does not support alpha-numeric characters", @"BarCodeKit", @"The error message displayed when unable to generate a barcode."),  [[self class] barcodeDescription]];
             *error = [NSError BCKCodeErrorWithMessage:message];
         }
         
@@ -93,7 +93,7 @@
     {
         if (error)
         {
-            NSString *message = [NSString stringWithFormat:@"%@ supports content equal or greater than 0 and less than 100",  NSStringFromClass([self class])];
+            NSString *message = [NSString stringWithFormat:NSLocalizedStringFromTable(@"%@ supports content equal or greater than 0 and less than 100", @"BarCodeKit", @"The error message displayed when unable to generate a barcode."),  [[self class] barcodeDescription]];
             *error = [NSError BCKCodeErrorWithMessage:message];
         }
         
@@ -114,7 +114,7 @@
 		{
 			if (error)
 			{
-				NSString *message = [NSString stringWithFormat:@"Digit at index %d '%@' cannot be encoded in %@", (int)index, character, NSStringFromClass([self class])];
+				NSString *message = [NSString stringWithFormat:NSLocalizedStringFromTable(@"Digit at index %d '%@' cannot be encoded in %@", @"BarCodeKit", @"The error message displayed when unable to generate a barcode."), (int)index, character, [[self class] barcodeDescription]];
 				*error = [NSError BCKCodeErrorWithMessage:message];
 			}
 			
@@ -127,7 +127,7 @@
 		{
 			if (error)
 			{
-				NSString *message = [NSString stringWithFormat:@"Digit at index %d '%@' cannot be encoded in %@", (int)index, character, NSStringFromClass([self class])];
+				NSString *message = [NSString stringWithFormat:NSLocalizedStringFromTable(@"Digit at index %d '%@' cannot be encoded in %@", @"BarCodeKit", @"The error message displayed when unable to generate a barcode."), (int)index, character, [[self class] barcodeDescription]];
 				*error = [NSError BCKCodeErrorWithMessage:message];
 			}
 			
