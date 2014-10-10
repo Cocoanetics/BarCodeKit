@@ -13,17 +13,17 @@
 
 + (BCKEANCodeCharacter *)endMarkerCodeCharacter
 {
-	return [[BCKEANCodeCharacter alloc] initWithBitString:@"101" isMarker:YES];
+	return [[BCKEANCodeCharacter alloc] initWithBars:BCKBarStringFromNSString(@"101") isMarker:YES];
 }
 
 + (BCKEANCodeCharacter *)middleMarkerCodeCharacter
 {
-	return [[BCKEANCodeCharacter alloc] initWithBitString:@"01010" isMarker:YES];
+	return [[BCKEANCodeCharacter alloc] initWithBars:BCKBarStringFromNSString(@"01010") isMarker:YES];
 }
 
 + (BCKEANCodeCharacter *)endMarkerCodeCharacterForUPCE
 {
-	return [[BCKEANCodeCharacter alloc] initWithBitString:@"010101" isMarker:YES];
+	return [[BCKEANCodeCharacter alloc] initWithBars:BCKBarStringFromNSString(@"010101") isMarker:YES];
 }
 
 + (BCKEANCodeCharacter *)codeCharacterForDigit:(NSUInteger)digit encoding:(BCKEANCodeCharacterEncoding)encoding

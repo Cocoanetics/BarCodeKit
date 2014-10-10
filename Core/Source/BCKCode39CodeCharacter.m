@@ -16,12 +16,12 @@
 + (BCKCode39CodeCharacter *)endMarkerCodeCharacter
 {
 	// bWbwBwBwb
-	return [[BCKCode39CodeCharacter alloc] initWithBitString:@"100101101101" isMarker:YES];
+	return [[BCKCode39CodeCharacter alloc] initWithBars:BCKBarStringFromNSString(@"100101101101") isMarker:YES];
 }
 
 + (BCKCode39CodeCharacter *)spacingCodeCharacter
 {
-	return [[BCKCode39CodeCharacter alloc] initWithBitString:@"0" isMarker:NO];
+	return [[BCKCode39CodeCharacter alloc] initWithBars:BCKBarStringFromNSString(@"0") isMarker:NO];
 }
 
 + (BCKCode39CodeCharacter *)codeCharacterForCharacter:(NSString *)character

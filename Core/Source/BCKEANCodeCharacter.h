@@ -31,7 +31,7 @@ typedef NS_ENUM(NSUInteger, BCKEANCodeCharacterEncoding)
 
 
 /**
- Specialized class of BCKCodeCharacter used for generating UPC/EAN codes
+ Specialized class of BCKCodeCharacter used for generating UPC/EAN codes.
  */
 @interface BCKEANCodeCharacter : BCKCodeCharacter
 
@@ -40,28 +40,28 @@ typedef NS_ENUM(NSUInteger, BCKEANCodeCharacterEncoding)
  */
 
 /**
- Generates an end marker code character, used for EAN-13 and EAN-8
- @returns the end marker code character
+ Generates an end marker code character, used for EAN-13 and EAN-8.
+ @returns The end marker code character.
  */
 + (BCKEANCodeCharacter *)endMarkerCodeCharacter;
 
 /**
- Generates an end marker code character, used for UPC-E
- @returns the end marker code character
+ Generates an end marker code character, used for UPC-E.
+ @returns The end marker code character.
  */
 + (BCKEANCodeCharacter *)endMarkerCodeCharacterForUPCE;
 
 /**
- Generates a middle marker code character, used for EAN-13
- @returns the middle marker code character
+ Generates a middle marker code character, used for EAN-13.
+ @returns The middle marker code character.
  */
 + (BCKEANCodeCharacter *)middleMarkerCodeCharacter;
 
 /**
- Generates a code character to represent a digit with a specific BCKEANCodeCharacterEncoding
- @param digit The digit to encode
- @param encoding The BCKEANCodeCharacterEncoding to use
- @returns The digit code character
+ Generates a code character to represent a digit with a specific BCKEANCodeCharacterEncoding.
+ @param digit The digit to encode.
+ @param encoding The BCKEANCodeCharacterEncoding to use.
+ @returns The digit code character.
  */
 + (BCKEANCodeCharacter *)codeCharacterForDigit:(NSUInteger)digit encoding:(BCKEANCodeCharacterEncoding)encoding;
 

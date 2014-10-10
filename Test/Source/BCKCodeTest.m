@@ -7,30 +7,20 @@
 //
 
 #import "BCKCode.h"
+#import "BCKBarString.h"
+#import "BCKMutableBarString.h"
 
-@interface BCKCodeTest : SenTestCase
+@interface BCKCodeTest : XCTestCase
 
 @end
 
 @implementation BCKCodeTest
 
-- (void)setUp
-{
-    [super setUp];
-    // Put setup code here; it will be run once, before the first test case.
-}
-
-- (void)tearDown
-{
-    // Put teardown code here; it will be run once, after the last test case.
-    [super tearDown];
-}
-
 - (void)testCanEncodeTestForBCKCode
 {
-    NSError *error = nil;
-    
-    STAssertFalse([BCKCode canEncodeContent:@"12345" error:&error], @"BCKCode should always return NO for canEncodeContent:");
+	NSError *error = nil;
+	
+	XCTAssertFalse([BCKCode canEncodeContent:@"12345" error:&error], @"BCKCode should always return NO for canEncodeContent:");
 }
 
 @end

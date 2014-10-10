@@ -14,13 +14,13 @@
  Initialise ISSN barcodes using:
  
  - initWithContent:error: and pass it a 9 character ISSN character string, including the hyphen separator and check digit, but excluding the "ISSN " prefix. Format: XXXX-XXXX.
- - an initialiser accepting the ISSN code's elements.
+ - initWithISSNString:andISSNCheckDigit:andVariantOne:andVariantTwo:error: and pass it the ISSN code's elements.
  
- The ISSN check digit is **not** always identical to the EAN13 check digit. This is because the ISSN check digit is ignored during EAN13 encoding. However, the title text shown above the barcode image shows the ISSN character string with the original check digit. BCKISSNCode will validate any check digits provided and reject the character string if the check digit is invalid.
+ The ISSN check digit is **not** always identical to the EAN13 check digit. This is because the ISSN check digit is ignored during EAN13 encoding. However, the title text shown above the barcode image shows the ISSN character string with the original check digit as defined by the standard. BCKISSNCode will validate any check digits provided and reject the character string if the check digit is invalid.
  
  For example, ISSN string `2434-561X` is converted to EAN13 as `9772434561006`. The title text for that ISSN string is `ISSN 2434-561X`.
  
- Use BCKEAN2SupplementCode or BCKEAN5SupplementCode to encode a separate barcode image to encode issue numbers for example.
+ Use BCKEAN2SupplementCode or BCKEAN5SupplementCode to encode a separate barcode image, for example to encode issue numbers.
  
  */
 @interface BCKISSNCode : BCKEAN13Code

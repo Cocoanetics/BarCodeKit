@@ -42,11 +42,11 @@ static char *digit_encodings[10][3] = {{"0001101", "0100111", "1110010"},  // 0
 	return self;
 }
 
-- (NSString *)bitString
+- (BCKBarString *)barString
 {
 	char *str = digit_encodings[_digit][_encoding];
 	
-	return [NSString stringWithUTF8String:str];
+	return BCKBarStringFromNSString([NSString stringWithUTF8String:str]);
 }
 
 @end

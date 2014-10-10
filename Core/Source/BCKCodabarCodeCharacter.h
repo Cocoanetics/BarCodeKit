@@ -18,15 +18,15 @@
  */
 
 /**
- Generates a Codabar start/stop code character. Supported start/stop characters are A, B, C, D, T, N, * and E. Does not count as a marker.
- @param character The start/stop code character.
- @returns the start/stop code character.
+ Generates a Codabar start/stop code character. Supported start/stop characters are A, B, C, D, T, N, * and E. Codabar start/stop characters are not treated as markers.
+ @param character The start/stop character.
+ @returns The start/stop code character.
  */
 + (BCKCodabarCodeCharacter *)startStopCodeCharacter:(NSString *)character;
 
 /**
- Generates a Codabar spacing code character. Does not count as a marker.
- @returns the spacing marker code character.
+ Generates a Codabar spacing code character. Codabar spacing code characters are not treated as markers.
+ @returns The spacing marker code character.
  */
 + (BCKCodabarCodeCharacter *)spacingCodeCharacter;
 

@@ -32,9 +32,9 @@ static char *char_encodings[NUMBER_OF_CODABAR_STARTSTOPCHARACTERS][2] = {
 
 #pragma mark - Generating Special Characters
 
-- (instancetype)initWithBitString:(NSString *)bitString isMarker:(BOOL)isMarker isStartStop:(BOOL)isStartStop
+- (instancetype)initWithBars:(BCKBarString *)bars isMarker:(BOOL)isMarker isStartStop:(BOOL)isStartStop
 {
-	self = [super initWithBitString:bitString isMarker:isMarker];
+	self = [super initWithBars:bars isMarker:isMarker];
 	
 	if (self)
 	{
@@ -54,9 +54,9 @@ static char *char_encodings[NUMBER_OF_CODABAR_STARTSTOPCHARACTERS][2] = {
         
         if (testChar == searchChar)
         {
-            NSString *charString = [NSString stringWithUTF8String:char_encodings[i][ENCODING_DIMENSION]];
-
-            return [[BCKCodabarCodeCharacter alloc] initWithBitString:charString isMarker:NO isStartStop:YES];
+			BCKBarString *bars = BCKBarStringFromNSString([NSString stringWithUTF8String:char_encodings[i][ENCODING_DIMENSION]]);
+			
+            return [[BCKCodabarCodeCharacter alloc] initWithBars:bars isMarker:NO isStartStop:YES];
         }
     }
     
@@ -65,7 +65,7 @@ static char *char_encodings[NUMBER_OF_CODABAR_STARTSTOPCHARACTERS][2] = {
 
 + (BCKCodabarCodeCharacter *)spacingCodeCharacter
 {
-	return [[BCKCodabarCodeCharacter alloc] initWithBitString:@"0" isMarker:NO];
+	return [[BCKCodabarCodeCharacter alloc] initWithBars:BCKBarStringFromNSString(@"0") isMarker:NO];
 }
 
 + (BCKCodabarContentCodeCharacter *)codeCharacterForCharacter:(NSString *)character

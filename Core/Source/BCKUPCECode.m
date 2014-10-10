@@ -52,7 +52,7 @@ static char *variant_patterns[10][2] = {{"EEEOOO", "OOOEEE"},  // 0
 	{
 		if (error)
 		{
-			NSString *message = [NSString stringWithFormat:@"%@ requires content to be 8 digits", NSStringFromClass([self class])];
+			NSString *message = [NSString stringWithFormat:NSLocalizedStringFromTable(@"%@ requires content to be 8 digits", @"BarCodeKit", @"The error message displayed when unable to generate a barcode."), [[self class] barcodeDescription]];
 			*error = [NSError BCKCodeErrorWithMessage:message];
 		}
 		
@@ -70,7 +70,7 @@ static char *variant_patterns[10][2] = {{"EEEOOO", "OOOEEE"},  // 0
 			{
 				if (error)
 				{
-					NSString *message = [NSString stringWithFormat:@"%@ requires first digit to be 0 or 1", NSStringFromClass([self class])];
+					NSString *message = [NSString stringWithFormat:NSLocalizedStringFromTable(@"%@ requires first digit to be 0 or 1", @"BarCodeKit", @"The error message displayed when unable to generate a barcode."), [[self class] barcodeDescription]];
 					*error = [NSError BCKCodeErrorWithMessage:message];
 				}
 				
@@ -82,7 +82,7 @@ static char *variant_patterns[10][2] = {{"EEEOOO", "OOOEEE"},  // 0
 		{
 			if (error)
 			{
-				NSString *message = [NSString stringWithFormat:@"%@ cannot encode '%@' at index %d", NSStringFromClass([self class]), character, (int)index];
+				NSString *message = [NSString stringWithFormat:NSLocalizedStringFromTable(@"%@ cannot encode '%@' at index %d", @"BarCodeKit", @"The error message displayed when unable to generate a barcode."), [[self class] barcodeDescription], character, (int)index];
 				*error = [NSError BCKCodeErrorWithMessage:message];
 			}
 			

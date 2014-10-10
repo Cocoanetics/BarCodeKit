@@ -12,4 +12,7 @@
 
 - (void)setBarcodeClass:(Class)barcodeClass andSampleContent:(NSString *)content;
 
+// action called from share button
+- (IBAction)share:(UIBarButtonItem *)sender;
+
 @end

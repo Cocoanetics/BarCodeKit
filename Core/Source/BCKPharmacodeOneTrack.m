@@ -57,7 +57,7 @@
 		{
 			if (error)
 			{
-				NSString *message = [NSString stringWithFormat:@"Contents cannot be encoded in %@, only integer values between 3 and 131070 are supported", NSStringFromClass([self class])];
+				NSString *message = [NSString stringWithFormat:NSLocalizedStringFromTable(@"Contents cannot be encoded in %@, only integer values between 3 and 131070 are supported", @"BarCodeKit", @"The error message displayed when unable to generate a barcode."), [[self class] barcodeDescription]];
 				*error = [NSError BCKCodeErrorWithMessage:message];
 			}
 			
@@ -68,7 +68,7 @@
 	{
 		if (error)
 		{
-			NSString *message = [NSString stringWithFormat:@"Contents cannot be encoded in %@, only integer values between 3 and 131070 are supported", NSStringFromClass([self class])];
+			NSString *message = [NSString stringWithFormat:NSLocalizedStringFromTable(@"Contents cannot be encoded in %@, only integer values between 3 and 131070 are supported", @"BarCodeKit", @"The error message displayed when unable to generate a barcode."), [[self class] barcodeDescription]];
 			*error = [NSError BCKCodeErrorWithMessage:message];
 		}
 		
@@ -86,11 +86,6 @@
 - (CGFloat)aspectRatio
 {
 	return 1.9;
-}
-
-- (CGFloat)_captionFontSizeWithOptions:(NSDictionary *)options
-{
-	return 10;
 }
 
 - (NSString *)captionTextForZone:(BCKCodeDrawingCaption)captionZone withRenderOptions:(NSDictionary *)options

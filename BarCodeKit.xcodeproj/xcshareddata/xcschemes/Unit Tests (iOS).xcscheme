@@ -17,7 +17,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A7378D9217C2584E008921C4"
-               BuildableName = "Unit Tests (iOS).octest"
+               BuildableName = "Unit Tests (iOS).xctest"
                BlueprintName = "Unit Tests (iOS)"
                ReferencedContainer = "container:BarCodeKit.xcodeproj">
             </BuildableReference>

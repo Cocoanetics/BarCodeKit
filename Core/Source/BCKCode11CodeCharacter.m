@@ -15,12 +15,12 @@
 
 + (BCKCode11CodeCharacter *)endMarkerCodeCharacter
 {
-	return [[BCKCode11CodeCharacter alloc] initWithBitString:@"1011001" isMarker:YES];
+	return [[BCKCode11CodeCharacter alloc] initWithBars:BCKBarStringFromNSString(@"1011001") isMarker:YES];
 }
 
 + (BCKCode11CodeCharacter *)spacingCodeCharacter
 {
-	return [[BCKCode11CodeCharacter alloc] initWithBitString:@"0" isMarker:NO];
+	return [[BCKCode11CodeCharacter alloc] initWithBars:BCKBarStringFromNSString(@"0") isMarker:NO];
 }
 
 + (BCKCode11CodeCharacter *)codeCharacterForCharacter:(NSString *)character

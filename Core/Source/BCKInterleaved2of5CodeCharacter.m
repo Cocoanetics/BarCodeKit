@@ -16,13 +16,13 @@
 + (BCKInterleaved2of5CodeCharacter *)startMarkerCodeCharacter
 {
 	// bwbw
-	return [[BCKInterleaved2of5CodeCharacter alloc] initWithBitString:@"1010" isMarker:YES];
+	return [[BCKInterleaved2of5CodeCharacter alloc] initWithBars:BCKBarStringFromNSString(@"1010") isMarker:YES];
 }
 
 + (BCKInterleaved2of5CodeCharacter *)endMarkerCodeCharacter
 {
 	// Bwb
-    return [[BCKInterleaved2of5CodeCharacter alloc] initWithBitString:@"1101" isMarker:YES];
+    return [[BCKInterleaved2of5CodeCharacter alloc] initWithBars:BCKBarStringFromNSString(@"1101") isMarker:YES];
 }
 
 

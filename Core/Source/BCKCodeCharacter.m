@@ -7,56 +7,55 @@
 //
 
 #import "BCKCodeCharacter.h"
+#import "BCKMutableBarString.h"
 
 @implementation BCKCodeCharacter
 {
-	NSString *_bitString;
+    BCKBarString *_barString;
 	BOOL _marker;
 }
 
-- (instancetype)initWithBitString:(NSString *)bitString isMarker:(BOOL)isMarker
+#pragma mark Init Methods
+
+- (instancetype)initWithBars:(BCKBarString *)barString isMarker:(BOOL)isMarker
 {
 	self = [super init];
 	
 	if (self)
 	{
-		_bitString = [bitString copy];
+		_barString = [barString copy];
 		_marker = isMarker;
 	}
 	
 	return self;
 }
 
+#pragma mark Helper Methods
+
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"<%@ bits='%@'", NSStringFromClass([self class]), [self bitString]];
+	return [NSString stringWithFormat:@"<%@ bars='%@'", NSStringFromClass([self class]), BCKBarStringToNSString(self.barString)];
 }
 
-- (void)enumerateBitsUsingBlock:(void (^)(BOOL isBar, NSUInteger idx, BOOL *stop))block
+- (void)enumerateBarsUsingBlock:(void (^)(BCKBarType barType, BOOL isBar, NSUInteger idx, BOOL *stop))block
 {
 	NSParameterAssert(block);
-	
-	NSString *bitString = [self bitString];
-	NSUInteger length = [bitString length];
-	
-	for (NSUInteger i=0; i<length; i++)
-	{
-		NSString *bit = [bitString substringWithRange:NSMakeRange(i, 1)];
-		
-		BOOL isBar = [bit isEqualToString:@"1"];
-		
-		BOOL shouldStop = NO;
-		
-		block(isBar, i, &shouldStop);
-		
+
+    [self.barString enumerateBarsUsingBlock:^(BCKBarType barType, NSUInteger idx, BOOL *stop) {
+        // Every bar type is considered a bar except BCKBarTypeSpace (i.e. a space)
+		BOOL isBar = (barType != BCKBarTypeSpace);
+        BOOL shouldStop = NO;
+
+		block(barType, isBar, idx, &shouldStop);
+        
 		if (shouldStop)
 		{
-			break;
+			*stop = YES;
 		}
-	}
+    }];
 }
 
-@synthesize bitString = _bitString;
+@synthesize barString = _barString;
 @synthesize marker = _marker;
 
 @end

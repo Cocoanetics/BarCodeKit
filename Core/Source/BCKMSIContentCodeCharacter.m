@@ -106,34 +106,23 @@ static char *char_encodings[NUMBER_OF_MSICODE_CHARACTERS][2] = {
 	return NULL;
 }
 
-- (NSString *)_bitsForEncoding:(char *)encoding
+- (BCKBarString *)_barsForEncoding:(char *)encoding
 {
-	NSMutableString *tmpString = [NSMutableString string];
+	BCKMutableBarString *tmpString = [BCKMutableBarString string];
 	
 	for (NSUInteger index=0; index<strlen(encoding); index++)
 	{
-		char c = encoding[index];
+		BCKBarType type = encoding[index];
 		
-		switch (c)
-		{
-			case '1':
-			{
-				[tmpString appendString:@"1"];
-				break;
-			}
-				
-			case '0':
-			{
-				[tmpString appendString:@"0"];
-				break;
-			}
-        }
+		NSAssert(type == BCKBarTypeFull || type == BCKBarTypeSpace, @"Illegal character in encoding");
+		
+		[tmpString appendBar:type];
 	}
 	
-	return tmpString;
+	return [tmpString copy];
 }
 
-- (NSString *)bitString
+- (BCKBarString *)barString
 {
 	char *encoding = [self _encodingForCharacter:_character];
 	
@@ -142,7 +131,7 @@ static char *char_encodings[NUMBER_OF_MSICODE_CHARACTERS][2] = {
 		return nil;
 	}
 	
-	return [[self _bitsForEncoding:encoding] copy];
+	return [self _barsForEncoding:encoding];
 }
 
 @end

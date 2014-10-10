@@ -72,9 +72,9 @@ int BARS [10][5] = {
 	return data;
 }
 
-- (NSString *)_bitsForEncoding:(NSString *)encoding
+- (BCKBarString *)_barsForEncoding:(NSString *)encoding
 {
-	NSMutableString *tmpString = [NSMutableString string];
+	BCKMutableBarString *tmpString = [BCKMutableBarString string];
 	
 	for (NSUInteger index=0; index< encoding.length; index++)
 	{
@@ -84,34 +84,40 @@ int BARS [10][5] = {
 		{
 			case 'b':
 			{
-				[tmpString appendString:@"1"];
+				[tmpString appendBar:BCKBarTypeFull];
+				
 				break;
 			}
 				
 			case 'B':
 			{
-				[tmpString appendString:@"11"];
+				[tmpString appendBar:BCKBarTypeFull];
+				[tmpString appendBar:BCKBarTypeFull];
+
 				break;
 			}
 				
 			case 'w':
 			{
-				[tmpString appendString:@"0"];
+				[tmpString appendBar:BCKBarTypeSpace];
+				
 				break;
 			}
 				
 			case 'W':
 			{
-				[tmpString appendString:@"00"];
+				[tmpString appendBar:BCKBarTypeSpace];
+				[tmpString appendBar:BCKBarTypeSpace];
+
 				break;
 			}
 		}
 	}
 	
-	return tmpString;
+	return [tmpString copy];
 }
 
-- (NSString *)bitString
+- (BCKBarString *)barString
 {
 	NSString *encoding = [self _encodingForDigit1:_digit1 andDigit2:_digit2];
 	
@@ -120,7 +126,7 @@ int BARS [10][5] = {
 		return nil;
 	}
 	
-	return [[self _bitsForEncoding:encoding] copy];
+	return [self _barsForEncoding:encoding];
 }
 
 @end

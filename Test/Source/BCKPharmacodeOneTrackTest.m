@@ -7,14 +7,15 @@
 //
 
 #import "BCKPharmacodeOneTrack.h"
+#import "BCKCodeCharacter.h"
 
 @interface BCKPharmacodeOneTrack () // private
 
-- (NSString *)bitString;
+- (BCKBarString *)barString;
 
 @end
 
-@interface BCKPharmacodeOneTrackTest : SenTestCase
+@interface BCKPharmacodeOneTrackTest : XCTestCase
 
 @end
 
@@ -22,46 +23,45 @@
 
 - (void)setUp
 {
-    [super setUp];
-    // Put setup code here; it will be run once, before the first test case.
+	[super setUp];
+	// Put setup code here; it will be run once, before the first test case.
 }
 
 - (void)tearDown
 {
-    // Put teardown code here; it will be run once, after the last test case.
-    [super tearDown];
+	// Put teardown code here; it will be run once, after the last test case.
+	[super tearDown];
 }
 
 - (void)testInvalidContent
 {
-    NSError *error = nil;
-    
-    BCKPharmacodeOneTrack *code = [[BCKPharmacodeOneTrack alloc] initWithContent:@"1234a" error:&error];
-	STAssertNil(code, @"Should not be able to encode alphanumeric characters in Pharmacode One Track");
-    STAssertNotNil(error, @"Error object should not be nil");
-    error = nil;
-    
-    code = [[BCKPharmacodeOneTrack alloc] initWithContent:@"2" error:&error];
-	STAssertNil(code, @"Should not be able to encode integers less than 3");
-    STAssertNotNil(error, @"Error object should not be nil");
-    error = nil;
-    
-    code = [[BCKPharmacodeOneTrack alloc] initWithContent:@"131071" error:&error];
-	STAssertNil(code, @"Should not be able to encode integers greater than 131070");
-    STAssertNotNil(error, @"Error object should not be nil");
+	NSError *error = nil;
+	
+	BCKPharmacodeOneTrack *code = [[BCKPharmacodeOneTrack alloc] initWithContent:@"1234a" error:&error];
+	XCTAssertNil(code, @"Should not be able to encode alphanumeric characters in Pharmacode One Track");
+	XCTAssertNotNil(error, @"Error object should not be nil");
+	error = nil;
+	
+	code = [[BCKPharmacodeOneTrack alloc] initWithContent:@"2" error:&error];
+	XCTAssertNil(code, @"Should not be able to encode integers less than 3");
+	XCTAssertNotNil(error, @"Error object should not be nil");
+	error = nil;
+	
+	code = [[BCKPharmacodeOneTrack alloc] initWithContent:@"131071" error:&error];
+	XCTAssertNil(code, @"Should not be able to encode integers greater than 131070");
+	XCTAssertNotNil(error, @"Error object should not be nil");
 }
 
 - (void)testEncode
 {
-    NSError *error = nil;
-    
-    BCKPharmacodeOneTrack *code = [[BCKPharmacodeOneTrack alloc] initWithContent:@"542" error:&error];
-	NSString *expected = @"11001100110011001111001111001111001111001111";
-	NSString *actual = [code bitString];
+	NSError *error = nil;
+	
+	BCKPharmacodeOneTrack *code = [[BCKPharmacodeOneTrack alloc] initWithContent:@"542" error:&error];
+	BCKBarString *expected = BCKBarStringFromNSString(@"11001100110011001111001111001111001111001111");
+	BCKBarString *actual = [code barString];
 	BOOL isEqual = [expected isEqualToString:actual];
-    
-	STAssertTrue(isEqual, @"Result from encoding should be correct");
+	
+	XCTAssertTrue(isEqual, @"Result from encoding should be correct");
 }
-
 
 @end

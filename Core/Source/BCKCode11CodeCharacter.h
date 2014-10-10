@@ -19,13 +19,13 @@
 
 /**
  Generates a Code11 end marker code character.
- @returns the end marker code character.
+ @returns The end marker code character.
  */
 + (BCKCode11CodeCharacter *)endMarkerCodeCharacter;
 
 /**
- Generates a Code11 spacing character. Does not count as a marker.
- @returns the spacing marker code character.
+ Generates a Code11 spacing character. Code11 spacing characters are not treated as markers.
+ @returns The spacing marker code character.
  */
 + (BCKCode11CodeCharacter *)spacingCodeCharacter;
 

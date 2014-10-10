@@ -15,17 +15,17 @@
 
 + (BCKStandard2of5CodeCharacter *)startMarkerCodeCharacter
 {
-	return [[BCKStandard2of5CodeCharacter alloc] initWithBitString:@"1101101" isMarker:YES];
+	return [[BCKStandard2of5CodeCharacter alloc] initWithBars:BCKBarStringFromNSString(@"1101101") isMarker:YES];
 }
 
 + (BCKStandard2of5CodeCharacter *)spacingCodeCharacter
 {
-	return [[BCKStandard2of5CodeCharacter alloc] initWithBitString:@"0" isMarker:NO];
+	return [[BCKStandard2of5CodeCharacter alloc] initWithBars:BCKBarStringFromNSString(@"0") isMarker:NO];
 }
 
 + (BCKStandard2of5CodeCharacter *)stopMarkerCodeCharacter
 {
-	return [[BCKStandard2of5CodeCharacter alloc] initWithBitString:@"1101011" isMarker:YES];
+	return [[BCKStandard2of5CodeCharacter alloc] initWithBars:BCKBarStringFromNSString(@"1101011") isMarker:YES];
 }
 
 + (BCKStandard2of5CodeCharacter *)codeCharacterForCharacter:(NSString *)character

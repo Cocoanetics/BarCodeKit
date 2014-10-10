@@ -16,15 +16,19 @@
 NSString * const BCKCodeDrawingBarScaleOption = @"BCKCodeDrawingBarScale";
 NSString * const BCKCodeDrawingPrintCaptionOption = @"BCKCodeDrawingPrintCaption";
 NSString * const BCKCodeDrawingCaptionFontNameOption = @"BCKCodeDrawingCaptionFontName";
+NSString * const BCKCodeDrawingCaptionFontPointSizeOption = @"BCKCodeDrawingCaptionFontPointSize";
 NSString * const BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption = @"BCKCodeDrawingMarkerBarsOverlapCaptionPercent";
 NSString * const BCKCodeDrawingFillEmptyQuietZonesOption = @"BCKCodeDrawingFillEmptyQuietZones";
 NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheckDigits";
 NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroundColor";
+NSString * const BCKCodeDrawingReduceBleedOption = @"BCKCodeDrawingReduceBleed";
 
 #define ENCODE_ERROR_MESSAGE @"BCKCode is an abstract class that cannot encode anything"
 
 @implementation BCKCode
+
+#pragma mark Helper Methods
 
 // The NSError object is ignored in BCKCode's initWithContent method. BCKCode subclasses are required to initialise it in case of errors, for example if canEncodeContent: returns NO
 - (instancetype)initWithContent:(NSString *)content error:(NSError**)error
@@ -39,7 +43,7 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 		{
 			if (error)
 			{
-				NSString *message = [NSString stringWithFormat:@"Unable to encoded empty string in %@", NSStringFromClass([self class])];
+				NSString *message = [NSString stringWithFormat:NSLocalizedStringFromTable(@"Unable to encoded empty string in %@", @"BarCodeKit", @"The error message displayed when unable to generate a barcode."), [[self class] barcodeDescription]];
 				*error = [NSError BCKCodeErrorWithMessage:message];
 			}
 			
@@ -73,13 +77,13 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 	return [self initWithContent:content error:NULL];
 }
 
-- (NSString *)bitString
+- (BCKBarString *)barString
 {
-	NSMutableString *tmpString = [NSMutableString string];
+	BCKMutableBarString	*tmpString = [BCKMutableBarString string];
 	
 	for (BCKCodeCharacter *oneCharacter in [self codeCharacters])
 	{
-		[tmpString appendString:[oneCharacter bitString]];
+		[tmpString appendBarString:[oneCharacter barString]];
 	}
 	
 	return tmpString;
@@ -87,7 +91,7 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"<%@ content='%@'>", NSStringFromClass([self class]), [self bitString]];
+	return [NSString stringWithFormat:@"<%@ content='%@'>", NSStringFromClass([self class]), BCKBarStringToNSString([self barString])];
 }
 
 #pragma mark - Options Helper Methods
@@ -124,7 +128,6 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 	return rightQuietZoneText;
 }
 
-
 // returns the actually displayed left caption zone text based on the options
 - (NSString *)_leftCaptionZoneDisplayTextWithOptions:(NSDictionary *)options
 {
@@ -141,7 +144,6 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 	
 	return nil;
 }
-
 
 // returns the actually displayed left caption zone text based on the options
 - (NSString *)_rightCaptionZoneDisplayTextWithOptions:(NSDictionary *)options
@@ -183,7 +185,7 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 		}
 		else
 		{
-			bitsBeforeMiddle += [[character bitString] length];
+			bitsBeforeMiddle += [character.barString length];
 			metContent = YES;
 		}
 	}];
@@ -216,7 +218,7 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 		{
 			if (metMiddleMarker)
 			{
-				bitsAfterMiddle += [[character bitString] length];
+				bitsAfterMiddle += [character.barString length];
 			}
 			
 			metContent = YES;
@@ -267,6 +269,22 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 	{
 		optimalCaptionFontSize = MIN(optimalCaptionFontSize, [self _optimalFontSizeToFitText:rightQuietZoneText fontName:fontName insideWidth:[self _horizontalQuietZoneWidthWithOptions:options]]);
 	}
+   
+   if (optimalCaptionFontSize == CGFLOAT_MAX)
+   {
+      // have no caption font size calculated yet
+      NSNumber *number = options[BCKCodeDrawingCaptionFontPointSizeOption];
+      
+      // check if there is a fixed point size
+      if (number)
+      {
+         return [number floatValue];
+      }
+      
+      // at this point we need to come up with a sensible caption size ourselves
+      CGSize size = [self sizeWithRenderOptions:options];
+      optimalCaptionFontSize = roundf(size.height / 5.0);
+   }
 	
 	return optimalCaptionFontSize;
 }
@@ -536,9 +554,6 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 		return;
 	}
 	
-	CGRect bounds = CGContextGetClipBoundingBox(context);
-	NSAssert(CGPointEqualToPoint(bounds.origin, CGPointZero), @"%s requires {0,0} clip origin", __PRETTY_FUNCTION__);
-	
 	CTFrameRef frame = [self _frameWithCaptionText:text fontName:fontName fontSize:fontSize constraintedToWidth:rect.size.width];
 	
 	if (!frame)
@@ -550,6 +565,7 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 	
 	if (![lines count])
 	{
+		CFRelease(frame);
 		return;
 	}
 	
@@ -562,17 +578,15 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 	
 	CGContextSaveGState(context);
 	
-	// Flip the coordinate system
-	CGContextSetTextMatrix(context, CGAffineTransformIdentity);
-	CGContextScaleCTM(context, 1.0, -1.0);
-	CGContextTranslateCTM(context, 0, -bounds.size.height);
-	
-	// CTLines need to be positioned via text position, {0,0} is bottom of context
+	// Flip the text matrix
+	CGContextSetTextMatrix(context, CGAffineTransformMakeScale(1, -1));
+   
+   // specify baseline origin relative to rect parameter
 	CGFloat x = CGRectGetMidX(rect) - width/2.0f;
-	CGFloat y = descent;
+	CGFloat y = CGRectGetMaxY(rect) - descent;
 	CGContextSetTextPosition(context, x, y);
 	
-	// draw the line
+	// draw the text line
 	CTLineDraw(line, context);
 	
 	CGContextRestoreGState(context);
@@ -582,13 +596,9 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 - (CGSize)sizeWithRenderOptions:(NSDictionary *)options
 {
 	CGFloat barScale = [self _barScaleFromOptions:options];
-	
 	NSUInteger horizontalQuietZoneWidth = [self horizontalQuietZoneWidth];
-	
-	NSString *bitString = [self bitString];
-	NSUInteger length = [bitString length];
-	
-	
+	NSUInteger length = [[self barString] length];
+
 	CGSize size = CGSizeZero;
 	size.width = (length + 2.0f * horizontalQuietZoneWidth) * barScale;
 	
@@ -604,6 +614,48 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 	}
 	
 	return size;
+}
+
+- (CGRect)_calculateBarRectForType:(BCKBarType)barType andXOffset:(CGFloat)x andBarScale:(CGFloat)barScale andBarLength:(CGFloat)barLength
+{
+    CGRect barRect;
+    
+    switch (barType)
+    {
+        case BCKBarTypeFull:
+        case BCKBarTypeSpace:
+        {
+            barRect = CGRectMake(x, 0, barScale, barLength);
+            break;
+        }
+        case BCKBarTypeBottomHalf:
+        {
+            barRect = CGRectMake(x, 0 + barLength / 2, barScale, barLength / 2);
+            break;
+        }
+        case BCKBarTypeBottomTwoThirds:
+        {
+            barRect = CGRectMake(x, 0 + barLength * 1 / 3, barScale, barLength / 3 * 2);
+            break;
+        }
+        case BCKBarTypeCentreOneThird:
+        {
+            barRect = CGRectMake(x, 0 + barLength * 1 / 3, barScale, barLength / 3);
+            break;
+        }
+        case BCKBarTypeTopHalf:
+        {
+            barRect = CGRectMake(x, 0, barScale, barLength / 2);
+            break;
+        }
+        case BCKBarTypeTopTwoThirds:
+        {
+            barRect = CGRectMake(x, 0, barScale, barLength / 3 * 2);
+            break;
+        }
+    }
+    
+    return barRect;
 }
 
 - (void)renderInContext:(CGContextRef)context options:(NSDictionary *)options
@@ -666,7 +718,7 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 	__block CGRect middleMarkerFrame = CGRectNull;
 	
 	NSArray *codeCharacters = [self codeCharacters];
-	
+
 	// enumerate the code characters
 	[codeCharacters enumerateObjectsUsingBlock:^(BCKCodeCharacter *character, NSUInteger charIndex, BOOL *stop) {
 		
@@ -679,12 +731,13 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 		}
 		
 		__block CGRect characterRect = CGRectNull;
-		
-		// walk through the bits of the character
-		[character enumerateBitsUsingBlock:^(BOOL isBar, NSUInteger idx, BOOL *stop) {
-			
+
+		// walk through the bars of the character
+		[character enumerateBarsUsingBlock:^(BCKBarType bar, BOOL isBar, NSUInteger idx, BOOL *stop) {
 			CGFloat x = (drawnBitIndex + horizontalQuietZoneWidth) * barScale;
-			CGRect barRect = CGRectMake(x, 0, barScale, barLength);
+			
+			CGRect barRect;
+			barRect = [self _calculateBarRectForType:bar andXOffset:x andBarScale:barScale andBarLength:barLength];
 			
 			if (CGRectIsNull(characterRect))
 			{
@@ -697,12 +750,21 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 			
 			if (isBar)
 			{
-				CGContextAddRect(context, barRect);
+            if ([options[BCKCodeDrawingReduceBleedOption] boolValue])
+            {
+               // decrease bar width slightly because on thermo printers they might become too wide otherwise
+               CGRect fillRect = CGRectInset(barRect, 0.13, 0);
+               CGContextAddRect(context, fillRect);
+            }
+            else
+            {
+               CGContextAddRect(context, barRect);
+            }
 			}
 			
 			drawnBitIndex++;
 		}];
-		
+        
 		if ([character isMarker])
 		{
 			if (metContent)
@@ -744,9 +806,12 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 	
 	// paint all bars
 	
+   //CGContextSaveGState(context);
 	CGContextSetGrayFillColor(context, 0, 1);
+   //CGContextSetShouldAntialias(context, NO);
 	CGContextFillPath(context);
-	
+	//CGContextRestoreGState(context);
+   
 	if ([self _shouldDrawCaptionFromOptions:options])
 	{
 		NSString *fontName = [self _captionFontNameFromOptions:options];
@@ -851,7 +916,7 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 			// indent by 1 bar width if left marker ends with a bar
 			BCKCodeCharacter *leftOuterMarker = codeCharacters[0];
 			
-			if ([[leftOuterMarker bitString] hasSuffix:@"1"])
+			if ([[leftOuterMarker barString] endsWithBar:BCKBarTypeFull])
 			{
 				frameBetweenEndMarkers.origin.x += barScale;
 				frameBetweenEndMarkers.size.width -= barScale;
@@ -860,7 +925,7 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 			// indent by 1 bar width if right marker begins with a bar
 			BCKCodeCharacter *rightOuterMarker = [codeCharacters lastObject];
 			
-			if ([[rightOuterMarker bitString] hasPrefix:@"1"])
+			if ([[rightOuterMarker barString] endsWithBar:BCKBarTypeFull])
 			{
 				frameBetweenEndMarkers.size.width -= barScale;
 			}

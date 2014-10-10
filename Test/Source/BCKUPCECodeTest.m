@@ -7,15 +7,16 @@
 //
 
 #import "BCKUPCECode.h"
+#import "BCKEANCodeCharacter.h"
 
 @interface BCKUPCECode () // private
 
-- (NSString *)bitString;
+- (BCKBarString *)barString;
 
 @end
 
 
-@interface BCKUPCECodeTest : SenTestCase
+@interface BCKUPCECodeTest : XCTestCase
 
 @end
 
@@ -26,13 +27,13 @@
 {
 	NSError *error;
 	BCKUPCECode *code = [[BCKUPCECode alloc] initWithContent:@"12345670" error:&error];
-	STAssertNotNil(code, [error localizedDescription]);
+	XCTAssertNotNil(code, @"%@", [error localizedDescription]);
 	
-	NSString *expected = @"101001001101111010100011011100100001010010001010101";
-	NSString *actual = [code bitString];
+	BCKBarString *expected = BCKBarStringFromNSString(@"101001001101111010100011011100100001010010001010101");
+	BCKBarString *actual = [code barString];
 	BOOL isEqual = [expected isEqualToString:actual];
 	
-	STAssertTrue(isEqual, @"Result from encoding incorrect");
+	XCTAssertTrue(isEqual, @"Result from encoding incorrect");
 }
 
 // text cannot be encoded
@@ -40,8 +41,8 @@
 {
 	NSError *error;
 	BCKUPCECode *code = [[BCKUPCECode alloc] initWithContent:@"1234567x" error:&error];
-	STAssertNil(code, @"Should not be able to encode non-digits in UPC-E");
-	STAssertNotNil(error, @"No error message returned");
+	XCTAssertNil(code, @"Should not be able to encode non-digits in UPC-E");
+	XCTAssertNotNil(error, @"No error message returned");
 }
 
 // only 8 digit numbers can be encoded
@@ -49,8 +50,8 @@
 {
 	NSError *error;
 	BCKUPCECode *code = [[BCKUPCECode alloc] initWithContent:@"1234567" error:&error];
-	STAssertNil(code, @"Should not be able to too few digits in UPC-E");
-	STAssertNotNil(error, @"No error message returned");
+	XCTAssertNil(code, @"Should not be able to too few digits in UPC-E");
+	XCTAssertNotNil(error, @"No error message returned");
 }
 
 @end

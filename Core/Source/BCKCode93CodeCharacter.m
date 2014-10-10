@@ -8,6 +8,7 @@
 
 #import "BCKCode93CodeCharacter.h"
 #import "BCKCode93ContentCodeCharacter.h"
+#import "BCKBarStringFunctions.h"
 
 @implementation BCKCode93CodeCharacter
 
@@ -16,13 +17,13 @@
 + (BCKCode93CodeCharacter *)startStopCodeCharacter;
 {
 	// An asterisk
-	return [[BCKCode93CodeCharacter alloc] initWithBitString:@"101011110" isMarker:YES];
+	return [[BCKCode93CodeCharacter alloc] initWithBars:BCKBarStringFromNSString(@"101011110") isMarker:YES];
 }
 
 + (BCKCode93CodeCharacter *)terminationBarCodeCharacter;
 {
 	// This is always a single bar, all other (content) code characters always end with a space
-	return [[BCKCode93CodeCharacter alloc] initWithBitString:@"1" isMarker:YES];
+	return [[BCKCode93CodeCharacter alloc] initWithBars:BCKBarStringFromNSString(@"1") isMarker:YES];
 }
 
 + (BCKCode93CodeCharacter *)codeCharacterForCharacter:(NSString *)character

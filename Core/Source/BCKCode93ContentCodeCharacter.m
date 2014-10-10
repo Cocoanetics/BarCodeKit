@@ -152,9 +152,9 @@ static char *char_encodings[NUMBER_OF_CODE93_CHARACTERS][2] = {
 }
 
 // Convert the character's encoding into a bit string. For example: 112113 becomes 101101000
-- (NSString *)_bitsForEncoding:(char *)encoding
+- (BCKBarString *)_barsForEncoding:(char *)encoding
 {
-	NSMutableString *tmpString = [NSMutableString string];
+	BCKMutableBarString *tmpString = [BCKMutableBarString string];
 	
 	for (NSUInteger index=0; index<strlen(encoding); index++)
 	{
@@ -165,11 +165,11 @@ static char *char_encodings[NUMBER_OF_CODE93_CHARACTERS][2] = {
 		{
 			if (isOddBit)
 			{
-				[tmpString appendString:@"1"];
+				[tmpString appendBar:BCKBarTypeFull];
 			}
 			else
 			{
-				[tmpString appendString:@"0"];
+				[tmpString appendBar:BCKBarTypeSpace];
 			}
 		}
 	}
@@ -177,7 +177,7 @@ static char *char_encodings[NUMBER_OF_CODE93_CHARACTERS][2] = {
 	return tmpString;
 }
 
-- (NSString *)bitString
+- (BCKBarString *)barString
 {
 	char *encoding = [self _encodingForCharacter:_character];
 	
@@ -186,7 +186,7 @@ static char *char_encodings[NUMBER_OF_CODE93_CHARACTERS][2] = {
 		return nil;
 	}
 	
-	return [[self _bitsForEncoding:encoding] copy];
+	return [[self _barsForEncoding:encoding] copy];
 }
 
 @end

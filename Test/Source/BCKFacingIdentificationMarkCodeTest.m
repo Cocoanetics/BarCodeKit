@@ -7,14 +7,15 @@
 //
 
 #import "BCKFacingIdentificationMarkCode.h"
+#import "BCKFacingIdentificationMarkCodeCharacter.h"
 
 @interface BCKFacingIdentificationMarkCode () // private
 
-- (NSString *)bitString;
+- (BCKBarString *)barString;
 
 @end
 
-@interface BCKFacingIdentificationMarkCodeTest : SenTestCase
+@interface BCKFacingIdentificationMarkCodeTest : XCTestCase
 
 @end
 
@@ -22,37 +23,37 @@
 
 - (void)testEncodeValid
 {
-    NSError *error = nil;
-    BCKFacingIdentificationMarkCode *code = [[BCKFacingIdentificationMarkCode alloc] initWithFIMType:BCKFIMTypeE error:&error];
-    
-    NSString *expected = @"100010000000100010";
-	NSString *actual = [code bitString];
+	NSError *error = nil;
+	BCKFacingIdentificationMarkCode *code = [[BCKFacingIdentificationMarkCode alloc] initWithFIMType:BCKFIMTypeE error:&error];
+	
+	BCKBarString *expected = BCKBarStringFromNSString(@"100010000000100010");
+	BCKBarString *actual = [code barString];
 	BOOL isEqual = [expected isEqualToString:actual];
 	
-	STAssertTrue(isEqual, @"Result from encoding a barcode incorrect");
+	XCTAssertTrue(isEqual, @"Result from encoding a barcode incorrect");
 }
 
 - (void)testEncodeValidAlternative
 {
-    NSError *error = nil;
-    BCKFacingIdentificationMarkCode *code = [[BCKFacingIdentificationMarkCode alloc] initWithContent:@"e" error:&error];
-    
-    NSString *expected = @"100010000000100010";
-	NSString *actual = [code bitString];
+	NSError *error = nil;
+	BCKFacingIdentificationMarkCode *code = [[BCKFacingIdentificationMarkCode alloc] initWithContent:@"e" error:&error];
+	
+	BCKBarString *expected = BCKBarStringFromNSString(@"100010000000100010");
+	BCKBarString *actual = [code barString];
 	BOOL isEqual = [expected isEqualToString:actual];
 	
-	STAssertTrue(isEqual, @"Result from encoding a barcode incorrect");
+	XCTAssertTrue(isEqual, @"Result from encoding a barcode incorrect");
 }
 
 - (void)testEncodeInvalidAlternative
 {
-    NSError *error = nil;
-    BCKFacingIdentificationMarkCode *code = [[BCKFacingIdentificationMarkCode alloc] initWithContent:@"f" error:&error];
-    
-	NSString *actual = [code bitString];
+	NSError *error = nil;
+	BCKFacingIdentificationMarkCode *code = [[BCKFacingIdentificationMarkCode alloc] initWithContent:@"f" error:&error];
 	
-	STAssertNil(actual, @"Barcode should be nil");
-	STAssertNotNil(error, @"Error object should not be nil");
+	BCKBarString *actual = [code barString];
+	
+	XCTAssertNil(actual, @"Barcode should be nil");
+	XCTAssertNotNil(error, @"Error object should not be nil");
 }
 
 

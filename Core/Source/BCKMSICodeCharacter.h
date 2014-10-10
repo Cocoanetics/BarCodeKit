@@ -18,19 +18,19 @@
  */
 
 /**
- Generates a MSI start marker code character.
- @returns the start marker code character.
+ Generates an MSI start marker code character.
+ @returns The start marker code character.
  */
 + (BCKMSICodeCharacter *)startMarkerCodeCharacter;
 
 /**
- Generates a MSI stop marker code character. Does not count as a marker.
- @returns the stop marker code character.
+ Generates an MSI stop marker code character.
+ @returns The stop marker code character.
  */
 + (BCKMSICodeCharacter *)stopMarkerCodeCharacter;
 
 /**
- Generates a code character to represent an MSI content character
+ Generates a code character to represent an MSI content character.
  @param character The character to encode.
  @returns The content code character.
  */

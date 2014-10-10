@@ -15,9 +15,11 @@
 #import "BCKCode128Code.h"
 #import "BCKMSICode.h"
 #import "BCKPharmacodeOneTrack.h"
+#import "BCKPOSTNETCode.h"
 #import "BCKStandard2of5Code.h"
 #import "BCKISBNCode.h"
 #import "BCKISSNCode.h"
+#import "BCKISMNCode.h"
 
 // code characters for EAN/UPC
 #import "BCKEANCodeCharacter.h"
@@ -64,6 +66,10 @@
 // code character for Pharmacode
 #import "BCKPharmaOneTrackContentCodeCharacter.h"
 
+// code character for POSTNET
+#import "BCKPOSTNETCodeCharacter.h"
+#import "BCKPOSTNETContentCodeCharacter.h"
+
 // code character for Standard 2 of 5
 #import "BCKStandard2of5CodeCharacter.h"
 #import "BCKStandard2of5ContentCodeCharacter.h"
@@ -72,6 +78,7 @@
 #import "NSError+BCKCode.h"
 
 // barcode rendering
+#import "BCKCodeFunctions.h"
 
 #if TARGET_OS_IPHONE
 	#import "UIImage+BarcodeKit.h"

@@ -9,14 +9,15 @@
 #import "BCKInterleaved2of5CodeCharacter.h"
 
 /**
- Specialized subclass of BCKInterleaved2of5CodeCharacter which represents two digits
+ Specialized subclass of BCKInterleaved2of5CodeCharacter which represents two digits.
  */
 @interface BCKInterleaved2of5DigitPairCodeCharacter : BCKInterleaved2of5CodeCharacter
 
 /**
- Initialises the class with a par of characters to be interleaved together.
- @param digit1 The first digit
- @param digit2 The second digit
+ Initialises the class with a pair of characters to be interleaved together.
+ @param digit1 The first digit.
+ @param digit2 The second digit.
+ @returns The encoded digit code character.
  */
 - (instancetype)initWithDigitCharacter1:(NSString *)digit1 andDigitCharacter2:(NSString *)digit2;
 

@@ -9,7 +9,7 @@
 #import "BCKCodeCharacter.h"
 
 /**
- Specialized class of BCKCodeCharacter used for generating Code93 barcodes
+ Specialized class of BCKCodeCharacter used for generating Code93 barcodes.
  */
 @interface BCKCode93CodeCharacter : BCKCodeCharacter
 
@@ -19,13 +19,13 @@
 
 /**
  Generates a Code93 start/stop code character.
- @returns the start/stop code character.
+ @returns The start/stop code character.
  */
 + (BCKCode93CodeCharacter *)startStopCodeCharacter;
 
 /**
  Generates a Code93 termination bar code character. The termination bar is always the last code character of an encoded Code93 barcode.
- @returns the termination bar code character.
+ @returns The termination bar code character.
  */
 + (BCKCode93CodeCharacter *)terminationBarCodeCharacter;
 

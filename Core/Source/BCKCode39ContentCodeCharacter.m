@@ -136,9 +136,9 @@ static char *char_encodings[NUMBER_OF_CODE39_CHARACTERS][2] = {
 	return NULL;
 }
 
-- (NSString *)_bitsForEncoding:(char *)encoding
+- (BCKBarString *)_barsForEncoding:(char *)encoding
 {
-	NSMutableString *tmpString = [NSMutableString string];
+	BCKMutableBarString *tmpString = [BCKMutableBarString string];
 	
 	for (NSUInteger index=0; index<strlen(encoding); index++)
 	{
@@ -148,25 +148,31 @@ static char *char_encodings[NUMBER_OF_CODE39_CHARACTERS][2] = {
 		{
 			case 'b':
 			{
-				[tmpString appendString:@"1"];
+				[tmpString appendBar:BCKBarTypeFull];
+				
 				break;
 			}
 				
 			case 'B':
 			{
-				[tmpString appendString:@"11"];
+				[tmpString appendBar:BCKBarTypeFull];
+				[tmpString appendBar:BCKBarTypeFull];
+				
 				break;
 			}
 				
 			case 'w':
 			{
-				[tmpString appendString:@"0"];
+				[tmpString appendBar:BCKBarTypeSpace];
+				
 				break;
 			}
 				
 			case 'W':
 			{
-				[tmpString appendString:@"00"];
+				[tmpString appendBar:BCKBarTypeSpace];
+				[tmpString appendBar:BCKBarTypeSpace];
+				
 				break;
 			}
 		}
@@ -175,7 +181,7 @@ static char *char_encodings[NUMBER_OF_CODE39_CHARACTERS][2] = {
 	return tmpString;
 }
 
-- (NSString *)bitString
+- (BCKBarString *)barString
 {
 	char *encoding = [self _encodingForCharacter:_character];
 	
@@ -184,7 +190,7 @@ static char *char_encodings[NUMBER_OF_CODE39_CHARACTERS][2] = {
 		return nil;
 	}
 	
-	return [[self _bitsForEncoding:encoding] copy];
+	return [self _barsForEncoding:encoding];
 }
 
 @end

@@ -17,7 +17,9 @@ This project lets you generate bar codes for a variety of code standards:
 - Facing Identification Mark (FIM)
 - EAN-2 and EAN-5 supplement codes
 - ISBN (10 and 13 digits)
+- ISMN
 - ISSN
+- POSTNET
 
 Documentation
 -------------
