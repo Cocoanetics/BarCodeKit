@@ -18,7 +18,7 @@
 @end
 
 
-@interface BCKCode93CodeTest : SenTestCase
+@interface BCKCode93CodeTest : XCTestCase
 
 @property BCKCode93Code *code;
 @property BCKCode93Code *codeFullASCII;
@@ -52,7 +52,7 @@
 	
 	BOOL isEqual = [expected.barString isEqual:actual.barString];
 	
-	STAssertTrue(isEqual, @"First character is not a start/stop code character");
+	XCTAssertTrue(isEqual, @"First character is not a start/stop code character");
 }
 
 - (void)testStopCodeCharacter
@@ -62,7 +62,7 @@
 	
 	BOOL isEqual = [expected.barString isEqual:actual.barString];
 	
-	STAssertTrue(isEqual, @"Second to last character is not a start/stop code character");
+	XCTAssertTrue(isEqual, @"Second to last character is not a start/stop code character");
 }
 
 - (void)testTerminationBarCodeCharacter
@@ -72,7 +72,7 @@
 	
 	BOOL isEqual = [expected.barString isEqual:actual.barString];
 	
-	STAssertTrue(isEqual, @"Last character is not a termination bar code character");
+	XCTAssertTrue(isEqual, @"Last character is not a termination bar code character");
 }
 
 - (void)testCharacterByValue
@@ -82,7 +82,7 @@
 	
 	BOOL isEqual = [expected.barString isEqual:actual.barString];
 	
-	STAssertTrue(isEqual, @"Initialising a content code generator by value is incorrect");
+	XCTAssertTrue(isEqual, @"Initialising a content code generator by value is incorrect");
 }
 
 - (void)testFirstModulo47CheckCodeCharacter
@@ -92,7 +92,7 @@
 	
 	BOOL isEqual = [expected.barString isEqual:actual.barString];
 	
-	STAssertTrue(isEqual, @"First modulo 47 check code character is incorrect");
+	XCTAssertTrue(isEqual, @"First modulo 47 check code character is incorrect");
 }
 
 - (void)testSecondModulo47CheckCodeCharacter
@@ -102,7 +102,7 @@
 	
 	BOOL isEqual = [expected.barString isEqual:actual.barString];
 	
-	STAssertTrue(isEqual, @"Second modulo 47 check code character is incorrect");
+	XCTAssertTrue(isEqual, @"Second modulo 47 check code character is incorrect");
 }
 
 // tests encoding a simple word
@@ -112,7 +112,7 @@
 	BCKBarString *actual = [self.codeSimple barString];
 	BOOL isEqual = [expected isEqualToString:actual];
 	
-	STAssertTrue(isEqual, @"Result from encoding simple barcode is incorrect");
+	XCTAssertTrue(isEqual, @"Result from encoding simple barcode is incorrect");
 }
 
 // tests encoding a regular (without full ASCII characters) barcode
@@ -122,14 +122,14 @@
 	BCKBarString *actual = [self.code barString];
 	BOOL isEqual = [expected isEqualToString:actual];
 	
-	STAssertTrue(isEqual, @"Result from encoding a barcode incorrect");
+	XCTAssertTrue(isEqual, @"Result from encoding a barcode incorrect");
 }
 
 - (void)testEncodeMultiCharacterCode
 {
 	BCKCode93ContentCodeCharacter *invalidCode = [[BCKCode93ContentCodeCharacter alloc] initWithCharacter:@"AA"];
 	
-	STAssertNil(invalidCode, @"Code character initialisation with a multi character string should not be possible");
+	XCTAssertNil(invalidCode, @"Code character initialisation with a multi character string should not be possible");
 }
 
 // tests encoding a barcode containing full ASCII characters
@@ -139,7 +139,7 @@
 	BCKBarString *actual = [self.codeFullASCII barString];
 	BOOL isEqual = [expected isEqualToString:actual];
 	
-	STAssertTrue(isEqual, @"Result from encoding a full ASCII incorrect");
+	XCTAssertTrue(isEqual, @"Result from encoding a full ASCII incorrect");
 }
 
 // tests encoding a barcode containing full ASCII characters \ and "
@@ -147,13 +147,13 @@
 {
 	NSError *error;
 	BCKCode93Code *fullASCIICode = [[BCKCode93Code alloc] initWithContent:@":\";<\\>" error:&error];     // content=:";<\>
-	STAssertNotNil(fullASCIICode, [error localizedDescription]);
+	XCTAssertNotNil(fullASCIICode, @"%@", [error localizedDescription]);
 
 	BCKBarString *expected = BCKBarStringFromNSString(@"1010111101110101101001110101110101101101001001110110101100010101110110101011010001110110101010110001110110101011000101001110101101001101010111101");
 	BCKBarString *actual = [fullASCIICode barString];
 	BOOL isEqual = [expected isEqualToString:actual];
 	
-	STAssertTrue(isEqual, @"Result from encoding a full ASCII with slashes and quotes is incorrect");
+	XCTAssertTrue(isEqual, @"Result from encoding a full ASCII with slashes and quotes is incorrect");
 }
 
 // tests encoding a barcode containing control characters STX and ENQ
@@ -161,13 +161,13 @@
 {
 	NSError *error;
 	BCKCode93Code *fullASCIICode = [[BCKCode93Code alloc] initWithContent:@"␂␅" error:&error];     // content=␂␅
-	STAssertNotNil(fullASCIICode, [error localizedDescription]);
+	XCTAssertNotNil(fullASCIICode, @"%@", [error localizedDescription]);
 
 	BCKBarString *expected = BCKBarStringFromNSString(@"1010111101001001101101001001001001101100100101010001101011010001010111101");
 	BCKBarString *actual = [fullASCIICode barString];
 	BOOL isEqual = [expected isEqualToString:actual];
 	
-	STAssertTrue(isEqual, @"Result from encoding a full ASCII with slashes and quotes is incorrect");
+	XCTAssertTrue(isEqual, @"Result from encoding a full ASCII with slashes and quotes is incorrect");
 }
 
 // tests encoding of long barcodes, particularly the modulo-47 checks
@@ -183,12 +183,12 @@
 		BCKBarString *expected = obj;
 		NSError *error;
 		longBarcode = [[BCKCode93Code alloc] initWithContent:key error:&error];
-		STAssertNotNil(longBarcode, [error localizedDescription]);
+		XCTAssertNotNil(longBarcode, @"%@", [error localizedDescription]);
 
 		BCKBarString *actual = [longBarcode barString];
 		isEqual = [expected isEqualToString:actual];
 		
-		STAssertTrue(isEqual, @"Result from encoding a long barcode is incorrect");
+		XCTAssertTrue(isEqual, @"Result from encoding a long barcode is incorrect");
 	}];
 }
 
@@ -199,12 +199,13 @@
     BOOL isEqual;
     
 	BCKCode93Code *codeFullASCII = [[BCKCode93Code alloc] initWithContent:@"abcdö123" error:&error];
-	STAssertNil(codeFullASCII, @"Should not be able to encode non full ASCII characters in BCKCode93Code");
+	XCTAssertNil(codeFullASCII, @"Should not be able to encode non full ASCII characters in BCKCode93Code");
+	
+	NSString *name = [BCKCode93Code barcodeDescription];
+    isEqual = [[error localizedDescription] isEqualToString:[NSString stringWithFormat:@"Character at index 4 'ö' cannot be encoded in %@", name]];
     
-    isEqual = [[error localizedDescription] isEqualToString:@"Character at index 4 'ö' cannot be encoded in BCKCode93Code"];
-    
-    STAssertNotNil(error, @"Error object should not be nil");
-    STAssertTrue(isEqual, @"Error message should indicate invalid content");
+    XCTAssertNotNil(error, @"Error object should not be nil");
+    XCTAssertTrue(isEqual, @"Error message should indicate invalid content");
 }
 
 @end

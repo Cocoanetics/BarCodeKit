@@ -15,7 +15,7 @@
 
 @end
 
-@interface BCKPharmacodeOneTrackTest : SenTestCase
+@interface BCKPharmacodeOneTrackTest : XCTestCase
 
 @end
 
@@ -38,18 +38,18 @@
     NSError *error = nil;
     
     BCKPharmacodeOneTrack *code = [[BCKPharmacodeOneTrack alloc] initWithContent:@"1234a" error:&error];
-	STAssertNil(code, @"Should not be able to encode alphanumeric characters in Pharmacode One Track");
-    STAssertNotNil(error, @"Error object should not be nil");
+	XCTAssertNil(code, @"Should not be able to encode alphanumeric characters in Pharmacode One Track");
+    XCTAssertNotNil(error, @"Error object should not be nil");
     error = nil;
     
     code = [[BCKPharmacodeOneTrack alloc] initWithContent:@"2" error:&error];
-	STAssertNil(code, @"Should not be able to encode integers less than 3");
-    STAssertNotNil(error, @"Error object should not be nil");
+	XCTAssertNil(code, @"Should not be able to encode integers less than 3");
+    XCTAssertNotNil(error, @"Error object should not be nil");
     error = nil;
     
     code = [[BCKPharmacodeOneTrack alloc] initWithContent:@"131071" error:&error];
-	STAssertNil(code, @"Should not be able to encode integers greater than 131070");
-    STAssertNotNil(error, @"Error object should not be nil");
+	XCTAssertNil(code, @"Should not be able to encode integers greater than 131070");
+    XCTAssertNotNil(error, @"Error object should not be nil");
 }
 
 - (void)testEncode
@@ -61,7 +61,7 @@
 	BCKBarString *actual = [code barString];
 	BOOL isEqual = [expected isEqualToString:actual];
     
-	STAssertTrue(isEqual, @"Result from encoding should be correct");
+	XCTAssertTrue(isEqual, @"Result from encoding should be correct");
 }
 
 

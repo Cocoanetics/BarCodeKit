@@ -10,7 +10,7 @@
 #import "BCKBarString.h"
 #import "BCKMutableBarString.h"
 
-@interface BCKCodeTest : SenTestCase
+@interface BCKCodeTest : XCTestCase
 
 @end
 
@@ -20,7 +20,7 @@
 {
     NSError *error = nil;
     
-    STAssertFalse([BCKCode canEncodeContent:@"12345" error:&error], @"BCKCode should always return NO for canEncodeContent:");
+    XCTAssertFalse([BCKCode canEncodeContent:@"12345" error:&error], @"BCKCode should always return NO for canEncodeContent:");
 }
 
 @end

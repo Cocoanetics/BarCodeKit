@@ -15,7 +15,7 @@
 
 @end
 
-@interface BCKFacingIdentificationMarkCodeTest : SenTestCase
+@interface BCKFacingIdentificationMarkCodeTest : XCTestCase
 
 @end
 
@@ -30,7 +30,7 @@
 	BCKBarString *actual = [code barString];
 	BOOL isEqual = [expected isEqualToString:actual];
 	
-	STAssertTrue(isEqual, @"Result from encoding a barcode incorrect");
+	XCTAssertTrue(isEqual, @"Result from encoding a barcode incorrect");
 }
 
 - (void)testEncodeValidAlternative
@@ -42,7 +42,7 @@
 	BCKBarString *actual = [code barString];
 	BOOL isEqual = [expected isEqualToString:actual];
 	
-	STAssertTrue(isEqual, @"Result from encoding a barcode incorrect");
+	XCTAssertTrue(isEqual, @"Result from encoding a barcode incorrect");
 }
 
 - (void)testEncodeInvalidAlternative
@@ -52,8 +52,8 @@
     
 	BCKBarString *actual = [code barString];
 	
-	STAssertNil(actual, @"Barcode should be nil");
-	STAssertNotNil(error, @"Error object should not be nil");
+	XCTAssertNil(actual, @"Barcode should be nil");
+	XCTAssertNotNil(error, @"Error object should not be nil");
 }
 
 

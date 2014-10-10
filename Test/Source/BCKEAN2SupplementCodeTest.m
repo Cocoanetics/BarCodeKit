@@ -15,7 +15,7 @@
 
 @end
 
-@interface BCKEAN2SupplementCodeTest : SenTestCase
+@interface BCKEAN2SupplementCodeTest : XCTestCase
 
 @end
 
@@ -29,7 +29,7 @@
     BCKBarString *expected = BCKBarStringFromNSString(@"010110110001010100001");
     
     BOOL isEqual = [expected isEqualToString:actual];
-	STAssertTrue(isEqual, @"Result from encoding simple barcode is incorrect");
+	XCTAssertTrue(isEqual, @"Result from encoding simple barcode is incorrect");
     
     error = nil;
     code = [[BCKEAN2SupplementCode alloc] initWithContent:@"03" error:&error];
@@ -37,30 +37,30 @@
     expected = BCKBarStringFromNSString(@"010110100111010100001");
     
     isEqual = [expected isEqualToString:actual];
-    STAssertTrue(isEqual, @"Result from encoding simple barcode is incorrect");
+    XCTAssertTrue(isEqual, @"Result from encoding simple barcode is incorrect");
 }
 
 - (void)testEncodeInvalid
 {
     NSError *error = nil;
     BCKEAN2SupplementCode *code = [[BCKEAN2SupplementCode alloc] initWithContent:@"100" error:&error];
-	STAssertNil(code, @"Should not be able to encode invalid content");
-    STAssertNotNil(error, @"Error object should not be nil");
+	XCTAssertNil(code, @"Should not be able to encode invalid content");
+    XCTAssertNotNil(error, @"Error object should not be nil");
     
     error = nil;
     code = [[BCKEAN2SupplementCode alloc] initWithContent:@"-1" error:&error];
-	STAssertNil(code, @"Should not be able to encode invalid content");
-    STAssertNotNil(error, @"Error object should not be nil");
+	XCTAssertNil(code, @"Should not be able to encode invalid content");
+    XCTAssertNotNil(error, @"Error object should not be nil");
 
     error = nil;
     code = [[BCKEAN2SupplementCode alloc] initWithContent:@"A" error:&error];
-	STAssertNil(code, @"Should not be able to encode invalid content");
-    STAssertNotNil(error, @"Error object should not be nil");
+	XCTAssertNil(code, @"Should not be able to encode invalid content");
+    XCTAssertNotNil(error, @"Error object should not be nil");
 
     error = nil;
     code = [[BCKEAN2SupplementCode alloc] initWithContent:@"(7" error:&error];
-	STAssertNil(code, @"Should not be able to encode invalid content");
-    STAssertNotNil(error, @"Error object should not be nil");
+	XCTAssertNil(code, @"Should not be able to encode invalid content");
+    XCTAssertNotNil(error, @"Error object should not be nil");
 }
 
 @end

@@ -15,7 +15,7 @@
 
 @end
 
-@interface BCKStandard2of5CodeTest : SenTestCase
+@interface BCKStandard2of5CodeTest : XCTestCase
 
 @end
 
@@ -26,8 +26,8 @@
     NSError *error = nil;
     
     BCKStandard2of5Code *code = [[BCKStandard2of5Code alloc] initWithContent:@"12345a" error:&error];
-	STAssertNil(code, @"Should not be able to encode alphanumeric characters in Standard 2 of 5");
-    STAssertNotNil(error, @"Error object should not be nil");
+	XCTAssertNil(code, @"Should not be able to encode alphanumeric characters in Standard 2 of 5");
+    XCTAssertNotNil(error, @"Error object should not be nil");
 }
 
 - (void)testEncodeValid
@@ -42,14 +42,14 @@
 	expected = BCKBarStringFromNSString(@"1101101011101010101110101110101011101110111010101010101110101110111010101110101101011");
 	actual = [code barString];
     isEqual = [expected isEqualToString:actual];
-	STAssertTrue(isEqual, @"Result from encoding simple barcode is incorrect");
+	XCTAssertTrue(isEqual, @"Result from encoding simple barcode is incorrect");
     
     error = nil;
     code = [[BCKStandard2of5Code alloc] initWithContent:@"1234" error:&error];
 	expected = BCKBarStringFromNSString(@"11011010111010101011101011101010111011101110101010101011101011101101011");
 	actual = [code barString];
     isEqual = [expected isEqualToString:actual];
-	STAssertTrue(isEqual, @"Result from encoding simple barcode is incorrect");
+	XCTAssertTrue(isEqual, @"Result from encoding simple barcode is incorrect");
 }
 
 @end

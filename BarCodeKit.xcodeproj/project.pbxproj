@@ -142,7 +142,6 @@
 		A735482C17F465BF00C1F7EC /* BCKGTINCode.m in Sources */ = {isa = PBXBuildFile; fileRef = A735482A17F465BF00C1F7EC /* BCKGTINCode.m */; };
 		A735482D17F465BF00C1F7EC /* BCKGTINCode.m in Sources */ = {isa = PBXBuildFile; fileRef = A735482A17F465BF00C1F7EC /* BCKGTINCode.m */; };
 		A7378D8217C222AD008921C4 /* BCKCode39ContentCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A7378D8117C222AD008921C4 /* BCKCode39ContentCodeCharacter.m */; };
-		A7378D9517C2584E008921C4 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7378D9417C2584E008921C4 /* SenTestingKit.framework */; };
 		A7378D9617C2584E008921C4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A764059A17B50F9100D45F51 /* Foundation.framework */; };
 		A7378D9717C2584E008921C4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A764059E17B50F9100D45F51 /* UIKit.framework */; };
 		A7378E0517C25A2D008921C4 /* BCKCode39CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A7378E0417C25A2D008921C4 /* BCKCode39CodeTest.m */; };
@@ -165,7 +164,6 @@
 		A764061C17B53AE700D45F51 /* BCKEANCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A764061B17B53AE700D45F51 /* BCKEANCodeCharacter.m */; };
 		A764062517B53B7B00D45F51 /* BCKEANDigitCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A764062417B53B7B00D45F51 /* BCKEANDigitCodeCharacter.m */; };
 		A7781E1817B6B301005B9604 /* BCKUPCECode.m in Sources */ = {isa = PBXBuildFile; fileRef = A7781E1717B6B301005B9604 /* BCKUPCECode.m */; };
-		A7CFEF2517EE040F006446C9 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7378D9417C2584E008921C4 /* SenTestingKit.framework */; };
 		A7CFEF3C17EE04C8006446C9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7CFEF3B17EE04C8006446C9 /* Cocoa.framework */; };
 		A7CFEF6317EE04E9006446C9 /* BarCodeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A7E1C97417B606AA007DB13A /* BarCodeKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A7CFEF6417EE04E9006446C9 /* BCKCodeCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = A7337C6A17C12C8800BC2D2D /* BCKCodeCharacter.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -476,8 +474,7 @@
 		A7378D8017C222AD008921C4 /* BCKCode39ContentCodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCode39ContentCodeCharacter.h; sourceTree = "<group>"; };
 		A7378D8117C222AD008921C4 /* BCKCode39ContentCodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode39ContentCodeCharacter.m; sourceTree = "<group>"; };
 		A7378D8E17C253FE008921C4 /* Setup Guide-template.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Setup Guide-template.markdown"; sourceTree = "<group>"; };
-		A7378D9317C2584E008921C4 /* Unit Tests (iOS).octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit Tests (iOS).octest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A7378D9417C2584E008921C4 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		A7378D9317C2584E008921C4 /* Unit Tests (iOS).xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit Tests (iOS).xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7378DFD17C258B1008921C4 /* UnitTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UnitTests-Prefix.pch"; sourceTree = "<group>"; };
 		A7378DFE17C258C5008921C4 /* UnitTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		A7378E0417C25A2D008921C4 /* BCKCode39CodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKCode39CodeTest.m; sourceTree = "<group>"; };
@@ -564,7 +561,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7378E0617C25C3F008921C4 /* libBarCodeKit.a in Frameworks */,
-				A7378D9517C2584E008921C4 /* SenTestingKit.framework in Frameworks */,
 				A7378D9717C2584E008921C4 /* UIKit.framework in Frameworks */,
 				A7378D9617C2584E008921C4 /* Foundation.framework in Frameworks */,
 			);
@@ -583,7 +579,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7CFEFB417EE0585006446C9 /* BarCodeKit.framework in Frameworks */,
-				A7CFEF2517EE040F006446C9 /* SenTestingKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1149,7 +1144,7 @@
 			isa = PBXGroup;
 			children = (
 				A76405EB17B52E9700D45F51 /* libBarCodeKit.a */,
-				A7378D9317C2584E008921C4 /* Unit Tests (iOS).octest */,
+				A7378D9317C2584E008921C4 /* Unit Tests (iOS).xctest */,
 				A7CFEF2417EE040F006446C9 /* Unit Tests (Mac).octest */,
 				A7CFEF3A17EE04C8006446C9 /* BarCodeKit.framework */,
 				A702E4B017FE916F00506B2B /* BarCodeKit.app */,
@@ -1167,7 +1162,6 @@
 				A764059C17B50F9100D45F51 /* CoreGraphics.framework */,
 				A764059E17B50F9100D45F51 /* UIKit.framework */,
 				A76405B917B50F9100D45F51 /* XCTest.framework */,
-				A7378D9417C2584E008921C4 /* SenTestingKit.framework */,
 				A7CFEF3B17EE04C8006446C9 /* Cocoa.framework */,
 				A7CFEF3D17EE04C8006446C9 /* Other Frameworks */,
 			);
@@ -1364,8 +1358,8 @@
 			);
 			name = "Unit Tests (iOS)";
 			productName = "BarCodeKit Tests";
-			productReference = A7378D9317C2584E008921C4 /* Unit Tests (iOS).octest */;
-			productType = "com.apple.product-type.bundle.ocunit-test";
+			productReference = A7378D9317C2584E008921C4 /* Unit Tests (iOS).xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		A76405EA17B52E9700D45F51 /* BarCodeKit (iOS) */ = {
 			isa = PBXNativeTarget;
@@ -1917,7 +1911,6 @@
 		A7378DA217C2584E008921C4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BundleLoaderDummy.app/BundleLoaderDummy";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1932,15 +1925,12 @@
 				INFOPLIST_FILE = "Test/UnitTests-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
 		A7378DA317C2584E008921C4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BundleLoaderDummy.app/BundleLoaderDummy";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1951,8 +1941,6 @@
 				INFOPLIST_FILE = "Test/UnitTests-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
