@@ -507,7 +507,7 @@
 		A7781E1617B6B301005B9604 /* BCKUPCECode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKUPCECode.h; sourceTree = "<group>"; };
 		A7781E1717B6B301005B9604 /* BCKUPCECode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKUPCECode.m; sourceTree = "<group>"; };
 		A77CEDA619E7F40800DBCEE7 /* Unit Tests (Mac).xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit Tests (Mac).xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A77CEDCB19E8050E00DBCEE7 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/BarCodeKit.strings; sourceTree = "<group>"; };
+		A77CEDCB19E8050E00DBCEE7 /* de */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/BarCodeKit.strings; sourceTree = "<group>"; };
 		A7CFEF3A17EE04C8006446C9 /* BarCodeKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BarCodeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7CFEF3B17EE04C8006446C9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		A7CFEF3E17EE04C8006446C9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
