@@ -3,6 +3,21 @@ Change Log
 
 This is the history of version updates.
 
+Version 1.3.0
+
+- FIXED: Assertion failure when draing barcodes into graphics context with translated CTM
+- ADDED: Error messages on barcode generation localized in English, Japanese and German
+- ADDED: BCKCodeDrawingReduceBleedOption for reducing bleed on thermo printers 
+- ADDED: POSTNET Implementation
+- ADDED: PLANET Implementation
+- ADDED: ISMN Implementation
+- ADDED: Added additional range and length checks to ISBN and ISMN
+- ADDED: Internal support for barcodes with partial bars
+- ADDED: BCKCodeDrawingCaptionFontPointSizeOption for specifying caption font size
+- ADDED: Share button to Demo which exports a PDF of any configured barcode via activity view
+- CHANGED: Internal implemention from NSString to BCKBarString
+- CHANGED: Migrated unit tests to XCTest
+
 Version 1.2.0
 
 - ADDED: Mac Compatibility
