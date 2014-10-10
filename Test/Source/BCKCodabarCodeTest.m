@@ -24,21 +24,21 @@
 
 - (void)testIsStartStop
 {
-    NSError *error = nil;
+	NSError *error = nil;
 	BCKCodabarCode *code = [[BCKCodabarCode alloc] initWithContent:@"A532263B" error:&error];
-    
-    // Loop through the codecharacters ensuring only the start/stop characters are marked as such
-    [[code codeCharacters] enumerateObjectsUsingBlock:^(BCKCodabarCodeCharacter *obj, NSUInteger idx, BOOL *stop)
-     {
-         if ( (idx != 0) && (idx != ([[code codeCharacters] count] - 1)) )
-         {
-             XCTAssertFalse(obj.isStartStop, @"Regular characters should not have isStartStop equal to YES");
-         }
-         else
-         {
-             XCTAssertTrue(obj.isStartStop, @"Start and stop characters must have isStartStop equal to YES");
-         }
-     }];
+	
+	// Loop through the codecharacters ensuring only the start/stop characters are marked as such
+	[[code codeCharacters] enumerateObjectsUsingBlock:^(BCKCodabarCodeCharacter *obj, NSUInteger idx, BOOL *stop)
+	 {
+		 if ( (idx != 0) && (idx != ([[code codeCharacters] count] - 1)) )
+		 {
+			 XCTAssertFalse(obj.isStartStop, @"Regular characters should not have isStartStop equal to YES");
+		 }
+		 else
+		 {
+			 XCTAssertTrue(obj.isStartStop, @"Start and stop characters must have isStartStop equal to YES");
+		 }
+	 }];
 }
 
 - (void)testEncodeValid
@@ -96,6 +96,5 @@
 	error = nil;
 	code = nil;
 }
-
 
 @end

@@ -23,101 +23,101 @@
 
 - (void)testEncodingInvalid
 {
-    NSError *error = nil;
-    
-    BCKPOSTNETCode *code = [[BCKPOSTNETCode alloc] initWithContent:@"12345a" error:&error];
+	NSError *error = nil;
+	
+	BCKPOSTNETCode *code = [[BCKPOSTNETCode alloc] initWithContent:@"12345a" error:&error];
 	XCTAssertNil(code, @"Should not be able to encode alphanumeric characters in POSTNET");
-    XCTAssertNotNil(error, @"Error object should not be nil");
+	XCTAssertNotNil(error, @"Error object should not be nil");
 }
 
 - (void)testEncodeValid
 {
-    NSError *error = nil;
-    BCKPOSTNETCode *code;
-    BCKBarString *expected;
-    BCKBarString *actual;
-    BOOL isEqual;
-    
-    code = [[BCKPOSTNETCode alloc] initWithContent:@"555551237" error:&error];
+	NSError *error = nil;
+	BCKPOSTNETCode *code;
+	BCKBarString *expected;
+	BCKBarString *actual;
+	BOOL isEqual;
+	
+	code = [[BCKPOSTNETCode alloc] initWithContent:@"555551237" error:&error];
 	expected = BCKBarStringFromNSString(@"10,010,010,0,010,010,0,010,010,0,010,010,0,010,010,0,0,0,01010,0,010,010,0,01010,010,0,0,010,0,010,0101");
 	actual = [code barString];
-    isEqual = [expected isEqualToString:actual];
+	isEqual = [expected isEqualToString:actual];
 	XCTAssertTrue(isEqual, @"Result from encoding simple barcode is incorrect");
 }
 
 - (void)testInvalidFormats
 {
-    NSError *error = nil;
-    BCKPOSTNETCode *code;
-    
-    code = [[BCKPOSTNETCode alloc] initWithZIP:@"555555" error:&error];
-    XCTAssertNotNil(error, @"Error must not be nil");
-    XCTAssertNil(code, @"ZIP code must be 5 digits");
-    
-    error = nil;
-    code = [[BCKPOSTNETCode alloc] initWithZIP:@"55555" andZipPlus4:@"123" error:&error];
-    XCTAssertNotNil(error, @"Error must not be nil");
-    XCTAssertNil(code, @"ZIP+4 code must be 4 digits");
-    
-    error = nil;
-    code = [[BCKPOSTNETCode alloc] initWithZIP:@"55555" andZipPlus4:@"1234" andDeliveryPointCode:@"3" error:&error];
-    XCTAssertNotNil(error, @"Error must not be nil");
-    XCTAssertNil(code, @"Delivery point code must be 2 digits");
-
-    error = nil;
-    code = [[BCKPOSTNETCode alloc] initWithZIP:@"" andZipPlus4:@"1234" andDeliveryPointCode:@"33" error:&error];
-    XCTAssertNotNil(error, @"Error must not be nil");
-    XCTAssertNil(code, @"ZIP code is required if ZIP+4 and delivery point are provided");
-
-    error = nil;
-    code = [[BCKPOSTNETCode alloc] initWithZIP:@"" andZipPlus4:@"" andDeliveryPointCode:@"33" error:&error];
-    XCTAssertNotNil(error, @"Error must not be nil");
-    XCTAssertNil(code, @"ZIP+4 code is required if delivery point is provided");
-
-    error = nil;
-    code = [[BCKPOSTNETCode alloc] initWithZIP:@"5555" andZipPlus4:@"" andDeliveryPointCode:@"33" error:&error];
-    XCTAssertNotNil(error, @"Error must not be nil");
-    XCTAssertNil(code, @"ZIP+4 code is required if delivery point is provided");
+	NSError *error = nil;
+	BCKPOSTNETCode *code;
+	
+	code = [[BCKPOSTNETCode alloc] initWithZIP:@"555555" error:&error];
+	XCTAssertNotNil(error, @"Error must not be nil");
+	XCTAssertNil(code, @"ZIP code must be 5 digits");
+	
+	error = nil;
+	code = [[BCKPOSTNETCode alloc] initWithZIP:@"55555" andZipPlus4:@"123" error:&error];
+	XCTAssertNotNil(error, @"Error must not be nil");
+	XCTAssertNil(code, @"ZIP+4 code must be 4 digits");
+	
+	error = nil;
+	code = [[BCKPOSTNETCode alloc] initWithZIP:@"55555" andZipPlus4:@"1234" andDeliveryPointCode:@"3" error:&error];
+	XCTAssertNotNil(error, @"Error must not be nil");
+	XCTAssertNil(code, @"Delivery point code must be 2 digits");
+	
+	error = nil;
+	code = [[BCKPOSTNETCode alloc] initWithZIP:@"" andZipPlus4:@"1234" andDeliveryPointCode:@"33" error:&error];
+	XCTAssertNotNil(error, @"Error must not be nil");
+	XCTAssertNil(code, @"ZIP code is required if ZIP+4 and delivery point are provided");
+	
+	error = nil;
+	code = [[BCKPOSTNETCode alloc] initWithZIP:@"" andZipPlus4:@"" andDeliveryPointCode:@"33" error:&error];
+	XCTAssertNotNil(error, @"Error must not be nil");
+	XCTAssertNil(code, @"ZIP+4 code is required if delivery point is provided");
+	
+	error = nil;
+	code = [[BCKPOSTNETCode alloc] initWithZIP:@"5555" andZipPlus4:@"" andDeliveryPointCode:@"33" error:&error];
+	XCTAssertNotNil(error, @"Error must not be nil");
+	XCTAssertNil(code, @"ZIP+4 code is required if delivery point is provided");
 }
 
 - (void)testValidFormats
 {
-    NSError *error = nil;
-    BCKPOSTNETCode *code;
-    BCKBarString *expected;
-    BCKBarString *actual;
-    BOOL isEqual;
-
-    code = [[BCKPOSTNETCode alloc] initWithZIP:@"55555" error:&error];
-    XCTAssertNil(error, @"Error must be nil");
-    expected = BCKBarStringFromNSString(@"10,010,010,0,010,010,0,010,010,0,010,010,0,010,010,0,010,010,01");
+	NSError *error = nil;
+	BCKPOSTNETCode *code;
+	BCKBarString *expected;
+	BCKBarString *actual;
+	BOOL isEqual;
+	
+	code = [[BCKPOSTNETCode alloc] initWithZIP:@"55555" error:&error];
+	XCTAssertNil(error, @"Error must be nil");
+	expected = BCKBarStringFromNSString(@"10,010,010,0,010,010,0,010,010,0,010,010,0,010,010,0,010,010,01");
 	actual = [code barString];
-    isEqual = [expected isEqualToString:actual];
+	isEqual = [expected isEqualToString:actual];
 	XCTAssertTrue(isEqual, @"Result from encoding ZIP is incorrect");
-    
-    error = nil;
-    code = [[BCKPOSTNETCode alloc] initWithZIP:@"55555" andZipPlus4:@"1237" error:&error];
-    XCTAssertNil(error, @"Error must be nil");
-    expected = BCKBarStringFromNSString(@"10,010,010,0,010,010,0,010,010,0,010,010,0,010,010,0,0,0,01010,0,010,010,0,01010,010,0,0,010,0,010,0101");
+	
+	error = nil;
+	code = [[BCKPOSTNETCode alloc] initWithZIP:@"55555" andZipPlus4:@"1237" error:&error];
+	XCTAssertNil(error, @"Error must be nil");
+	expected = BCKBarStringFromNSString(@"10,010,010,0,010,010,0,010,010,0,010,010,0,010,010,0,0,0,01010,0,010,010,0,01010,010,0,0,010,0,010,0101");
 	actual = [code barString];
-    isEqual = [expected isEqualToString:actual];
+	isEqual = [expected isEqualToString:actual];
 	XCTAssertTrue(isEqual, @"Result from encoding ZIP and ZIP+4 is incorrect");
-
-    error = nil;
-    code = [[BCKPOSTNETCode alloc] initWithZIP:@"80122" andZipPlus4:@"1905" error:&error];
-    XCTAssertNil(error, @"Error must be nil");
-    expected = BCKBarStringFromNSString(@"1010,0,010,01010,0,0,0,0,0,01010,0,010,010,0,010,010,0,0,0101010,010,0,01010,0,0,0,010,010,0,0,010,0101");
+	
+	error = nil;
+	code = [[BCKPOSTNETCode alloc] initWithZIP:@"80122" andZipPlus4:@"1905" error:&error];
+	XCTAssertNil(error, @"Error must be nil");
+	expected = BCKBarStringFromNSString(@"1010,0,010,01010,0,0,0,0,0,01010,0,010,010,0,010,010,0,0,0101010,010,0,01010,0,0,0,010,010,0,0,010,0101");
 	actual = [code barString];
-    isEqual = [expected isEqualToString:actual];
+	isEqual = [expected isEqualToString:actual];
 	XCTAssertTrue(isEqual, @"Result from encoding ZIP and ZIP+4 is incorrect");
-    
-    error = nil;
-    code = [[BCKPOSTNETCode alloc] initWithZIP:@"80122" andZipPlus4:@"1905" andDeliveryPointCode:@"22" error:&error];
-    XCTAssertNil(error, @"Error must be nil");
-    expected = BCKBarStringFromNSString(@"1010,0,010,01010,0,0,0,0,0,01010,0,010,010,0,010,010,0,0,0101010,010,0,01010,0,0,0,010,010,0,0,010,010,0,010,01010,0,010,01");
+	
+	error = nil;
+	code = [[BCKPOSTNETCode alloc] initWithZIP:@"80122" andZipPlus4:@"1905" andDeliveryPointCode:@"22" error:&error];
+	XCTAssertNil(error, @"Error must be nil");
+	expected = BCKBarStringFromNSString(@"1010,0,010,01010,0,0,0,0,0,01010,0,010,010,0,010,010,0,0,0101010,010,0,01010,0,0,0,010,010,0,0,010,010,0,010,01010,0,010,01");
 	actual = [code barString];
-    isEqual = [expected isEqualToString:actual];
-    XCTAssertTrue(isEqual, @"Result from encoding ZIP and ZIP+4 and delivery point code is incorrect");
+	isEqual = [expected isEqualToString:actual];
+	XCTAssertTrue(isEqual, @"Result from encoding ZIP and ZIP+4 and delivery point code is incorrect");
 }
 
 @end

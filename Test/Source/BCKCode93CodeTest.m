@@ -148,7 +148,7 @@
 	NSError *error;
 	BCKCode93Code *fullASCIICode = [[BCKCode93Code alloc] initWithContent:@":\";<\\>" error:&error];     // content=:";<\>
 	XCTAssertNotNil(fullASCIICode, @"%@", [error localizedDescription]);
-
+	
 	BCKBarString *expected = BCKBarStringFromNSString(@"1010111101110101101001110101110101101101001001110110101100010101110110101011010001110110101010110001110110101011000101001110101101001101010111101");
 	BCKBarString *actual = [fullASCIICode barString];
 	BOOL isEqual = [expected isEqualToString:actual];
@@ -162,7 +162,7 @@
 	NSError *error;
 	BCKCode93Code *fullASCIICode = [[BCKCode93Code alloc] initWithContent:@"␂␅" error:&error];     // content=␂␅
 	XCTAssertNotNil(fullASCIICode, @"%@", [error localizedDescription]);
-
+	
 	BCKBarString *expected = BCKBarStringFromNSString(@"1010111101001001101101001001001001101100100101010001101011010001010111101");
 	BCKBarString *actual = [fullASCIICode barString];
 	BOOL isEqual = [expected isEqualToString:actual];
@@ -184,7 +184,7 @@
 		NSError *error;
 		longBarcode = [[BCKCode93Code alloc] initWithContent:key error:&error];
 		XCTAssertNotNil(longBarcode, @"%@", [error localizedDescription]);
-
+		
 		BCKBarString *actual = [longBarcode barString];
 		isEqual = [expected isEqualToString:actual];
 		
@@ -195,17 +195,17 @@
 // tests encoding a barcode containing characters not included in full ASCII
 - (void)testEncodeNonFullASCII
 {
-    NSError *error = nil;
-    BOOL isEqual;
-    
+	NSError *error = nil;
+	BOOL isEqual;
+	
 	BCKCode93Code *codeFullASCII = [[BCKCode93Code alloc] initWithContent:@"abcdö123" error:&error];
 	XCTAssertNil(codeFullASCII, @"Should not be able to encode non full ASCII characters in BCKCode93Code");
 	
 	NSString *name = [BCKCode93Code barcodeDescription];
-    isEqual = [[error localizedDescription] isEqualToString:[NSString stringWithFormat:@"Character at index 4 'ö' cannot be encoded in %@", name]];
-    
-    XCTAssertNotNil(error, @"Error object should not be nil");
-    XCTAssertTrue(isEqual, @"Error message should indicate invalid content");
+	isEqual = [[error localizedDescription] isEqualToString:[NSString stringWithFormat:@"Character at index 4 'ö' cannot be encoded in %@", name]];
+	
+	XCTAssertNotNil(error, @"Error object should not be nil");
+	XCTAssertTrue(isEqual, @"Error message should indicate invalid content");
 }
 
 @end

@@ -23,10 +23,10 @@
 
 - (void)testEncodeValid
 {
-    NSError *error = nil;
-    BCKFacingIdentificationMarkCode *code = [[BCKFacingIdentificationMarkCode alloc] initWithFIMType:BCKFIMTypeE error:&error];
-    
-    BCKBarString *expected = BCKBarStringFromNSString(@"100010000000100010");
+	NSError *error = nil;
+	BCKFacingIdentificationMarkCode *code = [[BCKFacingIdentificationMarkCode alloc] initWithFIMType:BCKFIMTypeE error:&error];
+	
+	BCKBarString *expected = BCKBarStringFromNSString(@"100010000000100010");
 	BCKBarString *actual = [code barString];
 	BOOL isEqual = [expected isEqualToString:actual];
 	
@@ -35,10 +35,10 @@
 
 - (void)testEncodeValidAlternative
 {
-    NSError *error = nil;
-    BCKFacingIdentificationMarkCode *code = [[BCKFacingIdentificationMarkCode alloc] initWithContent:@"e" error:&error];
-    
-    BCKBarString *expected = BCKBarStringFromNSString(@"100010000000100010");
+	NSError *error = nil;
+	BCKFacingIdentificationMarkCode *code = [[BCKFacingIdentificationMarkCode alloc] initWithContent:@"e" error:&error];
+	
+	BCKBarString *expected = BCKBarStringFromNSString(@"100010000000100010");
 	BCKBarString *actual = [code barString];
 	BOOL isEqual = [expected isEqualToString:actual];
 	
@@ -47,9 +47,9 @@
 
 - (void)testEncodeInvalidAlternative
 {
-    NSError *error = nil;
-    BCKFacingIdentificationMarkCode *code = [[BCKFacingIdentificationMarkCode alloc] initWithContent:@"f" error:&error];
-    
+	NSError *error = nil;
+	BCKFacingIdentificationMarkCode *code = [[BCKFacingIdentificationMarkCode alloc] initWithContent:@"f" error:&error];
+	
 	BCKBarString *actual = [code barString];
 	
 	XCTAssertNil(actual, @"Barcode should be nil");

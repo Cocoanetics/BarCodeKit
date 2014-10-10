@@ -29,7 +29,7 @@
 	NSError *error;
 	BCKInterleaved2of5Code *code = [[BCKInterleaved2of5Code alloc] initWithContent:@"1234567890" error:&error];
 	XCTAssertNotNil(code, @"%@", [error localizedDescription]);
-
+	
 	BCKBarString *expected = BCKBarStringFromNSString(@"101011010010101100110110100101001101001100101010010101100110101101001100101101");
 	BCKBarString *actual = [code barString];
 	BOOL isEqual = [expected isEqualToString:actual];

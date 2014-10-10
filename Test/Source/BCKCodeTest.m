@@ -18,9 +18,9 @@
 
 - (void)testCanEncodeTestForBCKCode
 {
-    NSError *error = nil;
-    
-    XCTAssertFalse([BCKCode canEncodeContent:@"12345" error:&error], @"BCKCode should always return NO for canEncodeContent:");
+	NSError *error = nil;
+	
+	XCTAssertFalse([BCKCode canEncodeContent:@"12345" error:&error], @"BCKCode should always return NO for canEncodeContent:");
 }
 
 @end

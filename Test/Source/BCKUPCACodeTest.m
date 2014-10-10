@@ -26,11 +26,11 @@
 	NSError *error;
 	BCKUPCACode *code = [[BCKUPCACode alloc] initWithContent:@"088345100517" error:&error];
 	XCTAssertNotNil(code, @"%@", [error localizedDescription]);
-
+	
 	BCKBarString *expected = BCKBarStringFromNSString(@"10100011010110111011011101111010100011011000101010110011011100101110010100111011001101000100101");
 	BCKBarString *actual = [code barString];
 	BOOL isEqual = [expected isEqualToString:actual];
-
+	
 	XCTAssertTrue(isEqual, @"Result from encoding incorrect");
 }
 

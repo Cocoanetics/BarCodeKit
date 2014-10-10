@@ -23,14 +23,14 @@
 
 - (void)setUp
 {
-    [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+	[super setUp];
+	// Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
 - (void)tearDown
 {
-    // Put teardown code here. This method is called after the invocation of each test method in the class. 
-    [super tearDown];
+	// Put teardown code here. This method is called after the invocation of each test method in the class.
+	[super tearDown];
 }
 
 - (void)testEncode
@@ -55,24 +55,24 @@
 	BCKBarString *expected = BCKBarStringFromNSString(@"101100101010110110101101001011011001010101101101101101010010110110100101101010110100101010011010110110110100101011001");
 	BCKBarString *actual = [code barString];
 	BOOL isEqual = [expected isEqualToString:actual];
-
+	
 	XCTAssertTrue(isEqual, @"Result from encoding long contents incorrect");
 }
 
 // tests encoding a barcode containing characters not included in full ASCII
 - (void)testEncodeInvalid
 {
-    NSError *error = nil;
-    BOOL isEqual;
-    
+	NSError *error = nil;
+	BOOL isEqual;
+	
 	BCKCode11Code *codeFullASCII = [[BCKCode11Code alloc] initWithContent:@"123ö45" error:&error];
 	XCTAssertNil(codeFullASCII, @"Should not be able to encode invalid characters in BCKCode11Code");
 	
-		NSString *name = [BCKCode11Code barcodeDescription];
-    isEqual = [[error localizedDescription] isEqualToString:[NSString stringWithFormat:@"Character at index 3 'ö' cannot be encoded in %@", name]];
-    
-    XCTAssertNotNil(error, @"Error object should not be nil");
-    XCTAssertTrue(isEqual, @"Error message should indicate invalid content");
+	NSString *name = [BCKCode11Code barcodeDescription];
+	isEqual = [[error localizedDescription] isEqualToString:[NSString stringWithFormat:@"Character at index 3 'ö' cannot be encoded in %@", name]];
+	
+	XCTAssertNotNil(error, @"Error object should not be nil");
+	XCTAssertTrue(isEqual, @"Error message should indicate invalid content");
 }
 
 @end

@@ -43,28 +43,28 @@
 	NSError *error;
 	BCKCode39FullASCII *codeFullASCII = [[BCKCode39FullASCII alloc] initWithContent:@"a" error:&error];
 	XCTAssertNotNil(codeFullASCII, @"%@", [error localizedDescription]);
-
+	
 	BCKBarString *expected = BCKBarStringFromNSString(@"100101101101010010100100101101010010110100101101101");
 	BCKBarString *actual = [codeFullASCII barString];
 	BOOL isEqual = [expected isEqualToString:actual];
-   
+	
 	XCTAssertTrue(isEqual, @"Result from encoding a full ASCII incorrect");
 }
 
 // tests encoding a barcode containing characters not included in full ASCII
 - (void)testEncodeNonFullASCII
 {
-    NSError *error = nil;
-    BOOL isEqual;
-    
+	NSError *error = nil;
+	BOOL isEqual;
+	
 	BCKCode39FullASCII *codeFullASCII = [[BCKCode39FullASCII alloc] initWithContent:@"abcdö123" error:&error];
 	XCTAssertNil(codeFullASCII, @"Should not be able to encode non full ASCII characters in BCKCode39FullASCII");
 	
 	NSString *name = [BCKCode39FullASCII barcodeDescription];
-    isEqual = [[error localizedDescription] isEqualToString:[NSString stringWithFormat:@"Character at index 4 'ö' cannot be encoded in %@", name]];
-    
-    XCTAssertNotNil(error, @"Error object should not be nil");
-    XCTAssertTrue(isEqual, @"Error message should indicate invalid content");
+	isEqual = [[error localizedDescription] isEqualToString:[NSString stringWithFormat:@"Character at index 4 'ö' cannot be encoded in %@", name]];
+	
+	XCTAssertNotNil(error, @"Error object should not be nil");
+	XCTAssertTrue(isEqual, @"Error message should indicate invalid content");
 }
 
 // tests encoding a barcode containing full ASCII characters with the Modulo-43 check character

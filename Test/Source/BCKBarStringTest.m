@@ -40,7 +40,7 @@
 	
 	XCTAssertNotNil(mutableString, @"Should be able to create empty mutable string");
 	XCTAssertTrue([mutableString class] == [BCKMutableBarString class], @"Class should be BCKMutableBarString");
-
+	
 	NSUInteger length = [mutableString length];
 	XCTAssertEqual(length, (NSUInteger)0, @"Length should be 0");
 	
@@ -65,13 +65,13 @@
 {
 	BCKMutableBarString *mutableString1 = [BCKMutableBarString string];
 	[mutableString1 appendBar:BCKBarTypeSpace];
-
+	
 	BCKMutableBarString *mutableString2 = [BCKMutableBarString string];
 	[mutableString2 appendBar:BCKBarTypeFull];
-
+	
 	BCKMutableBarString *mutableString3 = [BCKMutableBarString string];
 	[mutableString3 appendBar:BCKBarTypeFull];
-
+	
 	XCTAssertFalse([mutableString1 isEqual:mutableString2], @"should be not equal");
 	XCTAssertTrue([mutableString2 isEqual:mutableString3], @"should be equal");
 }
