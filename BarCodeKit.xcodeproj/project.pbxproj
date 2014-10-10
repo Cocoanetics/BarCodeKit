@@ -102,10 +102,6 @@
 		A13B58E517C6A10200454150 /* BCKInterleaved2of5Code.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B58E417C6A10200454150 /* BCKInterleaved2of5Code.m */; };
 		A13B58E817C6A1C700454150 /* BCKInterleaved2of5CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B58E717C6A1C700454150 /* BCKInterleaved2of5CodeCharacter.m */; };
 		A13B58EB17C6A1E500454150 /* BCKInterleaved2of5DigitPairCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B58EA17C6A1E500454150 /* BCKInterleaved2of5DigitPairCodeCharacter.m */; };
-		A7015F14181BA804006EB671 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A764059A17B50F9100D45F51 /* Foundation.framework */; };
-		A7015F15181BA804006EB671 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A764059C17B50F9100D45F51 /* CoreGraphics.framework */; };
-		A7015F16181BA804006EB671 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A764059E17B50F9100D45F51 /* UIKit.framework */; };
-		A7015F46181BA896006EB671 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A7015F45181BA83B006EB671 /* main.m */; };
 		A702E4B117FE916F00506B2B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A764059A17B50F9100D45F51 /* Foundation.framework */; };
 		A702E4B217FE916F00506B2B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A764059C17B50F9100D45F51 /* CoreGraphics.framework */; };
 		A702E4B317FE916F00506B2B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A764059E17B50F9100D45F51 /* UIKit.framework */; };
@@ -284,13 +280,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		A7015F48181BA8FF006EB671 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A764058F17B50F9100D45F51 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A7015F12181BA804006EB671;
-			remoteInfo = BundleLoaderDummy;
-		};
 		A702E4F517FEBB9A00506B2B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A764058F17B50F9100D45F51 /* Project object */;
@@ -425,9 +414,6 @@
 		A13B58E717C6A1C700454150 /* BCKInterleaved2of5CodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKInterleaved2of5CodeCharacter.m; sourceTree = "<group>"; };
 		A13B58E917C6A1E500454150 /* BCKInterleaved2of5DigitPairCodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKInterleaved2of5DigitPairCodeCharacter.h; sourceTree = "<group>"; };
 		A13B58EA17C6A1E500454150 /* BCKInterleaved2of5DigitPairCodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKInterleaved2of5DigitPairCodeCharacter.m; sourceTree = "<group>"; };
-		A7015F13181BA804006EB671 /* BundleLoaderDummy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BundleLoaderDummy.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A7015F40181BA83B006EB671 /* BundleLoaderDummy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BundleLoaderDummy-Info.plist"; sourceTree = "<group>"; };
-		A7015F45181BA83B006EB671 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A702E48917FE902A00506B2B /* OCRB.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OCRB.ttf; sourceTree = "<group>"; };
 		A702E48A17FE902A00506B2B /* SampleBarcodes.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SampleBarcodes.plist; sourceTree = "<group>"; };
 		A702E48F17FE902A00506B2B /* BarCodeKit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BarCodeKit-Info.plist"; sourceTree = "<group>"; };
@@ -535,16 +521,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A7015F10181BA804006EB671 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A7015F15181BA804006EB671 /* CoreGraphics.framework in Frameworks */,
-				A7015F16181BA804006EB671 /* UIKit.framework in Frameworks */,
-				A7015F14181BA804006EB671 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A702E4AD17FE916E00506B2B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -824,15 +800,6 @@
 			name = "Interleaved 2 of 5";
 			sourceTree = "<group>";
 		};
-		A7015F3D181BA83B006EB671 /* BundleLoaderDummy */ = {
-			isa = PBXGroup;
-			children = (
-				A7015F40181BA83B006EB671 /* BundleLoaderDummy-Info.plist */,
-				A7015F45181BA83B006EB671 /* main.m */,
-			);
-			path = BundleLoaderDummy;
-			sourceTree = "<group>";
-		};
 		A702E48417FE902A00506B2B /* Demo */ = {
 			isa = PBXGroup;
 			children = (
@@ -1034,7 +1001,6 @@
 			children = (
 				A7378DFE17C258C5008921C4 /* UnitTests-Info.plist */,
 				A7378DFD17C258B1008921C4 /* UnitTests-Prefix.pch */,
-				A7015F3D181BA83B006EB671 /* BundleLoaderDummy */,
 				A7378DFC17C25892008921C4 /* Source */,
 			);
 			path = Test;
@@ -1149,7 +1115,6 @@
 				A7CFEF3A17EE04C8006446C9 /* BarCodeKit.framework */,
 				A702E4B017FE916F00506B2B /* BarCodeKit.app */,
 				A7E0B58C17FEBD4F0037B70C /* BarCodeKit.app */,
-				A7015F13181BA804006EB671 /* BundleLoaderDummy.app */,
 				A77CEDA619E7F40800DBCEE7 /* Unit Tests (Mac).xctest */,
 			);
 			name = Products;
@@ -1308,23 +1273,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		A7015F12181BA804006EB671 /* BundleLoaderDummy */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A7015F3B181BA805006EB671 /* Build configuration list for PBXNativeTarget "BundleLoaderDummy" */;
-			buildPhases = (
-				A7015F0F181BA804006EB671 /* Sources */,
-				A7015F10181BA804006EB671 /* Frameworks */,
-				A7015F11181BA804006EB671 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = BundleLoaderDummy;
-			productName = BundleLoaderDummy;
-			productReference = A7015F13181BA804006EB671 /* BundleLoaderDummy.app */;
-			productType = "com.apple.product-type.application";
-		};
 		A702E4AF17FE916E00506B2B /* Demo (iOS) */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A702E4D417FE916F00506B2B /* Build configuration list for PBXNativeTarget "Demo (iOS)" */;
@@ -1354,7 +1302,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				A7015F49181BA8FF006EB671 /* PBXTargetDependency */,
 				A7378E0817C25C43008921C4 /* PBXTargetDependency */,
 			);
 			name = "Unit Tests (iOS)";
@@ -1472,20 +1419,12 @@
 				A7CFEF3917EE04C8006446C9 /* BarCodeKit (Mac) */,
 				A7378D9217C2584E008921C4 /* Unit Tests (iOS) */,
 				A7378D8817C2519C008921C4 /* Documentation */,
-				A7015F12181BA804006EB671 /* BundleLoaderDummy */,
 				A77CEDA519E7F40800DBCEE7 /* Unit Tests (Mac) */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		A7015F11181BA804006EB671 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A702E4AE17FE916E00506B2B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1555,14 +1494,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		A7015F0F181BA804006EB671 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A7015F46181BA896006EB671 /* main.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A702E4AC17FE916E00506B2B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1779,11 +1710,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		A7015F49181BA8FF006EB671 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A7015F12181BA804006EB671 /* BundleLoaderDummy */;
-			targetProxy = A7015F48181BA8FF006EB671 /* PBXContainerItemProxy */;
-		};
 		A702E4F617FEBB9A00506B2B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A76405EA17B52E9700D45F51 /* BarCodeKit (iOS) */;
@@ -1828,38 +1754,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		A7015F37181BA805006EB671 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				INFOPLIST_FILE = "Test/BundleLoaderDummy/BundleLoaderDummy-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PRODUCT_NAME = BundleLoaderDummy;
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		A7015F38181BA805006EB671 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				INFOPLIST_FILE = "Test/BundleLoaderDummy/BundleLoaderDummy-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PRODUCT_NAME = BundleLoaderDummy;
-				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
 		A702E4D517FE916F00506B2B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2198,15 +2092,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A7015F3B181BA805006EB671 /* Build configuration list for PBXNativeTarget "BundleLoaderDummy" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A7015F37181BA805006EB671 /* Debug */,
-				A7015F38181BA805006EB671 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		A702E4D417FE916F00506B2B /* Build configuration list for PBXNativeTarget "Demo (iOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
