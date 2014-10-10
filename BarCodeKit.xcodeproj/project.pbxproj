@@ -29,7 +29,6 @@
 		6C4D158D17DDDE0800854E31 /* BCKCode11ContentCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4D158C17DDDE0800854E31 /* BCKCode11ContentCodeCharacter.m */; };
 		6C5487D7181A9686001E6FDA /* SampleBarcodes.plist in Resources */ = {isa = PBXBuildFile; fileRef = A702E48A17FE902A00506B2B /* SampleBarcodes.plist */; };
 		6C638D0E17F303C700CD3F1B /* BCKEAN2SupplementCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C638D0D17F303C600CD3F1B /* BCKEAN2SupplementCodeTest.m */; };
-		6C638D0F17F303C700CD3F1B /* BCKEAN2SupplementCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C638D0D17F303C600CD3F1B /* BCKEAN2SupplementCodeTest.m */; };
 		6C638D1E17F3040E00CD3F1B /* BCKEAN2SupplementCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C638D1C17F3040E00CD3F1B /* BCKEAN2SupplementCode.h */; };
 		6C638D1F17F3040E00CD3F1B /* BCKEAN2SupplementCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C638D1D17F3040E00CD3F1B /* BCKEAN2SupplementCode.m */; };
 		6C638D2017F3040E00CD3F1B /* BCKEAN2SupplementCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C638D1D17F3040E00CD3F1B /* BCKEAN2SupplementCode.m */; };
@@ -44,7 +43,6 @@
 		6C818CB217CCAA6300AEE26F /* BCKCode93CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C818CB117CCAA6300AEE26F /* BCKCode93CodeCharacter.m */; };
 		6C818CB517CCAC0400AEE26F /* BCKCode93ContentCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C818CB417CCAC0400AEE26F /* BCKCode93ContentCodeCharacter.m */; };
 		6C8B609D17FADC4E00C3C118 /* BCKISSNCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C8B609C17FADC4E00C3C118 /* BCKISSNCodeTest.m */; };
-		6C8B609E17FADC4E00C3C118 /* BCKISSNCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C8B609C17FADC4E00C3C118 /* BCKISSNCodeTest.m */; };
 		6C9302C317D733C400867E2E /* BCKCode39CodeModulo43.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9302C217D733C400867E2E /* BCKCode39CodeModulo43.m */; };
 		6C9302C617D7376400867E2E /* BCKCode39FullASCIIModulo43.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9302C517D7376400867E2E /* BCKCode39FullASCIIModulo43.m */; };
 		6C93DE7B17E1BF7A002F0BF5 /* NSError+BCKCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C93DE7A17E1BF7A002F0BF5 /* NSError+BCKCode.m */; };
@@ -64,17 +62,14 @@
 		6CAD9702180C0F96002DFADB /* BCKPOSTNETCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CAD9700180C0F96002DFADB /* BCKPOSTNETCode.m */; };
 		6CAD9703180C0F96002DFADB /* BCKPOSTNETCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CAD9700180C0F96002DFADB /* BCKPOSTNETCode.m */; };
 		6CAD9705180D4684002DFADB /* BCKPOSTNETCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CAD9704180D4684002DFADB /* BCKPOSTNETCodeTest.m */; };
-		6CAD9706180D4684002DFADB /* BCKPOSTNETCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CAD9704180D4684002DFADB /* BCKPOSTNETCodeTest.m */; };
 		6CB154A917F69462002C20F3 /* BCKISBNCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CB154A717F69462002C20F3 /* BCKISBNCode.h */; };
 		6CB154AA17F69462002C20F3 /* BCKISBNCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB154A817F69462002C20F3 /* BCKISBNCode.m */; };
 		6CB154AB17F69462002C20F3 /* BCKISBNCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB154A817F69462002C20F3 /* BCKISBNCode.m */; };
 		6CB154AD17F6AB95002C20F3 /* BCKISBNCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB154AC17F6AB95002C20F3 /* BCKISBNCodeTest.m */; };
-		6CB154AE17F6AB95002C20F3 /* BCKISBNCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB154AC17F6AB95002C20F3 /* BCKISBNCodeTest.m */; };
 		6CB166FE18113E16000029A0 /* BCKISMNCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CB166FC18113E16000029A0 /* BCKISMNCode.h */; };
 		6CB166FF18113E16000029A0 /* BCKISMNCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB166FD18113E16000029A0 /* BCKISMNCode.m */; };
 		6CB1670018113E16000029A0 /* BCKISMNCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB166FD18113E16000029A0 /* BCKISMNCode.m */; };
 		6CB1670218114468000029A0 /* BCKISMNCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB1670118114468000029A0 /* BCKISMNCodeTest.m */; };
-		6CB1670318114468000029A0 /* BCKISMNCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB1670118114468000029A0 /* BCKISMNCodeTest.m */; };
 		6CBCAD6317FAD30300C3EFB0 /* BCKISSNCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CBCAD6117FAD30300C3EFB0 /* BCKISSNCode.h */; };
 		6CBCAD6417FAD30300C3EFB0 /* BCKISSNCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBCAD6217FAD30300C3EFB0 /* BCKISSNCode.m */; };
 		6CBCAD6517FAD30300C3EFB0 /* BCKISSNCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBCAD6217FAD30300C3EFB0 /* BCKISSNCode.m */; };
@@ -85,12 +80,10 @@
 		6CC6BAAB17F191AB00F3ECCF /* BCKFacingIdentificationMarkCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC6BAA917F191AB00F3ECCF /* BCKFacingIdentificationMarkCode.m */; };
 		6CC6BAAC17F191AB00F3ECCF /* BCKFacingIdentificationMarkCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC6BAA917F191AB00F3ECCF /* BCKFacingIdentificationMarkCode.m */; };
 		6CC6BAAE17F1A3C000F3ECCF /* BCKFacingIdentificationMarkCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC6BAAD17F1A3C000F3ECCF /* BCKFacingIdentificationMarkCodeTest.m */; };
-		6CC6BAAF17F1A3C000F3ECCF /* BCKFacingIdentificationMarkCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC6BAAD17F1A3C000F3ECCF /* BCKFacingIdentificationMarkCodeTest.m */; };
 		6CCD744317F436BF00D293EE /* BCKEAN5SupplementCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CCD744117F436BF00D293EE /* BCKEAN5SupplementCode.h */; };
 		6CCD744417F436BF00D293EE /* BCKEAN5SupplementCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD744217F436BF00D293EE /* BCKEAN5SupplementCode.m */; };
 		6CCD744517F436BF00D293EE /* BCKEAN5SupplementCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD744217F436BF00D293EE /* BCKEAN5SupplementCode.m */; };
 		6CCD744717F43AAD00D293EE /* BCKEAN5SupplementCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD744617F43AAD00D293EE /* BCKEAN5SupplementCodeTest.m */; };
-		6CCD744817F43AAD00D293EE /* BCKEAN5SupplementCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD744617F43AAD00D293EE /* BCKEAN5SupplementCodeTest.m */; };
 		6CD088E117E1CA5B00B817B4 /* BCKPharmacodeOneTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD088E017E1CA5B00B817B4 /* BCKPharmacodeOneTrack.m */; };
 		6CE3E69917DF1D5400BFD408 /* BCKMSICodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CE3E69817DF1D5400BFD408 /* BCKMSICodeCharacter.m */; };
 		6CE3E69C17DF1D7D00BFD408 /* BCKMSIContentCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CE3E69B17DF1D7D00BFD408 /* BCKMSIContentCodeCharacter.m */; };
@@ -153,7 +146,6 @@
 		A760681F181011D200BF00E8 /* BCKMutableBarString.m in Sources */ = {isa = PBXBuildFile; fileRef = A760681D181011D200BF00E8 /* BCKMutableBarString.m */; };
 		A7606820181011D200BF00E8 /* BCKMutableBarString.m in Sources */ = {isa = PBXBuildFile; fileRef = A760681D181011D200BF00E8 /* BCKMutableBarString.m */; };
 		A760682418101FD900BF00E8 /* BCKBarStringTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A760682318101FD900BF00E8 /* BCKBarStringTest.m */; };
-		A760682518101FD900BF00E8 /* BCKBarStringTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A760682318101FD900BF00E8 /* BCKBarStringTest.m */; };
 		A76068281810308F00BF00E8 /* BCKBarStringFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = A76068261810308F00BF00E8 /* BCKBarStringFunctions.h */; };
 		A76068291810308F00BF00E8 /* BCKBarStringFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = A76068271810308F00BF00E8 /* BCKBarStringFunctions.m */; };
 		A760682A1810308F00BF00E8 /* BCKBarStringFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = A76068271810308F00BF00E8 /* BCKBarStringFunctions.m */; };
@@ -164,6 +156,31 @@
 		A764061C17B53AE700D45F51 /* BCKEANCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A764061B17B53AE700D45F51 /* BCKEANCodeCharacter.m */; };
 		A764062517B53B7B00D45F51 /* BCKEANDigitCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A764062417B53B7B00D45F51 /* BCKEANDigitCodeCharacter.m */; };
 		A7781E1817B6B301005B9604 /* BCKUPCECode.m in Sources */ = {isa = PBXBuildFile; fileRef = A7781E1717B6B301005B9604 /* BCKUPCECode.m */; };
+		A77CEDAF19E7F41000DBCEE7 /* BCKCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C93DE7C17E1C31F002F0BF5 /* BCKCodeTest.m */; };
+		A77CEDB019E7F41000DBCEE7 /* BCKCodabarCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA8DC4D17E402FA009F210C /* BCKCodabarCodeTest.m */; };
+		A77CEDB119E7F41000DBCEE7 /* BCKCode11CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4D158517DDDD2800854E31 /* BCKCode11CodeTest.m */; };
+		A77CEDB219E7F41000DBCEE7 /* BCKCode39CodeClassClusterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CAA398E17E863F700C2D422 /* BCKCode39CodeClassClusterTest.m */; };
+		A77CEDB319E7F41000DBCEE7 /* BCKCode39CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A7378E0417C25A2D008921C4 /* BCKCode39CodeTest.m */; };
+		A77CEDB419E7F41000DBCEE7 /* BCKCode39FullASCIITest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2AF51117D5EEAD00175AE0 /* BCKCode39FullASCIITest.m */; };
+		A77CEDB519E7F41000DBCEE7 /* BCKCode93CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C818CAB17CB6BF300AEE26F /* BCKCode93CodeTest.m */; };
+		A77CEDB619E7F41000DBCEE7 /* BCKCode128CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6CF87D17CA513E009C8994 /* BCKCode128CodeTest.m */; };
+		A77CEDB719E7F41000DBCEE7 /* BCKEAN13CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A7378E0917C25DF3008921C4 /* BCKEAN13CodeTest.m */; };
+		A77CEDB819E7F41000DBCEE7 /* BCKEAN2SupplementCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C638D0D17F303C600CD3F1B /* BCKEAN2SupplementCodeTest.m */; };
+		A77CEDB919E7F41000DBCEE7 /* BCKEAN5SupplementCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD744617F43AAD00D293EE /* BCKEAN5SupplementCodeTest.m */; };
+		A77CEDBA19E7F41000DBCEE7 /* BCKEAN8CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A7378E0B17C261D8008921C4 /* BCKEAN8CodeTest.m */; };
+		A77CEDBB19E7F41000DBCEE7 /* BCKFacingIdentificationMarkCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC6BAAD17F1A3C000F3ECCF /* BCKFacingIdentificationMarkCodeTest.m */; };
+		A77CEDBC19E7F41000DBCEE7 /* BCKInterleaved2of5CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B58E117C6A03A00454150 /* BCKInterleaved2of5CodeTest.m */; };
+		A77CEDBD19E7F41000DBCEE7 /* BCKISBNCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB154AC17F6AB95002C20F3 /* BCKISBNCodeTest.m */; };
+		A77CEDBE19E7F41000DBCEE7 /* BCKISSNCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C8B609C17FADC4E00C3C118 /* BCKISSNCodeTest.m */; };
+		A77CEDBF19E7F41000DBCEE7 /* BCKISMNCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB1670118114468000029A0 /* BCKISMNCodeTest.m */; };
+		A77CEDC019E7F41000DBCEE7 /* BCKMSICodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CE3E6A017DF202900BFD408 /* BCKMSICodeTest.m */; };
+		A77CEDC119E7F41000DBCEE7 /* BCKPharmacodeOneTrackTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFB2D5E17E1D30100017C55 /* BCKPharmacodeOneTrackTest.m */; };
+		A77CEDC219E7F41000DBCEE7 /* BCKPOSTNETCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CAD9704180D4684002DFADB /* BCKPOSTNETCodeTest.m */; };
+		A77CEDC319E7F41000DBCEE7 /* BCKStandard2of5CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF2308D17E9BA560065E50C /* BCKStandard2of5CodeTest.m */; };
+		A77CEDC419E7F41000DBCEE7 /* BCKUPCACodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD33EA417E81BD200CE0608 /* BCKUPCACodeTest.m */; };
+		A77CEDC519E7F41000DBCEE7 /* BCKUPCECodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A7378E0D17C263C7008921C4 /* BCKUPCECodeTest.m */; };
+		A77CEDC619E7F41000DBCEE7 /* BCKBarStringTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A760682318101FD900BF00E8 /* BCKBarStringTest.m */; };
+		A77CEDC919E7F45500DBCEE7 /* BarCodeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7CFEF3A17EE04C8006446C9 /* BarCodeKit.framework */; };
 		A7CFEF3C17EE04C8006446C9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7CFEF3B17EE04C8006446C9 /* Cocoa.framework */; };
 		A7CFEF6317EE04E9006446C9 /* BarCodeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A7E1C97417B606AA007DB13A /* BarCodeKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A7CFEF6417EE04E9006446C9 /* BCKCodeCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = A7337C6A17C12C8800BC2D2D /* BCKCodeCharacter.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -246,23 +263,6 @@
 		A7CFEFB117EE0559006446C9 /* BCKStandard2of5Code.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF2308B17E9B4790065E50C /* BCKStandard2of5Code.m */; };
 		A7CFEFB217EE0559006446C9 /* NSError+BCKCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C93DE7917E1BF7A002F0BF5 /* NSError+BCKCode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A7CFEFB317EE0559006446C9 /* NSError+BCKCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C93DE7A17E1BF7A002F0BF5 /* NSError+BCKCode.m */; };
-		A7CFEFB417EE0585006446C9 /* BarCodeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7CFEF3A17EE04C8006446C9 /* BarCodeKit.framework */; };
-		A7CFEFB717EE090B006446C9 /* BCKCodabarCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA8DC4D17E402FA009F210C /* BCKCodabarCodeTest.m */; };
-		A7CFEFB817EE090B006446C9 /* BCKCode11CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4D158517DDDD2800854E31 /* BCKCode11CodeTest.m */; };
-		A7CFEFB917EE090B006446C9 /* BCKCode39CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A7378E0417C25A2D008921C4 /* BCKCode39CodeTest.m */; };
-		A7CFEFBA17EE090B006446C9 /* BCKCode39FullASCIITest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2AF51117D5EEAD00175AE0 /* BCKCode39FullASCIITest.m */; };
-		A7CFEFBB17EE090B006446C9 /* BCKCode39CodeClassClusterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CAA398E17E863F700C2D422 /* BCKCode39CodeClassClusterTest.m */; };
-		A7CFEFBC17EE090B006446C9 /* BCKCode93CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C818CAB17CB6BF300AEE26F /* BCKCode93CodeTest.m */; };
-		A7CFEFBD17EE090B006446C9 /* BCKEAN13CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A7378E0917C25DF3008921C4 /* BCKEAN13CodeTest.m */; };
-		A7CFEFBE17EE090B006446C9 /* BCKEAN8CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A7378E0B17C261D8008921C4 /* BCKEAN8CodeTest.m */; };
-		A7CFEFBF17EE090B006446C9 /* BCKInterleaved2of5CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B58E117C6A03A00454150 /* BCKInterleaved2of5CodeTest.m */; };
-		A7CFEFC017EE090B006446C9 /* BCKUPCECodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A7378E0D17C263C7008921C4 /* BCKUPCECodeTest.m */; };
-		A7CFEFC117EE090B006446C9 /* BCKCode128CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6CF87D17CA513E009C8994 /* BCKCode128CodeTest.m */; };
-		A7CFEFC217EE090B006446C9 /* BCKMSICodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CE3E6A017DF202900BFD408 /* BCKMSICodeTest.m */; };
-		A7CFEFC317EE090B006446C9 /* BCKCodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C93DE7C17E1C31F002F0BF5 /* BCKCodeTest.m */; };
-		A7CFEFC417EE090B006446C9 /* BCKPharmacodeOneTrackTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFB2D5E17E1D30100017C55 /* BCKPharmacodeOneTrackTest.m */; };
-		A7CFEFC517EE090B006446C9 /* BCKUPCACodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD33EA417E81BD200CE0608 /* BCKUPCACodeTest.m */; };
-		A7CFEFC617EE090B006446C9 /* BCKStandard2of5CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF2308D17E9BA560065E50C /* BCKStandard2of5CodeTest.m */; };
 		A7E0B58D17FEBD4F0037B70C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7CFEF3B17EE04C8006446C9 /* Cocoa.framework */; };
 		A7E0B5BB17FEBDB30037B70C /* BarCodeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7CFEF3A17EE04C8006446C9 /* BarCodeKit.framework */; };
 		A7E0B5BD17FEBDE70037B70C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A702E49217FE902A00506B2B /* MainMenu.xib */; };
@@ -305,12 +305,12 @@
 			remoteGlobalIDString = A76405EA17B52E9700D45F51;
 			remoteInfo = "BarCodeKit (iOS)";
 		};
-		A7CFEFB517EE058B006446C9 /* PBXContainerItemProxy */ = {
+		A77CEDC719E7F44B00DBCEE7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A764058F17B50F9100D45F51 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = A7CFEF3917EE04C8006446C9;
-			remoteInfo = BarCodeKit;
+			remoteInfo = "BarCodeKit (Mac)";
 		};
 		A7E0B5B917FEBDAE0037B70C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -506,7 +506,7 @@
 		A764062417B53B7B00D45F51 /* BCKEANDigitCodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKEANDigitCodeCharacter.m; sourceTree = "<group>"; };
 		A7781E1617B6B301005B9604 /* BCKUPCECode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKUPCECode.h; sourceTree = "<group>"; };
 		A7781E1717B6B301005B9604 /* BCKUPCECode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKUPCECode.m; sourceTree = "<group>"; };
-		A7CFEF2417EE040F006446C9 /* Unit Tests (Mac).octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit Tests (Mac).octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A77CEDA619E7F40800DBCEE7 /* Unit Tests (Mac).xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit Tests (Mac).xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7CFEF3A17EE04C8006446C9 /* BarCodeKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BarCodeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7CFEF3B17EE04C8006446C9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		A7CFEF3E17EE04C8006446C9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -574,11 +574,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A7CFEF2117EE040F006446C9 /* Frameworks */ = {
+		A77CEDA319E7F40800DBCEE7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7CFEFB417EE0585006446C9 /* BarCodeKit.framework in Frameworks */,
+				A77CEDC919E7F45500DBCEE7 /* BarCodeKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1145,11 +1145,11 @@
 			children = (
 				A76405EB17B52E9700D45F51 /* libBarCodeKit.a */,
 				A7378D9317C2584E008921C4 /* Unit Tests (iOS).xctest */,
-				A7CFEF2417EE040F006446C9 /* Unit Tests (Mac).octest */,
 				A7CFEF3A17EE04C8006446C9 /* BarCodeKit.framework */,
 				A702E4B017FE916F00506B2B /* BarCodeKit.app */,
 				A7E0B58C17FEBD4F0037B70C /* BarCodeKit.app */,
 				A7015F13181BA804006EB671 /* BundleLoaderDummy.app */,
+				A77CEDA619E7F40800DBCEE7 /* Unit Tests (Mac).xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1378,23 +1378,23 @@
 			productReference = A76405EB17B52E9700D45F51 /* libBarCodeKit.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		A7CFEF2317EE040F006446C9 /* Unit Tests (Mac) */ = {
+		A77CEDA519E7F40800DBCEE7 /* Unit Tests (Mac) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A7CFEF3117EE040F006446C9 /* Build configuration list for PBXNativeTarget "Unit Tests (Mac)" */;
+			buildConfigurationList = A77CEDAC19E7F40800DBCEE7 /* Build configuration list for PBXNativeTarget "Unit Tests (Mac)" */;
 			buildPhases = (
-				A7CFEF2017EE040F006446C9 /* Sources */,
-				A7CFEF2117EE040F006446C9 /* Frameworks */,
-				A7CFEF2217EE040F006446C9 /* Resources */,
+				A77CEDA219E7F40800DBCEE7 /* Sources */,
+				A77CEDA319E7F40800DBCEE7 /* Frameworks */,
+				A77CEDA419E7F40800DBCEE7 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				A7CFEFB617EE058B006446C9 /* PBXTargetDependency */,
+				A77CEDC819E7F44B00DBCEE7 /* PBXTargetDependency */,
 			);
 			name = "Unit Tests (Mac)";
 			productName = "Unit Tests (Mac)";
-			productReference = A7CFEF2417EE040F006446C9 /* Unit Tests (Mac).octest */;
-			productType = "com.apple.product-type.bundle.ocunit-test";
+			productReference = A77CEDA619E7F40800DBCEE7 /* Unit Tests (Mac).xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		A7CFEF3917EE04C8006446C9 /* BarCodeKit (Mac) */ = {
 			isa = PBXNativeTarget;
@@ -1444,8 +1444,8 @@
 					A702E4AF17FE916E00506B2B = {
 						DevelopmentTeam = Z7L2YCUH45;
 					};
-					A7CFEF2317EE040F006446C9 = {
-						TestTargetID = A764059617B50F9100D45F51;
+					A77CEDA519E7F40800DBCEE7 = {
+						CreatedOnToolsVersion = 6.0.1;
 					};
 				};
 			};
@@ -1468,9 +1468,9 @@
 				A76405EA17B52E9700D45F51 /* BarCodeKit (iOS) */,
 				A7CFEF3917EE04C8006446C9 /* BarCodeKit (Mac) */,
 				A7378D9217C2584E008921C4 /* Unit Tests (iOS) */,
-				A7CFEF2317EE040F006446C9 /* Unit Tests (Mac) */,
 				A7378D8817C2519C008921C4 /* Documentation */,
 				A7015F12181BA804006EB671 /* BundleLoaderDummy */,
+				A77CEDA519E7F40800DBCEE7 /* Unit Tests (Mac) */,
 			);
 		};
 /* End PBXProject section */
@@ -1505,7 +1505,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A7CFEF2217EE040F006446C9 /* Resources */ = {
+		A77CEDA419E7F40800DBCEE7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1667,34 +1667,34 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A7CFEF2017EE040F006446C9 /* Sources */ = {
+		A77CEDA219E7F40800DBCEE7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7CFEFC517EE090B006446C9 /* BCKUPCACodeTest.m in Sources */,
-				6C638D0F17F303C700CD3F1B /* BCKEAN2SupplementCodeTest.m in Sources */,
-				A7CFEFBD17EE090B006446C9 /* BCKEAN13CodeTest.m in Sources */,
-				A7CFEFBB17EE090B006446C9 /* BCKCode39CodeClassClusterTest.m in Sources */,
-				6CCD744817F43AAD00D293EE /* BCKEAN5SupplementCodeTest.m in Sources */,
-				6C8B609E17FADC4E00C3C118 /* BCKISSNCodeTest.m in Sources */,
-				A7CFEFBA17EE090B006446C9 /* BCKCode39FullASCIITest.m in Sources */,
-				A7CFEFB917EE090B006446C9 /* BCKCode39CodeTest.m in Sources */,
-				A7CFEFC117EE090B006446C9 /* BCKCode128CodeTest.m in Sources */,
-				A7CFEFB817EE090B006446C9 /* BCKCode11CodeTest.m in Sources */,
-				A760682518101FD900BF00E8 /* BCKBarStringTest.m in Sources */,
-				A7CFEFBF17EE090B006446C9 /* BCKInterleaved2of5CodeTest.m in Sources */,
-				A7CFEFB717EE090B006446C9 /* BCKCodabarCodeTest.m in Sources */,
-				A7CFEFC017EE090B006446C9 /* BCKUPCECodeTest.m in Sources */,
-				6CB1670318114468000029A0 /* BCKISMNCodeTest.m in Sources */,
-				6CC6BAAF17F1A3C000F3ECCF /* BCKFacingIdentificationMarkCodeTest.m in Sources */,
-				A7CFEFC317EE090B006446C9 /* BCKCodeTest.m in Sources */,
-				A7CFEFBC17EE090B006446C9 /* BCKCode93CodeTest.m in Sources */,
-				A7CFEFC417EE090B006446C9 /* BCKPharmacodeOneTrackTest.m in Sources */,
-				6CAD9706180D4684002DFADB /* BCKPOSTNETCodeTest.m in Sources */,
-				A7CFEFBE17EE090B006446C9 /* BCKEAN8CodeTest.m in Sources */,
-				A7CFEFC617EE090B006446C9 /* BCKStandard2of5CodeTest.m in Sources */,
-				A7CFEFC217EE090B006446C9 /* BCKMSICodeTest.m in Sources */,
-				6CB154AE17F6AB95002C20F3 /* BCKISBNCodeTest.m in Sources */,
+				A77CEDB719E7F41000DBCEE7 /* BCKEAN13CodeTest.m in Sources */,
+				A77CEDC619E7F41000DBCEE7 /* BCKBarStringTest.m in Sources */,
+				A77CEDC119E7F41000DBCEE7 /* BCKPharmacodeOneTrackTest.m in Sources */,
+				A77CEDB519E7F41000DBCEE7 /* BCKCode93CodeTest.m in Sources */,
+				A77CEDBF19E7F41000DBCEE7 /* BCKISMNCodeTest.m in Sources */,
+				A77CEDB819E7F41000DBCEE7 /* BCKEAN2SupplementCodeTest.m in Sources */,
+				A77CEDBD19E7F41000DBCEE7 /* BCKISBNCodeTest.m in Sources */,
+				A77CEDC319E7F41000DBCEE7 /* BCKStandard2of5CodeTest.m in Sources */,
+				A77CEDB919E7F41000DBCEE7 /* BCKEAN5SupplementCodeTest.m in Sources */,
+				A77CEDBA19E7F41000DBCEE7 /* BCKEAN8CodeTest.m in Sources */,
+				A77CEDBC19E7F41000DBCEE7 /* BCKInterleaved2of5CodeTest.m in Sources */,
+				A77CEDB619E7F41000DBCEE7 /* BCKCode128CodeTest.m in Sources */,
+				A77CEDBB19E7F41000DBCEE7 /* BCKFacingIdentificationMarkCodeTest.m in Sources */,
+				A77CEDC519E7F41000DBCEE7 /* BCKUPCECodeTest.m in Sources */,
+				A77CEDC019E7F41000DBCEE7 /* BCKMSICodeTest.m in Sources */,
+				A77CEDBE19E7F41000DBCEE7 /* BCKISSNCodeTest.m in Sources */,
+				A77CEDB419E7F41000DBCEE7 /* BCKCode39FullASCIITest.m in Sources */,
+				A77CEDC219E7F41000DBCEE7 /* BCKPOSTNETCodeTest.m in Sources */,
+				A77CEDC419E7F41000DBCEE7 /* BCKUPCACodeTest.m in Sources */,
+				A77CEDAF19E7F41000DBCEE7 /* BCKCodeTest.m in Sources */,
+				A77CEDB319E7F41000DBCEE7 /* BCKCode39CodeTest.m in Sources */,
+				A77CEDB219E7F41000DBCEE7 /* BCKCode39CodeClassClusterTest.m in Sources */,
+				A77CEDB119E7F41000DBCEE7 /* BCKCode11CodeTest.m in Sources */,
+				A77CEDB019E7F41000DBCEE7 /* BCKCodabarCodeTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1791,10 +1791,10 @@
 			target = A76405EA17B52E9700D45F51 /* BarCodeKit (iOS) */;
 			targetProxy = A7378E0717C25C43008921C4 /* PBXContainerItemProxy */;
 		};
-		A7CFEFB617EE058B006446C9 /* PBXTargetDependency */ = {
+		A77CEDC819E7F44B00DBCEE7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A7CFEF3917EE04C8006446C9 /* BarCodeKit (Mac) */;
-			targetProxy = A7CFEFB517EE058B006446C9 /* PBXContainerItemProxy */;
+			targetProxy = A77CEDC719E7F44B00DBCEE7 /* PBXContainerItemProxy */;
 		};
 		A7E0B5BA17FEBDAE0037B70C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2046,15 +2046,16 @@
 			};
 			name = Release;
 		};
-		A7CFEF3217EE040F006446C9 /* Debug */ = {
+		A77CEDAD19E7F40800DBCEE7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Test/UnitTests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2062,32 +2063,35 @@
 					"$(inherited)",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = "Test/UnitTests-Info.plist";
-				OTHER_LDFLAGS = "-ObjC";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
-		A7CFEF3317EE040F006446C9 /* Release */ = {
+		A77CEDAE19E7F40800DBCEE7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Test/UnitTests-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = "Test/UnitTests-Info.plist";
-				OTHER_LDFLAGS = "-ObjC";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -2244,14 +2248,13 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A7CFEF3117EE040F006446C9 /* Build configuration list for PBXNativeTarget "Unit Tests (Mac)" */ = {
+		A77CEDAC19E7F40800DBCEE7 /* Build configuration list for PBXNativeTarget "Unit Tests (Mac)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A7CFEF3217EE040F006446C9 /* Debug */,
-				A7CFEF3317EE040F006446C9 /* Release */,
+				A77CEDAD19E7F40800DBCEE7 /* Debug */,
+				A77CEDAE19E7F40800DBCEE7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 		A7CFEF5D17EE04C8006446C9 /* Build configuration list for PBXNativeTarget "BarCodeKit (Mac)" */ = {
 			isa = XCConfigurationList;
