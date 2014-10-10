@@ -565,6 +565,7 @@ NSString * const BCKCodeDrawingReduceBleedOption = @"BCKCodeDrawingReduceBleed";
 	
 	if (![lines count])
 	{
+		CFRelease(frame);
 		return;
 	}
 	

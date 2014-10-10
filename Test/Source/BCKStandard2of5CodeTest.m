@@ -15,7 +15,7 @@
 
 @end
 
-@interface BCKStandard2of5CodeTest : SenTestCase
+@interface BCKStandard2of5CodeTest : XCTestCase
 
 @end
 
@@ -23,33 +23,33 @@
 
 - (void)testEncodeInvalid
 {
-    NSError *error = nil;
-    
-    BCKStandard2of5Code *code = [[BCKStandard2of5Code alloc] initWithContent:@"12345a" error:&error];
-	STAssertNil(code, @"Should not be able to encode alphanumeric characters in Standard 2 of 5");
-    STAssertNotNil(error, @"Error object should not be nil");
+	NSError *error = nil;
+	
+	BCKStandard2of5Code *code = [[BCKStandard2of5Code alloc] initWithContent:@"12345a" error:&error];
+	XCTAssertNil(code, @"Should not be able to encode alphanumeric characters in Standard 2 of 5");
+	XCTAssertNotNil(error, @"Error object should not be nil");
 }
 
 - (void)testEncodeValid
 {
-    NSError *error = nil;
-    BCKStandard2of5Code *code;
-    BCKBarString *expected;
-    BCKBarString *actual;
-    BOOL isEqual;
-
-    code = [[BCKStandard2of5Code alloc] initWithContent:@"1234" withModulo10:YES error:&error];
+	NSError *error = nil;
+	BCKStandard2of5Code *code;
+	BCKBarString *expected;
+	BCKBarString *actual;
+	BOOL isEqual;
+	
+	code = [[BCKStandard2of5Code alloc] initWithContent:@"1234" withModulo10:YES error:&error];
 	expected = BCKBarStringFromNSString(@"1101101011101010101110101110101011101110111010101010101110101110111010101110101101011");
 	actual = [code barString];
-    isEqual = [expected isEqualToString:actual];
-	STAssertTrue(isEqual, @"Result from encoding simple barcode is incorrect");
-    
-    error = nil;
-    code = [[BCKStandard2of5Code alloc] initWithContent:@"1234" error:&error];
+	isEqual = [expected isEqualToString:actual];
+	XCTAssertTrue(isEqual, @"Result from encoding simple barcode is incorrect");
+	
+	error = nil;
+	code = [[BCKStandard2of5Code alloc] initWithContent:@"1234" error:&error];
 	expected = BCKBarStringFromNSString(@"11011010111010101011101011101010111011101110101010101011101011101101011");
 	actual = [code barString];
-    isEqual = [expected isEqualToString:actual];
-	STAssertTrue(isEqual, @"Result from encoding simple barcode is incorrect");
+	isEqual = [expected isEqualToString:actual];
+	XCTAssertTrue(isEqual, @"Result from encoding simple barcode is incorrect");
 }
 
 @end

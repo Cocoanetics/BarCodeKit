@@ -32,8 +32,8 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A7CFEF2317EE040F006446C9"
-               BuildableName = "Unit Tests (Mac).octest"
+               BlueprintIdentifier = "A77CEDA519E7F40800DBCEE7"
+               BuildableName = "Unit Tests (Mac).xctest"
                BlueprintName = "Unit Tests (Mac)"
                ReferencedContainer = "container:BarCodeKit.xcodeproj">
             </BuildableReference>

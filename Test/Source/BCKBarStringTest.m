@@ -17,7 +17,7 @@
 @end
 
 
-@interface BCKBarStringTest : SenTestCase
+@interface BCKBarStringTest : XCTestCase
 
 @end
 
@@ -27,53 +27,53 @@
 {
 	BCKBarString *string = [BCKBarString string];
 	
-	STAssertNotNil(string, @"Should be able to create empty string");
-	STAssertTrue([string class] == [BCKBarString class], @"Class should be BCKBarString");
+	XCTAssertNotNil(string, @"Should be able to create empty string");
+	XCTAssertTrue([string class] == [BCKBarString class], @"Class should be BCKBarString");
 	
 	NSUInteger length = [string length];
-	STAssertEquals(length, (NSUInteger)0, @"Length should be 0");
+	XCTAssertEqual(length, (NSUInteger)0, @"Length should be 0");
 }
 
 - (void)testMutable
 {
 	BCKMutableBarString *mutableString = [BCKMutableBarString string];
 	
-	STAssertNotNil(mutableString, @"Should be able to create empty mutable string");
-	STAssertTrue([mutableString class] == [BCKMutableBarString class], @"Class should be BCKMutableBarString");
-
+	XCTAssertNotNil(mutableString, @"Should be able to create empty mutable string");
+	XCTAssertTrue([mutableString class] == [BCKMutableBarString class], @"Class should be BCKMutableBarString");
+	
 	NSUInteger length = [mutableString length];
-	STAssertEquals(length, (NSUInteger)0, @"Length should be 0");
+	XCTAssertEqual(length, (NSUInteger)0, @"Length should be 0");
 	
 	[mutableString appendBar:BCKBarTypeFull];
 	length = [mutableString length];
-	STAssertEquals(length, (NSUInteger)1, @"Length should be 1 after appending");
+	XCTAssertEqual(length, (NSUInteger)1, @"Length should be 1 after appending");
 	
 	BCKBarString *immutableString = [mutableString copy];
-	STAssertNotNil(mutableString, @"Should be able to create immutable copy");
+	XCTAssertNotNil(mutableString, @"Should be able to create immutable copy");
 	
 	length = [immutableString length];
-	STAssertEquals(length, (NSUInteger)1, @"Length should be 1 after copying");
-	STAssertTrue([immutableString class] == [BCKBarString class], @"Class should be BCKBarString");
+	XCTAssertEqual(length, (NSUInteger)1, @"Length should be 1 after copying");
+	XCTAssertTrue([immutableString class] == [BCKBarString class], @"Class should be BCKBarString");
 	
 	BCKMutableBarString *againMutableString = [immutableString mutableCopy];
 	length = [againMutableString length];
-	STAssertEquals(length, (NSUInteger)1, @"Length should be 1 after copying");
-	STAssertTrue([againMutableString class] == [BCKMutableBarString class], @"Class should be BCKMutableBarString");
+	XCTAssertEqual(length, (NSUInteger)1, @"Length should be 1 after copying");
+	XCTAssertTrue([againMutableString class] == [BCKMutableBarString class], @"Class should be BCKMutableBarString");
 }
 
 - (void)testEquality
 {
 	BCKMutableBarString *mutableString1 = [BCKMutableBarString string];
 	[mutableString1 appendBar:BCKBarTypeSpace];
-
+	
 	BCKMutableBarString *mutableString2 = [BCKMutableBarString string];
 	[mutableString2 appendBar:BCKBarTypeFull];
-
+	
 	BCKMutableBarString *mutableString3 = [BCKMutableBarString string];
 	[mutableString3 appendBar:BCKBarTypeFull];
-
-	STAssertFalse([mutableString1 isEqual:mutableString2], @"should be not equal");
-	STAssertTrue([mutableString2 isEqual:mutableString3], @"should be equal");
+	
+	XCTAssertFalse([mutableString1 isEqual:mutableString2], @"should be not equal");
+	XCTAssertTrue([mutableString2 isEqual:mutableString3], @"should be equal");
 }
 
 - (void)testStringConversion
@@ -81,12 +81,12 @@
 	BCKBarString *string = BCKBarStringFromNSString(@"1 0");
 	NSArray *bars = [string bars];
 	
-	STAssertTrue([bars count], @"There should be 2 bars");
+	XCTAssertTrue([bars count], @"There should be 2 bars");
 	
 	if ([bars count]==2)
 	{
-		STAssertTrue([string barAtIndex:0] == BCKBarTypeFull, @"There should be a full bar at index 0");
-		STAssertTrue([string barAtIndex:1] == BCKBarTypeSpace, @"There should be a full bar at index 0");
+		XCTAssertTrue([string barAtIndex:0] == BCKBarTypeFull, @"There should be a full bar at index 0");
+		XCTAssertTrue([string barAtIndex:1] == BCKBarTypeSpace, @"There should be a full bar at index 0");
 	}
 }
 
