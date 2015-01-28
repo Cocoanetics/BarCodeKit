@@ -63,3 +63,62 @@ gradle.taskGraph.whenReady { taskGraph ->
 	}
 
 }
+
+// ---------- FTP Publish ----------
+
+repositories {
+	mavenCentral()
+}
+
+configurations { 
+	ftpAntTask
+}
+
+dependencies {
+	ftpAntTask("org.apache.ant:ant-commons-net:1.9.+");
+}
+
+task documentationUpload << {
+	def uploadHost = 'docs.cocoanetics.com'
+	if (project.ext.properties.containsKey("uploadHost")) {
+		uploadHost = project.ext.uploadHost
+	}
+	
+	def uploadUser = null
+	if (project.ext.properties.containsKey("uploadUser")) {
+		uploadUser = project.ext.uploadUser
+	} else {
+		uploadUser = System.console().readLine("\nPlease enter the upload user: ")
+	}
+	
+	def uploadPassword = null
+	if (project.ext.properties.containsKey("uploadPassword")) {
+		uploadPassword = project.ext.uploadPassword
+	} else {
+		uploadPassword = "" + System.console().readPassword("\nPlease enter the upload server password: ")
+	}
+
+	def uploadDirectory = 'BarCodeKit'
+	if (project.ext.properties.containsKey("uploadDirectory")) {
+		uploadDirectory = project.ext.uploadDirectory
+	}
+
+
+	ant.ftp(
+		server: uploadHost,
+		remotedir: uploadDirectory,
+		userid: uploadUser,
+		password: uploadPassword,
+		depends: true,
+		verbose: true,
+		passive: true) {
+
+			fileset(dir: 'build/documentation/html') {
+				include(name: '**/**')
+			}
+			fileset(dir: 'build/documentation/publish') {
+				include(name: '**/**')
+			}
+	}
+
+}
