@@ -17,6 +17,9 @@ extern NSString * const BCKCodeDrawingDebugOption;
 extern NSString * const BCKCodeDrawingShowCheckDigitsOption;
 extern NSString * const BCKCodeDrawingBackgroundColorOption;
 extern NSString * const BCKCodeDrawingReduceBleedOption;
+extern NSString * const BCKCodeDrawingSizeWidthOption;
+extern NSString * const BCKCodeDrawingSizeHeightOption;
+extern NSString * const BCKCodeDrawingBarcodeHasQuiteZones;
 
 /**
  Caption Zones
@@ -216,7 +219,7 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
  @returns The size required to fit the barcode's rendered barcode symbol.
  */
 - (CGSize)sizeWithRenderOptions:(NSDictionary *)options;
-
+- (CGSize)sizeWithDirectOptions:(NSDictionary *)options;
 /**
  @name Getting Information about Barcodes
  */
