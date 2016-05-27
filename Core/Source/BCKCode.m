@@ -652,28 +652,28 @@ NSString * const BCKCodeDrawingBarcodeHasQuiteZones = @"BCKCodeDrawingBarcodeHas
 
 	CGSize size = CGSizeZero;
 	
-	if ([options objectForKey:BCKCodeDrawingSizeWidthOption]  &&
-		[options objectForKey:BCKCodeDrawingSizeHeightOption]
-		)
+	size.width = (length + 2.0f * horizontalQuietZoneWidth) * barScale;
+	
+	CGFloat aspectRatio = [self aspectRatio];
+	
+	if (aspectRatio)
 	{
-		size.width = [self _barcodeWidthFromOptions:options];
-		size.height = [self _barcodeHeightFromOptions:options];
+		size.height = ceilf(size.width / [self aspectRatio]);
 	}
 	else
 	{
-		size.width = (length + 2.0f * horizontalQuietZoneWidth) * barScale;
-		
-		CGFloat aspectRatio = [self aspectRatio];
-		
-		if (aspectRatio)
-		{
-			size.height = ceilf(size.width / [self aspectRatio]);
-		}
-		else
-		{
-			size.height = [self fixedHeight];
-		}
+		size.height = [self fixedHeight];
 	}
+	
+	
+	if ([options objectForKey:BCKCodeDrawingSizeWidthOption])
+	{
+		size.width = [self _barcodeWidthFromOptions:options];
+	}
+	if ([options objectForKey:BCKCodeDrawingSizeHeightOption]) {
+		size.height = [self _barcodeHeightFromOptions:options];
+	}
+	
 
 	return size;
 }

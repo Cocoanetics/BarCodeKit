@@ -194,6 +194,9 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
  - **BCKCodeDrawingShowCheckDigitsOption** - Whether check digits are to be included in the printed caption (default: `NO`)
  - **BCKCodeDrawingBackgroundColorOption** - The background color to fill the drawing canvas with (default: none)
  - **BCKCodeDrawingReduceBleedOption** - Bars are drawn less wide to counteract bleeding on thermo printers (default: `NO`)
+ - **BCKCodeDrawingSizeWidthOption** - Specify width of the barcode image
+ - **BCKCodeDrawingSizeHeightOption** - Specify height of the barcode image
+ - **BCKCodeDrawingBarcodeHasQuiteZones** - Enable/disable quite zones of the barcode
  
  */
 @interface BCKCode : NSObject <BCKCoding>
