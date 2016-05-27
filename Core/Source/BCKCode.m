@@ -286,8 +286,7 @@ NSString * const BCKCodeDrawingBarcodeHasQuiteZones = @"BCKCodeDrawingBarcodeHas
       }
       
       // at this point we need to come up with a sensible caption size ourselves
-//      CGSize size = [self sizeWithRenderOptions:options];
-	  CGSize size = [self sizeWithDirectOptions:options];
+      CGSize size = [self sizeWithRenderOptions:options];
       optimalCaptionFontSize = roundf(size.height / 5.0);
    }
 	
@@ -652,33 +651,32 @@ NSString * const BCKCodeDrawingBarcodeHasQuiteZones = @"BCKCodeDrawingBarcodeHas
 	NSUInteger length = [[self barString] length];
 
 	CGSize size = CGSizeZero;
-	size.width = (length + 2.0f * horizontalQuietZoneWidth) * barScale;
 	
-	CGFloat aspectRatio = [self aspectRatio];
-	
-	if (aspectRatio)
+	if ([options objectForKey:BCKCodeDrawingSizeWidthOption]  &&
+		[options objectForKey:BCKCodeDrawingSizeHeightOption]
+		)
 	{
-		size.height = ceilf(size.width / [self aspectRatio]);
+		size.width = [self _barcodeWidthFromOptions:options];
+		size.height = [self _barcodeHeightFromOptions:options];
 	}
 	else
 	{
-		size.height = [self fixedHeight];
+		size.width = (length + 2.0f * horizontalQuietZoneWidth) * barScale;
+		
+		CGFloat aspectRatio = [self aspectRatio];
+		
+		if (aspectRatio)
+		{
+			size.height = ceilf(size.width / [self aspectRatio]);
+		}
+		else
+		{
+			size.height = [self fixedHeight];
+		}
 	}
-	
+
 	return size;
 }
-
-
-- (CGSize)sizeWithDirectOptions:(NSDictionary *)options
-{
-	CGSize size = CGSizeZero;
-	size.width = [self _barcodeWidthFromOptions:options];
-	size.height = [self _barcodeHeightFromOptions:options];
-	return size;
-}
-
-
-
 
 - (CGRect)_calculateBarRectForType:(BCKBarType)barType andXOffset:(CGFloat)x andBarScale:(CGFloat)barScale andBarLength:(CGFloat)barLength
 {
@@ -728,18 +726,7 @@ NSString * const BCKCodeDrawingBarcodeHasQuiteZones = @"BCKCodeDrawingBarcodeHas
 	
 	CGFloat barScale = [self _barScaleFromOptions:options];
 	
-	CGSize size;
-	if ([options objectForKey:BCKCodeDrawingSizeWidthOption]  ||
-		[options objectForKey:BCKCodeDrawingSizeHeightOption]  ||
-		[options objectForKey:BCKCodeDrawingBarcodeHasQuiteZones]
-		)
-	{
-		size = [self sizeWithDirectOptions:options];
-	}
-	else
-	{
-		size = [self sizeWithRenderOptions:options];
-	}
+	CGSize size = [self sizeWithRenderOptions:options];
 	
 	CGRect bounds = (CGRect){CGPointZero, size};
 	

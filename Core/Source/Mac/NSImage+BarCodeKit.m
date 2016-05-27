@@ -15,18 +15,8 @@
 
 + (NSImage *)imageWithBarCode:(BCKCode *)barCode options:(NSDictionary *)options
 {
-	CGSize neededSize;
-	if ([options objectForKey:BCKCodeDrawingSizeWidthOption]  ||
-		[options objectForKey:BCKCodeDrawingSizeHeightOption]  ||
-		[options objectForKey:BCKCodeDrawingBarcodeHasQuiteZones]
-		)
-	{
-		neededSize = [barCode sizeWithDirectOptions:options];
-	}
-	else
-	{
-		neededSize = [barCode sizeWithRenderOptions:options];
-	}
+
+	CGSize neededSize = [barCode sizeWithRenderOptions:options];
 	
 	if (!neededSize.width || !neededSize.height)
 	{

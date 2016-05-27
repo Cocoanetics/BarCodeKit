@@ -219,7 +219,7 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
  @returns The size required to fit the barcode's rendered barcode symbol.
  */
 - (CGSize)sizeWithRenderOptions:(NSDictionary *)options;
-- (CGSize)sizeWithDirectOptions:(NSDictionary *)options;
+
 /**
  @name Getting Information about Barcodes
  */
