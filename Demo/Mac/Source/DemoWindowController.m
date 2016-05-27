@@ -28,6 +28,9 @@
 	 {
 		 _barScale = 1.0;
 		 _captionOverlap = 0;
+		 _height = 100;
+		 _width = 100;
+		 _captionSize = 10;
     }
     return self;
 }
@@ -47,6 +50,15 @@
 	
 	// setup defaults
 	self.showCaption = [[NSUserDefaults standardUserDefaults] boolForKey:@"BCKDemoShowCaption"];
+	
+}
+
+
+#pragma mark - nswindow delegate methods
+
+-(void)windowDidResize:(NSNotification *)notification {
+	[self.heightSlider setMaxValue: self.barcodeImageView.frame.size.height];
+	[self.widthSlider setMaxValue: self.barcodeImageView.frame.size.width];
 }
 
 #pragma mark - Utilities
@@ -199,12 +211,16 @@
 	CGFloat barScale = roundf(_barScale);
 	
 	NSDictionary *options = @{BCKCodeDrawingBarScaleOption: @(barScale),
-									  BCKCodeDrawingFillEmptyQuietZonesOption: @(_fillQuietZones),
-									  BCKCodeDrawingDebugOption: @(_showDebug),
-									  BCKCodeDrawingPrintCaptionOption: @(_showCaption),
-									  BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption: @(_captionOverlap),
-									  BCKCodeDrawingShowCheckDigitsOption: @(_showCheckDigits),
-									  BCKCodeDrawingBackgroundColorOption: [NSColor whiteColor]};
+							  BCKCodeDrawingFillEmptyQuietZonesOption: @(_fillQuietZones),
+							  BCKCodeDrawingDebugOption: @(_showDebug),
+							  BCKCodeDrawingPrintCaptionOption: @(_showCaption),
+							  BCKCodeDrawingMarkerBarsOverlapCaptionPercentOption: @(_captionOverlap),
+							  BCKCodeDrawingShowCheckDigitsOption: @(_showCheckDigits),
+							  BCKCodeDrawingSizeWidthOption:@(_width),
+							  BCKCodeDrawingSizeHeightOption:@(_height),
+							  BCKCodeDrawingCaptionFontPointSizeOption:@(_captionSize),
+							  BCKCodeDrawingBackgroundColorOption: [NSColor whiteColor]
+							  };
 
 	return [NSImage imageWithBarCode:_barcodeObject options:options];
 }
@@ -242,6 +258,39 @@
 	_barScale = barScale;
 	
 	[self didChangeValueForKey:@"barScale"];
+	
+	[self _updateWithOptions];
+}
+
+- (void)setHeight:(CGFloat)height
+{
+	[self willChangeValueForKey:@"height"];
+	
+	_height = height;
+	
+	[self didChangeValueForKey:@"height"];
+	
+	[self _updateWithOptions];
+}
+
+- (void)setWidth:(CGFloat)width
+{
+	[self willChangeValueForKey:@"width"];
+	
+	_width = width;
+	
+	[self didChangeValueForKey:@"width"];
+	
+	[self _updateWithOptions];
+}
+
+- (void)setCaptionSize:(CGFloat)captionSize
+{
+	[self willChangeValueForKey:@"captionSize"];
+	
+	_captionSize = captionSize;
+	
+	[self didChangeValueForKey:@"captionSize"];
 	
 	[self _updateWithOptions];
 }
@@ -289,6 +338,7 @@
 	
 	return NO;
 }
+
 
 
 @synthesize barcodeTypes = _barcodeTypes;
