@@ -218,6 +218,7 @@
 							  BCKCodeDrawingShowCheckDigitsOption: @(_showCheckDigits),
 							  BCKCodeDrawingSizeWidthOption:@(_width),
 							  BCKCodeDrawingSizeHeightOption:@(_height),
+							  BCKCodeDrawingBarcodeHasQuiteZones: @(NO),
 							  BCKCodeDrawingCaptionFontPointSizeOption:@(_captionSize),
 							  BCKCodeDrawingBackgroundColorOption: [NSColor whiteColor]
 							  };
