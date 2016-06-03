@@ -10,7 +10,7 @@
 
 @class BCKCode;
 
-@interface DemoWindowController : NSWindowController
+@interface DemoWindowController : NSWindowController <NSWindowDelegate>
 
 @property (nonatomic, strong) IBOutlet NSArrayController *barcodeArrayController;
 
@@ -26,8 +26,12 @@
 
 @property (nonatomic, assign) CGFloat barScale;
 
+@property (nonatomic, assign) CGFloat height;
+@property (nonatomic, assign) CGFloat width;
+
 
 @property (nonatomic, assign) CGFloat captionOverlap;
+@property (nonatomic, assign) CGFloat captionSize;
 @property (nonatomic, assign) BOOL canOverlapCaption;
 
 @property (nonatomic, assign) BOOL showDebug;
@@ -46,5 +50,9 @@
 
 @property (nonatomic, strong) NSString *errorMessage;
 @property (nonatomic, strong) NSImage *barcodeImage;
+
+@property (weak) IBOutlet NSImageView *barcodeImageView;
+@property (weak) IBOutlet NSSlider *widthSlider;
+@property (weak) IBOutlet NSSlider *heightSlider;
 
 @end

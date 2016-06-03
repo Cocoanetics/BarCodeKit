@@ -15,6 +15,7 @@
 
 + (NSImage *)imageWithBarCode:(BCKCode *)barCode options:(NSDictionary *)options
 {
+
 	CGSize neededSize = [barCode sizeWithRenderOptions:options];
 	
 	if (!neededSize.width || !neededSize.height)
