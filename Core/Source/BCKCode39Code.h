@@ -29,7 +29,7 @@
  @param error Optional output parameter to take an `NSError` in case the content cannot be encoded by this barcode class. Pass `nil` if not error information is not required.
  @return The requested BCKCode39Code (sub)class. Returns `nil` if the provided content cannot be encoded by the requested BCKCode39Code subclass, the error object will provide error details.
  */
-+ (instancetype)code93WithContent:(NSString *)content withModulo43:(BOOL)withModulo34 error:(NSError *__autoreleasing *)error;
++ (instancetype)code39WithContent:(NSString *)content withModulo43:(BOOL)withModulo34 error:(NSError *__autoreleasing *)error;
 
 /**
  Alternative initializer for subclasses of the BCKCode39Code class cluster. It will determine the correct subclass to use depending on whether the content includes full ASCII characters. A modulo 43 check digit character will NOT be included.
@@ -37,6 +37,6 @@
  @param error Optional output parameter to take an `NSError` in case the content cannot be encoded by this barcode class. Pass `nil` if not error information is not required.
  @return The requested BCKCode39Code (sub)class. Returns `nil` if the provided content cannot be encoded by the requested BCKCode39Code subclass, the error object will provide error details.
  */
-+ (instancetype)code93WithContent:(NSString *)content error:(NSError *__autoreleasing *)error;
++ (instancetype)code39WithContent:(NSString *)content error:(NSError *__autoreleasing *)error;
 
 @end

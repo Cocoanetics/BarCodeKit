@@ -18,25 +18,25 @@
 
 #pragma mark - Initialiser class methods
 
-+ (instancetype)code93WithContent:(NSString *)content error:(NSError *__autoreleasing *)error
++ (instancetype)code39WithContent:(NSString *)content error:(NSError *__autoreleasing *)error
 {
-	return [self code93WithContent:content withModulo43:NO error:error];
+	return [self code39WithContent:content withModulo43:NO error:error];
 }
 
-+ (instancetype)code93WithContent:(NSString *)content withModulo43:(BOOL)withModulo34 error:(NSError *__autoreleasing *)error
++ (instancetype)code39WithContent:(NSString *)content withModulo43:(BOOL)withModulo34 error:(NSError *__autoreleasing *)error
 {
 	BOOL isFullASCII = NO;
 	BOOL isNonFullASCII = NO;
 	
-	// Check if content can be encoded with a regular BCKCode93Code class, i.e. content does not include full ASCII characters
+	// Check if content can be encoded with a regular BCKCode39Code class, i.e. content does not include full ASCII characters
 	isNonFullASCII = [BCKCode39Code canEncodeContent:content error:nil];
 	if (!isNonFullASCII)
 	{
-		// Content contains characters that cannot be encoded using the BCKCode93Code class, now check if it contains full ASCII characters
+		// Content contains characters that cannot be encoded using the BCKCode39Code class, now check if it contains full ASCII characters
 		isFullASCII = [BCKCode39FullASCII canEncodeContent:content error:nil];
 	}
 	
-	// If both BOOLs are NO the content cannot be encoded by any of the BCKCode93Code classes, return nil
+	// If both BOOLs are NO the content cannot be encoded by any of the BCKCode39Code classes, return nil
 	if(!isNonFullASCII && !isFullASCII)
 	{
 		if (error)
