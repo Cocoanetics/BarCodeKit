@@ -23,6 +23,9 @@ NSString * const BCKCodeDrawingDebugOption = @"BCKCodeDrawingDebug";
 NSString * const BCKCodeDrawingShowCheckDigitsOption = @"BCKCodeDrawingShowCheckDigits";
 NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroundColor";
 NSString * const BCKCodeDrawingReduceBleedOption = @"BCKCodeDrawingReduceBleed";
+NSString * const BCKCodeDrawingSizeWidthOption = @"BCKCodeDrawingSizeWidthOption";
+NSString * const BCKCodeDrawingSizeHeightOption = @"BCKCodeDrawingSizeHeightOption";
+NSString * const BCKCodeDrawingBarcodeHasQuiteZones = @"BCKCodeDrawingBarcodeHasQuiteZones";
 
 #define ENCODE_ERROR_MESSAGE @"BCKCode is an abstract class that cannot encode anything"
 
@@ -164,7 +167,8 @@ NSString * const BCKCodeDrawingReduceBleedOption = @"BCKCodeDrawingReduceBleed";
 
 - (CGFloat)_horizontalQuietZoneWidthWithOptions:(NSDictionary *)options
 {
-	return ([self horizontalQuietZoneWidth]-1) * [self _barScaleFromOptions:options];
+	CGFloat quiteZone = ([self horizontalQuietZoneWidth]-1) * [self _barScaleFromOptions:options];
+	return quiteZone;
 }
 
 - (CGFloat)_leftCaptionZoneWidthWithOptions:(NSDictionary *)options
@@ -302,6 +306,23 @@ NSString * const BCKCodeDrawingReduceBleedOption = @"BCKCodeDrawingReduceBleed";
 		return 0;  // default
 	}
 }
+
+
+- (BOOL)_hasQuitezones:(NSDictionary *)options
+{
+	
+	NSNumber *num = [options objectForKey:BCKCodeDrawingBarcodeHasQuiteZones];
+	
+	if (num)
+	{
+		return [num boolValue];
+	}
+	else
+	{
+		return 0;  // default
+	}
+}
+
 
 - (BOOL)_shouldDrawCaptionFromOptions:(NSDictionary *)options
 {
@@ -459,6 +480,36 @@ NSString * const BCKCodeDrawingReduceBleedOption = @"BCKCodeDrawingReduceBleed";
 	}
 }
 
+
+- (CGFloat)_barcodeWidthFromOptions:(NSDictionary *)options
+{
+	NSNumber *barWidth = [options objectForKey:BCKCodeDrawingSizeWidthOption];
+	
+	if (barWidth)
+	{
+		return [barWidth floatValue];
+	}
+	else
+	{
+		return 120;  // default
+	}
+}
+
+- (CGFloat)_barcodeHeightFromOptions:(NSDictionary *)options
+{
+	NSNumber *barHeight = [options objectForKey:BCKCodeDrawingSizeHeightOption];
+	
+	if (barHeight)
+	{
+		return [barHeight floatValue];
+	}
+	else
+	{
+		return 40;  // default
+	}
+}
+
+
 #pragma mark - BCKCoding Methods
 
 + (NSString *)barcodeStandard
@@ -600,6 +651,7 @@ NSString * const BCKCodeDrawingReduceBleedOption = @"BCKCodeDrawingReduceBleed";
 	NSUInteger length = [[self barString] length];
 
 	CGSize size = CGSizeZero;
+	
 	size.width = (length + 2.0f * horizontalQuietZoneWidth) * barScale;
 	
 	CGFloat aspectRatio = [self aspectRatio];
@@ -613,6 +665,16 @@ NSString * const BCKCodeDrawingReduceBleedOption = @"BCKCodeDrawingReduceBleed";
 		size.height = [self fixedHeight];
 	}
 	
+	
+	if ([options objectForKey:BCKCodeDrawingSizeWidthOption])
+	{
+		size.width = [self _barcodeWidthFromOptions:options];
+	}
+	if ([options objectForKey:BCKCodeDrawingSizeHeightOption]) {
+		size.height = [self _barcodeHeightFromOptions:options];
+	}
+	
+
 	return size;
 }
 
@@ -663,7 +725,9 @@ NSString * const BCKCodeDrawingReduceBleedOption = @"BCKCodeDrawingReduceBleed";
 	CGContextSaveGState(context);
 	
 	CGFloat barScale = [self _barScaleFromOptions:options];
+	
 	CGSize size = [self sizeWithRenderOptions:options];
+	
 	CGRect bounds = (CGRect){CGPointZero, size};
 	
 	[self _drawBackgroundColorInContext:context bounds:bounds options:options];
@@ -711,7 +775,11 @@ NSString * const BCKCodeDrawingReduceBleedOption = @"BCKCodeDrawingReduceBleed";
 	__block CGRect rightNumberFrame = CGRectNull;
 	__block CGRect frameBetweenEndMarkers = CGRectNull;
 	__block CGRect rightQuietZoneNumberFrame = CGRectZero;
-	NSUInteger horizontalQuietZoneWidth = [self horizontalQuietZoneWidth];
+	NSUInteger horizontalQuietZoneWidth = 0;
+	if ([self _hasQuitezones:options]) {
+		horizontalQuietZoneWidth = [self horizontalQuietZoneWidth];
+	}
+	
 	BOOL useOverlap = [self markerBarsCanOverlapBottomCaption];
 	
 	__block BOOL metContent = NO;
