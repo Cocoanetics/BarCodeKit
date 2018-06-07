@@ -75,11 +75,6 @@ NSString * const BCKCodeDrawingBarcodeHasQuiteZones = @"BCKCodeDrawingBarcodeHas
 	return self;
 }
 
-- (instancetype)initWithContent:(NSString *)content
-{
-	return [self initWithContent:content error:NULL];
-}
-
 - (BCKBarString *)barString
 {
 	BCKMutableBarString	*tmpString = [BCKMutableBarString string];
@@ -372,7 +367,7 @@ NSString * const BCKCodeDrawingBarcodeHasQuiteZones = @"BCKCodeDrawingBarcodeHas
 - (NSAttributedString *)_attributedStringForCaptionText:(NSString *)text fontName:(NSString *)fontName fontSize:(CGFloat)fontSize
 {
 	// create a centered paragraph style
-	CTTextAlignment alignment = kCTCenterTextAlignment;
+	CTTextAlignment alignment = kCTTextAlignmentCenter;
 	CTParagraphStyleSetting settings[] = {{kCTParagraphStyleSpecifierAlignment, sizeof(alignment), &alignment}};
 	CTParagraphStyleRef paragraphStyle = CTParagraphStyleCreate(settings, 1);
 	

@@ -81,7 +81,7 @@
 #import "BCKCodeFunctions.h"
 
 #if TARGET_OS_IPHONE
-	#import "UIImage+BarcodeKit.h"
+	#import "UIImage+BarCodeKit.h"
 #else
-	#import "NSImage+BarcodeKit.h"
+	#import "NSImage+BarCodeKit.h"
 #endif
