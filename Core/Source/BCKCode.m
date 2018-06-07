@@ -25,7 +25,7 @@ NSString * const BCKCodeDrawingBackgroundColorOption = @"BCKCodeDrawingBackgroun
 NSString * const BCKCodeDrawingReduceBleedOption = @"BCKCodeDrawingReduceBleed";
 NSString * const BCKCodeDrawingSizeWidthOption = @"BCKCodeDrawingSizeWidthOption";
 NSString * const BCKCodeDrawingSizeHeightOption = @"BCKCodeDrawingSizeHeightOption";
-NSString * const BCKCodeDrawingBarcodeHasQuiteZones = @"BCKCodeDrawingBarcodeHasQuiteZones";
+NSString * const BCKCodeDrawingSuppressQuietZones = @"BCKCodeDrawingSuppressQuietZones";
 
 #define ENCODE_ERROR_MESSAGE @"BCKCode is an abstract class that cannot encode anything"
 
@@ -162,8 +162,12 @@ NSString * const BCKCodeDrawingBarcodeHasQuiteZones = @"BCKCodeDrawingBarcodeHas
 
 - (CGFloat)_horizontalQuietZoneWidthWithOptions:(NSDictionary *)options
 {
-	CGFloat quiteZone = ([self horizontalQuietZoneWidth]-1) * [self _barScaleFromOptions:options];
-	return quiteZone;
+	if ([[options objectForKey:BCKCodeDrawingSuppressQuietZones] boolValue])
+	{
+		return 0;
+	}
+	
+	return ([self horizontalQuietZoneWidth]-1) * [self _barScaleFromOptions:options];
 }
 
 - (CGFloat)_leftCaptionZoneWidthWithOptions:(NSDictionary *)options
@@ -301,23 +305,6 @@ NSString * const BCKCodeDrawingBarcodeHasQuiteZones = @"BCKCodeDrawingBarcodeHas
 		return 0;  // default
 	}
 }
-
-
-- (BOOL)_hasQuitezones:(NSDictionary *)options
-{
-	
-	NSNumber *num = [options objectForKey:BCKCodeDrawingBarcodeHasQuiteZones];
-	
-	if (num)
-	{
-		return [num boolValue];
-	}
-	else
-	{
-		return 0;  // default
-	}
-}
-
 
 - (BOOL)_shouldDrawCaptionFromOptions:(NSDictionary *)options
 {
@@ -642,7 +629,7 @@ NSString * const BCKCodeDrawingBarcodeHasQuiteZones = @"BCKCodeDrawingBarcodeHas
 - (CGSize)sizeWithRenderOptions:(NSDictionary *)options
 {
 	CGFloat barScale = [self _barScaleFromOptions:options];
-	NSUInteger horizontalQuietZoneWidth = [self horizontalQuietZoneWidth];
+	NSUInteger horizontalQuietZoneWidth = [self _horizontalQuietZoneWidthWithOptions:options];
 	NSUInteger length = [[self barString] length];
 
 	CGSize size = CGSizeZero;
@@ -770,11 +757,7 @@ NSString * const BCKCodeDrawingBarcodeHasQuiteZones = @"BCKCodeDrawingBarcodeHas
 	__block CGRect rightNumberFrame = CGRectNull;
 	__block CGRect frameBetweenEndMarkers = CGRectNull;
 	__block CGRect rightQuietZoneNumberFrame = CGRectZero;
-	NSUInteger horizontalQuietZoneWidth = 0;
-	if ([self _hasQuitezones:options]) {
-		horizontalQuietZoneWidth = [self horizontalQuietZoneWidth];
-	}
-	
+	NSUInteger horizontalQuietZoneWidth = [self _horizontalQuietZoneWidthWithOptions:options];
 	BOOL useOverlap = [self markerBarsCanOverlapBottomCaption];
 	
 	__block BOOL metContent = NO;

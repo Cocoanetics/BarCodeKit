@@ -19,7 +19,7 @@ extern NSString * const BCKCodeDrawingBackgroundColorOption;
 extern NSString * const BCKCodeDrawingReduceBleedOption;
 extern NSString * const BCKCodeDrawingSizeWidthOption;
 extern NSString * const BCKCodeDrawingSizeHeightOption;
-extern NSString * const BCKCodeDrawingBarcodeHasQuiteZones;
+extern NSString * const BCKCodeDrawingSuppressQuietZones;
 
 /**
  Caption Zones
@@ -196,7 +196,7 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
  - **BCKCodeDrawingReduceBleedOption** - Bars are drawn less wide to counteract bleeding on thermo printers (default: `NO`)
  - **BCKCodeDrawingSizeWidthOption** - Specify width of the barcode image
  - **BCKCodeDrawingSizeHeightOption** - Specify height of the barcode image
- - **BCKCodeDrawingBarcodeHasQuiteZones** - Enable/disable quite zones of the barcode
+ - **BCKCodeDrawingSuppressQuietZones** - Enable/disable quite zones of the barcode
  
  */
 @interface BCKCode : NSObject <BCKCoding>
