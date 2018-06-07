@@ -3,6 +3,16 @@ Change Log
 
 This is the history of version updates.
 
+Version 1.3.2
+
+- FIXED: Podspec didn't specify that pod is iOS compatible
+- FIXED: Some 9.4 warnings
+
+Version 1.3.1
+
+- ADDED: Option to specify explicit barcode size
+- FIXED: Incorrectly named methods and comments not matching the class name
+
 Version 1.3.0
 
 - FIXED: Assertion failure when draing barcodes into graphics context with translated CTM
