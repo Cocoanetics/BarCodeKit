@@ -164,7 +164,11 @@ NSString * const BCKCodeDrawingSuppressQuietZones = @"BCKCodeDrawingSuppressQuie
 {
 	if ([[options objectForKey:BCKCodeDrawingSuppressQuietZones] boolValue])
 	{
-		return 0;
+        // GTIN codes cannot suppress quiet zones if there is a caption showing
+        if (!([self isKindOfClass:[BCKGTINCode class]] && [self _shouldDrawCaptionFromOptions:options]))
+        {
+            return 0;
+        }
 	}
 	
 	return ([self horizontalQuietZoneWidth]-1) * [self _barScaleFromOptions:options];
