@@ -155,7 +155,7 @@ typedef NS_ENUM(NSUInteger, BCKCodeDrawingCaption)
  @param content The content string for the barcode.
  @return The requested BCKCode subclass. Returns `nil` if the content string cannot be encoded using the requested BCKCode subclass.
  */
-- (instancetype)initWithContent:(NSString *)content __attribute__((deprecated("use - [BCKCode initWithContent:error:] instead")));
+- (instancetype)initWithContent:(NSString *)content __attribute__((deprecated("use - [BCKCode initWithContent:error:] instead"))) NS_SWIFT_UNAVAILABLE("use `init(content:) throws` instead");
 
 @end
 
