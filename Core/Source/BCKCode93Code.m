@@ -155,9 +155,9 @@ NSString * const BCKCode93Modulo47CheckCharacterSecondOption = @"BCKCode93Modulo
 													 @"|": @"(%)Q",
 													 @"}": @"(%)R",
 													 @"~": @"(%)S",
-													 @"␡": @"(%)T",
-													 @"␡": @"(%)X",
-													 @"␡": @"(%)Y",
+//													 @"␡": @"(%)T",
+//													 @"␡": @"(%)X",
+//													 @"␡": @"(%)Y",
 													 @"␡": @"(%)Z"
 													 };
 	
