@@ -269,6 +269,65 @@
 		C6ECE92419C4D8E800BCD93C /* BarCodeKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = C6ECE92119C4D8E800BCD93C /* BarCodeKit.strings */; };
 		C6ECE92519C4D8E800BCD93C /* BarCodeKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = C6ECE92119C4D8E800BCD93C /* BarCodeKit.strings */; };
 		C6ECE92619C4D8E800BCD93C /* BarCodeKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = C6ECE92119C4D8E800BCD93C /* BarCodeKit.strings */; };
+		D52514FB2A4C94EE00077675 /* BarCodeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A7E1C97417B606AA007DB13A /* BarCodeKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52514FC2A4C958E00077675 /* BCKBarString.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CEE64AA180E97FB00D40D1D /* BCKBarString.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52514FD2A4C958E00077675 /* BCKBarStringFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = A76068261810308F00BF00E8 /* BCKBarStringFunctions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52514FE2A4C958E00077675 /* BCKMutableBarString.h in Headers */ = {isa = PBXBuildFile; fileRef = A760681C181011D200BF00E8 /* BCKMutableBarString.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52514FF2A4C965A00077675 /* NSError+BCKCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C93DE7917E1BF7A002F0BF5 /* NSError+BCKCode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52515002A4C965A00077675 /* BCKCodeFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = A730FFC418C09B4E00BABCDA /* BCKCodeFunctions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E08562A4C913200A7A325 /* UIImage+BarCodeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A721D0BE17FEFBD700A82189 /* UIImage+BarCodeKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E08572A4C91D200A7A325 /* BCKCodeCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = A7337C6A17C12C8800BC2D2D /* BCKCodeCharacter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E08582A4C91D200A7A325 /* BCKEANCodeCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = A764061A17B53AE700D45F51 /* BCKEANCodeCharacter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E08592A4C91D200A7A325 /* BCKEANDigitCodeCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = A764062317B53B7B00D45F51 /* BCKEANDigitCodeCharacter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E085A2A4C91D200A7A325 /* BCKUPCCodeCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = EAD33EAD17E8825800CE0608 /* BCKUPCCodeCharacter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E085B2A4C91D200A7A325 /* BCKGTINSupplementCodeCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C66048617F5850A0016E17E /* BCKGTINSupplementCodeCharacter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E085C2A4C91D200A7A325 /* BCKGTINSupplementDataCodeCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C66048B17F5851D0016E17E /* BCKGTINSupplementDataCodeCharacter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E085D2A4C91D200A7A325 /* BCKCodabarCodeCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CA8DC5017E403B2009F210C /* BCKCodabarCodeCharacter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E085E2A4C91D200A7A325 /* BCKCodabarContentCodeCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CA8DC5317E403C5009F210C /* BCKCodabarContentCodeCharacter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E085F2A4C91D200A7A325 /* BCKCode11CodeCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C4D158817DDDDF000854E31 /* BCKCode11CodeCharacter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E08602A4C91D200A7A325 /* BCKCode11ContentCodeCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C4D158B17DDDE0800854E31 /* BCKCode11ContentCodeCharacter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E08612A4C91D200A7A325 /* BCKCode128CodeCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = EA6CF87A17CA500A009C8994 /* BCKCode128CodeCharacter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E08622A4C91D200A7A325 /* BCKCode128ContentCodeCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = EA6CF87F17CA563F009C8994 /* BCKCode128ContentCodeCharacter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E08632A4C91D200A7A325 /* NSString+BCKCode128Helpers.h in Headers */ = {isa = PBXBuildFile; fileRef = EA0EF7DD17D3ACB500015F7B /* NSString+BCKCode128Helpers.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E08642A4C91D200A7A325 /* BCKCode39CodeCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = A7337C6717C1276700BC2D2D /* BCKCode39CodeCharacter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E08652A4C91D200A7A325 /* BCKCode39ContentCodeCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = A7378D8017C222AD008921C4 /* BCKCode39ContentCodeCharacter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E08662A4C91D200A7A325 /* BCKCode93CodeCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C818CB017CCAA6300AEE26F /* BCKCode93CodeCharacter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E08672A4C91D200A7A325 /* BCKCode93ContentCodeCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C818CB317CCAC0400AEE26F /* BCKCode93ContentCodeCharacter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E08682A4C91D200A7A325 /* BCKFacingIdentificationMarkCodeCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CC6BAA317F1910200F3ECCF /* BCKFacingIdentificationMarkCodeCharacter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E08692A4C91D200A7A325 /* BCKInterleaved2of5CodeCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = A13B58E617C6A1C700454150 /* BCKInterleaved2of5CodeCharacter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E086A2A4C91D200A7A325 /* BCKInterleaved2of5DigitPairCodeCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = A13B58E917C6A1E500454150 /* BCKInterleaved2of5DigitPairCodeCharacter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E086B2A4C91D200A7A325 /* BCKMSICodeCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CE3E69717DF1D5400BFD408 /* BCKMSICodeCharacter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E086C2A4C91D200A7A325 /* BCKMSIContentCodeCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CE3E69A17DF1D7D00BFD408 /* BCKMSIContentCodeCharacter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E086D2A4C91D200A7A325 /* BCKPharmaOneTrackContentCodeCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CFB2D6117E1D6AE00017C55 /* BCKPharmaOneTrackContentCodeCharacter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E086E2A4C91D200A7A325 /* BCKPOSTNETCodeCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CAD96F5180C0C0C002DFADB /* BCKPOSTNETCodeCharacter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E086F2A4C91D200A7A325 /* BCKPOSTNETContentCodeCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CAD96FA180C0D23002DFADB /* BCKPOSTNETContentCodeCharacter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E08702A4C91D200A7A325 /* BCKStandard2of5CodeCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CF2308417E9B2030065E50C /* BCKStandard2of5CodeCharacter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E08712A4C91D200A7A325 /* BCKStandard2of5ContentCodeCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CF2308717E9B2A80065E50C /* BCKStandard2of5ContentCodeCharacter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E08722A4C91D200A7A325 /* BCKCode.h in Headers */ = {isa = PBXBuildFile; fileRef = A76405E117B52E7700D45F51 /* BCKCode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E08732A4C91D200A7A325 /* BCKCodabarCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CA8DC5717E408E6009F210C /* BCKCodabarCode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E08742A4C91D200A7A325 /* BCKEAN2SupplementCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C638D1C17F3040E00CD3F1B /* BCKEAN2SupplementCode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E08752A4C91D200A7A325 /* BCKEAN5SupplementCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CCD744117F436BF00D293EE /* BCKEAN5SupplementCode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E08762A4C91D200A7A325 /* BCKEAN13Code.h in Headers */ = {isa = PBXBuildFile; fileRef = A76405E317B52E7700D45F51 /* BCKEAN13Code.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E08772A4C91D200A7A325 /* BCKEAN8Code.h in Headers */ = {isa = PBXBuildFile; fileRef = A764061617B533CD00D45F51 /* BCKEAN8Code.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E08782A4C91D200A7A325 /* BCKGTINCode.h in Headers */ = {isa = PBXBuildFile; fileRef = A735482917F465BF00C1F7EC /* BCKGTINCode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E08792A4C91D200A7A325 /* BCKUPCACode.h in Headers */ = {isa = PBXBuildFile; fileRef = EAD33EA117E81BB400CE0608 /* BCKUPCACode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E087A2A4C91D200A7A325 /* BCKUPCECode.h in Headers */ = {isa = PBXBuildFile; fileRef = A7781E1617B6B301005B9604 /* BCKUPCECode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E087B2A4C91D200A7A325 /* BCKCode11Code.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C4D158217DDDD0B00854E31 /* BCKCode11Code.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E087C2A4C91D200A7A325 /* BCKCode128Code.h in Headers */ = {isa = PBXBuildFile; fileRef = EA6CF87717CA4FAE009C8994 /* BCKCode128Code.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E087D2A4C91D200A7A325 /* BCKCode39Code.h in Headers */ = {isa = PBXBuildFile; fileRef = A7337C6417C1250F00BC2D2D /* BCKCode39Code.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E087E2A4C91D200A7A325 /* BCKCode39CodeModulo43.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C9302C117D733C400867E2E /* BCKCode39CodeModulo43.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E087F2A4C91D200A7A325 /* BCKCode39FullASCII.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C2AF50E17D5EE3F00175AE0 /* BCKCode39FullASCII.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E08802A4C91D200A7A325 /* BCKCode39FullASCIIModulo43.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C9302C417D7376400867E2E /* BCKCode39FullASCIIModulo43.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E08812A4C91D200A7A325 /* BCKCode93Code.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C818CAD17CB703300AEE26F /* BCKCode93Code.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E08822A4C91D200A7A325 /* BCKISBNCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CB154A717F69462002C20F3 /* BCKISBNCode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E08832A4C91D200A7A325 /* BCKISMNCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CB166FC18113E16000029A0 /* BCKISMNCode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E08842A4C91D200A7A325 /* BCKISSNCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CBCAD6117FAD30300C3EFB0 /* BCKISSNCode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E08852A4C91D200A7A325 /* BCKFacingIdentificationMarkCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CC6BAA817F191AB00F3ECCF /* BCKFacingIdentificationMarkCode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E08862A4C91D200A7A325 /* BCKInterleaved2of5Code.h in Headers */ = {isa = PBXBuildFile; fileRef = A13B58E317C6A10200454150 /* BCKInterleaved2of5Code.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E08872A4C91D200A7A325 /* BCKMSICode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CE3E69D17DF1F4800BFD408 /* BCKMSICode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E08882A4C91D200A7A325 /* BCKPharmacodeOneTrack.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CD088DF17E1CA5B00B817B4 /* BCKPharmacodeOneTrack.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E08892A4C91D200A7A325 /* BCKPOSTNETCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CAD96FF180C0F96002DFADB /* BCKPOSTNETCode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D52E088A2A4C91D200A7A325 /* BCKStandard2of5Code.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CF2308A17E9B4790065E50C /* BCKStandard2of5Code.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA0EF7DF17D3ACB500015F7B /* NSString+BCKCode128Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0EF7DE17D3ACB500015F7B /* NSString+BCKCode128Helpers.m */; };
 		EA6CF87917CA4FAE009C8994 /* BCKCode128Code.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6CF87817CA4FAE009C8994 /* BCKCode128Code.m */; };
 		EA6CF87C17CA500A009C8994 /* BCKCode128CodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6CF87B17CA500A009C8994 /* BCKCode128CodeCharacter.m */; };
@@ -1270,6 +1329,72 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D52E08552A4C911700A7A325 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D52514FC2A4C958E00077675 /* BCKBarString.h in Headers */,
+				D52514FF2A4C965A00077675 /* NSError+BCKCode.h in Headers */,
+				D52515002A4C965A00077675 /* BCKCodeFunctions.h in Headers */,
+				D52514FD2A4C958E00077675 /* BCKBarStringFunctions.h in Headers */,
+				D52514FE2A4C958E00077675 /* BCKMutableBarString.h in Headers */,
+				D52E08572A4C91D200A7A325 /* BCKCodeCharacter.h in Headers */,
+				D52E08582A4C91D200A7A325 /* BCKEANCodeCharacter.h in Headers */,
+				D52E08592A4C91D200A7A325 /* BCKEANDigitCodeCharacter.h in Headers */,
+				D52E085A2A4C91D200A7A325 /* BCKUPCCodeCharacter.h in Headers */,
+				D52E085B2A4C91D200A7A325 /* BCKGTINSupplementCodeCharacter.h in Headers */,
+				D52E085C2A4C91D200A7A325 /* BCKGTINSupplementDataCodeCharacter.h in Headers */,
+				D52E085D2A4C91D200A7A325 /* BCKCodabarCodeCharacter.h in Headers */,
+				D52E085E2A4C91D200A7A325 /* BCKCodabarContentCodeCharacter.h in Headers */,
+				D52E085F2A4C91D200A7A325 /* BCKCode11CodeCharacter.h in Headers */,
+				D52E08602A4C91D200A7A325 /* BCKCode11ContentCodeCharacter.h in Headers */,
+				D52E08612A4C91D200A7A325 /* BCKCode128CodeCharacter.h in Headers */,
+				D52E08622A4C91D200A7A325 /* BCKCode128ContentCodeCharacter.h in Headers */,
+				D52E08632A4C91D200A7A325 /* NSString+BCKCode128Helpers.h in Headers */,
+				D52E08642A4C91D200A7A325 /* BCKCode39CodeCharacter.h in Headers */,
+				D52E08652A4C91D200A7A325 /* BCKCode39ContentCodeCharacter.h in Headers */,
+				D52E08662A4C91D200A7A325 /* BCKCode93CodeCharacter.h in Headers */,
+				D52E08672A4C91D200A7A325 /* BCKCode93ContentCodeCharacter.h in Headers */,
+				D52E08682A4C91D200A7A325 /* BCKFacingIdentificationMarkCodeCharacter.h in Headers */,
+				D52E08692A4C91D200A7A325 /* BCKInterleaved2of5CodeCharacter.h in Headers */,
+				D52E086A2A4C91D200A7A325 /* BCKInterleaved2of5DigitPairCodeCharacter.h in Headers */,
+				D52E086B2A4C91D200A7A325 /* BCKMSICodeCharacter.h in Headers */,
+				D52E086C2A4C91D200A7A325 /* BCKMSIContentCodeCharacter.h in Headers */,
+				D52E086D2A4C91D200A7A325 /* BCKPharmaOneTrackContentCodeCharacter.h in Headers */,
+				D52E086E2A4C91D200A7A325 /* BCKPOSTNETCodeCharacter.h in Headers */,
+				D52E086F2A4C91D200A7A325 /* BCKPOSTNETContentCodeCharacter.h in Headers */,
+				D52E08702A4C91D200A7A325 /* BCKStandard2of5CodeCharacter.h in Headers */,
+				D52E08712A4C91D200A7A325 /* BCKStandard2of5ContentCodeCharacter.h in Headers */,
+				D52E08722A4C91D200A7A325 /* BCKCode.h in Headers */,
+				D52E08732A4C91D200A7A325 /* BCKCodabarCode.h in Headers */,
+				D52E08742A4C91D200A7A325 /* BCKEAN2SupplementCode.h in Headers */,
+				D52E08752A4C91D200A7A325 /* BCKEAN5SupplementCode.h in Headers */,
+				D52E08762A4C91D200A7A325 /* BCKEAN13Code.h in Headers */,
+				D52E08772A4C91D200A7A325 /* BCKEAN8Code.h in Headers */,
+				D52E08782A4C91D200A7A325 /* BCKGTINCode.h in Headers */,
+				D52E08792A4C91D200A7A325 /* BCKUPCACode.h in Headers */,
+				D52E087A2A4C91D200A7A325 /* BCKUPCECode.h in Headers */,
+				D52E087B2A4C91D200A7A325 /* BCKCode11Code.h in Headers */,
+				D52E087C2A4C91D200A7A325 /* BCKCode128Code.h in Headers */,
+				D52E087D2A4C91D200A7A325 /* BCKCode39Code.h in Headers */,
+				D52E087E2A4C91D200A7A325 /* BCKCode39CodeModulo43.h in Headers */,
+				D52E087F2A4C91D200A7A325 /* BCKCode39FullASCII.h in Headers */,
+				D52E08802A4C91D200A7A325 /* BCKCode39FullASCIIModulo43.h in Headers */,
+				D52E08812A4C91D200A7A325 /* BCKCode93Code.h in Headers */,
+				D52E08822A4C91D200A7A325 /* BCKISBNCode.h in Headers */,
+				D52E08832A4C91D200A7A325 /* BCKISMNCode.h in Headers */,
+				D52E08842A4C91D200A7A325 /* BCKISSNCode.h in Headers */,
+				D52E08852A4C91D200A7A325 /* BCKFacingIdentificationMarkCode.h in Headers */,
+				D52E08862A4C91D200A7A325 /* BCKInterleaved2of5Code.h in Headers */,
+				D52E08872A4C91D200A7A325 /* BCKMSICode.h in Headers */,
+				D52E08882A4C91D200A7A325 /* BCKPharmacodeOneTrack.h in Headers */,
+				D52E08892A4C91D200A7A325 /* BCKPOSTNETCode.h in Headers */,
+				D52E088A2A4C91D200A7A325 /* BCKStandard2of5Code.h in Headers */,
+				D52514FB2A4C94EE00077675 /* BarCodeKit.h in Headers */,
+				D52E08562A4C913200A7A325 /* UIImage+BarCodeKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -1313,6 +1438,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A764060717B52E9800D45F51 /* Build configuration list for PBXNativeTarget "BarCodeKit (iOS)" */;
 			buildPhases = (
+				D52E08552A4C911700A7A325 /* Headers */,
 				A76405E717B52E9700D45F51 /* Sources */,
 				A76405E817B52E9700D45F51 /* Frameworks */,
 				A76405E917B52E9700D45F51 /* CopyFiles */,

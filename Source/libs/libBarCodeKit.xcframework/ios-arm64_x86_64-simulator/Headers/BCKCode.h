@@ -7,6 +7,7 @@
 //
 
 #import <CoreGraphics/CoreGraphics.h>
+
 // Drawing options string constants
 extern NSString * const BCKCodeDrawingBarScaleOption;
 extern NSString * const BCKCodeDrawingPrintCaptionOption;
