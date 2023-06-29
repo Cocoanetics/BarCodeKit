@@ -19,7 +19,12 @@ let package = Package(
         .target(
             name: "BarCodeKit",
             path: "Core",
-            exclude: ["BarCodeKit-Framework-Info.plist", "BarCodeKit-Prefix.pch"]
+            exclude: ["BarCodeKit-Framework-Info.plist", "BarCodeKit-Prefix.pch"],
+            cSettings: [
+                .headerSearchPath("include/BarCodeKit"),
+                .define("BITCODE_GENERATION_MODE", to: "bitcode"),
+                .define("ENABLE_BITCODE", to: "YES")
+            ]
         )
     ]
 )
