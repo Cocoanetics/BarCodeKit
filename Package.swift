@@ -2,28 +2,24 @@
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
+
 let package = Package(
-    name: "BarCodeKitWrapper",
-    platforms: [.iOS(.v11)],
-    products: [
-        .library(name: "BarCodeKitWrapper", type: .dynamic, targets: ["libBarCodeKit", "BarCodeKitWrapper"]),
+    name: "BarCodeKit",
+    defaultLocalization: "en",
+    platforms: [
+        .iOS(.v11),         //.v8 - .v13
+        .macOS(.v10_13)   //.v10_10 - .v10_15
     ],
-    dependencies: [],
+    products: [
+        .library(
+            name: "BarCodeKit",
+            targets: ["BarCodeKit"])
+    ],
     targets: [
-        .binaryTarget(
-            name: "libBarCodeKit",
-            path: "Source/libs/libBarCodeKit.xcframework"
-        ),
-
         .target(
-            name: "BarCodeKitWrapper",
-            dependencies: ["libBarCodeKit"],
-            path: "Source",
-            exclude: ["libs"],
-            linkerSettings: [
-                .unsafeFlags(["-all_load"])
-            ]
-        ),
-
+            name: "BarCodeKit",
+            path: "Core",
+            exclude: ["BarCodeKit-Framework-Info.plist", "BarCodeKit-Prefix.pch"]
+        )
     ]
 )

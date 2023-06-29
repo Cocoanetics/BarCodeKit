@@ -1,0 +1,1 @@
+../../Source/BCKCodabarContentCodeCharacter.h
