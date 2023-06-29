@@ -1,1 +1,0 @@
-../../Source/BCKBarStringFunctions.h

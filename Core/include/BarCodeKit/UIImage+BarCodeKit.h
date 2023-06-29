@@ -1,1 +1,0 @@
-../../Source/UIImage+BarCodeKit.h
