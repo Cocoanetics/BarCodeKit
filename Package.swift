@@ -13,7 +13,7 @@ let package = Package(
     products: [
         .library(
             name: "BarCodeKit",
-            // type: .dynamic,
+            type: .dynamic,
             targets: ["BarCodeKit"])
     ],
     targets: [
