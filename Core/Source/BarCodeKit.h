@@ -81,8 +81,11 @@
 // barcode rendering
 #import "BCKCodeFunctions.h"
 
+#import "BCKBarString.h"
+#import "BCKMutableBarString.h"
+
 #if TARGET_OS_IPHONE
-	#import "UIImage+BarCodeKit.h"
+#import "UIImage+BarCodeKit.h"
 #else
-	#import "NSImage+BarCodeKit.h"
+#import "NSImage+BarCodeKit.h"
 #endif

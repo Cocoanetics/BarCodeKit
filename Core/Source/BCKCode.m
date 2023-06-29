@@ -11,6 +11,7 @@
 #import "NSError+BCKCode.h"
 
 #import <CoreText/CoreText.h>
+#import <UIKit/UIKit.h>
 
 // options
 NSString * const BCKCodeDrawingBarScaleOption = @"BCKCodeDrawingBarScale";

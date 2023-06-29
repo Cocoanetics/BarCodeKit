@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
-
+#if TARGET_OS_MAC
 @class BCKCode;
 
 /**
@@ -27,3 +27,4 @@
 + (NSImage *)imageWithBarCode:(BCKCode *)barCode options:(NSDictionary *)options;
 
 @end
+#endif
