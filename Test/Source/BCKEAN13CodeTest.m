@@ -8,8 +8,8 @@
 
 @import XCTest;
 
-#import "BCKEAN13Code.h"
-#import "BCKBarStringFunctions.h"
+#import <BarCodeKit/BCKEAN13Code.h>
+#import <BarCodeKit/BCKBarStringFunctions.h>
 
 @interface BCKEAN13Code () // private
 

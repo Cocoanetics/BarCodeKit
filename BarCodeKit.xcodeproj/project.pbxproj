@@ -138,6 +138,8 @@
 		A7378E0A17C25DF3008921C4 /* BCKEAN13CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A7378E0917C25DF3008921C4 /* BCKEAN13CodeTest.m */; };
 		A7378E0C17C261D8008921C4 /* BCKEAN8CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A7378E0B17C261D8008921C4 /* BCKEAN8CodeTest.m */; };
 		A7378E0E17C263C7008921C4 /* BCKUPCECodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A7378E0D17C263C7008921C4 /* BCKUPCECodeTest.m */; };
+		A74D43272A597C9E00C74BBB /* DemoWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = A702E49E17FE902A00506B2B /* DemoWindowController.m */; };
+		A74D43282A597CA900C74BBB /* NSImage+BarCodeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A721D0C117FEFBD700A82189 /* NSImage+BarCodeKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A760681E181011D200BF00E8 /* BCKMutableBarString.h in Headers */ = {isa = PBXBuildFile; fileRef = A760681C181011D200BF00E8 /* BCKMutableBarString.h */; };
 		A760681F181011D200BF00E8 /* BCKMutableBarString.m in Sources */ = {isa = PBXBuildFile; fileRef = A760681D181011D200BF00E8 /* BCKMutableBarString.m */; };
 		A7606820181011D200BF00E8 /* BCKMutableBarString.m in Sources */ = {isa = PBXBuildFile; fileRef = A760681D181011D200BF00E8 /* BCKMutableBarString.m */; };
@@ -264,7 +266,6 @@
 		A7E0B5BD17FEBDE70037B70C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A702E49217FE902A00506B2B /* MainMenu.xib */; };
 		A7E0B5BE17FEBDEA0037B70C /* DemoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = A702E49417FE902A00506B2B /* DemoWindow.xib */; };
 		A7E0B5C017FEBDF40037B70C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A702E49C17FE902A00506B2B /* AppDelegate.m */; };
-		A7E0B5C117FEBDF60037B70C /* DemoWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = A702E49E17FE902A00506B2B /* DemoWindowController.m */; };
 		A7E0B5C217FEBDF80037B70C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A702E49F17FE902A00506B2B /* main.m */; };
 		C6ECE92419C4D8E800BCD93C /* BarCodeKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = C6ECE92119C4D8E800BCD93C /* BarCodeKit.strings */; };
 		C6ECE92519C4D8E800BCD93C /* BarCodeKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = C6ECE92119C4D8E800BCD93C /* BarCodeKit.strings */; };
@@ -1297,6 +1298,7 @@
 				6CAD96F7180C0C0C002DFADB /* BCKPOSTNETCodeCharacter.h in Headers */,
 				A7CFEF9C17EE0544006446C9 /* BCKCode11Code.h in Headers */,
 				A7CFEF6C17EE04F2006446C9 /* BCKCodabarCodeCharacter.h in Headers */,
+				A74D43282A597CA900C74BBB /* NSImage+BarCodeKit.h in Headers */,
 				A7CFEFA217EE0548006446C9 /* BCKCode39FullASCII.h in Headers */,
 				A760681E181011D200BF00E8 /* BCKMutableBarString.h in Headers */,
 				A7CFEFA617EE054B006446C9 /* BCKCode93Code.h in Headers */,
@@ -1822,8 +1824,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A74D43272A597C9E00C74BBB /* DemoWindowController.m in Sources */,
 				A7E0B5C217FEBDF80037B70C /* main.m in Sources */,
-				A7E0B5C117FEBDF60037B70C /* DemoWindowController.m in Sources */,
 				A7E0B5C017FEBDF40037B70C /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1887,7 +1889,6 @@
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				INFOPLIST_FILE = "Demo/iOS/BarCodeKit-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoanetics.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = BarCodeKit;
@@ -1904,7 +1905,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				INFOPLIST_FILE = "Demo/iOS/BarCodeKit-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoanetics.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = BarCodeKit;
@@ -1941,7 +1941,6 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Test/UnitTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoanetics.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1958,7 +1957,6 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "Test/UnitTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoanetics.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2013,7 +2011,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -2060,7 +2058,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2207,7 +2205,7 @@
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				INFOPLIST_FILE = "Demo/Mac/BarCodeKit-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoanetics.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = BarCodeKit;
 				SDKROOT = macosx;
@@ -2229,7 +2227,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				INFOPLIST_FILE = "Demo/Mac/BarCodeKit-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoanetics.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = BarCodeKit;
 				SDKROOT = macosx;

@@ -8,9 +8,9 @@
 
 @import XCTest;
 
-#import "BCKCode39FullASCII.h"
-#import "BCKCode39FullASCIIModulo43.h"
-#import "BCKCode39CodeCharacter.h"
+#import <BarCodeKit/BCKCode39FullASCII.h>
+#import <BarCodeKit/BCKCode39FullASCIIModulo43.h>
+#import <BarCodeKit/BCKCode39CodeCharacter.h>
 
 @interface BCKCode39FullASCII () // private
 

@@ -8,8 +8,8 @@
 
 @import XCTest;
 
-#import "BCKUPCACode.h"
-#import "BCKEANCodeCharacter.h"
+#import <BarCodeKit/BCKUPCACode.h>
+#import <BarCodeKit/BCKEANCodeCharacter.h>
 
 @interface BCKUPCACode ()
 

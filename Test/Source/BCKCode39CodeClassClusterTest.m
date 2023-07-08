@@ -7,10 +7,11 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "BCKCode39Code.h"
-#import "BCKCode39FullASCII.h"
-#import "BCKCode39CodeModulo43.h"
-#import "BCKCode39FullASCIIModulo43.h"
+
+#import <BarCodeKit/BCKCode39Code.h>
+#import <BarCodeKit/BCKCode39FullASCII.h>
+#import <BarCodeKit/BCKCode39CodeModulo43.h>
+#import <BarCodeKit/BCKCode39FullASCIIModulo43.h>
 
 @interface BCKCode39CodeClassClusterTest : XCTestCase
 

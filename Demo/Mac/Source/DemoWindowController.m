@@ -9,7 +9,8 @@
 #import "DemoWindowController.h"
 #import <objc/runtime.h>
 
-#import "BarCodeKit.h"
+#import <BarCodeKit/BarCodeKit.h>
+#import <BarCodeKit/NSImage+BarCodeKit.h>
 
 @interface DemoWindowController ()
 
@@ -223,7 +224,7 @@
 							  BCKCodeDrawingBackgroundColorOption: [NSColor whiteColor]
 							  };
 
-	return [NSImage imageWithBarCode:_barcodeObject options:options];
+	return [NSImage nsImageWithBarCode:_barcodeObject options:options];
 }
 
 

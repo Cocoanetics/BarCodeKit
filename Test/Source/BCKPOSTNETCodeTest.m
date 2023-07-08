@@ -8,8 +8,8 @@
 
 @import XCTest;
 
-#import "BCKPOSTNETCode.h"
-#import "BCKPOSTNETCodeCharacter.h"
+#import <BarCodeKit/BCKPOSTNETCode.h>
+#import <BarCodeKit/BCKPOSTNETCodeCharacter.h>
 
 @interface BCKPOSTNETCode () // private
 

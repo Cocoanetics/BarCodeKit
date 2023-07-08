@@ -7,7 +7,7 @@ let package = Package(
     name: "BarCodeKit",
     defaultLocalization: "en",
     platforms: [
-        .iOS(.v11),         //.v8 - .v13
+        .iOS(.v13),         //.v8 - .v13
         .macOS(.v10_13)   //.v10_10 - .v10_15
     ],
     products: [
@@ -24,7 +24,15 @@ let package = Package(
                 .headerSearchPath("include/BarCodeKit"),
                 .define("BITCODE_GENERATION_MODE", to: "bitcode"),
                 .define("ENABLE_BITCODE", to: "YES")
-            ]
-        )
+            ],
+			linkerSettings: [
+							.linkedFramework("AppKit", .when(platforms: [.macOS])),
+							.linkedFramework("UIKit", .when(platforms: [.iOS]))
+						]
+        ),
+		.testTarget(
+			name: "BarCodeKitTests",
+			dependencies: ["BarCodeKit"],
+			path: "Test/Source")
     ]
 )

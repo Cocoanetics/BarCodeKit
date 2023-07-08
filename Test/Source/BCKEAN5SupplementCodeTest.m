@@ -8,8 +8,10 @@
 
 @import XCTest;
 
-#import "BCKEAN5SupplementCode.h"
-#import "BCKGTINSupplementCodeCharacter.h"
+
+#import <BarCodeKit/BCKCode.h>
+#import <BarCodeKit/BCKEAN5SupplementCode.h>
+#import <BarCodeKit/BCKGTINSupplementCodeCharacter.h>
 
 @interface BCKEAN5SupplementCode () // private
 

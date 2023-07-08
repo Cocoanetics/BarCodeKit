@@ -6,7 +6,8 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
-#import <CoreGraphics/CoreGraphics.h>
+@import Foundation;
+@import CoreGraphics;
 
 // Drawing options string constants
 extern NSString * const BCKCodeDrawingBarScaleOption;

@@ -8,9 +8,9 @@
 
 @import XCTest;
 
-#import "BCKCode39Code.h"
-#import "BCKCode39CodeModulo43.h"
-#import "BCKCode93CodeCharacter.h"
+#import <BarCodeKit/BCKCode39Code.h>
+#import <BarCodeKit/BCKCode39CodeModulo43.h>
+#import <BarCodeKit/BCKCode39CodeCharacter.h>
 
 @interface BCKCode39Code () // private
 

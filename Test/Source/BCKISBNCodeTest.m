@@ -6,8 +6,9 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
-#import <XCTest/XCTest.h>
-#import "BCKISBNCode.h"
+@import XCTest;
+
+#import <BarCodeKit/BCKISBNCode.h>
 
 @interface BCKISBNCode () // private
 

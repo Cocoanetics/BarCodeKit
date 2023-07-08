@@ -8,8 +8,8 @@
 
 @import XCTest;
 
-#import "BCKFacingIdentificationMarkCode.h"
-#import "BCKFacingIdentificationMarkCodeCharacter.h"
+#import <BarCodeKit/BCKFacingIdentificationMarkCode.h>
+#import <BarCodeKit/BCKFacingIdentificationMarkCodeCharacter.h>
 
 @interface BCKFacingIdentificationMarkCode () // private
 

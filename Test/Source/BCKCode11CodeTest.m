@@ -8,8 +8,8 @@
 
 @import XCTest;
 
-#import "BCKCode11Code.h"
-#import "BCKCode11CodeCharacter.h"
+#import <BarCodeKit/BCKCode11Code.h>
+#import <BarCodeKit/BCKCode11CodeCharacter.h>
 
 @interface BCKCode11Code () // private
 

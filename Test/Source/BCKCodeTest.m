@@ -8,9 +8,9 @@
 
 @import XCTest;
 
-#import "BCKCode.h"
-#import "BCKBarString.h"
-#import "BCKMutableBarString.h"
+#import <BarCodeKit/BCKCode.h>
+#import <BarCodeKit/BCKBarString.h>
+#import <BarCodeKit/BCKMutableBarString.h>
 
 @interface BCKCodeTest : XCTestCase
 

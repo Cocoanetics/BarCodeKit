@@ -8,8 +8,8 @@
 
 @import XCTest;
 
-#import "BCKMSICode.h"
-#import "BCKMSIContentCodeCharacter.h"
+#import <BarCodeKit/BCKMSICode.h>
+#import <BarCodeKit/BCKMSIContentCodeCharacter.h>
 
 @interface BCKMSICode () // private
 

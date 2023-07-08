@@ -8,8 +8,8 @@
 
 @import XCTest;
 
-#import "BCKPharmacodeOneTrack.h"
-#import "BCKCodeCharacter.h"
+#import <BarCodeKit/BCKPharmacodeOneTrack.h>
+#import <BarCodeKit/BCKCodeCharacter.h>
 
 @interface BCKPharmacodeOneTrack () // private
 
