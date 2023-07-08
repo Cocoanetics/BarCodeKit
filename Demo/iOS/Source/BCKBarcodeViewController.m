@@ -332,8 +332,14 @@
 {
 	if (!_barcodeObject)
 	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Barcode" message:@"The current options do not produce a valid barcode." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-		[alert show];
+		UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Invalid Barcode"
+																	   message:@"The current options do not produce a valid barcode."
+																preferredStyle:UIAlertControllerStyleAlert];
+		
+		UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+		[alert addAction:okAction];
+		
+		[self presentViewController:alert animated:YES completion:nil];
 		
 		return;
 	}
