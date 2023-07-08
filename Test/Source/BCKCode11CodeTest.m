@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
+@import XCTest;
+
 #import "BCKCode11Code.h"
 #import "BCKCode11CodeCharacter.h"
 

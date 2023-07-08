@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
+@import XCTest;
+
 #import "BCKUPCACode.h"
 #import "BCKEANCodeCharacter.h"
 

@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
+@import XCTest;
+
 #import "BCKCode39Code.h"
 #import "BCKCode39CodeModulo43.h"
 #import "BCKCode93CodeCharacter.h"
