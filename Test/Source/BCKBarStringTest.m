@@ -6,9 +6,11 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
-#import "BCKBarString.h"
-#import "BCKMutableBarString.h"
-#import "BCKBarStringFunctions.h"
+@import XCTest;
+
+#import <BarCodeKit/BCKBarString.h>
+#import <BarCodeKit/BCKMutableBarString.h>
+#import <BarCodeKit/BCKBarStringFunctions.h>
 
 @interface BCKBarString ()
 

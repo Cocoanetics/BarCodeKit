@@ -6,8 +6,10 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
-#import "BCKEAN13Code.h"
-#import "BCKBarStringFunctions.h"
+@import XCTest;
+
+#import <BarCodeKit/BCKEAN13Code.h>
+#import <BarCodeKit/BCKBarStringFunctions.h>
 
 @interface BCKEAN13Code () // private
 

@@ -6,8 +6,10 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
-#import "BCKUPCECode.h"
-#import "BCKEANCodeCharacter.h"
+@import XCTest;
+
+#import <BarCodeKit/BCKUPCECode.h>
+#import <BarCodeKit/BCKEANCodeCharacter.h>
 
 @interface BCKUPCECode () // private
 

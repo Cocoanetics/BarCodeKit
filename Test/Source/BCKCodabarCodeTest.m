@@ -6,9 +6,10 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
-#import <XCTest/XCTest.h>
-#import "BCKCodabarCode.h"
-#import "BCKCodabarCodeCharacter.h"
+@import XCTest;
+
+#import <BarCodeKit/BCKCodabarCode.h>
+#import <BarCodeKit/BCKCodabarCodeCharacter.h>
 
 @interface BCKCodabarCode () // private
 

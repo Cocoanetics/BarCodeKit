@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
-#import "BarCodeKit.h"
+#import <BarCodeKit/BarCodeKit.h>
 
 @interface BCKBarcodeViewController : UIViewController <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
 

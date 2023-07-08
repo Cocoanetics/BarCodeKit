@@ -6,10 +6,12 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
-#import "BCKCode93Code.h"
-#import "BCKCode93CodeCharacter.h"
-#import "BCKCode93ContentCodeCharacter.h"
-#import "BCKBarStringFunctions.h"
+@import XCTest;
+
+#import <BarCodeKit/BCKCode93Code.h>
+#import <BarCodeKit/BCKCode93CodeCharacter.h>
+#import <BarCodeKit/BCKCode93ContentCodeCharacter.h>
+#import <BarCodeKit/BCKBarStringFunctions.h>
 
 @interface BCKCode93Code () // private
 

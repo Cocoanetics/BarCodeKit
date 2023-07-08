@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
+@import Foundation;
+
 /**
  Helper methods for determining Code128 version used to encode next characters.
  */

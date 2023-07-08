@@ -6,8 +6,10 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
-#import "BCKEAN8Code.h"
-#import "BCKCodeCharacter.h"
+@import XCTest;
+
+#import <BarCodeKit/BCKEAN8Code.h>
+#import <BarCodeKit/BCKCodeCharacter.h>
 
 @interface BCKEAN8Code () // private
 

@@ -7,7 +7,7 @@
 //
 
 #import "BCKEANCodeCharacter.h"
-#import "BarCodeKit.h"
+#import "BCKEANDigitCodeCharacter.h"
 
 @implementation BCKEANCodeCharacter
 
