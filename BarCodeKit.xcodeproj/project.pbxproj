@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -94,9 +94,6 @@
 		A702E4F417FEBADC00506B2B /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A702E4E717FEA77200506B2B /* Main_iPhone.storyboard */; };
 		A702E4FA17FEBC1700506B2B /* SampleBarcodes.plist in Resources */ = {isa = PBXBuildFile; fileRef = A702E48A17FE902A00506B2B /* SampleBarcodes.plist */; };
 		A702E4FB17FEBC1A00506B2B /* OCRB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A702E48917FE902A00506B2B /* OCRB.ttf */; };
-		A721D0AE17FEC63200A82189 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A721D0AB17FEC63200A82189 /* Default-568h@2x.png */; };
-		A721D0AF17FEC63200A82189 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A721D0AC17FEC63200A82189 /* Default.png */; };
-		A721D0B017FEC63200A82189 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A721D0AD17FEC63200A82189 /* Default@2x.png */; };
 		A721D0BC17FEE78200A82189 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = A721D0BB17FEE78200A82189 /* Defaults.plist */; };
 		A730FFC618C09B4E00BABCDA /* BCKCodeFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = A730FFC418C09B4E00BABCDA /* BCKCodeFunctions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A730FFC718C09B4E00BABCDA /* BCKCodeFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = A730FFC518C09B4E00BABCDA /* BCKCodeFunctions.m */; };
@@ -160,6 +157,7 @@
 		A77CEDC519E7F41000DBCEE7 /* BCKUPCECodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A7378E0D17C263C7008921C4 /* BCKUPCECodeTest.m */; };
 		A77CEDC619E7F41000DBCEE7 /* BCKBarStringTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A760682318101FD900BF00E8 /* BCKBarStringTest.m */; };
 		A77CEDC919E7F45500DBCEE7 /* BarCodeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7CFEF3A17EE04C8006446C9 /* BarCodeKit.framework */; };
+		A7CFAC8C2A59A1E300EFA9FA /* LaunchStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7CFAC8B2A59A1E300EFA9FA /* LaunchStoryboard.storyboard */; };
 		A7CFEF6317EE04E9006446C9 /* BarCodeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A7E1C97417B606AA007DB13A /* BarCodeKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A7CFEF6417EE04E9006446C9 /* BCKCodeCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = A7337C6A17C12C8800BC2D2D /* BCKCodeCharacter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A7CFEF6517EE04E9006446C9 /* BCKCodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = A7337C6B17C12C8800BC2D2D /* BCKCodeCharacter.m */; };
@@ -499,9 +497,6 @@
 		A702E4E817FEA77200506B2B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A702E4EB17FEA7A700506B2B /* BarCodeKit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BarCodeKit-Info.plist"; sourceTree = "<group>"; };
 		A716E43C17DE1A5C00DB6F9C /* AppledocSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppledocSettings.plist; sourceTree = "<group>"; };
-		A721D0AB17FEC63200A82189 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		A721D0AC17FEC63200A82189 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		A721D0AD17FEC63200A82189 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		A721D0BB17FEE78200A82189 /* Defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Defaults.plist; sourceTree = "<group>"; };
 		A72DCDCB2A596518004C4548 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		A730FFC418C09B4E00BABCDA /* BCKCodeFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKCodeFunctions.h; sourceTree = "<group>"; };
@@ -549,6 +544,7 @@
 		A7781E1717B6B301005B9604 /* BCKUPCECode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKUPCECode.m; sourceTree = "<group>"; };
 		A77CEDA619E7F40800DBCEE7 /* Unit Tests (Mac).xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit Tests (Mac).xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A77CEDCB19E8050E00DBCEE7 /* de */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/BarCodeKit.strings; sourceTree = "<group>"; };
+		A7CFAC8B2A59A1E300EFA9FA /* LaunchStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchStoryboard.storyboard; sourceTree = "<group>"; };
 		A7CFEF3A17EE04C8006446C9 /* BarCodeKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BarCodeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7CFEFC717EE0A42006446C9 /* BarCodeKit-Framework-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BarCodeKit-Framework-Info.plist"; sourceTree = "<group>"; };
 		A7E0B58C17FEBD4F0037B70C /* BarCodeKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarCodeKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -882,9 +878,7 @@
 		A702E48C17FE902A00506B2B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A721D0AB17FEC63200A82189 /* Default-568h@2x.png */,
-				A721D0AC17FEC63200A82189 /* Default.png */,
-				A721D0AD17FEC63200A82189 /* Default@2x.png */,
+				A7CFAC8B2A59A1E300EFA9FA /* LaunchStoryboard.storyboard */,
 				A702E4E717FEA77200506B2B /* Main_iPhone.storyboard */,
 				A702E4E817FEA77200506B2B /* Images.xcassets */,
 			);
@@ -1456,8 +1450,9 @@
 		A764058F17B50F9100D45F51 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				CLASSPREFIX = BCK;
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1430;
 				ORGANIZATIONNAME = "Oliver Drobnik";
 				TargetAttributes = {
 					A702E4AF17FE916E00506B2B = {
@@ -1470,10 +1465,9 @@
 			};
 			buildConfigurationList = A764059217B50F9100D45F51 /* Build configuration list for PBXProject "BarCodeKit" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 				ja,
@@ -1500,12 +1494,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A702E4F417FEBADC00506B2B /* Main_iPhone.storyboard in Resources */,
-				A721D0AF17FEC63200A82189 /* Default.png in Resources */,
 				C6ECE92419C4D8E800BCD93C /* BarCodeKit.strings in Resources */,
 				A702E4F317FEBAD300506B2B /* Images.xcassets in Resources */,
 				A702E4FB17FEBC1A00506B2B /* OCRB.ttf in Resources */,
-				A721D0AE17FEC63200A82189 /* Default-568h@2x.png in Resources */,
-				A721D0B017FEC63200A82189 /* Default@2x.png in Resources */,
+				A7CFAC8C2A59A1E300EFA9FA /* LaunchStoryboard.storyboard in Resources */,
 				A702E4FA17FEBC1700506B2B /* SampleBarcodes.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1911,6 +1903,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1936,7 +1929,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -1965,6 +1958,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1983,7 +1977,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2018,6 +2012,7 @@
 			buildSettings = {
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -2031,7 +2026,11 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = "Test/UnitTests-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoanetics.${PRODUCT_NAME:rfc1034identifier}";
@@ -2045,6 +2044,7 @@
 			buildSettings = {
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2055,7 +2055,11 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = "Test/UnitTests-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoanetics.${PRODUCT_NAME:rfc1034identifier}";
@@ -2068,6 +2072,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2083,7 +2088,7 @@
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				INFOPLIST_FILE = "Core/BarCodeKit-Framework-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoanetics.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = BarCodeKit;
 				SDKROOT = macosx;
@@ -2099,6 +2104,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -2111,7 +2117,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				INFOPLIST_FILE = "Core/BarCodeKit-Framework-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoanetics.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = BarCodeKit;
 				SDKROOT = macosx;
@@ -2128,6 +2134,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -2140,7 +2147,7 @@
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				INFOPLIST_FILE = "Demo/Mac/BarCodeKit-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoanetics.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = BarCodeKit;
 				SDKROOT = macosx;
@@ -2153,6 +2160,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2162,7 +2170,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				INFOPLIST_FILE = "Demo/Mac/BarCodeKit-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoanetics.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = BarCodeKit;
 				SDKROOT = macosx;
