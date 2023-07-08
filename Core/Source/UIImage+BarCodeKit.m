@@ -6,7 +6,9 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
-#if TARGET_OS_IPHONE
+@import Foundation;
+
+#if TARGET_OS_IOS
 #import "UIImage+BarCodeKit.h"
 #import "BCKCode.h"
 

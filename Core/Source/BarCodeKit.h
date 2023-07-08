@@ -1,7 +1,6 @@
 // all-in header for Bar Code Kit
 
-#import <Availability.h>
-#import <TargetConditionals.h>
+@import Foundation; // that has target conditionals
 
 // code implementations
 #import "BCKCode.h"
@@ -89,15 +88,10 @@
 // barcode rendering
 #import "BCKCodeFunctions.h"
 
+// bar strings
 #import "BCKBarString.h"
 #import "BCKMutableBarString.h"
 
-
-
-//#if TARGET_OS_IPHONE
+// helper functions to generate images
 #import "UIImage+BarCodeKit.h"
-//#endif
-//
-//#if TARGET_OS_OSX
 #import "NSImage+BarCodeKit.h"
-//#endif

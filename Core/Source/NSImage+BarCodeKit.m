@@ -5,8 +5,12 @@
 //  Created by Oliver Drobnik on 10/4/13.
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
+
+@import Foundation;
+
 #if TARGET_OS_OSX
-#import <AppKit/AppKit.h>
+
+@import AppKit;
 
 #import "NSImage+BarCodeKit.h"
 #import "BarCodeKit.h"

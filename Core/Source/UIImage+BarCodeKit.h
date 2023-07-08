@@ -6,10 +6,11 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
-#if TARGET_OS_IPHONE
+#if TARGET_OS_IOS
+
+@import UIKit;
 
 @class BCKCode;
-#import <UIKit/UIKit.h>
 
 /**
  Helper methods for `UIImage` to generate bitmap images from BCKCode instances.

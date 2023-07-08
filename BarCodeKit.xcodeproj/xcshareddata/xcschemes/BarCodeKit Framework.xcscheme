@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A7CFEF3917EE04C8006446C9"
                BuildableName = "BarCodeKit.framework"
-               BlueprintName = "BarCodeKit (Mac)"
+               BlueprintName = "BarCodeKit"
                ReferencedContainer = "container:BarCodeKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -39,8 +39,6 @@
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -57,12 +55,10 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A7CFEF3917EE04C8006446C9"
             BuildableName = "BarCodeKit.framework"
-            BlueprintName = "BarCodeKit (Mac)"
+            BlueprintName = "BarCodeKit"
             ReferencedContainer = "container:BarCodeKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -70,6 +66,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "A7CFEF3917EE04C8006446C9"
+            BuildableName = "BarCodeKit.framework"
+            BlueprintName = "BarCodeKit"
+            ReferencedContainer = "container:BarCodeKit.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

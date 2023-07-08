@@ -7,12 +7,10 @@
 //
 
 #import "BCKCode.h"
-#import "BCKMutableBarString.h"
-#import "BCKCodeCharacter.h"
 #import "NSError+BCKCode.h"
-#import "BCKBarStringFunctions.h"
-#import "BCKGTINCode.h"
-
+#import "BCKCodeCharacter.h"
+#import "BCKMutableBarString.h"
+#import <BarCodeKit/BCKGTINCode.h>
 #import <CoreText/CoreText.h>
 
 #if TARGET_OS_IOS
