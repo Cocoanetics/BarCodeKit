@@ -8,7 +8,6 @@
 
 @import XCTest;
 
-#import <BarCodeKit/BarCodeKit.h>
 #import <BarCodeKit/BCKCode93Code.h>
 #import <BarCodeKit/BCKCode93CodeCharacter.h>
 #import <BarCodeKit/BCKCode93ContentCodeCharacter.h>

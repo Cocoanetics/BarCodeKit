@@ -7,6 +7,7 @@
 //
 
 #import "BCKISBNCode.h"
+#import "NSError+BCKCode.h"
 
 // source: http://isbn-international.org/pages/media/Usermanuals/ISBN%20Manual%202012%20-corr.pdf
 

@@ -6,9 +6,8 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
-#import <BarCodeKit/BarCodeKit.h>
-
 #import "BCKEANCodeCharacter.h"
+#import "BCKEANDigitCodeCharacter.h"
 
 @implementation BCKEANCodeCharacter
 

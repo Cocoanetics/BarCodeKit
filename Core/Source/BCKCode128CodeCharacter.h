@@ -7,7 +7,7 @@
 //
 
 #import "BCKCodeCharacter.h"
-#import "BCKCode128ContentCodeCharacter.h"
+#import "BCKCode128CodeCharacter.h"
 
 /**
  Supported Code128 versions

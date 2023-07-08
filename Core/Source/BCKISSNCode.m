@@ -7,6 +7,7 @@
 //
 
 #import "BCKISSNCode.h"
+#import "NSError+BCKCode.h"
 
 // source: http://www.issn.org/2-22642--ISSN-and-barcoding.php
 

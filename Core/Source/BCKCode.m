@@ -6,10 +6,12 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
-#import <BarCodeKit/BarCodeKit.h>
-
 #import "BCKCode.h"
+#import "BCKMutableBarString.h"
+#import "BCKCodeCharacter.h"
 #import "NSError+BCKCode.h"
+#import "BCKBarStringFunctions.h"
+#import "BCKGTINCode.h"
 
 #import <CoreText/CoreText.h>
 
