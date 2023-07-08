@@ -6,20 +6,6 @@
 	objectVersion = 46;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		A7378D8817C2519C008921C4 /* Documentation */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = A7378D8917C2519C008921C4 /* Build configuration list for PBXAggregateTarget "Documentation" */;
-			buildPhases = (
-				A7BD219317C2524600784903 /* ShellScript */,
-			);
-			dependencies = (
-			);
-			name = Documentation;
-			productName = Documentation;
-		};
-/* End PBXAggregateTarget section */
-
 /* Begin PBXBuildFile section */
 		6C2AF51017D5EE3F00175AE0 /* BCKCode39FullASCII.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2AF50F17D5EE3F00175AE0 /* BCKCode39FullASCII.m */; };
 		6C2AF51217D5EEAD00175AE0 /* BCKCode39FullASCIITest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2AF51117D5EEAD00175AE0 /* BCKCode39FullASCIITest.m */; };
@@ -1525,7 +1511,6 @@
 				A76405EA17B52E9700D45F51 /* BarCodeKit (iOS) */,
 				A7CFEF3917EE04C8006446C9 /* BarCodeKit (Mac) */,
 				A7378D9217C2584E008921C4 /* Unit Tests (iOS) */,
-				A7378D8817C2519C008921C4 /* Documentation */,
 				A77CEDA519E7F40800DBCEE7 /* Unit Tests (Mac) */,
 			);
 		};
@@ -1582,23 +1567,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		A7BD219317C2524600784903 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/appledoc --print-settings --output \"${BUILD_DIR}/Documentation/\" \"${PROJECT_DIR}\"\necho \"Documentation Output directory: ${BUILD_DIR}/Documentation/\"";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A702E4AC17FE916E00506B2B /* Sources */ = {
@@ -1894,20 +1862,6 @@
 				PRODUCT_NAME = BarCodeKit;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		A7378D8A17C2519C008921C4 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		A7378D8B17C2519C008921C4 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -2227,15 +2181,6 @@
 			buildConfigurations = (
 				A702E4D517FE916F00506B2B /* Debug */,
 				A702E4D617FE916F00506B2B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A7378D8917C2519C008921C4 /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A7378D8A17C2519C008921C4 /* Debug */,
-				A7378D8B17C2519C008921C4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

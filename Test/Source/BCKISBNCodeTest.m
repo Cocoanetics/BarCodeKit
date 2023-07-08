@@ -9,6 +9,7 @@
 @import XCTest;
 
 #import <BarCodeKit/BCKISBNCode.h>
+#import <BarCodeKit/BCKBarString.h>
 
 @interface BCKISBNCode () // private
 

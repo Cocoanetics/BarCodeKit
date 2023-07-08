@@ -224,7 +224,7 @@
 							  BCKCodeDrawingBackgroundColorOption: [NSColor whiteColor]
 							  };
 
-	return [NSImage nsImageWithBarCode:_barcodeObject options:options];
+	return [NSImage imageWithBarCode:_barcodeObject options:options];
 }
 
 
