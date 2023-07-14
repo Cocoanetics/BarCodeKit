@@ -1,8 +1,8 @@
 Pod::Spec.new do |spec|
   spec.name         = 'BarCodeKit'
   spec.version      = '1.4.0'
-  spec.ios.deployment_target  = '6.0'
-  spec.osx.deployment_target  = '10.12'
+  spec.ios.deployment_target  = '11.0'
+  spec.osx.deployment_target  = '10.13'
   spec.license      = 'BSD'
   spec.source       = { :git => 'https://github.com/Cocoanetics/BarCodeKit.git', :tag => spec.version.to_s }
   spec.source_files = 'Core/Source/*.{h,m}', 'Core/*.h'
