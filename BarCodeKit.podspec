@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = 'BarCodeKit'
-  spec.version      = '1.3.3'
+  spec.version      = '1.4.0'
   spec.ios.deployment_target  = '6.0'
   spec.osx.deployment_target  = '10.12'
   spec.license      = 'BSD'

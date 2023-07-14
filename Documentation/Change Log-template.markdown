@@ -3,6 +3,11 @@ Change Log
 
 This is the history of version updates.
 
+
+Version 1.4.0
+
+- NEW: Implemented Swift Package Manager support
+
 Version 1.3.2
 
 - FIXED: Podspec didn't specify that pod is iOS compatible
