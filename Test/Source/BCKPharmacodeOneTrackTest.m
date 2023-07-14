@@ -6,8 +6,10 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
-#import "BCKPharmacodeOneTrack.h"
-#import "BCKCodeCharacter.h"
+@import XCTest;
+
+#import <BarCodeKit/BCKPharmacodeOneTrack.h>
+#import <BarCodeKit/BCKCodeCharacter.h>
 
 @interface BCKPharmacodeOneTrack () // private
 

@@ -6,8 +6,10 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
-#import "BCKFacingIdentificationMarkCode.h"
-#import "BCKFacingIdentificationMarkCodeCharacter.h"
+@import XCTest;
+
+#import <BarCodeKit/BCKFacingIdentificationMarkCode.h>
+#import <BarCodeKit/BCKFacingIdentificationMarkCodeCharacter.h>
 
 @interface BCKFacingIdentificationMarkCode () // private
 

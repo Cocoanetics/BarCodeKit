@@ -6,8 +6,12 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
-#import "BCKEAN5SupplementCode.h"
-#import "BCKGTINSupplementCodeCharacter.h"
+@import XCTest;
+
+
+#import <BarCodeKit/BCKCode.h>
+#import <BarCodeKit/BCKEAN5SupplementCode.h>
+#import <BarCodeKit/BCKGTINSupplementCodeCharacter.h>
 
 @interface BCKEAN5SupplementCode () // private
 

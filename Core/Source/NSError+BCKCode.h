@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
+@import Foundation;
+
 /**
  Helper methods for `NSError` to create BarCodeKit specific `NSError` instances.
  */

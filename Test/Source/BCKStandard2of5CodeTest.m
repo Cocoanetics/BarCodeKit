@@ -6,8 +6,10 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
-#import "BCKStandard2of5Code.h"
-#import "BCKStandard2of5CodeCharacter.h"
+@import XCTest;
+
+#import <BarCodeKit/BCKStandard2of5Code.h>
+#import <BarCodeKit/BCKStandard2of5CodeCharacter.h>
 
 @interface BCKStandard2of5Code () // private
 

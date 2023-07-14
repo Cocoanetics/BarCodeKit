@@ -6,6 +6,9 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
+@import Foundation;
+@import CoreGraphics;
+
 // Drawing options string constants
 extern NSString * const BCKCodeDrawingBarScaleOption;
 extern NSString * const BCKCodeDrawingPrintCaptionOption;

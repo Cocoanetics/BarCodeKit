@@ -6,8 +6,10 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
-#import "BCKCode11Code.h"
-#import "BCKCode11CodeCharacter.h"
+@import XCTest;
+
+#import <BarCodeKit/BCKCode11Code.h>
+#import <BarCodeKit/BCKCode11CodeCharacter.h>
 
 @interface BCKCode11Code () // private
 

@@ -6,7 +6,8 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
-#import "BarCodeKit.h"
+#import "BCKISMNCode.h"
+#import "NSError+BCKCode.h"
 
 // source: http://www.ismn-international.org/download/Web_ISMN_Users_Manual_2008-5.pdf
 

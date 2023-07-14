@@ -6,8 +6,10 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
-#import "BCKMSICode.h"
-#import "BCKMSIContentCodeCharacter.h"
+@import XCTest;
+
+#import <BarCodeKit/BCKMSICode.h>
+#import <BarCodeKit/BCKMSIContentCodeCharacter.h>
 
 @interface BCKMSICode () // private
 

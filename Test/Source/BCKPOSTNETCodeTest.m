@@ -6,8 +6,10 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
-#import "BCKPOSTNETCode.h"
-#import "BCKPOSTNETCodeCharacter.h"
+@import XCTest;
+
+#import <BarCodeKit/BCKPOSTNETCode.h>
+#import <BarCodeKit/BCKPOSTNETCodeCharacter.h>
 
 @interface BCKPOSTNETCode () // private
 

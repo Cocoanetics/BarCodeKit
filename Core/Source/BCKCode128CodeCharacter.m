@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
+#import "BCKCode128CodeCharacter.h"
 #import "BCKCode128ContentCodeCharacter.h"
 
 @implementation BCKCode128CodeCharacter {

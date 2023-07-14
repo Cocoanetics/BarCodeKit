@@ -1,14 +1,21 @@
 // all-in header for Bar Code Kit
 
-#import <Availability.h>
+@import Foundation; // that has target conditionals
 
 // code implementations
+#import "BCKCode.h"
 #import "BCKCodabarCode.h"
 #import "BCKGTINCode.h"
+#import "BCKEAN2SupplementCode.h"
+#import "BCKEAN5SupplementCode.h"
 #import "BCKEAN8Code.h"
 #import "BCKEAN13Code.h"
 #import "BCKUPCECode.h"
 #import "BCKCode39Code.h"
+#import "BCKCode39CodeModulo43.h"
+#import "BCKCode39FullASCIIModulo43.h"
+#import "BCKCode11Code.h"
+#import "NSString+BCKCode128Helpers.h"
 #import "BCKCode93Code.h"
 #import "BCKFacingIdentificationMarkCode.h"
 #import "BCKInterleaved2of5Code.h"
@@ -20,6 +27,7 @@
 #import "BCKISBNCode.h"
 #import "BCKISSNCode.h"
 #import "BCKISMNCode.h"
+#import "BCKUPCACode.h"
 
 // code characters for EAN/UPC
 #import "BCKEANCodeCharacter.h"
@@ -80,8 +88,10 @@
 // barcode rendering
 #import "BCKCodeFunctions.h"
 
-#if TARGET_OS_IPHONE
-	#import "UIImage+BarCodeKit.h"
-#else
-	#import "NSImage+BarCodeKit.h"
-#endif
+// bar strings
+#import "BCKBarString.h"
+#import "BCKMutableBarString.h"
+
+// helper functions to generate images
+#import "UIImage+BarCodeKit.h"
+#import "NSImage+BarCodeKit.h"

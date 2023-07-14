@@ -9,7 +9,8 @@
 #import "DemoWindowController.h"
 #import <objc/runtime.h>
 
-#import "BarCodeKit.h"
+#import <BarCodeKit/BarCodeKit.h>
+#import <BarCodeKit/NSImage+BarCodeKit.h>
 
 @interface DemoWindowController ()
 

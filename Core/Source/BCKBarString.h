@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
+@import Foundation;
+
 /**
  Supported bar types represented by their ASCII values. Note: The characters used for the internal representation are an implementation detail subject to change. Always use values from this enumeration in your code.
  */

@@ -6,9 +6,10 @@
 //  Copyright (c) 2013 Oliver Drobnik. All rights reserved.
 //
 
+@import XCTest;
 
-#import "BCKInterleaved2of5Code.h"
-#import "BCKInterleaved2of5CodeCharacter.h"
+#import <BarCodeKit/BCKInterleaved2of5Code.h>
+#import <BarCodeKit/BCKInterleaved2of5CodeCharacter.h>
 
 @interface BCKInterleaved2of5Code () // private
 
